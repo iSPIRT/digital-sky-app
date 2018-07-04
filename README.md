@@ -1,1 +1,1 @@
-# digital-sky-app
+# digital-sky-api
