@@ -1,6 +1,7 @@
 
 export const userService = {
     login,
+    logout,
     register
 };
 
@@ -28,6 +29,10 @@ function login(credentials) {
                       localStorage.setItem('accessToken', token.accessToken);
                     }
                 });
+}
+
+function logout(){
+    localStorage.removeItem('accessToken');
 }
 
 function handleResponse(response) {

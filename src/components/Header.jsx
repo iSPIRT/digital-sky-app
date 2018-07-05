@@ -27,6 +27,7 @@ class UserHeader extends React.Component {
             <div><h1>DigitalSky</h1></div>
             <div>
                  <label>sample111</label>
+                 <Link to="/logout" >Logout</Link>
             </div>
         </div>
     );

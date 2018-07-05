@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 import Register from '../components/Register';
 import { registerUserAction } from '../actions/registrationActions';
 
+import { history } from '../store/configureStore';
+
+
 class RegisterPage extends React.Component {
 
     registerUser(dispatch) {
@@ -11,24 +14,28 @@ class RegisterPage extends React.Component {
     }
 
     render(){
-        const { registering, registered, errors, user } = this.props;
+        const { registering, registered, loggedIn, errors } = this.props;
         if(registered){
             return (
                 <div>Registration Successful...</div>
             );
         }
-        return <Register registering={registering} user={user} errors={errors} registerUser={this.registerUser(this.props.dispatch)}/>
+        if(loggedIn){
+            history.push('/home');
+        }
+        return <Register registering={registering}  errors={errors} registerUser={this.registerUser(this.props.dispatch)}/>
 
     }
 }
 
 function mapStateToProps(state) {
-     const { registering, registered, errors, user } = state.registration;
+     const { registering, registered, errors } = state.registration;
+     const { loggedIn } = state.authentication;
      return {
+        loggedIn,
         registering,
         registered,
-        errors,
-        user
+        errors
      };
 }
 

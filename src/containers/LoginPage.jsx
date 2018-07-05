@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import Login from '../components/Login';
 import { loginAction } from '../actions/loginActions';
 
+import { history } from '../store/configureStore';
+
 class LoginPage extends React.Component {
 
     login(dispatch) {
@@ -11,20 +13,18 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        const { loginActionInProgress, loggedIn, errors } = this.props;
+        const { loggingIn, loggedIn, errors } = this.props;
         if(loggedIn){
-            return (
-                <div>Login Success</div>
-            );
+            history.push('/home');
         }
-        return <Login loginActionInProgress={loginActionInProgress} errors={errors} loginUser={this.login(this.props.dispatch)}/>
+        return <Login loggingIn={loggingIn} errors={errors} loginUser={this.login(this.props.dispatch)}/>
     }
 }
 
 function mapStateToProps(state) {
-     const { loginActionInProgress, loggedIn, errors } = state.authentication;
+     const { loggingIn, loggedIn, errors } = state.authentication;
      return {
-        loginActionInProgress,
+        loggingIn,
         loggedIn,
         errors
      };
