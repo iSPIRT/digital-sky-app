@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="29px" height="29px" viewBox="0 0 29 29" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>NO</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dashboard" transform="translate(-285.000000, -1135.000000)" fill="#9F0000" fill-rule="nonzero">
+            <g id="Application-Status" transform="translate(40.000000, 801.000000)">
+                <g id="Declined-Copy" transform="translate(0.000000, 271.000000)">
+                    <g id="NO" transform="translate(245.000000, 63.000000)">
+                        <path d="M14.5,0 C6.50483594,0 0,6.50483594 0,14.5 C0,22.4951641 6.50483594,29 14.5,29 C22.4951641,29 29,22.4951641 29,14.5 C29,6.50483594 22.4951641,0 14.5,0 Z M14.5,25.375 C8.50374023,25.375 3.625,20.4962598 3.625,14.5 C3.625,12.2113789 4.31884766,10.0478203 5.63812109,8.20167578 L20.7983242,23.3618789 C18.9521797,24.6811523 16.7886211,25.375 14.5,25.375 Z M23.3618789,20.7983242 L8.20167578,5.63812109 C10.0478203,4.31884766 12.2113789,3.625 14.5,3.625 C20.4962598,3.625 25.375,8.50374023 25.375,14.5 C25.375,16.7886211 24.6811523,18.9521797 23.3618789,20.7983242 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Operator</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Apply-now" transform="translate(-65.000000, -394.000000)">
+            <g id="Operator" transform="translate(40.000000, 361.000000)">
+                <g transform="translate(17.000000, 25.000000)" id="Group">
+                    <g transform="translate(8.000000, 8.000000)">
+                        <g id="Group-2-Copy-2" transform="translate(0.000000, 24.000000)" stroke-width="2">
+                            <path d="M9,-8.8817842e-16 L9,4 C9,5.65685425 7.65685425,7 6,7 L6,7 C4.34314575,7 3,8.34314575 3,10 L3,10.9643069" id="Path-3-Copy-2" stroke="#B6904B"></path>
+                            <path d="M31,-8.8817842e-16 L31,4 C31,5.65685425 29.6568542,7 28,7 L28,7 C26.3431458,7 25,8.34314575 25,10 L25,10.9643069" id="Path-3-Copy-4" stroke="#B6904B"></path>
+                            <path d="M15,0 L15,4 C15,5.65685425 13.6568542,7 12,7 L12,7 C10.3431458,7 9,8.34314575 9,10 L9,10.9643069" id="Path-3-Copy-3" stroke="#B6904B" transform="translate(12.000000, 5.482153) scale(-1, 1) translate(-12.000000, -5.482153) "></path>
+                            <path d="M37,0 L37,4 C37,5.65685425 35.6568542,7 34,7 L34,7 C32.3431458,7 31,8.34314575 31,10 L31,10.9643069" id="Path-3-Copy-5" stroke="#B6904B" transform="translate(34.000000, 5.482153) scale(-1, 1) translate(-34.000000, -5.482153) "></path>
+                            <circle id="Oval-Copy-6" stroke="#000000" cx="15" cy="13" r="2"></circle>
+                            <circle id="Oval-Copy-8" stroke="#000000" cx="37" cy="13" r="2"></circle>
+                            <circle id="Oval-Copy-7" stroke="#000000" cx="3" cy="13" r="2"></circle>
+                            <circle id="Oval-Copy-9" stroke="#000000" cx="25" cy="13" r="2"></circle>
+                        </g>
+                        <g id="Group-2" transform="translate(6.000000, 9.000000)" stroke-width="2">
+                            <path d="M14,-8.8817842e-16 L14,2 C14,4.76142375 11.7614237,7 9,7 L6.96430685,7 C4.77488063,7 3,8.77488063 3,10.9643069" id="Path-3-Copy-2" stroke="#B6904B"></path>
+                            <path d="M25.517705,0 L25.517705,2 C25.517705,4.76142375 23.2791287,7 20.517705,7 L17.9643069,7 C15.7748806,7 14,8.77488063 14,10.9643069" id="Path-3-Copy-3" stroke="#B6904B" transform="translate(19.758852, 5.482153) scale(-1, 1) translate(-19.758852, -5.482153) "></path>
+                            <circle id="Oval-Copy-6" stroke="#000000" cx="25" cy="13" r="2"></circle>
+                            <circle id="Oval-Copy-7" stroke="#000000" cx="3" cy="13" r="2"></circle>
+                        </g>
+                        <rect id="Rectangle-4" stroke="#000000" stroke-width="2" x="16" y="1" width="8" height="8"></rect>
+                        <rect id="Rectangle-5" fill="#B6904B" x="17" y="2" width="2" height="2"></rect>
+                        <rect id="Rectangle-5-Copy" fill="#B6904B" x="21" y="2" width="2" height="2"></rect>
+                        <rect id="Rectangle-5-Copy-2" fill="#B6904B" x="21" y="6" width="2" height="2"></rect>
+                        <rect id="Rectangle-5-Copy-3" fill="#B6904B" x="17" y="6" width="2" height="2"></rect>
+                        <rect id="Rectangle-5-Copy-4" fill="#B6904B" x="19" y="4" width="2" height="2"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
