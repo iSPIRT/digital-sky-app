@@ -16,7 +16,7 @@ export function authentication(state = initialState, action) {
         case LOGIN_FAILURE:
           return { loggedIn:false, loggingIn: false, errors: action.errors};
         case LOGOUT:
-          return { loggedIn:false, loggingIn: true, errors: []};
+          return { loggedIn:false, loggingIn: false, errors: []};
         default:
           return state
     }
