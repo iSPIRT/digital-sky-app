@@ -13,6 +13,9 @@ class GuestHeader extends React.Component {
             <div>
                  <Link to="/register" >Register</Link>
             </div>
+             <div>
+                 <Link to="/resetPasswordLink" >Reset Password</Link>
+            </div>
         </div>
     );
   }
