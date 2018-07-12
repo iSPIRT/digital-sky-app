@@ -1,50 +1,44 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 
-
-class GuestHeader extends React.Component {
-  render() {
-    return (
-        <div>
-            <div><h1>DigitalSky</h1></div>
-            <div>
-                 <Link to="/login" >Login</Link>
-            </div>
-            <div>
-                 <Link to="/register" >Register</Link>
-            </div>
-             <div>
-                 <Link to="/resetPasswordLink" >Reset Password</Link>
-            </div>
-        </div>
-    );
-  }
-}
-
-class UserHeader extends React.Component {
-  render() {
-    const { user } = this.props;
-    console.log(user);
-    return (
-        <div>
-            <div><h1>DigitalSky</h1></div>
-            <div>
-                 <label>sample111</label>
-                 <Link to="/logout" >Logout</Link>
-            </div>
-        </div>
-    );
-  }
-}
-
+import HeaderLogo from '../components/HeaderLogo';
+import HeaderLoginMenu from '../components/HeaderLoginMenu';
+import HeaderUserMenu from '../components/HeaderUserMenu';
+import HeaderDesktopNavigationMenu from '../components/HeaderDesktopNavigationMenu';
+import HeaderSiteNavigationMenu from '../components/HeaderSiteNavigationMenu';
 
 class Header extends React.Component {
-  render() {
-    const {loggedIn} = this.props;
-    if(loggedIn) {
-        return <UserHeader user={this.props.user}/>
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            siteNavigationOpen: false,
+            userNavigationOpen: false
+        };
+        this.onSiteNavigationClick = this.onSiteNavigationClick.bind(this);
+        this.onUserNavigationClick = this.onUserNavigationClick.bind(this);
     }
-    return <GuestHeader />
+
+    onSiteNavigationClick(value){
+        this.setState({siteNavigationOpen: value});
+    }
+
+    onUserNavigationClick(value){
+       this.setState({userNavigationOpen: value});
+
+    }
+
+    render() {
+        const {loggedIn, homepage, stickyHeader} = this.props;
+        const {siteNavigationOpen, userNavigationOpen} = this.state;
+        const siteHeaderClass = 'site-header '+ (stickyHeader ? 'sticky ' : '') + (homepage ? 'homepage ' : '') + ( (siteNavigationOpen || userNavigationOpen) ? 'menu-open' : '');
+        return(
+            <header className={siteHeaderClass}>
+                <HeaderLogo/>
+                { loggedIn ? <HeaderUserMenu userNavigationOpen={userNavigationOpen} siteNavigationOpen={siteNavigationOpen} onUserNavigationClick={this.onUserNavigationClick} />:  <HeaderLoginMenu/> }
+                <HeaderSiteNavigationMenu userNavigationOpen={userNavigationOpen} siteNavigationOpen={siteNavigationOpen} onSiteNavigationClick={this.onSiteNavigationClick}/>
+                <HeaderDesktopNavigationMenu/>
+            </header>
+        );
   }
 }
 

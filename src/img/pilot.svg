@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="40px" viewBox="0 0 47 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Drone</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Apply-now" transform="translate(-61.000000, -267.000000)">
+            <g id="Pilot" transform="translate(40.000000, 234.000000)">
+                <g id="Drone" transform="translate(21.000000, 33.000000)">
+                    <g id="Wind" stroke-width="1" transform="translate(2.000000, 14.000000)" stroke="#A7D4A7">
+                        <rect id="Rectangle-2" x="2.5" y="15.5" width="1" height="1" rx="0.5"></rect>
+                        <rect id="Rectangle-2-Copy" x="0.5" y="15.5" width="1" height="1" rx="0.5"></rect>
+                        <path d="M12,0 L12,10.0108166 C11.8802083,14.0036055 9.88020833,16 6,16" id="Path-2" stroke-width="2" stroke-linecap="round"></path>
+                    </g>
+                    <g id="Wind-Copy" stroke-width="1" transform="translate(39.000000, 22.500000) scale(-1, 1) translate(-39.000000, -22.500000) translate(33.000000, 14.000000)" stroke="#A7D4A7">
+                        <rect id="Rectangle-2" x="2.5" y="15.5" width="1" height="1" rx="0.5"></rect>
+                        <rect id="Rectangle-2-Copy" x="0.5" y="15.5" width="1" height="1" rx="0.5"></rect>
+                        <path d="M12,0 L12,10.0108166 C11.8802083,14.0036055 9.88020833,16 6,16" id="Path-2" stroke-width="2" stroke-linecap="round"></path>
+                    </g>
+                    <g id="Wind-Copy-2" stroke-width="1" transform="translate(41.500000, 19.000000) scale(-1, 1) translate(-41.500000, -19.000000) translate(37.000000, 14.000000)" stroke="#A7D4A7">
+                        <rect id="Rectangle-2" x="2.5" y="8.5" width="1" height="1" rx="0.5"></rect>
+                        <rect id="Rectangle-2-Copy" x="0.5" y="8.5" width="1" height="1" rx="0.5"></rect>
+                        <path d="M9,0 L9,5.01081655 C9,7.67027218 8,9 6,9" id="Path-2" stroke-width="2" stroke-linecap="round"></path>
+                    </g>
+                    <g id="Wind-Copy-3" stroke-width="1" transform="translate(1.000000, 14.000000)" stroke="#A7D4A7">
+                        <rect id="Rectangle-2" x="2.5" y="8.5" width="1" height="1" rx="0.5"></rect>
+                        <rect id="Rectangle-2-Copy" x="0.5" y="8.5" width="1" height="1" rx="0.5"></rect>
+                        <path d="M9,0 L9,5.01081655 C9,7.67027218 8,9 6,9" id="Path-2" stroke-width="2" stroke-linecap="round"></path>
+                    </g>
+                    <g id="Group" stroke-width="1">
+                        <path d="M7,5 L13,5 L11.3162278,10.0513167 C11.1273796,10.6178612 10.5971903,11 10,11 L10,11 C9.40280971,11 8.87262039,10.6178612 8.68377223,10.0513167 L7,5 Z" id="Rectangle-4" fill="#000000"></path>
+                        <path d="M10,0 L10,0 C10.5522847,-1.01453063e-16 11,0.44771525 11,1 L11,3 L9,3 L9,1 C9,0.44771525 9.44771525,1.01453063e-16 10,0 Z" id="Rectangle-5" fill="#000000"></path>
+                        <rect id="Rectangle-16" fill="#489148" x="0" y="3" width="20" height="2" rx="1"></rect>
+                    </g>
+                    <g id="Group-Copy" stroke-width="1" transform="translate(27.000000, 0.000000)">
+                        <path d="M7,5 L13,5 L11.3162278,10.0513167 C11.1273796,10.6178612 10.5971903,11 10,11 L10,11 C9.40280971,11 8.87262039,10.6178612 8.68377223,10.0513167 L7,5 Z" id="Rectangle-4" fill="#000000"></path>
+                        <path d="M10,0 L10,0 C10.5522847,-1.01453063e-16 11,0.44771525 11,1 L11,3 L9,3 L9,1 C9,0.44771525 9.44771525,1.01453063e-16 10,0 Z" id="Rectangle-5" fill="#000000"></path>
+                        <rect id="Rectangle-16" fill="#489148" x="0" y="3" width="20" height="2" rx="1"></rect>
+                    </g>
+                    <path d="M18,9 L29,9 L29,10.5 C29,13.5375661 26.5375661,16 23.5,16 L23.5,16 C20.4624339,16 18,13.5375661 18,10.5 L18,9 Z" id="Rectangle-6" fill="#489148"></path>
+                    <path d="M12,7 L36,7 C36.5522847,7 37,7.44771525 37,8 L37,8 C37,8.55228475 36.5522847,9 36,9 L12,9 C11.4477153,9 11,8.55228475 11,8 L11,8 C11,7.44771525 11.4477153,7 12,7 Z" id="Rectangle-16-Copy" fill="#000000"></path>
+                    <g id="Group-2" stroke-width="1" transform="translate(17.000000, 18.000000)">
+                        <rect id="Rectangle-10" stroke="#A7D4A7" x="0.5" y="0.5" width="1" height="13" rx="0.5"></rect>
+                        <rect id="Rectangle" fill="#A7D4A7" x="0" y="15" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-3" fill="#A7D4A7" x="0" y="18" width="2" height="1" rx="0.5"></rect>
+                    </g>
+                    <g id="Group-2-Copy" stroke-width="1" transform="translate(28.000000, 18.000000)">
+                        <rect id="Rectangle-10" stroke="#A7D4A7" x="0.5" y="0.5" width="1" height="13" rx="0.5"></rect>
+                        <rect id="Rectangle" fill="#A7D4A7" x="0" y="15" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-3" fill="#A7D4A7" x="0" y="18" width="2" height="1" rx="0.5"></rect>
+                    </g>
+                    <g id="Group-2-Copy-2" stroke-width="1" transform="translate(22.000000, 19.000000)" fill="#A7D4A7">
+                        <rect id="Rectangle-10" stroke="#A7D4A7" x="0.5" y="0.5" width="2" height="15" rx="1"></rect>
+                        <rect id="Rectangle" x="0" y="17" width="3" height="2" rx="1"></rect>
+                        <rect id="Rectangle-3" x="0" y="20" width="3" height="1" rx="0.5"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

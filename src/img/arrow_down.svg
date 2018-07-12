@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="14px" viewBox="0 0 20 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Startpage" transform="translate(-315.000000, -1762.000000)" fill="#2B2B5B">
+            <g id="FAQ" transform="translate(0.000000, 1648.000000)">
+                <g id="Expanded-Question" transform="translate(39.000000, 106.000000)">
+                    <path d="M277.707107,8.53553391 L285.292893,16.1213203 C285.683418,16.5118446 286.316582,16.5118446 286.707107,16.1213203 L294.292893,8.53553391 C294.683418,8.14500961 295.316582,8.14500961 295.707107,8.53553391 C295.894643,8.72307028 296,8.9774242 296,9.24264069 L296,11 C296,11.530433 295.789286,12.0391408 295.414214,12.4142136 L286.707107,21.1213203 C286.316582,21.5118446 285.683418,21.5118446 285.292893,21.1213203 L276.585786,12.4142136 C276.210714,12.0391408 276,11.530433 276,11 L276,9.24264069 C276,8.69035594 276.447715,8.24264069 277,8.24264069 C277.265216,8.24264069 277.51957,8.34799753 277.707107,8.53553391 Z" id="Arrow"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

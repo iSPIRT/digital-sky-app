@@ -19,9 +19,15 @@ class ResetPasswordPage extends React.Component {
         const { resettingPassword, resetPasswordSuccess, loggedIn, errors } = this.props;
         if(resetPasswordSuccess){
             return (
-                <div>
-                     <p>Your password was successfully reset</p>
-                     <Link to="/login" >Login</Link>
+                <div className="page-header">
+                  <div className="grid-container">
+                    <div className="grid-x grid-padding-x">
+                      <div className="large-12 cell">
+                        <h2>Password Reset Successful</h2>
+                        <p><Link to="/login">Sign In</Link></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             );
         }

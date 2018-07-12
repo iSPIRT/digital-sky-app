@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="23px" viewBox="0 0 17 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Footer" transform="translate(-75.000000, -119.000000)">
+            <g id="Group">
+                <g>
+                    <g id="CTA" transform="translate(40.000000, 66.000000)">
+                        <g id="Icon" transform="translate(35.000000, 53.000000)">
+                            <path d="M8.5,23 C14.1666667,16.2204024 17,11.3089441 17,8.265625 C17,3.70064636 13.1944204,0 8.5,0 C3.80557963,0 0,3.70064636 0,8.265625 C0,11.3089441 2.83333333,16.2204024 8.5,23 Z" id="Oval-2" fill="#2B2B5B"></path>
+                            <circle id="Oval-3" fill="#FFFFFF" cx="8.5" cy="8.5" r="3.5"></circle>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

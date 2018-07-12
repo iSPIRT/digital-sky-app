@@ -11,20 +11,48 @@ import Logout from '../containers/Logout';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Home from '../components/Home';
+import Dashboard from '../components/Dashboard';
 
 import { history } from '../store/configureStore';
 
+import $ from 'jquery';
+
+import 'foundation-sites';
+
 class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            stickyHeader: false
+        };
+        this.handleScroll = this.handleScroll.bind(this);
+    }
+    componentDidMount() {
+        $(document).foundation();
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll(event){
+        if(window.scrollY > 550){
+            this.setState({stickyHeader: true});
+        }
+        if(window.scrollY < 551){
+            this.setState({stickyHeader: false});
+        }
+    }
 
     render() {
         const { loggedIn, user } = this.props;
+        const { stickyHeader } = this.state;
         return (
             <div>
              <Router history={history}>
                <div>
-                    <Header loggedIn={loggedIn} user={user}/>
-                    <AuthenticatedRoute exact path="/home" loggedIn={loggedIn} component={Home} />
+                    <Header stickyHeader={stickyHeader} homepage='true' loggedIn={loggedIn} user={user}/>
+                    <AuthenticatedRoute exact path="/dashboard" loggedIn={loggedIn} component={Dashboard} />
                     <AuthenticatedRoute exact path="/logout" loggedIn={loggedIn} component={Logout} />
+                    <Route exact path="/" component={Home} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/register" component={RegisterPage} />
                     <Route path="/resetPasswordLink" component={ResetPasswordLinkPage} />

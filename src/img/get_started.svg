@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="53px" height="25px" viewBox="0 0 53 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Startpage" transform="translate(-94.000000, -796.000000)">
+            <g id="Register" transform="translate(39.000000, 526.000000)">
+                <g id="CTA" transform="translate(1.000000, 256.000000)">
+                    <g id="Icon" transform="translate(54.000000, 14.000000)">
+                        <ellipse id="Oval" fill="#032483" cx="44.5" cy="23" rx="7.5" ry="2"></ellipse>
+                        <path d="M44.5,23 C50.1666667,16.2204024 53,11.3089441 53,8.265625 C53,3.70064636 49.1944204,0 44.5,0 C39.8055796,0 36,3.70064636 36,8.265625 C36,11.3089441 38.8333333,16.2204024 44.5,23 Z" id="Oval-2" fill="#FFFFFF"></path>
+                        <circle id="Oval-3" fill="#003BE2" cx="44.5" cy="8.5" r="3.5"></circle>
+                        <ellipse id="Oval" fill="#032483" cx="4" cy="15" rx="4" ry="2"></ellipse>
+                        <path d="M4,15 C6.66666667,11.7575838 8,9.40862543 8,7.953125 C8,5.76987435 6.209139,4 4,4 C1.790861,4 0,5.76987435 0,7.953125 C0,9.40862543 1.33333333,11.7575838 4,15 Z" id="Oval-2" fill="#FFFFFF"></path>
+                        <circle id="Oval-3" fill="#003BE2" cx="4" cy="8" r="2"></circle>
+                        <rect id="Rectangle-14" fill="#FFFFFF" x="9" y="13" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-14-Copy" fill="#FFFFFF" x="13" y="13" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-14-Copy-2" fill="#FFFFFF" x="17" y="13" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-14-Copy-3" fill="#FFFFFF" x="21" y="13" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-14-Copy-4" fill="#FFFFFF" x="21" y="17" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-14-Copy-5" fill="#FFFFFF" x="21" y="21" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-14-Copy-6" fill="#FFFFFF" x="25" y="21" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-14-Copy-7" fill="#FFFFFF" x="29" y="21" width="2" height="2" rx="1"></rect>
+                        <rect id="Rectangle-14-Copy-8" fill="#FFFFFF" x="33" y="21" width="2" height="2" rx="1"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -9,7 +9,7 @@ class Logout extends React.Component {
 
     componentWillMount () {
            this.props.dispatch(logoutAction());
-           history.push('/login');
+           history.push('/');
        }
 
        render () {

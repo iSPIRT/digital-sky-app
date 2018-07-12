@@ -6,7 +6,8 @@
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
     "prettier": "^1.11.0",
-    "react-scripts": "^1.0.17"
+    "react-scripts": "^1.0.17",
+    "script-loader": "^0.6.1"
   },
   "dependencies": {
     "react": "^16.2.0",
@@ -19,7 +20,11 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
     "redux-logger": "^3.0.6",
-    "sanitize.css": "^5.0.0"
+    "sanitize.css": "^5.0.0",
+    "foundation-sites": "^6.1.2",
+    "jquery": "^3.2.1",
+    "jquery": "^3.2.1",
+    "what-input": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
