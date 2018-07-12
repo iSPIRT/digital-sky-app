@@ -17,7 +17,15 @@ class ResetPasswordLinkPage extends React.Component {
         const { sendingResetPasswordLink, sentResetPasswordLink, loggedIn, errors } = this.props;
         if(sentResetPasswordLink){
             return (
-                <div>Please check your email</div>
+                 <div className="page-header">
+                   <div className="grid-container">
+                     <div className="grid-x grid-padding-x">
+                       <div className="large-12 cell">
+                         <h2>Please check your email for reset password link</h2>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
             );
         }
         if(loggedIn){

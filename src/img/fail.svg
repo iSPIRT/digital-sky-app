@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="133px" height="20px" viewBox="0 0 133 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Fail</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="6.35868196%" x2="50%" y2="98.0216742%" id="linearGradient-1">
+            <stop stop-color="#DEE2ED" offset="0%"></stop>
+            <stop stop-color="#D40000" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Submit-Fail" transform="translate(-121.000000, -263.000000)">
+            <g id="Fail" transform="translate(121.000000, 263.000000)">
+                <rect id="Rectangle-12" fill="url(#linearGradient-1)" fill-rule="evenodd" transform="translate(71.500000, 10.000000) rotate(-90.000000) translate(-71.500000, -10.000000) " x="69.5" y="-42.5" width="4" height="105"></rect>
+                <circle id="Oval-4" stroke="#DEE2ED" stroke-width="4" cx="10" cy="10" r="8"></circle>
+                <rect id="Rectangle-13" fill="#D40000" fill-rule="evenodd" transform="translate(123.899495, 9.899495) rotate(-45.000000) translate(-123.899495, -9.899495) " x="121.899495" y="-2.10050506" width="4" height="24" rx="2"></rect>
+                <rect id="Rectangle-13" fill="#D40000" fill-rule="evenodd" transform="translate(123.899495, 9.899495) rotate(45.000000) translate(-123.899495, -9.899495) " x="121.899495" y="-2.10050506" width="4" height="24" rx="2"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
