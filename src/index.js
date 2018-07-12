@@ -4,6 +4,9 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore'
 import { App } from './containers/App';
 
+import './css/foundation.min.css';
+import './css/style.css';
+
 const store = configureStore();
 
 render(

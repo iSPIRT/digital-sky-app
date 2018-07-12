@@ -15,7 +15,7 @@ class LoginPage extends React.Component {
     render() {
         const { loggingIn, loggedIn, errors } = this.props;
         if(loggedIn){
-            history.push('/home');
+            history.push('/dashboard');
         }
         return <Login loggingIn={loggingIn} errors={errors} loginUser={this.login(this.props.dispatch)}/>
     }
