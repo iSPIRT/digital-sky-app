@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
+import FormErrors from '../components/FormErrors';
+
 class ResetPasswordLink extends React.Component {
 
     constructor(props) {
@@ -41,8 +43,8 @@ class ResetPasswordLink extends React.Component {
                 </div>
 
                 <div class="page-form">
-                    { errors && errors.length > 0 && <p>{errors.toString()}</p> }
-                    { formErrors && formErrors.length > 0 && <p>{formErrors.toString()}</p> }
+                    <FormErrors errors = {errors}/>
+                    <FormErrors errors = {formErrors}/>
                     <form name="resetPasswordLinkForm" onSubmit={this.handleSubmit}>
                         <div class="grid-container">
                             <div class="grid-x grid-padding-x">

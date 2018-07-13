@@ -1,5 +1,6 @@
 import { userService } from '../services/userService';
 
+export const LOGIN_FORM_LOADED = 'LOGIN_FORM_LOADED'
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
@@ -29,4 +30,8 @@ export const loginAction = (credentials) => {
 export const logoutAction = () => {
     userService.logout();
     return { type: LOGOUT}
+}
+
+export const loginFormLoaded = () => {
+    return { type: LOGIN_FORM_LOADED}
 }

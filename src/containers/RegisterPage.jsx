@@ -5,12 +5,17 @@ import { Link } from 'react-router-dom'
 
 
 import Register from '../components/Register';
-import { registerUserAction } from '../actions/registrationActions';
+import { registerUserAction, registerFormLoaded } from '../actions/registrationActions';
 
 import { history } from '../store/configureStore';
 
 
 class RegisterPage extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.props.dispatch(registerFormLoaded());
+    }
 
     registerUser(dispatch) {
         return user => dispatch(registerUserAction(user));

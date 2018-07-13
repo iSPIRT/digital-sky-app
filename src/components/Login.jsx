@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+
+import FormErrors from '../components/FormErrors';
+
 import email from '../img/email.svg';
 import password from '../img/password.svg';
 
@@ -41,7 +44,7 @@ class Login extends React.Component {
                   </div>
                 </div>
                 <div class="page-form">
-                    { errors && errors.length > 0 && <p>{errors.toString()}</p> }
+                    <FormErrors errors = {errors}/>
                     <form name="loginForm" onSubmit={this.handleSubmit}>
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">

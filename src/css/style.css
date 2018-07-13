@@ -1707,3 +1707,11 @@ footer.site-footer {
   .home-feature {
     height: 300px;
     background: #2B2B5B; } }
+
+.ds-form-error {
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.90rem;
+  font-weight: bold;
+  color: #cc4b37; }
+
