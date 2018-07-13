@@ -1212,7 +1212,6 @@ footer.site-footer {
       justify-content: center;
       height: 66px; }
     #apply-for-block .apply-for-wrap .apply-for .details {
-      width: calc(100% - 60px);
       float: left;
       height: 66px;
       display: flex;

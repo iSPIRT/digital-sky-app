@@ -11,7 +11,7 @@ export const sendResetPasswordLink = (email) => {
         dispatch(request());
         userService.sendResetPasswordLink(email)
                     .then(
-                        user => {
+                        data => {
                             dispatch(success());
                         },
                         errors => {
@@ -37,7 +37,7 @@ export const resetPassword = (payload) => {
         dispatch(request());
         userService.resetPassword(payload)
                     .then(
-                        user => {
+                        data => {
                             dispatch(success());
                         },
                         errors => {

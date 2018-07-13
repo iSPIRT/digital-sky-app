@@ -26,10 +26,9 @@ class Register extends React.Component {
         const user = {
             fullName: this.refs.fullName.value,
             email: this.refs.email.value,
-            password: this.refs.password.value,
-            confirmPassword: this.refs.confirmPassword.value
+            password: this.refs.password.value
         };
-        if(user.password !== user.confirmPassword) {
+        if(this.refs.password.value !== this.refs.confirmPassword.value) {
             this.setState({formErrors: ['Passwords did not match']});
         } else {
             this.props.registerUser(user);
@@ -52,7 +51,7 @@ class Register extends React.Component {
                   </div>
                 </div>
 
-                <div class="page-form">
+                <div className="page-form">
                     <FormErrors errors = {errors}/>
                     <FormErrors errors = {formErrors}/>
                     <form name="registrationForm" onSubmit={this.handleSubmit}>
@@ -84,9 +83,6 @@ class Register extends React.Component {
                                     {
                                        registering && <img alt="Loading..." src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                     }
-                                </div>
-                                <div className="large-6 cell">
-                                    <Link to="/" className='button button-light-clean small' >Cancel</Link>
                                 </div>
                             </div>
                         </div>

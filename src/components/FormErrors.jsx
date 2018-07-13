@@ -5,11 +5,11 @@ class FormErrors extends React.Component {
   render() {
     const {errors} = this.props;
 
+    if(!errors) return;
+
     const errorsMarkup = errors.map((error) =>
        <li><p className='ds-form-error'>{error}</p></li>
     );
-
-    if(!errors) return;
 
     return (
          <div className="grid-container">

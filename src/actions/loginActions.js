@@ -12,7 +12,7 @@ export const loginAction = (credentials) => {
         dispatch(request());
         userService.login(credentials)
                     .then(
-                        user => {
+                        data => {
                             dispatch(success());
                         },
                         errors => {
