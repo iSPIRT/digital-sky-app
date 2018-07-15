@@ -58,7 +58,7 @@ class App extends React.Component {
                     <Route path="/register" component={RegisterPage} />
                     <Route path="/resetPasswordLink" component={ResetPasswordLinkPage} />
                     <Route path="/resetPassword" component={ResetPasswordPage} />
-                    <Route path="/localDroneAcqusitionApplication" component={LocalDroneAcquisitionApplicationPage} />
+                    <Route path="/localDroneAcquisitionApplication" component={LocalDroneAcquisitionApplicationPage} />
                     <Footer/>
                 </div>
               </Router>
