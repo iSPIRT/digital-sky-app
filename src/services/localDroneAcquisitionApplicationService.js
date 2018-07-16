@@ -1,4 +1,4 @@
-export const localDroneAcqusitionApplicationService = {
+export const localDroneAcquisitionApplicationService = {
   create
 };
 

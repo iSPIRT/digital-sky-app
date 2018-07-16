@@ -1,6 +1,6 @@
-import { CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST } from "../actions/localDroneAcqusitionApplicationActions";
-import { CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_SUCCESS } from "../actions/localDroneAcqusitionApplicationActions";
-import { CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_FAILURE } from "../actions/localDroneAcqusitionApplicationActions";
+import { CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST } from "../actions/localDroneAcquisitionApplicationActions";
+import { CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_SUCCESS } from "../actions/localDroneAcquisitionApplicationActions";
+import { CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_FAILURE } from "../actions/localDroneAcquisitionApplicationActions";
 
 const initialState = {
   currentApplicationForm: {},

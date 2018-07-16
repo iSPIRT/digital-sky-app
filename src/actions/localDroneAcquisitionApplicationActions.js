@@ -1,4 +1,4 @@
-import { localDroneAcqusitionApplicationService } from "../services/localDroneAcqusitionApplicationService";
+import { localDroneAcquisitionApplicationService } from "../services/localDroneAcquisitionApplicationService";
 
 export const CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST =
   "CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST";
@@ -10,7 +10,7 @@ export const CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_FAILURE =
 export const createLocalDroneAcquisitionApplicationAction = localDroneAcquisitionApplication => {
   return dispatch => {
     dispatch(request());
-    localDroneAcqusitionApplicationService
+    localDroneAcquisitionApplicationService
       .create(localDroneAcquisitionApplication)
       .then(
         createdForm => {

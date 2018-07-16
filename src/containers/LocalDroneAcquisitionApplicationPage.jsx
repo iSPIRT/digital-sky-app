@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import LocalDroneAcquisitionApplication from '../components/LocalDroneAcquisitionApplication';
-import { createLocalDroneAcquisitionApplicationAction } from '../actions/localDroneAcqusitionApplicationActions';
+import { createLocalDroneAcquisitionApplicationAction } from '../actions/localDroneAcquisitionApplicationActions';
 
 class LocalDroneAcquisitionApplicationPage extends React.Component {
    
