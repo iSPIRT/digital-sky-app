@@ -7,6 +7,7 @@ import LoginPage from '../containers/LoginPage';
 import RegisterPage from '../containers/RegisterPage';
 import ResetPasswordLinkPage from '../containers/ResetPasswordLinkPage';
 import ResetPasswordPage from '../containers/ResetPasswordPage';
+import LocalDroneAcquisitionApplicationPage from '../containers/LocalDroneAcquisitionApplicationPage';
 import Logout from '../containers/Logout';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -57,6 +58,7 @@ class App extends React.Component {
                     <Route path="/register" component={RegisterPage} />
                     <Route path="/resetPasswordLink" component={ResetPasswordLinkPage} />
                     <Route path="/resetPassword" component={ResetPasswordPage} />
+                    <Route path="/localDroneAcquisitionApplication" component={LocalDroneAcquisitionApplicationPage} />
                     <Footer/>
                 </div>
               </Router>
