@@ -2,11 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import Login from '../components/Login';
-import { loginAction } from '../actions/loginActions';
+import { loginAction, loginFormLoaded } from '../actions/loginActions';
 
 import { history } from '../store/configureStore';
 
 class LoginPage extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.props.dispatch(loginFormLoaded());
+    }
 
     login(dispatch) {
         return credentials => dispatch(loginAction(credentials));

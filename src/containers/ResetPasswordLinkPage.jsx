@@ -2,12 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import ResetPasswordLink from '../components/ResetPasswordLink';
-import { sendResetPasswordLink } from '../actions/resetPasswordActions';
+import { sendResetPasswordLink, resetPasswordFormLoaded } from '../actions/resetPasswordActions';
 
 import { history } from '../store/configureStore';
 
 
 class ResetPasswordLinkPage extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.props.dispatch(resetPasswordFormLoaded());
+    }
 
     sendResetPasswordLink(dispatch) {
         return email => dispatch(sendResetPasswordLink(email));

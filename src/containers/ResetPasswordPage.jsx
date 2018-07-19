@@ -4,12 +4,17 @@ import { Link } from 'react-router-dom'
 import queryString from 'query-string'
 
 import ResetPassword from '../components/ResetPassword';
-import { resetPassword } from '../actions/resetPasswordActions';
+import { resetPassword, resetPasswordFormLoaded } from '../actions/resetPasswordActions';
 
 import { history } from '../store/configureStore';
 
 
 class ResetPasswordPage extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.props.dispatch(resetPasswordFormLoaded());
+    }
 
     resetPassword(dispatch) {
         return payload => dispatch(resetPassword(payload));

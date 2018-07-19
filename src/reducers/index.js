@@ -5,13 +5,17 @@ import { registration } from "./registrationReducer";
 import { resetPasswordLink } from "./resetPasswordLinkReducer";
 import { resetPassword } from "./resetPasswordReducer";
 import { saveLocalDroneAcquisitionApplication } from "./localDroneAcquisitionApplicationReducer";
+import { pilotProfile } from './pilotProfileReducer';
+import { operatorProfile } from './operatorProfileReducer';
 
 const rootReducer = combineReducers({
   authentication,
   registration,
   resetPasswordLink,
   resetPassword,
-  saveLocalDroneAcquisitionApplication
+  saveLocalDroneAcquisitionApplication,
+  pilotProfile,
+  operatorProfile
 });
 
 export default rootReducer;
