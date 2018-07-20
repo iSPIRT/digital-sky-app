@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 
 import LocalDroneAcquisitionApplicationStep1 from '../components/LocalDroneAcquisitionApplicationStep1';
 import LocalDroneAcquisitionApplicationStep2 from '../components/LocalDroneAcquisitionApplicationStep2';
-import { createLocalDroneAcquisitionApplicationAction } from '../actions/localDroneAcquisitionApplicationCreateActions';
-import { editLocalDroneAcquisitionApplicationAction } from '../actions/localDroneAcquisitionApplicationEditActions';
-import { formStepReduceAction } from '../actions/applicationFormStepActions';
 import LocalDroneAcquisitionApplicationReview from '../components/LocalDroneAcquisitionApplicationReview';
 import FooterApplicationForm from '../components/FooterApplicationForm';
 import HeaderApplicationForm from '../components/HeaderApplicationForm';
 import Dashboard from '../components/Dashboard';
+
+import { createLocalDroneAcquisitionApplicationAction } from '../actions/localDroneAcquisitionApplicationCreateActions';
+import { editLocalDroneAcquisitionApplicationAction } from '../actions/localDroneAcquisitionApplicationEditActions';
+import { formStepReduceAction } from '../actions/applicationFormStepActions';
+
 
 class LocalDroneAcquisitionApplicationPage extends React.Component {
    
