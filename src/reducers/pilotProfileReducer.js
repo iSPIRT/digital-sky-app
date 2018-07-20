@@ -7,7 +7,7 @@ import { LOAD_PILOT_PROFILE_FAILURE } from '../actions/pilotProfileActions';
 
 const pilotProfileId = localStorage.getItem('pilotProfileId');
 
-const pilotProfileSaved = ( pilotProfileId && pilotProfileId > 0 )
+const pilotProfileSaved = pilotProfileId > 0
 
 const initialState = { savingPilotProfile: false, pilotProfileSaved, errors:[], profile:{ empty: 'empty' } };
 

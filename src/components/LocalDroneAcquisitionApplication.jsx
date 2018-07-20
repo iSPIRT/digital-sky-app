@@ -91,7 +91,7 @@ class  LocalDroneAcquisitionApplication extends React.Component {
         return (<option value={nationality} key={nationality}> {nationality} </option>);
     });
 
-    const { saving, errors} = this.props;
+    const { errors} = this.props;
     const { formErrors } = this.state;
 
         return (
