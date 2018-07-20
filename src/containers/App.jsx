@@ -3,12 +3,12 @@ import { Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 import AuthenticatedRoute  from './AuthenticatedRoute';
-import LoginPage from '../containers/LoginPage';
-import RegisterPage from '../containers/RegisterPage';
-import ResetPasswordLinkPage from '../containers/ResetPasswordLinkPage';
-import ResetPasswordPage from '../containers/ResetPasswordPage';
-import LocalDroneAcquisitionApplicationPage from '../containers/LocalDroneAcquisitionApplicationPage';
-import Logout from '../containers/Logout';
+import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
+import ResetPasswordLinkPage from './ResetPasswordLinkPage';
+import ResetPasswordPage from './ResetPasswordPage';
+import LocalDroneAcquisitionApplicationPage from './LocalDroneAcquisitionApplicationPage';
+import Logout from './Logout';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Home from '../components/Home';
