@@ -8,7 +8,6 @@ import RegisterPage from './RegisterPage';
 import ResetPasswordLinkPage from './ResetPasswordLinkPage';
 import ResetPasswordPage from './ResetPasswordPage';
 import LocalDroneAcquisitionApplicationPage from './LocalDroneAcquisitionApplicationPage';
-import LocalDroneAcquisitionApplicationReview from '../components/LocalDroneAcquisitionApplicationReview';
 import Logout from './Logout';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
