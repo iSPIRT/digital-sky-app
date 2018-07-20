@@ -1,93 +1,135 @@
 import React from 'react';
-import DroneDetails from './DroneDetails'
 
-class  LocalDroneAcquisitionApplicationReview extends React.Component {
-    render() {
-        return (
-        <div className="application-preview">
+const LocalDroneAcquisitionApplicationReview = (props)=> {
+    
+    const isNew = props.applicationForm.isNew? "Yes": "No";
+    const wingType = props.applicationForm.fixedWing? "Fixed": "Rotary";
+    const applicationForm = props.applicationForm;
+
+    return (
+        <div id="application-preview">
             <div className="grid-container">
                 <div className="grid-x grid-padding-x">
                     <div className="large-12 cell">
-                        <label>Name of Applicant
-                            <input type="text" name="nameOfApplicant" ref="nameOfApplicant" placeholder="Full Name"/>
-                        </label>
-                    </div>
-                    <div className="large-12 cell">
-                        <label>Address of Applicant
-                            <input type="text" name="applicantAddressLine1" ref="applicantAddressLine1" placeholder="Address Line1"/>
-                            <input type="text" name="applicantAddressLine2" ref="applicantAddressLine2" placeholder=" Address Line2"/>
-                            <input type="text" name="applicantAddressCity" ref="applicantAddressCity" placeholder="City"/>
-                            <input type="text" name="applicantAddressState" ref="applicantAddressState" placeholder="State"/>
-                            <input type="text" name="applicantAddressCountry" ref="applicantAddressCountry" placeholder="Country"/>
-                            <input type="text" name="applicantAddressPincode" ref="applicantAddressPincode" placeholder="Pincode"/>
-                        </label>
-                    </div>
-                    <div className="large-12 cell">
-                        <label>Nationality
-                            <select name="applicantNationality" ref="applicantNationality">
-                                {nationalityOptions}
-                            </select>
-                        </label>
-                    </div>
-                    <div className="large-12 cell">
-                        <label>Category
-                            <select name="applicantCategory" ref="applicantCategory" disabled>{categoryOptions}</select>
-                        </label>
-                    </div>
-                    <div className="large-12 cell">
-                        <DroneDetails name="droneDetails" ref="droneDetails" nationalityOptions={this.props.nationalityOptions} />
-                    </div>
-                    <div className="large-12 cell">
-                        <label>Mode ofAcquisition
-                            <select name="modeOfAcquisition" ref="modeOfAcquisition">{modeOfAcquisitionOptions}</select>
-                        </label>
-                    </div>
-                    <div className="large-12 cell">
-                        <label>Name of Owner
-                            <input type="text" name="nameOfOwner" ref="nameOfOwner" placeholder="Full Name"/>
-                        </label>
-                    </div>
-                    <div className="large-12 cell">
-                        <label>Address of Owner
-                            <input type="text" name="ownerAddressLine1" ref="ownerAddressLine1" placeholder="Address Line1"/>
-                            <input type="text" name="ownerAddressLine2" ref="ownerAddressLine2" placeholder=" Address Line2"/>
-                            <input type="text" name="ownerAddressCity" ref="ownerAddressState"  placeholder="City"/>
-                            <input type="text" name="ownerAddressState" ref="ownerAddressState" placeholder="State"/>
-                            <input type="text" name="ownerAddressCountry" ref="ownerAddressCountry" placeholder="Country"/>
-                            <input type="text" name="ownerAddressPincode" ref="ownerAddressPincode" placeholder="Pincode"/>
-                        </label>
-                    </div>
-                    <div className="large-12 cell">
-                        <label>Purpose of Operation of RPA
-                            <input type="text" name="purpose" ref="purpose" />
-                        </label>
-                    </div>
-                    <div className="large-12 cell">
-                        <label>Proposed Base of Operation
-                            <input type="text" name="baseOfOperation" ref="baseOfOperation" />
-                        </label>
-                    </div>
-                    <div className="large-12 cell">
-                        <div className="help-wrap">
-                            <label>Upload <br/>Security Clearance Document</label>
-                                {/* <label htmlFor="securityClearanceDoc" className="button button-file-upload">Upload File</label> */}
-                            <input type="file" name="securityClearanceDoc" ref="securityClearanceDoc"  />
+                        <div className="question">
+                            <h6>Name of applicant in full:</h6>
+                            <p>{ applicationForm.applicant }</p>
                         </div>
-                    </div>
-                    {/* <div className="large-12 cell">
-                        <label>Copy of ETA Clearance
-                            <input type="file" name="etaClearanceDoc" ref="etaClearanceDoc" />
-                        </label>
-                    </div> */}
-                    <div className="large-12 cell">
-                        <button type="submit" className="button" name="button">Save &amp; Continue</button>
+                        <div className="question">
+                            <h6>Address of Applicant:</h6>
+                            { applicationForm.applicantAddress ?
+                                (<p>{ applicationForm.applicantAddress.lineOne } 
+                                { applicationForm.applicantAddress.lineTwo } 
+                                { applicationForm.applicantAddress.city } 
+                                { applicationForm.applicantAddress.state } 
+                                { applicationForm.applicantAddress.pincode }
+                                { applicationForm.applicantAddress.country }
+                                </p>) : <p> </p>
+                            }
+                        </div>
+                        <div className="question">
+                            <h6>Nationality:</h6>
+                            <p>{applicationForm.applicantNationality}</p>  
+                        </div>
+                        <div className="question">
+                            <h6>Category:</h6>
+                            <p>{applicationForm.applicantCategory}</p>  
+                        </div>
+                        <div className="question">
+                            <h6>Name of Manufacturer:</h6>
+                            <p>{applicationForm.manufacturer}</p> 
+                        </div>
+                        <div className="question">
+                            <h6>Address of Manufacturer:</h6>
+                            { applicationForm.manufacturerAddress ?
+                                (<p>{ applicationForm.manufacturerAddress.lineOne } 
+                                { applicationForm.manufacturerAddress.lineTwo } 
+                                { applicationForm.manufacturerAddress.city } 
+                                { applicationForm.manufacturerAddress.state }   
+                                { applicationForm.manufacturerAddress.pincode } 
+                                { applicationForm.manufacturerAddress.country }
+                                </p>) : <p> </p>
+                            }
+                        </div>
+                        <div className="question">
+                            <h6>Nationality of Manufacturer:</h6>
+                            <p>{ applicationForm.manufacturerNationality }</p> 
+                        </div >
+                        <div className="question">
+                            <h6>Model No:</h6>
+                            <p>{ applicationForm.modelNo }</p>
+                        </div>
+                        <div className="question">
+                            <h6>Sl No:</h6>
+                            <p>{ applicationForm.serialNo }</p>
+                        </div>
+                        <div className="question">
+                            <h6>Date of Manufacture:</h6>
+                            <p>{ applicationForm.dateOfManufacture }</p>
+                        </div>
+                        <div className="question">
+                            <h6>Year of Manufacture:</h6>
+                            <p>{ applicationForm.yearOfManufacture }</p>
+                        </div>
+                        <div className="question">
+                            <fieldset>
+                                <h6>Wing type:</h6>
+                                <p>{ wingType }</p>
+                            </fieldset>
+                        </div>
+                        <div className="question">
+                            <h6>Is New:</h6>
+                            <p>{ isNew }</p>
+                        </div>
+                        <div className="question">
+                            <h6>Maximum take-off weight:</h6>
+                            <p>{ applicationForm.maxTakeOffWeight }</p>
+                        </div>
+                        <div className="question">
+                            <h6>Maximum height attainable:</h6>
+                            <p>{ applicationForm.maxHeightAttainable }</p>
+                        </div>
+                        <div className="question">
+                            <h6>Payload DroneDetails:</h6>
+                            <p>{ applicationForm.payloadDetails }</p>
+                        </div>
+                        <div className="question">
+                            <h6>Mode ofAcquisition:</h6>
+                            <p>{ applicationForm.acquisitionMode }</p>
+                        </div>
+                        <div className="question">
+                            <h6>Name of Owner:</h6>
+                            <p>{ applicationForm.ownerName }</p>
+                        </div>
+                        <div className="question">
+                            <h6>Address of Owner:</h6>
+                            { applicationForm.ownerAddress ?
+                                (<p>{ applicationForm.ownerAddress.lineOne } <br/>
+                                { applicationForm.ownerAddress.lineTwo } <br/>
+                                { applicationForm.ownerAddress.city } <br/>
+                                { applicationForm.ownerAddress.state } <br/>   
+                                { applicationForm.ownerAddress.pincode } <br/>
+                                { applicationForm.ownerAddress.country }
+                                </p>) : <p></p>
+                            }
+                        </div>
+                        <div className="question">
+                            <h6>Purpose of Operation of RPA:</h6>
+                            <p>{ applicationForm.purposeOfOperation }</p>
+                        </div>
+                        <div className="question">
+                            <h6>Proposed Base of Operation:</h6>
+                            <p>{ applicationForm.proposedBaseOfOperation }</p>
+                        </div>
+                        <div className="question">
+                            <h6>Security Clearance Document:</h6>
+                            <p>{ applicationForm.securityClearanceDoc }</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        );
-      }
-
+    );
 }
 
-export default LocalDroneAcquisitionApplication;
+export default LocalDroneAcquisitionApplicationReview;

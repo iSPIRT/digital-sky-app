@@ -1,4 +1,5 @@
 import { localDroneAcquisitionApplicationService } from "../services/localDroneAcquisitionApplicationService";
+import { formStepAddAction } from "./applicationFormStepActions";
 
 export const CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST =
   "CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST";
@@ -15,6 +16,7 @@ export const createLocalDroneAcquisitionApplicationAction = localDroneAcquisitio
       .then(
         createdForm => {
           dispatch(success(createdForm));
+          dispatch(formStepAddAction());
         },
         errors => {
           dispatch(failure(errors));
