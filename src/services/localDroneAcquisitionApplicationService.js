@@ -1,11 +1,10 @@
 export const localDroneAcquisitionApplicationService = {
-  create
+  create,
+  edit
 };
 
 function create(localDroneAcquisitionForm) {
   var accessToken = localStorage.getItem("accessToken");
-  // var formData  = new FormData();
-  //formData.append("acquisitionForm", JSON.stringify(localDroneAcquisitionForm));
   const requestOptions = {
     method: "POST",
     headers: {
@@ -17,6 +16,26 @@ function create(localDroneAcquisitionForm) {
 
   return fetch(
     "https://localhost:9443/api/applicationForm/localDroneAcquisition",
+    requestOptions
+  ).then(handleResponse);
+}
+
+function edit(localDroneAcquisitionForm) {
+  var accessToken = localStorage.getItem("accessToken");
+  var applicationId = localDroneAcquisitionForm.id;
+
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken
+    },
+    body: JSON.stringify(localDroneAcquisitionForm)
+  };
+
+  return fetch(
+    "https://localhost:9443/api/applicationForm/localDroneAcquisition/" +
+      applicationId,
     requestOptions
   ).then(handleResponse);
 }
