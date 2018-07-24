@@ -7,16 +7,17 @@ import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 import ResetPasswordLinkPage from './ResetPasswordLinkPage';
 import ResetPasswordPage from './ResetPasswordPage';
-import LocalDroneAcquisitionApplicationPage from './LocalDroneAcquisitionApplicationPage';
+import ImportDroneAcquisitionApplicationPage from './ImportDroneAcquisitionApplicationPage';
+import DroneAcquisitionApplicationPage from './LocalDroneAcquisitionApplicationPage';
 import Logout from './Logout';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Home from '../components/Home';
 import Dashboard from '../components/Dashboard';
-import UserProfilePage from '../containers/UserProfilePage';
-import PilotProfilePage from '../containers/PilotProfilePage';
-import IndividualOperatorProfilePage from '../containers/IndividualOperatorProfilePage';
-import OrganizationOperatorProfilePage from '../containers/OrganizationOperatorProfilePage';
+import UserProfilePage from './UserProfilePage';
+import PilotProfilePage from './PilotProfilePage';
+import IndividualOperatorProfilePage from './IndividualOperatorProfilePage';
+import OrganizationOperatorProfilePage from './OrganizationOperatorProfilePage';
 
 import { history } from '../store/configureStore';
 
@@ -67,7 +68,8 @@ class App extends React.Component {
                     <Route path="/register" component={RegisterPage} />
                     <Route path="/resetPasswordLink" component={ResetPasswordLinkPage} />
                     <Route path="/resetPassword" component={ResetPasswordPage} />
-                    <Route path="/localDroneAcquisitionApplication" component={LocalDroneAcquisitionApplicationPage} />
+                    <Route path="/localDroneAcquisitionApplication" component={DroneAcquisitionApplicationPage} type='import'/>
+                    <Route path="/importDroneAcquisitionApplication" component={ImportDroneAcquisitionApplicationPage} type='local'/>
                     <Footer/>
                 </div>
               </Router>

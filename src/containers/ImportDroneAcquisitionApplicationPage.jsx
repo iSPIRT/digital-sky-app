@@ -7,11 +7,11 @@ import DroneAcquisitionApplicationReview from '../components/DroneAcquisitionApp
 import HeaderApplicationForm from '../components/HeaderApplicationForm';
 import Dashboard from '../components/Dashboard';
 
-import { createLocalDroneAcquisitionApplicationAction,editLocalDroneAcquisitionApplicationAction } from '../actions/localDroneAcquisitionApplicationActions';
+import { createImportDroneAcquisitionApplicationAction, editImportDroneAcquisitionApplicationAction } from '../actions/importDroneAcquisitionApplicationActions';
 import { formStepReduceAction } from '../actions/applicationFormStepActions';
 
 
-class DroneAcquisitionApplicationPage extends React.Component {
+class ImportDroneAcquisitionApplicationPage extends React.Component {
    
     constructor() {
         super();
@@ -36,18 +36,18 @@ class DroneAcquisitionApplicationPage extends React.Component {
     }
 
     createForm(applicationForm) {
-        this.props.dispatch(createLocalDroneAcquisitionApplicationAction(applicationForm));
+        this.props.dispatch(createImportDroneAcquisitionApplicationAction(applicationForm));
     }
 
     updateForm(applicationForm, id) {
-        this.props.dispatch(editLocalDroneAcquisitionApplicationAction(applicationForm, id));
+        this.props.dispatch(editImportDroneAcquisitionApplicationAction(applicationForm, id));
     }
 
     render() {
         const { saving, saved, errors, currentApplicationForm, step} = this.props;
         return (
             <div className="page-form">
-                <HeaderApplicationForm applicationType="Acquiring Local Drones" step= { step }/>   
+                <HeaderApplicationForm applicationType="Importing Drones" step= { step }/>   
                 {(() => {
                     switch(step) {
                         case 1: 
@@ -57,16 +57,16 @@ class DroneAcquisitionApplicationPage extends React.Component {
                                 saving={ saving } saved={ saved } errors={ errors } 
                                 applicationForm={ currentApplicationForm }
                                 createForm={ this.createForm } updateForm={ this.updateForm }
-                                step= { step } goBack={ this.removeStep }/>);
+                                step= { step } goBack={ this.removeStep } applicationType="importedDroneAcquisition" />);
                         case 2:
                             return(<DroneAcquisitionApplicationStep2 name="applicationStep2" ref="applicationStep2"
                                 modeOfAcquisitionOptions={ this.state.modeOfAcquisitionOptions } 
                                 saving={ saving } saved={ saved } errors={ errors } applicationForm={ currentApplicationForm }
                                 updateForm={ this.updateForm }
-                                step= { step } goBack={ this.removeStep } applicationType="localDroneAcquisition"/>);
+                                step= { step } goBack={ this.removeStep } />);
                         case 3:
                             return(<DroneAcquisitionApplicationReview name="applicationReview" applicationForm={ currentApplicationForm } updateForm={ this.updateForm } 
-                                step= { step } errors={ errors } saved={ saved } saving={ saving } goBack={ this.removeStep } applicationType="localDroneAcquisition" />);  
+                                step= { step } errors={ errors } saved={ saved } saving={ saving } goBack={ this.removeStep } applicationType="importedDroneAcquisition" />);  
                         default: return(<Dashboard />)
                     }
                 })()} 
@@ -76,7 +76,7 @@ class DroneAcquisitionApplicationPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { saving, saved, errors, currentApplicationForm } = state.saveLocalDroneAcquisitionApplication;
+    const { saving, saved, errors, currentApplicationForm } = state.saveImportDroneAcquisitionApplication;
     const { step } = state.formStepChange
     return {
        saving,
@@ -89,4 +89,4 @@ function mapStateToProps(state) {
 
 export default connect(
  mapStateToProps
-)(DroneAcquisitionApplicationPage)
+)(ImportDroneAcquisitionApplicationPage)

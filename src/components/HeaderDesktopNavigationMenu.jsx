@@ -11,7 +11,7 @@ class HeaderDesktopNavigationMenu extends React.Component {
                     Home</Link></li>
                 <li>
                     <Link to="#">
-                    Application Process</Link></li>
+                    Application Process </Link></li>
                 <li>
                     <Link to="#">
                     Know the requirements</Link></li>
