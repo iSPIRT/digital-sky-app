@@ -5,7 +5,7 @@ class FormErrors extends React.Component {
   render() {
     const {errors} = this.props;
 
-    if(!errors) return;
+    if(!errors) return null;
 
     const errorsMarkup = errors.map((error) =>
        <li><p className='ds-form-error'>{error}</p></li>
