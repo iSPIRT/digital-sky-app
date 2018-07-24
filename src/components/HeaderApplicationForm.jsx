@@ -17,6 +17,7 @@ const HeaderApplicationFormReview = (props)=> {
             step2ClassName = "done step-2";
             step3ClassName = "now step-3";
             break;
+        default:
     }
     
     return (

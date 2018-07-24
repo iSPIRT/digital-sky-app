@@ -8,6 +8,7 @@ import { saveLocalDroneAcquisitionApplication } from "./localDroneAcquisitionApp
 import { pilotProfile } from "./pilotProfileReducer";
 import { operatorProfile } from "./operatorProfileReducer";
 import { formStepChange } from "./applicationFormStepReducer";
+import { uaopApplications } from "./uaopApplicationsReducer";
 
 const rootReducer = combineReducers({
   authentication,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   saveLocalDroneAcquisitionApplication,
   pilotProfile,
   operatorProfile,
-  formStepChange
+  formStepChange,
+  uaopApplications
 });
 
 export default rootReducer;

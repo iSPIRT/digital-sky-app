@@ -8,7 +8,7 @@ const FooterApplicationForm = (props) => {
             <div className="grid-container">
                 <div className="grid-x grid-padding-x">
                     <div className="large-12 cell">
-                        { props.step !=1 && (
+                        { props.step !==1 && (
                             <a className="back" onClick = { props.goBack } > 
                                 <img src={ back } alt="back" /> Go back to previous step
                             </a>

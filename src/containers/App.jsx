@@ -17,6 +17,7 @@ import UserProfilePage from '../containers/UserProfilePage';
 import PilotProfilePage from '../containers/PilotProfilePage';
 import IndividualOperatorProfilePage from '../containers/IndividualOperatorProfilePage';
 import OrganizationOperatorProfilePage from '../containers/OrganizationOperatorProfilePage';
+import UAOPApplicationPage from '../containers/UAOPApplicationPage';
 
 import { history } from '../store/configureStore';
 
@@ -61,6 +62,7 @@ class App extends React.Component {
                     <AuthenticatedRoute exact path="/pilotProfile" loggedIn={loggedIn} component={PilotProfilePage} />
                     <AuthenticatedRoute exact path="/individualOperatorProfile" loggedIn={loggedIn} component={IndividualOperatorProfilePage} />
                     <AuthenticatedRoute exact path="/organizationOperatorProfile" loggedIn={loggedIn} component={OrganizationOperatorProfilePage} />
+                    <AuthenticatedRoute exact path="/uaopApplication" loggedIn={loggedIn} component={UAOPApplicationPage} />
                     <AuthenticatedRoute exact path="/logout" loggedIn={loggedIn} component={Logout} />
                     <Route exact path="/" component={Home} />
                     <Route path="/login" component={LoginPage} />
