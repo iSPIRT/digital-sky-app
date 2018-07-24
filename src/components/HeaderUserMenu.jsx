@@ -32,7 +32,7 @@ class HeaderUserMenu extends React.Component {
                     <ul>
                         <li><Link to="/profile">Profile</Link></li>
                         <li><Link to="apply-for.php">Apply now</Link></li>
-                        <li><Link to="dashboard.php">Dashboard</Link></li>
+                        <li><Link to="/dashboard">Dashboard</Link></li>
                         <li><Link to="#">My drones</Link></li>
                         <li><Link to="#">Occurance report</Link></li>
                         <li><Link to="#">Application Status</Link></li>

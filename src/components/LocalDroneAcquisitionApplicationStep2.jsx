@@ -3,17 +3,11 @@ import React from 'react';
 class LocalDroneAcquisitionApplicationStep2 extends React.Component {
 
     render() {
-        const categoryOptions = this.props.categoryOptions.map(category => {
-            return (<option value={category} key={category}> {category} </option>);
-        });
-    
-        const modeOfAcquisitionOptions = this.props.modeOfAcquisitionOptions.map(mode => {
+
+            const modeOfAcquisitionOptions = this.props.modeOfAcquisitionOptions.map(mode => {
             return (<option value={mode} key={mode}> {mode} </option>);
         });
     
-        const nationalityOptions = this.props.nationalityOptions.map(nationality => {
-            return (<option value={nationality} key={nationality}> {nationality} </option>);
-        });
 
         return (
             <div className="grid-container">

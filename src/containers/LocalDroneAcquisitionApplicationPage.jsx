@@ -151,7 +151,7 @@ class LocalDroneAcquisitionApplicationPage extends React.Component {
         }
     
     render() {
-        const { saving, saved, errors, currentApplicationForm, step } = this.props;
+        const { saving, errors, currentApplicationForm, step } = this.props;
         const { formErrors } = this.state;
 
         return (
