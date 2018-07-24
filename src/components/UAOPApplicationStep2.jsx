@@ -2,12 +2,14 @@ import React from 'react';
 
 import FormErrors from '../components/FormErrors';
 
-class UAOPApplication extends React.Component {
+import back from '../img/back.svg';
+
+
+class UAOPApplicationStep2 extends React.Component {
 
     constructor(props) {
         super(props);
         this.handleSaveApplication = this.handleSaveApplication.bind(this);
-        this.handleSaveAndSubmitApplication = this.handleSaveAndSubmitApplication.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.updateObjProp = this.updateObjProp.bind(this);
 
@@ -19,8 +21,12 @@ class UAOPApplication extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
+        const { application, errors } = nextProps;
+        const {submitted } = this.state;
+        if (submitted && ( !errors || errors.length === 0)  &&  (application.id !== 0)){
+            this.props.nextStep();
+        }
         this.setState({formErrors: []});
-        this.setState({docs: {}});
         this.setState({application: nextProps.application});
     }
 
@@ -47,82 +53,49 @@ class UAOPApplication extends React.Component {
         event.preventDefault();
         this.setState({submitted: true});
         const formData = new FormData();
-        formData.append("securityClearanceDoc", this.state.securityClearanceDoc)
+        formData.append("securityProgramDoc", this.state.securityProgramDoc)
         formData.append("insuranceDoc", this.state.insuranceDoc)
         formData.append("landOwnerPermissionDoc", this.state.landOwnerPermissionDoc)
         formData.append("sopDoc", this.state.sopDoc)
         formData.append("uaopApplicationForm", JSON.stringify(this.state.application))
         console.log(formData);
-        if(this.props.application.id !== 0 ){
-            this.props.updateApplication(this.props.application.id, formData);
-        } else{
-            this.props.createApplication(formData);
-        }
+        this.props.updateApplication(this.props.application.id, formData);
     }
-
-    handleSaveAndSubmitApplication(event) {
-        event.preventDefault();
-        this.setState({submitted: true});
-
-        const {application} = this.state;
-        application.status='SUBMITTED';
-        this.setState({application});
-
-        const formData = new FormData();
-        formData.append("securityClearanceDoc", this.state.securityClearanceDoc)
-        formData.append("insuranceDoc", this.state.insuranceDoc)
-        formData.append("landOwnerPermissionDoc", this.state.landOwnerPermissionDoc)
-        formData.append("sopDoc", this.state.sopDoc)
-        formData.append("uaopApplicationForm", JSON.stringify(this.state.application))
-        console.log(formData);
-        if(this.props.application.id !== 0 ){
-            this.props.updateApplication(this.props.application.id, formData);
-        } else{
-            this.props.createApplication(formData);
-        }
-    }
-
 
     render() {
         const { savingApplication, errors} = this.props;
-        const { formErrors, submitted, application, securityClearanceDoc, insuranceDoc, landOwnerPermissionDoc, sopDoc } = this.state;
+        const { formErrors, securityProgramDoc, insuranceDoc, landOwnerPermissionDoc, sopDoc } = this.state;
         return (
             <div>
-                <div className="page-header">
-                  <div className="grid-container">
-                    <div className="grid-x grid-padding-x">
-                      <div className="large-12 cell">
-                        <h2>UAOP Application</h2>
-                        { submitted && ( !errors || errors.length === 0)  &&  (application.id !== 0) && <p> Successfully Saved Application <br/></p>}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
                 <div className="page-form">
                     <FormErrors errors = {errors}/>
                     <FormErrors errors = {formErrors}/>
                     <form name="uaopApplicationForm" onSubmit={this.handleSaveApplication}>
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
-
                                 <div className="large-12 cell">
-                                    <label>Name
-                                        <input type="text" placeholder="Name" name="name" onChange={this.handleChange} value={application.name} maxLength="100" />
-                                    </label>
-                                </div>
-                                <div className="large-12 cell">
-                                    <label>Designation
-                                        <input type="text" placeholder="Designation" name="designation" onChange={this.handleChange} value={application.designation} maxLength="20" />
-                                    </label>
+                                    <h2>UAOP Application</h2>
+                                    <div className="form-steps">
+                                        <ul>
+                                            <li className="done step-1"><p>Step 1</p>
+                                                <div className="circle"></div>
+                                            </li>
+                                            <li className="now step-2"><p>Step 2</p>
+                                                <div className="circle"></div>
+                                            </li>
+                                            <li className="todo step-3"><p>Step 3</p>
+                                                <div className="circle"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div className="large-12 cell">
                                     <div className="help-wrap">
-                                        <label>Security Clearance Document
-                                            <span>{securityClearanceDoc && securityClearanceDoc.name}</span>
+                                        <label>Security Program Document
+                                            <span>{securityProgramDoc && securityProgramDoc.name}</span>
                                         </label>
-                                        <label htmlFor="securityClearanceDoc" className="button button-file-upload">Upload File</label>
-                                        <input type="file" id="securityClearanceDoc" name="securityClearanceDoc" className="show-for-sr" onChange={this.handleChange}/>
+                                        <label htmlFor="securityProgramDoc" className="button button-file-upload">Upload File</label>
+                                        <input type="file" id="securityProgramDoc" name="securityProgramDoc" className="show-for-sr" onChange={this.handleChange}/>
                                     </div>
                                 </div>
 
@@ -155,22 +128,15 @@ class UAOPApplication extends React.Component {
                                     </div>
                                 </div>
 
-                                <div className="large-6 cell">
-
-                                    { submitted && ( !errors || errors.length === 0)  &&  (application.id !== 0) && <p> Successfully Saved Application <br/></p>}
-
-                                    <button type="submit" className="button" name="button">{ application.id !== 0 ? 'Update' : 'Save' }</button>
+                                <div className="large-12 cell">
+                                    <a className="back" onClick={this.props.previousStep}>
+                                        <img src={back} alt="back"/> Go back to previous step
+                                    </a>
+                                    <button type="submit" className="button" name="button">Save & Continue</button>
 
                                     {
                                        savingApplication && <img alt="Loading..." src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                     }
-                                </div>
-                                <div className="large-6 cell">
-
-                                    { submitted && ( !errors || errors.length === 0)  &&  (application.id !== 0) && <p> Successfully Saved Application <br/></p>}
-
-                                    { application.id !== 0 &&  <button className="button" name="button" onClick={this.handleSaveAndSubmitApplication}> Save and Submit</button> }
-
                                 </div>
                             </div>
                         </div>
@@ -181,4 +147,4 @@ class UAOPApplication extends React.Component {
     }
 }
 
-export default UAOPApplication;
+export default UAOPApplicationStep2;

@@ -5,19 +5,44 @@ import { history } from '../store/configureStore';
 
 import queryString from 'query-string'
 
-import UAOPApplication from '../components/UAOPApplication';
+import UAOPApplicationStep1 from '../components/UAOPApplicationStep1';
+import UAOPApplicationStep2 from '../components/UAOPApplicationStep2';
+import UAOPApplicationStep3 from '../components/UAOPApplicationStep3';
 import { createApplicationAction, applicationFormLoadedAction, loadApplicationAction, updateApplicationAction } from '../actions/uaopApplicationActions';
 
 class UAOPApplicationPage extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            currentStep: 1
+        };
+
+        this.nextStep = this.nextStep.bind(this);
+        this.previousStep = this.previousStep.bind(this);
+
         this.props.dispatch(applicationFormLoadedAction());
         const queryParams = queryString.parse(this.props.location.search)
         const applicationId = queryParams.id
         if( applicationId && applicationId !== this.props.application.id){
             this.props.dispatch(loadApplicationAction(applicationId));
         }
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.application.status && nextProps.application.status  !== 'DRAFT'){
+            this.setState({currentStep: 3});
+        }
+    }
+
+    nextStep(){
+        this.setState({currentStep: (this.state.currentStep+1)});
+        console.log("");
+    }
+
+    previousStep(){
+        this.setState({currentStep: (this.state.currentStep-1)});
+         console.log("");
     }
 
     createApplication(dispatch) {
@@ -40,14 +65,36 @@ class UAOPApplicationPage extends React.Component {
 
         const { savingApplication, application, errors } = this.props;
 
-        return <UAOPApplication
-                    application={application}
-                    savingApplication={savingApplication}
-                    errors={errors}
-                    createApplication={this.createApplication(this.props.dispatch)}
-                    updateApplication={this.updateApplication(this.props.dispatch)}
-                />
+        const {currentStep} = this.state;
 
+        switch (currentStep) {
+            case 1:
+                return <UAOPApplicationStep1
+                            application={application}
+                            savingApplication={savingApplication}
+                            errors={errors}
+                            nextStep={this.nextStep}
+                            createApplication={this.createApplication(this.props.dispatch)}
+                            updateApplication={this.updateApplication(this.props.dispatch)}
+                        />
+            case 2:
+                return <UAOPApplicationStep2
+                            application={application}
+                            savingApplication={savingApplication}
+                            errors={errors}
+                            nextStep={this.nextStep}
+                            previousStep={this.previousStep}
+                            updateApplication={this.updateApplication(this.props.dispatch)}
+                        />
+            default:
+                return <UAOPApplicationStep3
+                            application={application}
+                            savingApplication={savingApplication}
+                            errors={errors}
+                            previousStep={this.previousStep}
+                            updateApplication={this.updateApplication(this.props.dispatch)}
+                        />
+        }
     }
 }
 
