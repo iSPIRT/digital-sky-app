@@ -7,17 +7,19 @@ import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 import ResetPasswordLinkPage from './ResetPasswordLinkPage';
 import ResetPasswordPage from './ResetPasswordPage';
-import ImportDroneAcquisitionApplicationPage from './ImportDroneAcquisitionApplicationPage';
+import ImportDroneApplicationPage from './ImportDroneApplicationPage';
 import DroneAcquisitionApplicationPage from './LocalDroneAcquisitionApplicationPage';
 import Logout from './Logout';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Home from '../components/Home';
 import Dashboard from '../components/Dashboard';
+
 import UserProfilePage from './UserProfilePage';
 import PilotProfilePage from './PilotProfilePage';
 import IndividualOperatorProfilePage from './IndividualOperatorProfilePage';
 import OrganizationOperatorProfilePage from './OrganizationOperatorProfilePage';
+import UAOPApplicationPage from './UAOPApplicationPage';
 
 import { history } from '../store/configureStore';
 
@@ -62,6 +64,7 @@ class App extends React.Component {
                     <AuthenticatedRoute exact path="/pilotProfile" loggedIn={loggedIn} component={PilotProfilePage} />
                     <AuthenticatedRoute exact path="/individualOperatorProfile" loggedIn={loggedIn} component={IndividualOperatorProfilePage} />
                     <AuthenticatedRoute exact path="/organizationOperatorProfile" loggedIn={loggedIn} component={OrganizationOperatorProfilePage} />
+                    <AuthenticatedRoute exact path="/uaopApplication" loggedIn={loggedIn} component={UAOPApplicationPage} />
                     <AuthenticatedRoute exact path="/logout" loggedIn={loggedIn} component={Logout} />
                     <Route exact path="/" component={Home} />
                     <Route path="/login" component={LoginPage} />
@@ -69,7 +72,7 @@ class App extends React.Component {
                     <Route path="/resetPasswordLink" component={ResetPasswordLinkPage} />
                     <Route path="/resetPassword" component={ResetPasswordPage} />
                     <Route path="/localDroneAcquisitionApplication" component={DroneAcquisitionApplicationPage} type='import'/>
-                    <Route path="/importDroneAcquisitionApplication" component={ImportDroneAcquisitionApplicationPage} type='local'/>
+                    <Route path="/importDroneApplication" component={ImportDroneApplicationPage} type='local'/>
                     <Footer/>
                 </div>
               </Router>

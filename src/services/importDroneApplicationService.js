@@ -1,6 +1,6 @@
 import { handleResponseService } from "./handleResponseService";
 
-export const droneAcquisitionApplicationService = {
+export const importDroneApplicationService = {
   create,
   edit
 };
@@ -17,7 +17,7 @@ function create(droneAcquisitionForm) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/importedDroneAcquisition",
+    "https://localhost:9443/api/applicationForm/importDroneApplication",
     requestOptions
   ).then(handleResponseService.handleResponse);
 }
@@ -33,7 +33,7 @@ function edit(droneAcquisitionFormData, applicationId) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/importedDroneAcquisition/" +
+    "https://localhost:9443/api/applicationForm/importDroneApplication/" +
       applicationId,
     requestOptions
   ).then(handleResponseService.handleResponse);

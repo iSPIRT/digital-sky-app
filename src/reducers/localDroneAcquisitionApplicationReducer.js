@@ -1,6 +1,6 @@
-import { SAVE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST } from "../actions/localDroneAcquisitionApplicationActions";
-import { SAVE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_SUCCESS } from "../actions/localDroneAcquisitionApplicationActions";
-import { SAVE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_FAILURE } from "../actions/localDroneAcquisitionApplicationActions";
+import { SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST } from "../actions/localDroneAcquisitionApplicationActions";
+import { SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST_SUCCESS } from "../actions/localDroneAcquisitionApplicationActions";
+import { SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST_FAILURE } from "../actions/localDroneAcquisitionApplicationActions";
 
 const initialState = {
   currentApplicationForm: {},
@@ -14,9 +14,9 @@ export function saveLocalDroneAcquisitionApplication(
   action
 ) {
   switch (action.type) {
-    case SAVE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST:
+    case SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST:
       return { ...state, saving: true, saved: false, errors: null };
-    case SAVE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_SUCCESS:
+    case SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST_SUCCESS:
       return {
         ...state,
         saving: false,
@@ -24,7 +24,7 @@ export function saveLocalDroneAcquisitionApplication(
         errors: null,
         currentApplicationForm: action.payload
       };
-    case SAVE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_FAILURE:
+    case SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST_FAILURE:
       return {
         ...state,
         saving: false,

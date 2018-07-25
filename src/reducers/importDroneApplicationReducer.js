@@ -1,8 +1,8 @@
 import {
-  SAVE_IMPORTDRONEACQUISITIONAPPLICATION_REQUEST,
-  SAVE_IMPORTDRONEACQUISITIONAPPLICATION_REQUEST_SUCCESS,
-  SAVE_IMPORTDRONEACQUISITIONAPPLICATION_REQUEST_FAILURE
-} from "../actions/importDroneAcquisitionApplicationActions";
+  SAVE_IMPORTDRONE_APPLICATION_REQUEST,
+  SAVE_IMPORTDRONE_APPLICATION_REQUEST_SUCCESS,
+  SAVE_IMPORTDRONE_APPLICATION_REQUEST_FAILURE
+} from "../actions/importDroneApplicationActions";
 
 const initialState = {
   currentApplicationForm: {},
@@ -11,14 +11,11 @@ const initialState = {
   errors: null
 };
 
-export function saveImportDroneAcquisitionApplication(
-  state = initialState,
-  action
-) {
+export function saveImportDroneApplication(state = initialState, action) {
   switch (action.type) {
-    case SAVE_IMPORTDRONEACQUISITIONAPPLICATION_REQUEST:
+    case SAVE_IMPORTDRONE_APPLICATION_REQUEST:
       return { ...state, saving: true, saved: false, errors: null };
-    case SAVE_IMPORTDRONEACQUISITIONAPPLICATION_REQUEST_SUCCESS:
+    case SAVE_IMPORTDRONE_APPLICATION_REQUEST_SUCCESS:
       return {
         ...state,
         saving: false,
@@ -26,7 +23,7 @@ export function saveImportDroneAcquisitionApplication(
         errors: null,
         currentApplicationForm: action.payload
       };
-    case SAVE_IMPORTDRONEACQUISITIONAPPLICATION_REQUEST_FAILURE:
+    case SAVE_IMPORTDRONE_APPLICATION_REQUEST_FAILURE:
       return {
         ...state,
         saving: false,

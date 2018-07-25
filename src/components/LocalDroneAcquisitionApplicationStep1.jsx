@@ -3,17 +3,9 @@ import DroneDetails from './DroneDetails';
 
 class LocalDroneAcquisitionApplicationStep1 extends React.Component {
 
-    constructor() {
-        super();
-    }
-   
-    render() {
+   render() {
         const categoryOptions = this.props.categoryOptions.map(category => {
             return (<option value={category} key={category}> {category} </option>);
-        });
-
-        const modeOfAcquisitionOptions = this.props.modeOfAcquisitionOptions.map(mode => {
-            return (<option value={mode} key={mode}> {mode} </option>);
         });
 
         const nationalityOptions = this.props.nationalityOptions.map(nationality => {

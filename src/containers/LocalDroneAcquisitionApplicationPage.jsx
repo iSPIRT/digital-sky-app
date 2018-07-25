@@ -9,6 +9,7 @@ import Dashboard from '../components/Dashboard';
 
 import { createLocalDroneAcquisitionApplicationAction,editLocalDroneAcquisitionApplicationAction } from '../actions/localDroneAcquisitionApplicationActions';
 import { formStepReduceAction } from '../actions/applicationFormStepActions';
+import { downloadFile } from '../actions/downloadFileActions';
 
 
 class DroneAcquisitionApplicationPage extends React.Component {
@@ -18,6 +19,7 @@ class DroneAcquisitionApplicationPage extends React.Component {
         this.removeStep = this.removeStep.bind(this);
         this.createForm = this.createForm.bind(this);
         this.updateForm = this.updateForm.bind(this);
+        this.downloadDocument = this.downloadDocument.bind(this);
         this.state = {
             categoryOptions : ['EXISTING_UAOP_HOLDER','UAOP_APPLICANT','WITHOUT_UAOP'],
             modeOfAcquisitionOptions : ['LEASE', 'PURCHASE'],
@@ -43,6 +45,11 @@ class DroneAcquisitionApplicationPage extends React.Component {
         this.props.dispatch(editLocalDroneAcquisitionApplicationAction(applicationForm, id));
     }
 
+    downloadDocument(id, documentName){
+        const filePath = "applicationForm/localDroneAcquisitionApplication/"+id+"/document/"+documentName;
+        this.props.dispatch(downloadFile(filePath, documentName));
+    }
+
     render() {
         const { saving, saved, errors, currentApplicationForm, step} = this.props;
         return (
@@ -63,10 +70,11 @@ class DroneAcquisitionApplicationPage extends React.Component {
                                 modeOfAcquisitionOptions={ this.state.modeOfAcquisitionOptions } 
                                 saving={ saving } saved={ saved } errors={ errors } applicationForm={ currentApplicationForm }
                                 updateForm={ this.updateForm }
-                                step= { step } goBack={ this.removeStep } applicationType="localDroneAcquisition"/>);
+                                step= { step } goBack={ this.removeStep } applicationType="localDroneAcquisition"
+                                downloadDocument= { this.downloadDocument } />);
                         case 3:
                             return(<DroneAcquisitionApplicationReview name="applicationReview" applicationForm={ currentApplicationForm } updateForm={ this.updateForm } 
-                                step= { step } errors={ errors } saved={ saved } saving={ saving } goBack={ this.removeStep } applicationType="localDroneAcquisition" />);  
+                                step= { step } errors={ errors } saved={ saved } saving={ saving } goBack={ this.removeStep } applicationType="localDroneAcquisition" downloadDocument= { this.downloadDocument }/>);  
                         default: return(<Dashboard />)
                     }
                 })()} 

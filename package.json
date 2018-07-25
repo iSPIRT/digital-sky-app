@@ -23,7 +23,8 @@
     "sanitize.css": "^5.0.0",
     "foundation-sites": "^6.1.2",
     "jquery": "^3.2.1",
-    "what-input": "^4.2.0"
+    "what-input": "^4.2.0",
+    "js-file-download": "^0.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,6 +35,9 @@
   },
   "homepage": "https://cra-redux-router-thunk.herokuapp.com",
   "lint-staged": {
-    "*.{js,json,css,md}": ["prettier --write", "git add"]
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

@@ -8,7 +8,7 @@ const FooterApplicationReviewDeclaration = (props) => {
             <div className="grid-container">
                     <div className="grid-x grid-padding-x">
                         <div className="large-12 cell">
-                            <p> <div className="question"> UNDERTAKING  </div>
+                            <p>  UNDERTAKING  
                             The RPA shall be used only for the purpose for which it is being imported/acquired and meet the regulations contained in CAR Section 3, Series X, Part II.
                             <br/><br/>
                             RPA shall be maintained and operated in accordance with the regulation specified by DGCA from time to time and there is no binding or limitation of any kind in this regard in the lease agreement for the acquisition of the RPAS.

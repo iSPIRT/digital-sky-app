@@ -45,7 +45,6 @@ class OrganizationOperatorProfile extends React.Component {
     }
 
     updateObjProp(obj, value, propPath) {
-        console.log("");
         const [head, ...rest] = propPath.split('.');
 
         !rest.length

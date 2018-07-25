@@ -8,12 +8,11 @@ class DroneAcquisitionApplicationReview extends React.Component {
     constructor() {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.downloadDocument = this.downloadDocument.bind(this);
         this.state = {
             submitted: false,
             formErrors:[]
         };
-        //this.handleChange = this.handleChange.bind(this);
-        //this.updateObjProp = this.updateObjProp.bind(this);
     }
     
     handleSubmit(event) {
@@ -27,12 +26,16 @@ class DroneAcquisitionApplicationReview extends React.Component {
         this.props.updateForm(formData, this.props.applicationForm.id )
     }
 
+    downloadDocument() {
+        this.props.downloadDocument(this.props.applicationForm.id,"securityClearanceDocument")
+    }
+
     render() {
-        const isNew = this.props.applicationForm.isNew? "Yes": "No";
-        const wingType = this.props.applicationForm.fixedWing? "Fixed": "Rotary";
+        
         const { saving, saved, errors, applicationForm, goBack, applicationType} = this.props;
+        const isNew = applicationForm.isNew? "Yes": "No";
+        const wingType = applicationForm.fixedWing? "Fixed": "Rotary";
         const { formErrors, submitted } = this.state;
-        const url = "https://localhost:9443/api/applicationForm/"+ applicationType + "/getFile/" + applicationForm.id  + "/securityClearanceDoc";
         return (
             <div className="page-form">
                 {/* <FormErrors errors = {errors}/>
@@ -123,7 +126,7 @@ class DroneAcquisitionApplicationReview extends React.Component {
                                         <p>{ applicationForm.payloadDetails }</p>
                                     </div>
                                     <div className="question">
-                                        <h6>Mode ofAcquisition:</h6>
+                                        <h6>{ applicationType === "importDrone" ? "Mode of import" : "Mode ofAcquisition" }</h6>
                                         <p>{ applicationForm.acquisitionMode }</p>
                                     </div>
                                     <div className="question">
@@ -151,7 +154,8 @@ class DroneAcquisitionApplicationReview extends React.Component {
                                         <p>{ applicationForm.proposedBaseOfOperation }</p>
                                     </div>
                                         <div className="question">
-                                            <h6><a href = { url }  download  target="_blank"> Security Clearance Document </a></h6>
+                                            <h6>Security Clearance Document: </h6>
+                                            <p> <a onClick={ this.downloadDocument }> { applicationForm.securityClearanceDoc } </a></p>
                                         </div>
                                 </div>
                             </div>

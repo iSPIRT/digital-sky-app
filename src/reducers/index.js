@@ -5,10 +5,11 @@ import { registration } from "./registrationReducer";
 import { resetPasswordLink } from "./resetPasswordLinkReducer";
 import { resetPassword } from "./resetPasswordReducer";
 import { saveLocalDroneAcquisitionApplication } from "./localDroneAcquisitionApplicationReducer";
-import { saveImportDroneAcquisitionApplication } from "./importDroneAcquisitionApplicationReducer";
+import { saveImportDroneApplication } from "./importDroneApplicationReducer";
 import { pilotProfile } from "./pilotProfileReducer";
 import { operatorProfile } from "./operatorProfileReducer";
 import { formStepChange } from "./applicationFormStepReducer";
+import { uaopApplications } from "./uaopApplicationsReducer";
 
 const rootReducer = combineReducers({
   authentication,
@@ -16,10 +17,11 @@ const rootReducer = combineReducers({
   resetPasswordLink,
   resetPassword,
   saveLocalDroneAcquisitionApplication,
-  saveImportDroneAcquisitionApplication,
+  saveImportDroneApplication,
   pilotProfile,
   operatorProfile,
-  formStepChange
+  formStepChange,
+  uaopApplications
 });
 
 export default rootReducer;

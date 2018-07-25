@@ -13,7 +13,7 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.updateObjProp = this.updateObjProp.bind(this);
-        this.getFile =  this.getFile.bind(this);
+        this.downloadDocument = this.downloadDocument.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
@@ -24,10 +24,12 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
     }
 
     handleChange(event) {
-        const { name, value } = event.target;
-        const { applicationForm } = this.props;
-        this.updateObjProp(applicationForm, value, name);
-        this.setState({applicationForm: applicationForm});
+        //if( event.target.type !== 'file') {
+            const { name, value } = event.target;
+            const { applicationForm } = this.props;
+            this.updateObjProp(applicationForm, value, name);
+            this.setState({applicationForm: applicationForm});
+        //}
     }
 
     updateObjProp(obj, value, propPath) {
@@ -38,7 +40,12 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
             : this.updateObjProp(obj[head], value, rest.join("."));
     }
     
+    downloadDocument() {
+        this.props.downloadDocument(this.props.applicationForm.id,"securityClearanceDocument")
+    }
+
     handleSubmit(event) {
+        event.preventDefault();
         var applicationFormRefs = this.refs;
         var isLease = applicationFormRefs.acquisitionMode ==="LEASE" ;
         var acquisitionApplication= {...this.props.applicationForm,
@@ -58,16 +65,10 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
             status: "DRAFT",
         };
 
-        event.preventDefault();
-
         var formData = new FormData();
-        formData.append("securityClearanceDoc", applicationFormRefs.securityClearanceDoc.files[0], "securityClearanceDoc");
+        formData.append("securityClearanceDocument", applicationFormRefs.securityClearanceDoc.files[0]);
         formData.append("droneAcquisitionForm", JSON.stringify(acquisitionApplication)) ;
         this.props.updateForm(formData, this.props.applicationForm.id )
-    }
-
-    getFile() {
-        this.props.getFile(this.props.applicationForm.id);
     }
     
     render() {
@@ -76,13 +77,9 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
             return (<option value={mode} key={mode}> {mode} </option>);
         });
 
-        const { saving, saved, errors, applicationForm, goBack,applicationType} = this.props;
+        const { saving, saved, errors, applicationForm, goBack, applicationType} = this.props;
         const { formErrors, submitted } = this.state;
-        var url = "https://localhost:9443/api/applicationForm/"+applicationType+"/getFile/";
-        if(applicationForm.id) {
-            url += applicationForm.id +"/securityClearanceDoc";
-        }
-
+        const aquisitionDisplay = applicationType === "importDrone" ? "Mode of import" : "Mode of acquisition";
         return (
             <div className="page-form">
                 {/* <FormErrors errors = {errors}/>
@@ -91,13 +88,13 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
                             <div className="large-12 cell">
-                                <label>{ this.props.applicationType === "Importing Drones" ? "Mode of acquisition" : "Mode of import"}
+                            <label>{ aquisitionDisplay }
                                     <select name="acquisitionMode" ref="acquisitionMode" value = { applicationForm.acquisitionMode } onChange= { this.handleChange }>
                                     { modeOfAcquisitionOptions }
                                     </select>
-                                </label>
+                            </label>
                             </div>
-                                { (applicationForm.acquisitionMode === "LEASE"  || applicationForm.acquisitionMode) === null ?
+                                { (applicationForm.acquisitionMode === "LEASE"  || applicationForm.acquisitionMode === null) ?
                                     (<div className="large-12 cell">
                                         <div className="large-12 cell">
                                             <label>Name of Owner
@@ -128,17 +125,13 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
                             </div>
                             <div className="large-12 cell">
                                 <div className="help-wrap">
-                                    <label>Upload <br/>Security Clearance Document</label>
-                                    <label htmlFor="securityClearanceDoc" className="button button-file-upload">Upload File</label>
-                                        <input type="file" name="securityClearanceDoc" ref="securityClearanceDoc" />
-                                        <span> 
-                                            { applicationForm  && applicationForm.securityClearanceDoc !="" &&  applicationForm.securityClearanceDoc != null ?
-                                                <div>
-                                                    <p> <a href = { url }  download  target="_blank"> Security Clearance Document </a> </p>
-                                                </div> :
-                                                <div> </div>
-                                            }
-                                        </span>
+                                            <label>Security Clearance Document
+                                                <span>
+                                                     <a onClick= { this.downloadDocument }> {applicationForm.securityClearanceDoc}</a> 
+                                                </span>
+                                            </label>
+                                            <label htmlFor="securityClearanceDoc" className="button button-file-upload">Upload File</label>
+                                            <input type="file" id="securityClearanceDoc" ref="securityClearanceDoc" name="securityClearanceDoc" className="show-for-sr" onChange={this.handleChange}/>
                                 </div>
                             </div>
                         </div>

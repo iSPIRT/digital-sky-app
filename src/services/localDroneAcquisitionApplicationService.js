@@ -17,7 +17,7 @@ function create(localDroneAcquisitionForm) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/localDroneAcquisition",
+    "https://localhost:9443/api/applicationForm/localDroneAcquisitionApplication",
     requestOptions
   ).then(handleResponseService.handleResponse);
 }
@@ -33,7 +33,7 @@ function edit(localDroneAcquisitionFormData, applicationId) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/localDroneAcquisition/" +
+    "https://localhost:9443/api/applicationForm/localDroneAcquisitionApplication/" +
       applicationId,
     requestOptions
   ).then(handleResponseService.handleResponse);
