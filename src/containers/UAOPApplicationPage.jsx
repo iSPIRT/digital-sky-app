@@ -10,6 +10,8 @@ import UAOPApplicationStep2 from '../components/UAOPApplicationStep2';
 import UAOPApplicationStep3 from '../components/UAOPApplicationStep3';
 import { createApplicationAction, applicationFormLoadedAction, loadApplicationAction, updateApplicationAction } from '../actions/uaopApplicationActions';
 
+import { downloadFile } from '../actions/downloadFileActions';
+
 class UAOPApplicationPage extends React.Component {
 
     constructor(props) {
@@ -20,6 +22,7 @@ class UAOPApplicationPage extends React.Component {
 
         this.nextStep = this.nextStep.bind(this);
         this.previousStep = this.previousStep.bind(this);
+        this.downloadDocument = this.downloadDocument.bind(this);
 
         this.props.dispatch(applicationFormLoadedAction());
         const queryParams = queryString.parse(this.props.location.search)
@@ -33,6 +36,11 @@ class UAOPApplicationPage extends React.Component {
         if(nextProps.application.status && nextProps.application.status  !== 'DRAFT'){
             this.setState({currentStep: 3});
         }
+    }
+
+    downloadDocument(documentName){
+        const filePath = "applicationForm/uaopApplication/"+this.props.application.id+"/document/"+documentName;
+        this.props.dispatch(downloadFile(filePath, documentName));
     }
 
     nextStep(){
@@ -93,6 +101,7 @@ class UAOPApplicationPage extends React.Component {
                             errors={errors}
                             previousStep={this.previousStep}
                             updateApplication={this.updateApplication(this.props.dispatch)}
+                            downloadDocument={this.downloadDocument}
                         />
         }
     }
