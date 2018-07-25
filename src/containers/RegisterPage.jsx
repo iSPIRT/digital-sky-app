@@ -38,7 +38,7 @@ class RegisterPage extends React.Component {
             );
         }
         if(loggedIn){
-            history.push('/home');
+            history.push('/dashboard');
         }
         return <Register registering={registering}  errors={errors} registerUser={this.registerUser(this.props.dispatch)}/>
 

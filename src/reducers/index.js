@@ -10,6 +10,7 @@ import { pilotProfile } from "./pilotProfileReducer";
 import { operatorProfile } from "./operatorProfileReducer";
 import { formStepChange } from "./applicationFormStepReducer";
 import { uaopApplications } from "./uaopApplicationsReducer";
+import { adminApplications } from "./adminApplicationsReducer";
 
 const rootReducer = combineReducers({
   authentication,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   pilotProfile,
   operatorProfile,
   formStepChange,
-  uaopApplications
+  uaopApplications,
+  adminApplications
 });
 
 export default rootReducer;
