@@ -9,6 +9,7 @@ class UAOPApplicationStep3 extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmitApplication = this.handleSubmitApplication.bind(this);
+        this.downloadDocument = this.downloadDocument.bind(this);
         this.state = {
             submitted: false,
             application: this.props.application,
@@ -17,6 +18,10 @@ class UAOPApplicationStep3 extends React.Component {
 
     componentWillReceiveProps(nextProps){
         this.setState({application: nextProps.application});
+    }
+
+    downloadDocument(documentName){
+        this.props.downloadDocument(documentName);
     }
 
     handleSubmitApplication(event) {
@@ -72,19 +77,19 @@ class UAOPApplicationStep3 extends React.Component {
                                     </div>
                                     <div className="question">
                                         <h6>Security Program Document:</h6>
-                                        <p>{application.securityProgramDocName}</p>
+                                        <a onClick={(e) =>  this.downloadDocument(application.securityProgramDocName)}>{application.securityProgramDocName}</a>
                                     </div>
                                     <div className="question">
                                         <h6>Insurance Document:</h6>
-                                        <p>{application.insuranceDocName}</p>
+                                        <a onClick={(e) =>  this.downloadDocument(application.insuranceDocName)}>{application.insuranceDocName}</a>
                                     </div>
                                     <div className="question">
                                         <h6>Standard Operating Procedure Document:</h6>
-                                        <p>{application.sopDocName}</p>
+                                        <a onClick={(e) =>  this.downloadDocument(application.sopDocName)}>{application.sopDocName}</a>
                                     </div>
                                     <div className="question">
                                         <h6>Land Owner Permission Document:</h6>
-                                        <p>{application.landOwnerPermissionDocName}</p>
+                                        <a onClick={(e) =>  this.downloadDocument(application.landOwnerPermissionDocName)}>{application.landOwnerPermissionDocName}</a>
                                     </div>
                                 </div>
                                 { application.status === 'DRAFT' &&
