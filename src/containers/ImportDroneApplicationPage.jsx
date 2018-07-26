@@ -84,6 +84,7 @@ class ImportDroneApplicationPage extends React.Component {
 }
 
 function mapStateToProps(state) {
+
     const { saving, saved, errors, currentApplicationForm } = state.importDroneApplications;
     const { step } = state.formStepChange
     return {

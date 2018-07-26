@@ -4,11 +4,13 @@ const FooterApplicationReviewDeclaration = (props) => {
     
     const date = new Date().toDateString();
     const { type } = props;
+
     return (
         <div id="declaration">
             <div className="grid-container">
                     <div className="grid-x grid-padding-x">
                         <div className="large-12 cell">
+
                         {(() => {
                             switch(type) {
                                 case "localDroneAcquisition": 
@@ -38,9 +40,7 @@ const FooterApplicationReviewDeclaration = (props) => {
                     </div>
             </div>
         </div>
-        
-    </div>
-        )
+    </div>)
 }
 
 export default FooterApplicationReviewDeclaration;

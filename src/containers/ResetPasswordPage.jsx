@@ -37,7 +37,7 @@ class ResetPasswordPage extends React.Component {
             );
         }
         if(loggedIn){
-            history.push('/home');
+            history.push('/dashboard');
         }
         const queryParams = queryString.parse(this.props.location.search)
         return <ResetPassword token={queryParams.token} resettingPassword={resettingPassword}  errors={errors} resetPassword={this.resetPassword(this.props.dispatch)}/>
