@@ -1,11 +1,6 @@
-import { CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST } from "../actions/localDroneAcquisitionApplicationCreateActions";
-import { CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_SUCCESS } from "../actions/localDroneAcquisitionApplicationCreateActions";
-import { CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_FAILURE } from "../actions/localDroneAcquisitionApplicationCreateActions";
-import {
-  EDIT_LOCALDRONEACQUISITIONAPPLICATION_REQUEST,
-  EDIT_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_SUCCESS,
-  EDIT_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_FAILURE
-} from "../actions/localDroneAcquisitionApplicationEditActions";
+import { SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST } from "../actions/localDroneAcquisitionApplicationActions";
+import { SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST_SUCCESS } from "../actions/localDroneAcquisitionApplicationActions";
+import { SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST_FAILURE } from "../actions/localDroneAcquisitionApplicationActions";
 
 const initialState = {
   currentApplicationForm: {},
@@ -19,11 +14,9 @@ export function saveLocalDroneAcquisitionApplication(
   action
 ) {
   switch (action.type) {
-    case CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST:
-    case EDIT_LOCALDRONEACQUISITIONAPPLICATION_REQUEST:
+    case SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST:
       return { ...state, saving: true, saved: false, errors: null };
-    case CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_SUCCESS:
-    case EDIT_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_SUCCESS:
+    case SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST_SUCCESS:
       return {
         ...state,
         saving: false,
@@ -31,15 +24,14 @@ export function saveLocalDroneAcquisitionApplication(
         errors: null,
         currentApplicationForm: action.payload
       };
-    case CREATE_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_FAILURE:
-    case EDIT_LOCALDRONEACQUISITIONAPPLICATION_REQUEST_FAILURE:
+    case SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST_FAILURE:
       return {
         ...state,
         saving: false,
         saved: false,
         errors:
           (action.payload ? action.payload : "") +
-          (action.payload.message ? "   " + action.payload.message : "")
+          (action.payload.errors ? "   " + action.payload.errors : "")
       };
     default:
       return state;

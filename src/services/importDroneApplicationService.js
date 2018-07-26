@@ -1,11 +1,11 @@
 import { handleResponseService } from "./handleResponseService";
 
-export const localDroneAcquisitionApplicationService = {
+export const importDroneApplicationService = {
   create,
   edit
 };
 
-function create(localDroneAcquisitionForm) {
+function create(droneAcquisitionForm) {
   var accessToken = localStorage.getItem("accessToken");
   const requestOptions = {
     method: "POST",
@@ -13,27 +13,27 @@ function create(localDroneAcquisitionForm) {
       "Content-Type": "application/json",
       Authorization: "Bearer " + accessToken
     },
-    body: localDroneAcquisitionForm
+    body: droneAcquisitionForm
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/localDroneAcquisitionApplication",
+    "https://localhost:9443/api/applicationForm/importDroneApplication",
     requestOptions
   ).then(handleResponseService.handleResponse);
 }
 
-function edit(localDroneAcquisitionFormData, applicationId) {
+function edit(droneAcquisitionFormData, applicationId) {
   var accessToken = localStorage.getItem("accessToken");
   const requestOptions = {
     method: "PATCH",
     headers: {
       Authorization: "Bearer " + accessToken
     },
-    body: localDroneAcquisitionFormData
+    body: droneAcquisitionFormData
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/localDroneAcquisitionApplication/" +
+    "https://localhost:9443/api/applicationForm/importDroneApplication/" +
       applicationId,
     requestOptions
   ).then(handleResponseService.handleResponse);

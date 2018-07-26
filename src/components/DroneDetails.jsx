@@ -8,9 +8,15 @@ class DroneDetails extends React.Component {
     
     render(){
                 
+        const wingTypes = ["Fixed", "Rotary"]
+        
         let nationalityOptions = this.props.nationalityOptions.map(nationality => {
                 return (<option value={ nationality } key={ nationality }> { nationality } </option>)
         });
+
+        let wingTypeOptions = wingTypes.map(wingType => {
+            return (<option value={ wingType } key={ wingType }> { wingType } </option>)
+    });
 
         var droneDetails = this.props.details;
 
@@ -23,8 +29,8 @@ class DroneDetails extends React.Component {
                 </div>
                 <div className="large-12 cell">
                     <label>Address of Manufacturer
-                        <input type="text" name="manufacturerAddressLine1" ref="manufacturerAddressLine1"  placeholder="Address line 1" defaultValue={ droneDetails && droneDetails.manufacturerAddress ? droneDetails.manufacturerAddress.line1 : undefined }/>
-                        <input type="text" name="manufacturerAddressLine2" ref="manufacturerAddressLine2" placeholder="Address line 2" defaultValue={ droneDetails && droneDetails.manufacturerAddress? droneDetails.manufacturerAddress.line2 : undefined} />
+                        <input type="text" name="manufacturerAddressLine1" ref="manufacturerAddressLine1"  placeholder="Address line 1" defaultValue={ droneDetails && droneDetails.manufacturerAddress ? droneDetails.manufacturerAddress.lineOne : undefined }/>
+                        <input type="text" name="manufacturerAddressLine2" ref="manufacturerAddressLine2" placeholder="Address line 2" defaultValue={ droneDetails && droneDetails.manufacturerAddress? droneDetails.manufacturerAddress.lineTwo : undefined} />
                         <input type="text" name="manufacturerAddressCity"  ref="manufacturerAddressCity" placeholder="City" defaultValue={ droneDetails && droneDetails.manufacturerAddress? droneDetails.manufacturerAddress.city : undefined }/>
                         <input type="text" name="manufacturerAddressState" ref="manufacturerAddressState" placeholder="State" defaultValue={ droneDetails && droneDetails.manufacturerAddress? droneDetails.manufacturerAddress.state : undefined }/>
                         <input type="text" name="manufacturerAddressCountry" ref="manufacturerAddressCountry" placeholder="Country" defaultValue={ droneDetails && droneDetails.manufacturerAddress? droneDetails.manufacturerAddress.country : undefined }/>
@@ -33,7 +39,7 @@ class DroneDetails extends React.Component {
                 </div>
                 `<div className="large-12 cell">
                     <label>Nationality of Manufacturer
-                        <select name="nationalityOfManufacturer" ref="nationalityOfManufacturer"   defaultValue= { droneDetails && droneDetails.manufacturerNationality?  droneDetails.manufacturerNationality: this.props.nationalityOptions[0] }>
+                        <select name="manufacturerNationality" ref="manufacturerNationality"   value= { droneDetails.manufacturerNationality } onChange = { this.props.onChange }>
                             { nationalityOptions }
                         </select>
                     </label>
@@ -59,18 +65,15 @@ class DroneDetails extends React.Component {
                     </label>
                 </div>
                 <div className="large-12 cell">
-                    <fieldset>
-                        <label>Wing type <br/>
-                            <input type="radio" name="wingType" value="Fixed" ref="wingType" />
-                            <label htmlFor="Fixed">Fixed</label><br/>
-                            <input type="radio" name="wingType" value="Rotary" ref="wingType" />
-                            <label htmlFor="Rotary">Rotary</label>
-                        </label>
-                    </fieldset>
+                    <label>Wing type <br/>
+                        <select name="wingType" ref="wingType"   value= { droneDetails.wingType } onChange = { this.props.onChange }>
+                            { wingTypeOptions }
+                        </select>   
+                    </label>
                 </div>
                 <div className="large-12 cell">
                     <label className="checkbox">Is New
-                        <input type="checkbox" defaultChecked name="isNew" ref="isNew" checked = {droneDetails && droneDetails.isNew}/>
+                        <input type="checkbox" ref="isNew" name="isNew" checked = { droneDetails && droneDetails.isNew } onChange={ this.props.onChange }/>
                         <span className="checkmark"></span>
                     </label>
                 </div>

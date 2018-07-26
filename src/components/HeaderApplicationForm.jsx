@@ -2,9 +2,7 @@ import React from 'react';
 
 const HeaderApplicationFormReview = (props)=> {
 
-    let step1ClassName = "now step-1";
-    let step2ClassName = "todo step-2";
-    let step3ClassName = "todo step-3";
+    var step1ClassName, step2ClassName, step3ClassName;
 
     switch (props.step) {
         case 2: 
@@ -18,6 +16,9 @@ const HeaderApplicationFormReview = (props)=> {
             step3ClassName = "now step-3";
             break;
         default:
+            step1ClassName = "now step-1";
+            step2ClassName = "todo step-2";
+            step3ClassName = "todo step-3";
     }
     
     return (
@@ -39,9 +40,13 @@ const HeaderApplicationFormReview = (props)=> {
                         </ul>
                     </div>
                 </div>
-                {/* <div className="large-12 cell" >
+                { props.step ===3?
+                    (<div className="large-12 cell" >
                     <label>Review your application</label>
-                </div> */}
+                    </div>) :
+                    <div> </div>
+                }
+                
             </div>
         </div>
     );

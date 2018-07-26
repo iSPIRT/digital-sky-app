@@ -1,21 +1,16 @@
-import { fileDownloadService } from '../services/fileDownloadService';
+import { fileDownloadService } from "../services/fileDownloadService";
 
-import fileDownload from 'js-file-download';
+import fileDownload from "js-file-download";
 
 export const downloadFile = (path, fileName) => {
-
-    return dispatch => {
-        fileDownloadService.download(path)
-                    .then(
-                        data => {
-                           fileDownload(data, fileName);
-                        },
-                        errors => {
-                            console.log("Error downloading file:"+path)
-                        }
-                    );
-
-    };
-
-}
-
+  return dispatch => {
+    fileDownloadService.download(path).then(
+      data => {
+        fileDownload(data, fileName);
+      },
+      errors => {
+        console.log("Error downloading file:" + path);
+      }
+    );
+  };
+};
