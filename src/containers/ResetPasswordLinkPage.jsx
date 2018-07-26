@@ -34,7 +34,7 @@ class ResetPasswordLinkPage extends React.Component {
             );
         }
         if(loggedIn){
-            history.push('/home');
+            history.push('/dashboard');
         }
         return <ResetPasswordLink sendingResetPasswordLink={sendingResetPasswordLink}  errors={errors} sendResetPasswordLink={this.sendResetPasswordLink(this.props.dispatch)}/>
 

@@ -37,6 +37,7 @@ function login(credentials) {
                     if (token.accessToken) {
                       localStorage.setItem('accessToken', token.accessToken);
                       localStorage.setItem('userId', token.id);
+                      localStorage.setItem('isAdmin', token.isAdmin);
                       localStorage.setItem('pilotProfileId', token.pilotProfileId);
                       localStorage.setItem('individualOperatorProfileId', token.individualOperatorProfileId);
                       localStorage.setItem('organizationOperatorProfileId', token.organizationOperatorProfileId);
