@@ -78,7 +78,7 @@ class DroneDetails extends React.Component {
                     </label>
                 </div>
                 <div className="large-12 cell">
-                    <label>Maximum take-off weight
+                    <label>Maximum take-off weight (including Payload) 
                         <input type="number" name="maxTakeOffWeight" min="5.0" placeholder="Weight in gms" ref="maxTakeOffWeight" defaultValue = { droneDetails && droneDetails.maxTakeOffWeight ? droneDetails.maxTakeOffWeight: undefined}/>
                     </label>
                 </div>
@@ -88,7 +88,7 @@ class DroneDetails extends React.Component {
                     </label>
                 </div>
                 <div className="large-12 cell">
-                    <label>Payload DroneDetails
+                    <label>Details of compatible payload
                         <textarea name="payload" rows="2" ref="payload" defaultValue= { droneDetails && droneDetails.payloadDetails ? droneDetails.payloadDetails : undefined}/>
                     </label>
                 </div>`

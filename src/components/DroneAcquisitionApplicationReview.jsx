@@ -161,7 +161,7 @@ class DroneAcquisitionApplicationReview extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <FooterApplicationReviewDeclaration applicant = { this.props.applicationForm.applicant }/>
+                    <FooterApplicationReviewDeclaration applicant = { this.props.applicationForm.applicant } type= { applicationType }/>
                     <FooterApplicationForm  step= { this.props.step } saving={ saving } goBack= { goBack }/>
                 </form>
             </div>  

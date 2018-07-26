@@ -20,12 +20,13 @@ import PilotProfilePage from './PilotProfilePage';
 import IndividualOperatorProfilePage from './IndividualOperatorProfilePage';
 import OrganizationOperatorProfilePage from './OrganizationOperatorProfilePage';
 import UAOPApplicationPage from './UAOPApplicationPage';
-
+import UINApplicationPage from './UINApplicationPage';
 import { history } from '../store/configureStore';
 
 import $ from 'jquery';
 
 import 'foundation-sites';
+
 
 class App extends React.Component {
 
@@ -71,8 +72,9 @@ class App extends React.Component {
                     <Route path="/register" component={RegisterPage} />
                     <Route path="/resetPasswordLink" component={ResetPasswordLinkPage} />
                     <Route path="/resetPassword" component={ResetPasswordPage} />
-                    <Route path="/localDroneAcquisitionApplication" component={DroneAcquisitionApplicationPage} type='import'/>
-                    <Route path="/importDroneApplication" component={ImportDroneApplicationPage} type='local'/>
+                    <Route path="/localDroneAcquisitionApplication" component={DroneAcquisitionApplicationPage} />
+                    <Route path="/importDroneApplication" component={ImportDroneApplicationPage} />
+                    <Route path="/uinApplication" component={UINApplicationPage} />
                     <Footer/>
                 </div>
               </Router>

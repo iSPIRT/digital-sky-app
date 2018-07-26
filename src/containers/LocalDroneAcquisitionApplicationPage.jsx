@@ -84,7 +84,7 @@ class DroneAcquisitionApplicationPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { saving, saved, errors, currentApplicationForm } = state.saveLocalDroneAcquisitionApplication;
+    const { saving, saved, errors, currentApplicationForm } = state.localDroneAcquisitionApplications;
     const { step } = state.formStepChange
     return {
        saving,

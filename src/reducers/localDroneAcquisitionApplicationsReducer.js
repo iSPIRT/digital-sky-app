@@ -9,7 +9,7 @@ const initialState = {
   errors: null
 };
 
-export function saveLocalDroneAcquisitionApplication(
+export function localDroneAcquisitionApplications(
   state = initialState,
   action
 ) {
