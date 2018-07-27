@@ -1,0 +1,19 @@
+FROM node:8.11.2
+
+RUN apt-get update && apt-get install -y vim
+
+EXPOSE 3000
+
+RUN mkdir -p /node/.npm-global
+
+ENV PATH=/node/.npm-global/bin:$PATH
+
+ENV NPM_CONFIG_PREFIX=/node/.npm-global
+
+RUN npm install -g yarn
+
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
