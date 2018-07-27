@@ -1,7 +1,6 @@
 import React from 'react';
 import UINOrganizationDocuments from './UINOrganizationDocuments';
 import FooterApplicationForm from './FooterApplicationForm';
-import FormErrors from './FormErrors';
 
 class UINApplicationStep1 extends React.Component {
 
@@ -19,13 +18,13 @@ class UINApplicationStep1 extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        const { applicationForm, errors } = nextProps;
-        const {submitted } = this.state;
-        if (submitted && ( !errors || errors.length === 0)  &&  (applicationForm.id !== 0)){
-            this.props.nextStep();
-        }
-        this.setState({formErrors: []});
-        this.setState({applicationForm: nextProps.applicationForm});
+            // const { applicationForm, errors, savingApplication } = nextProps;
+            // const {submitted } = this.state;
+            // if (submitted && ( !errors || errors.length === 0)  &&  (applicationForm.id !== 0)){
+            //     this.props.nextStep();
+            // }
+            // this.setState({formErrors: []});
+            // this.setState({applicationForm: nextProps.applicationForm});
     }
 
     handleChange(event) {
@@ -50,21 +49,44 @@ class UINApplicationStep1 extends React.Component {
     handleSaveApplication(event) {
         event.preventDefault();
         this.setState({submitted: true});
+
         const formData = new FormData();
-        formData.append("securityProgramDoc", this.state.securityProgramDoc)
-        formData.append("insuranceDoc", this.state.insuranceDoc)
-        formData.append("landOwnerPermissionDoc", this.state.landOwnerPermissionDoc)
-        formData.append("sopDoc", this.state.sopDoc)
-        formData.append("uaopApplicationForm", JSON.stringify(this.state.applicationForm))
-        console.log(formData);
-        this.props.updateApplication(this.props.applicationForm.id, formData);
+        if(this.state.importPermissionDoc !== undefined) {
+            formData.append("importPermissionDoc", this.state.importPermissionDoc);
+        }
+         if(this.state.panCardDoc !== undefined) {
+            formData.append("panCardDoc", this.state.panCardDoc);
+        }
+        if(this.state.securityClearanceDoc !== undefined) {
+            formData.append("securityClearanceDoc", this.state.securityClearanceDoc);
+        }
+        if(this.state.dotPermissionDoc !== undefined) {
+            formData.append("dotPermissionDoc", this.state.dotPermissionDoc);
+        }
+        if(this.state.etaDoc !== undefined) {
+            formData.append("etaDoc", this.state.etaDoc);
+        }
+        if(this.state.cinDoc !== undefined) {
+            formData.append("cinDoc", this.state.cinDoc);
+        }
+        if(this.state.gstinDoc !== undefined) {
+            formData.append("gstinDoc", this.state.gstinDoc);
+        }
+
+        formData.append("uinApplication", JSON.stringify(this.state.applicationForm))
+
+        if(this.props.applicationForm.id !== undefined ){
+            this.props.updateForm(formData, this.props.applicationForm.id);
+        } else{
+            this.props.createForm(formData);
+        }
     }
     
     render() {
       
-        const { saving, saved, errors, applicationForm, step, goBack} = this.props;
+        const { savingApplication,  applicationForm, step, goBack} = this.props;
 
-        const { formErrors, submitted, importPermissionDoc, panCardDoc, securityClearanceDoc, dotPermissionDoc, etaDoc } = this.state;
+        const {  importPermissionDoc, panCardDoc, securityClearanceDoc, dotPermissionDoc, etaDoc } = this.state;
 
         return (
             <div>
@@ -83,7 +105,7 @@ class UINApplicationStep1 extends React.Component {
                                 </div>
                             </div>
                             <div className="large-12 cell">
-                                <UINOrganizationDocuments applicationForm = { applicationForm }/>
+                                <UINOrganizationDocuments applicationForm = { applicationForm } onChange= { this.handleChange }/>
                             </div>
                             <div className="large-12 cell">
                                 <div className="help-wrap">
@@ -129,7 +151,7 @@ class UINApplicationStep1 extends React.Component {
 
                         </div>
                     </div>
-                    <FooterApplicationForm step= { step } saving= { saving} goBack= { goBack }/>
+                    <FooterApplicationForm step= { step } savingApplication= { savingApplication} goBack= { goBack }/>
                 </form>
             </div>  
         );

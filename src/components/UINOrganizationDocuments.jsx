@@ -27,27 +27,5 @@ const UINOrganizationDocuments = (props) => {
         </div>
     )
 }
-UINOrganizationDocuments.defaultProps = {
-    applicationForm : {
-        rpaOption : "",
-        regionOfOperation: "",
-        purposeOfOperation: "",
-        engineType: "",
-        motorPower: "",
-        engineCount: "",
-        fuelCapacity: "",
-        propellerDetails: "",
-        dimension_l: "",
-        dimension_b: "",
-        dimension_h: "",
-        maxEndurance: "",
-        maxRange: "",
-        maxSpeed: "",
-        maxHeightAttainable: "",
-        maxHeightOfOperation:""
-    },
-    cinDoc: "", 
-    gstinDoc: "",
-    handleChange: {}
-}
+
 export default UINOrganizationDocuments;

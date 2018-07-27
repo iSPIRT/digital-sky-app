@@ -12,7 +12,7 @@ import { formStepReduceAction } from '../actions/applicationFormStepActions';
 import { downloadFile } from '../actions/downloadFileActions';
 
 
-class DroneAcquisitionApplicationPage extends React.Component {
+class LocalDroneAcquisitionApplicationPage extends React.Component {
    
     constructor() {
         super();
@@ -97,4 +97,4 @@ function mapStateToProps(state) {
 
 export default connect(
  mapStateToProps
-)(DroneAcquisitionApplicationPage)
+)(LocalDroneAcquisitionApplicationPage)

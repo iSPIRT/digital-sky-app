@@ -2,21 +2,36 @@ import React from 'react';
 
 class DroneDetails extends React.Component {
   
+    constructor() {
+        super();
+        this.handleChange = this.handleChange.bind(this);
+    }
+    
     dateChange = (event)=> {
         this.refs.yearOfManufacture.value = new Date(event.target.value).getFullYear();
+        this.handleChange(event);
+    }
+    
+    handleChange(event) {
+
+        if(this.props.onChange) {
+            this.props.onChange(event);
+        }
     }
     
     render(){
                 
         const wingTypes = ["Fixed", "Rotary"]
         
-        let nationalityOptions = this.props.nationalityOptions.map(nationality => {
+        const { nationalityOptions} = this.props;
+        
+        let nationalitySelectOptions = nationalityOptions.map(nationality => {
                 return (<option value={ nationality } key={ nationality }> { nationality } </option>)
         });
 
         let wingTypeOptions = wingTypes.map(wingType => {
             return (<option value={ wingType } key={ wingType }> { wingType } </option>)
-    });
+        });
 
         var droneDetails = this.props.details;
 
@@ -24,74 +39,74 @@ class DroneDetails extends React.Component {
             <div>
                 <div className="large-12 cell">
                     <label>Name of Manufacturer
-                        <input type="text" name="nameOfManufacturer" ref="nameOfManufacturer" defaultValue={ droneDetails? droneDetails.manufacturer : undefined}/>
+                        <input type="text" name="manufacturer" ref="manufacturer" defaultValue={ droneDetails && droneDetails.manufacturer } onChange = { this.handleChange }/>
                     </label>
                 </div>
-                <div className="large-12 cell">
+                {/* <div className="large-12 cell">
                     <label>Address of Manufacturer
-                        <input type="text" name="manufacturerAddressLine1" ref="manufacturerAddressLine1"  placeholder="Address line 1" defaultValue={ droneDetails && droneDetails.manufacturerAddress ? droneDetails.manufacturerAddress.lineOne : undefined }/>
-                        <input type="text" name="manufacturerAddressLine2" ref="manufacturerAddressLine2" placeholder="Address line 2" defaultValue={ droneDetails && droneDetails.manufacturerAddress? droneDetails.manufacturerAddress.lineTwo : undefined} />
-                        <input type="text" name="manufacturerAddressCity"  ref="manufacturerAddressCity" placeholder="City" defaultValue={ droneDetails && droneDetails.manufacturerAddress? droneDetails.manufacturerAddress.city : undefined }/>
-                        <input type="text" name="manufacturerAddressState" ref="manufacturerAddressState" placeholder="State" defaultValue={ droneDetails && droneDetails.manufacturerAddress? droneDetails.manufacturerAddress.state : undefined }/>
-                        <input type="text" name="manufacturerAddressCountry" ref="manufacturerAddressCountry" placeholder="Country" defaultValue={ droneDetails && droneDetails.manufacturerAddress? droneDetails.manufacturerAddress.country : undefined }/>
-                        <input type="text" name="manufacturerAddressPincode" ref="manufacturerAddressPincode" placeholder="Pincode" defaultValue={ droneDetails && droneDetails.manufacturerAddress? droneDetails.manufacturerAddress.pincode : undefined }/>
+                        <input type="text" name="manufacturerAddress.lineOne" ref="manufacturerAddress.lineOne"  placeholder="Address line 1" defaultValue={ droneDetails && droneDetails.manufacturerAddress && droneDetails.manufacturerAddress.lineOne } onChange = { this.handleChange }/>
+                        <input type="text" name="manufacturerAddress.lineTwo" ref="manufacturerAddress.lineTwo" placeholder="Address line 2" defaultValue={ droneDetails && droneDetails.manufacturerAddress && droneDetails.manufacturerAddress.lineTwo } onChange = { this.handleChange }/>
+                        <input type="text" name="manufacturerAddress.city"  ref="manufacturerAddress.city" placeholder="City" defaultValue={ droneDetails && droneDetails.manufacturerAddress && droneDetails.manufacturerAddress.city } onChange = { this.handleChange }/>
+                        <input type="text" name="manufacturerAddress.state" ref="manufacturerAddress.state" placeholder="State" defaultValue={ droneDetails && droneDetails.manufacturerAddress && droneDetails.manufacturerAddress.state } onChange = { this.handleChange }/>
+                        <input type="text" name="manufacturerAddress.country" ref="manufacturerAddress.country" placeholder="Country" defaultValue={ droneDetails && droneDetails.manufacturerAddress && droneDetails.manufacturerAddress.country } onChange = { this.handleChange }/>
+                        <input type="text" name="manufacturerAddress.pincode" ref="manufacturerAddress.pincode" placeholder="Pincode" defaultValue={ droneDetails && droneDetails.manufacturerAddress && droneDetails.manufacturerAddress.pincode } onChange = { this.handleChange }/>
                     </label>
-                </div>
-                `<div className="large-12 cell">
+                </div> */}
+                <div className="large-12 cell">
                     <label>Nationality of Manufacturer
-                        <select name="manufacturerNationality" ref="manufacturerNationality"   value= { droneDetails.manufacturerNationality } onChange = { this.props.onChange }>
-                            { nationalityOptions }
+                        <select name="manufacturerNationality" ref="manufacturerNationality"   defaultValue= { droneDetails.manufacturerNationality } onChange = { this.handleChange }>
+                            { nationalitySelectOptions }
                         </select>
                     </label>
                 </div >
                 <div className="large-12 cell">
                     <label>Model No.
-                        <input type="text" name="modelNo" ref="modelNo" defaultValue= { droneDetails? droneDetails.modelNo : undefined}/>
+                        <input type="text" name="modelNo" ref="modelNo" defaultValue= { droneDetails && droneDetails.modelNo } onChange = { this.handleChange }/>
                     </label>
                 </div>
                 <div className="large-12 cell">
                     <label>Serial No.
-                        <input type="text" name="serialNo" ref="serialNo" defaultValue= { droneDetails? droneDetails.serialNo : undefined} />
+                        <input type="text" name="serialNo" ref="serialNo" defaultValue= { droneDetails && droneDetails.serialNo} onChange = { this.handleChange }/>
                     </label>
                 </div>
                 <div className="large-12 cell">
                     <label>Date of Manufacture
-                        <input type="date" name="dateOfManufacture" ref="dateOfManufacture" defaultValue= { droneDetails? droneDetails.dateOfManufacture : undefined} onChange = { this.dateChange } />
+                        <input type="date" name="dateOfManufacture" ref="dateOfManufacture" defaultValue= { droneDetails && droneDetails.dateOfManufacture } onChange = { this.dateChange } />
                     </label>
                 </div>
                 <div className="large-12 cell">
                     <label>Year of Manufacture
-                        <input type="text" name="yearOfManufacture" ref="yearOfManufacture" defaultValue= { droneDetails? droneDetails.yearOfManufacture : undefined} readOnly/>
+                        <input type="text" name="yearOfManufacture" ref="yearOfManufacture" defaultValue= { droneDetails && droneDetails.yearOfManufacture } readOnly/>
                     </label>
                 </div>
                 <div className="large-12 cell">
                     <label>Wing type <br/>
-                        <select name="wingType" ref="wingType"   value= { droneDetails.wingType } onChange = { this.props.onChange }>
+                        <select name="wingType" ref="wingType"   value= { droneDetails.wingType } onChange = { this.handleChange }>
                             { wingTypeOptions }
                         </select>   
                     </label>
                 </div>
                 <div className="large-12 cell">
                     <label className="checkbox">Is New
-                        <input type="checkbox" ref="isNew" name="isNew" checked = { droneDetails && droneDetails.isNew } onChange={ this.props.onChange }/>
+                        <input type="checkbox" ref="isNew" name="isNew" checked = { droneDetails && droneDetails.isNew } onChange = { this.handleChange }/>
                         <span className="checkmark"></span>
                     </label>
                 </div>
                 <div className="large-12 cell">
-                    <label>Maximum take-off weight (including Payload) 
-                        <input type="number" name="maxTakeOffWeight" min="5.0" placeholder="Weight in gms" ref="maxTakeOffWeight" defaultValue = { droneDetails && droneDetails.maxTakeOffWeight ? droneDetails.maxTakeOffWeight: undefined}/>
+                    <label>Maximum take-off weight (including Payload) in kgs
+                        <input type="number" name="maxTakeOffWeight"  placeholder="Weight in kgs" ref="maxTakeOffWeight" defaultValue = { droneDetails && droneDetails.maxTakeOffWeight !==0 && droneDetails.maxTakeOffWeight} onChange = { this.handleChange }/>
                     </label>
                 </div>
                 <div className="large-12 cell">
-                    <label>Maximum height attainable
-                        <input type="number" name="maxHeight" min="10" placeholder="Height in ms" ref="maxHeight" defaultValue= { droneDetails && droneDetails.maxHeightAttainable ? droneDetails.maxHeightAttainable: undefined }/>
+                    <label>Maximum height attainable (in meters)
+                        <input type="number" name="maxHeightAttainable" placeholder="Height in ms" ref="maxHeightAttainable" defaultValue= { droneDetails && droneDetails.maxHeightAttainable!== 0 && droneDetails.maxHeightAttainable} onChange = { this.handleChange }/>
                     </label>
                 </div>
                 <div className="large-12 cell">
                     <label>Details of compatible payload
-                        <textarea name="payload" rows="2" ref="payload" defaultValue= { droneDetails && droneDetails.payloadDetails ? droneDetails.payloadDetails : undefined}/>
+                        <textarea name="payloadDetails" rows="2" ref="payload" defaultValue= { droneDetails && droneDetails.payloadDetails} onChange = { this.handleChange }/>
                     </label>
-                </div>`
+                </div>
             </div>
         );
     }

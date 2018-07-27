@@ -5,12 +5,15 @@ import { connect } from 'react-redux'
 import queryString from 'query-string'
 
 import UAOPApplicationView from '../components/UAOPApplicationView'
+import DroneAcquisitionApplicationView from '../components/DroneAcquisitionApplicationView';
+import UINApplicationView from '../components/UINApplicationView';
 
-import { UAOP_APPLICATION_APPLICATION } from '../constants/applicationType';
+import { UAOP_APPLICATION_APPLICATION, LOCAL_DRONE_ACQUISITION_APPLICATION, IMPORT_DRONE_APPLICATION, UIN_APPLICATION } from '../constants/applicationType';
 
 import { downloadFile } from '../actions/downloadFileActions';
 
 import { approveApplicationsAction } from '../actions/adminActions';
+
 
 
 class AdminApplicationViewPage extends React.Component {
@@ -51,13 +54,48 @@ class AdminApplicationViewPage extends React.Component {
                 <div id="application-preview">
                     <div className="page-form">
                         <div className="grid-container">
-                            <div className="grid-x grid-padding-x">
-                                <div className="large-12 cell">
-                                    <h2>UAOP Application</h2>
-                                </div>
-                                { applicationType === UAOP_APPLICATION_APPLICATION && <UAOPApplicationView application={currentApplication} downloadDocument={this.downloadDocument}/> }
-                            </div>
-                        </div>
+                            {(() => {
+                                switch(applicationType) {
+                                    case UAOP_APPLICATION_APPLICATION:
+                                    return (
+                                        <div className="grid-x grid-padding-x">
+                                            <div className="large-12 cell">
+                                                <h2>UAOP Application</h2>
+                                            </div>
+                                            { applicationType === UAOP_APPLICATION_APPLICATION && <UAOPApplicationView application={currentApplication} downloadDocument={this.downloadDocument}/> }
+                                        </div>
+                                    )
+                                    case IMPORT_DRONE_APPLICATION:
+                                    return (
+                                        <div className="grid-x grid-padding-x">
+                                            <div className="large-12 cell">
+                                                <h2>Import Drone Application</h2>
+                                            </div>
+                                            { applicationType === IMPORT_DRONE_APPLICATION && <DroneAcquisitionApplicationView applicationForm={currentApplication} downloadDocument={this.downloadDocument} type="importDrone" /> }
+                                        </div>
+                                    )
+                                    case UIN_APPLICATION:
+                                    return (
+                                        <div className="grid-x grid-padding-x">
+                                            <div className="large-12 cell">
+                                                <h2>UIN Application</h2>
+                                            </div>
+                                            { applicationType === UIN_APPLICATION && <UINApplicationView application={currentApplication} downloadDocument={this.downloadDocument} /> }
+                                        </div>
+                                    )
+                                    case LOCAL_DRONE_ACQUISITION_APPLICATION:
+                                    default:
+                                    return (
+                                        <div className="grid-x grid-padding-x">
+                                            <div className="large-12 cell">
+                                                <h2>Local Drone Acquisition Application</h2>
+                                            </div>
+                                            { applicationType === LOCAL_DRONE_ACQUISITION_APPLICATION && <DroneAcquisitionApplicationView applicationForm={currentApplication} downloadDocument={this.downloadDocument} type="localDroneAcquisition" /> }
+                                        </div>
+                                    )
+                                }
+                            })()} 
+                        </div> 
                     </div>
                 </div>
                 {   currentApplication.status === 'SUBMITTED' &&

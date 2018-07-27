@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FormErrors from '../components/FormErrors';
+import FormErrors from './FormErrors';
 
 class UAOPApplicationStep1 extends React.Component {
 

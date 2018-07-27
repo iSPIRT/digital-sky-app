@@ -42,13 +42,13 @@ class UINApplicationPage extends React.Component {
         this.props.dispatch(editUINApplicationAction(applicationForm, id));
     }
 
-    downloadDocument(id, documentName){
-        const filePath = "applicationForm/UINApplication/"+id+"/document/"+documentName;
+    downloadDocument(documentName){
+        const filePath = "applicationForm/UINApplication/"+this.props.applicationForm.id+"/document/"+documentName;
         this.props.dispatch(downloadFile(filePath, documentName));
     }
 
     render() {
-        const { saving, saved, errors, currentApplicationForm, step} = this.props;
+        const { saving, saved, errors, applicationForm, step} = this.props;
         const { nationalityOptions, modeOfAcquisitionOptions } = this.state;
         return (
             <div className="page-form">
@@ -58,19 +58,20 @@ class UINApplicationPage extends React.Component {
                         case 1: 
                             return(<UINApplicationStep1 name="applicationStep1" 
                                 saving={ saving } saved={ saved } errors={ errors } 
-                                applicationForm={ currentApplicationForm }
+                                applicationForm={ applicationForm }
                                 createForm={ this.createForm } updateForm={ this.updateForm }
-                                step= { step } goBack={ this.removeStep } />);
+                                step= { step } goBack={ this.removeStep } 
+                                downloadDocument= { this.downloadDocument }/>);
                         case 2:
                             return(<UINApplicationStep2 name="applicationStep2" 
                                 nationalityOptions = { nationalityOptions }
                                 modeOfAcquisitionOptions={ modeOfAcquisitionOptions } 
-                                saving={ saving } saved={ saved } errors={ errors } applicationForm={ currentApplicationForm }
+                                saving={ saving } saved={ saved } errors={ errors } applicationForm={ applicationForm }
                                 updateForm={ this.updateForm }
                                 step= { step } goBack={ this.removeStep }
                                 downloadDocument= { this.downloadDocument } />);
                         case 3:
-                            return(<UINApplicationReview name="applicationReview" applicationForm={ currentApplicationForm } updateForm={ this.updateForm } 
+                            return(<UINApplicationReview name="applicationReview" applicationForm={ applicationForm } updateForm={ this.updateForm } 
                                 step= { step } errors={ errors } saved={ saved } saving={ saving } goBack={ this.removeStep }
                                 downloadDocument= { this.downloadDocument } />);  
                         default: return(<Dashboard />)
@@ -82,13 +83,13 @@ class UINApplicationPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { saving, saved, errors, currentApplicationForm } = state.uinApplications;
+    const { saving, saved, errors, applicationForm } = state.uinApplications;
     const { step } = state.formStepChange
     return {
        saving,
        saved,
        errors,
-       currentApplicationForm,
+       applicationForm,
        step
     };
 }

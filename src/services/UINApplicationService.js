@@ -10,14 +10,13 @@ function create(application) {
   const requestOptions = {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       Authorization: "Bearer " + accessToken
     },
     body: application
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/UINApplication",
+    "https://localhost:9443/api/applicationForm/uinApplication",
     requestOptions
   ).then(handleResponseService.handleResponse);
 }
@@ -33,7 +32,7 @@ function edit(application, applicationId) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/UINApplication/" +
+    "https://localhost:9443/api/applicationForm/uinApplication/" +
       applicationId,
     requestOptions
   ).then(handleResponseService.handleResponse);

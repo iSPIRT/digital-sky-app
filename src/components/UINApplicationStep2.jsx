@@ -1,7 +1,6 @@
 import React from 'react';
 import FooterApplicationForm from './FooterApplicationForm';
 import DroneSpec from './DroneSpec';
-import FormErrors from './FormErrors';
 
 class UINApplicationStep2 extends React.Component {
 
@@ -14,22 +13,42 @@ class UINApplicationStep2 extends React.Component {
         this.state = {
             submitted: false,
             formErrors:[],
-            applicationForm: {},
+            applicationForm : {
+                droneCategoryType : "",
+                regionOfOperation: "",
+                purposeOfOperation: "",
+                engineType: "",
+                enginePower: "",
+                engineCount: "",
+                fuelCapacity: "",
+                propellerDetails: "",
+                dimensions: {
+                    length: "",
+                    breadth: "",
+                    height: ""
+                },
+                maxEndurance: "",
+                maxRange: "",
+                maxSpeed: "",
+                maxHeightAttainable: "",
+                maxHeightOfOperation:"",
+            }
         };
     }
 
     componentWillReceiveProps(nextProps){
-        const { applicationForm, errors } = nextProps;
-        const {submitted } = this.state;
-        if (submitted && ( !errors || errors.length === 0)  &&  (applicationForm.id !== 0)){
-            this.props.nextStep();
-        }
+       // const { applicationForm, errors } = nextProps;
+       // const {submitted } = this.state;
+        // if (submitted && ( !errors || errors.length === 0)  &&  (applicationForm.id !== 0)){
+        //     this.props.nextStep();
+        // }
         this.setState({formErrors: []});
         this.setState({applicationForm: nextProps.applicationForm});
     }
 
     handleChange(event) {
-        const { name, value, type } = event.target;
+        const { name, type } = event.target;
+        const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
         if( type === 'file'){
             this.setState({[name]: event.target.files[0]});
         } else {
@@ -41,29 +60,28 @@ class UINApplicationStep2 extends React.Component {
 
     updateObjProp(obj, value, propPath) {
         const [head, ...rest] = propPath.split('.');
-
+        
         !rest.length
-            ? obj[head] = value
+            ? obj[head]= value
             : this.updateObjProp(obj[head], value, rest.join("."));
     }
 
     handleSaveApplication(event) {
         event.preventDefault();
         this.setState({submitted: true});
+
         const formData = new FormData();
-        formData.append("securityProgramDoc", this.state.securityProgramDoc)
-        formData.append("insuranceDoc", this.state.insuranceDoc)
-        formData.append("landOwnerPermissionDoc", this.state.landOwnerPermissionDoc)
-        formData.append("sopDoc", this.state.sopDoc)
-        formData.append("uaopApplicationForm", JSON.stringify(this.state.applicationForm))
-        console.log(formData);
-        this.props.updateApplication(this.props.applicationForm.id, formData);
+        formData.append("opManualDoc", this.state.opManualDoc)
+        formData.append("maintenanceGuidelinesDoc", this.state.maintenanceGuidelinesDoc)
+        formData.append("uinApplication", JSON.stringify(this.state.applicationForm))
+       
+        this.props.updateForm(formData, this.props.applicationForm.id);
     }
 
     render() {
     
-        const { nationalityOptions, applicationForm, saving, saved, errors, goBack, step} = this.props
-        const { opManualDoc, maintenanceGuidelinesDoc } = this.state;
+        const { nationalityOptions, saving, goBack, step} = this.props
+        const { opManualDoc, maintenanceGuidelinesDoc, applicationForm } = this.state;
         return (
             <div className="page-form">
                 {/* <FormErrors errors = {errors}/>
@@ -75,23 +93,14 @@ class UINApplicationStep2 extends React.Component {
                                 <DroneSpec name="droneSpec" nationalityOptions={ nationalityOptions } applicationForm = { applicationForm } onChange= { this.handleChange }/>
                             </div>
                             {/* <div className="large-12 cell">
-                                <label>GNSS (GPS) for horizontal and vertical position fixing
-                                </label>
-                            </div>
-                            <div className="large-12 cell">
-                                <label>Autonomous Flight Termination System or Return Home (RH) option
-                                </label>
-                            </div>
-                            <div className="large-12 cell">
-                                <label>Flashing anti-collision strobe lights    
-                                </label>
-                            </div>
-                            <div className="large-12 cell">
-                                <label>RFID and GSM SIM Card/ NPNT compliant for APP based real time tracking (except for Nano and Micro category)
-                                </label>
-                            </div>
-                            <div className="large-12 cell">
-                                <label>Flight Controller with flight data logging capability
+                                <label> Select applicable
+                                    <select multiple onChange={ this.handleChange }>
+                                        <option value="hasGNSS">GNSS (GPS) for horizontal and vertical position fixing</option>
+                                        <option value="hasAutonomousFlightTerminationSystem">Autonomous Flight Termination System or Return Home (RH) option</option>
+                                        <option value="hasFlashingAntiCollisionStrobeLights">Flashing anti-collision strobe lights</option>
+                                        <option value="hasRFID_GSM_SIMCard">RFID and GSM SIM Card/ NPNT compliant for APP based real time tracking (except for Nano and Micro category)</option>
+                                        <option value="hasFlightController">Flight Controller with flight data logging capability</option>
+                                    </select>
                                 </label>
                             </div> */}
                             <div className="large-12 cell">
@@ -115,7 +124,7 @@ class UINApplicationStep2 extends React.Component {
                             </div>
                             <div className="help-wrap">
                                 <label>History of incidents/accidents (if any) along with nature and extent of damage sustained by the RPA and details of any repairs carried out </label>
-                                <textarea name="incidentHistory" rows="3" value= { applicationForm.incidentHistory }/>
+                                <textarea name="incidentHistory" rows="3" value= { applicationForm.incidentHistory } onChange={ this.handleChange }/>
                             </div>
                         </div>
                     </div>

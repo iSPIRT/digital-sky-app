@@ -70,7 +70,7 @@ class ImportDroneApplicationPage extends React.Component {
                                 saving={ saving } saved={ saved } errors={ errors } applicationForm={ currentApplicationForm }
                                 updateForm={ this.updateForm }
                                 step= { step } goBack={ this.removeStep }
-                                downloadDocument= { this.downloadDocument } />);
+                                downloadDocument= { this.downloadDocument } applicationType="importDrone"/>);
                         case 3:
                             return(<DroneAcquisitionApplicationReview name="applicationReview" applicationForm={ currentApplicationForm } updateForm={ this.updateForm } 
                                 step= { step } errors={ errors } saved={ saved } saving={ saving } goBack={ this.removeStep } applicationType="importDrone"
