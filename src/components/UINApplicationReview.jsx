@@ -2,9 +2,9 @@ import React from 'react';
 import FooterApplicationForm from './FooterApplicationForm';
 import FooterApplicationReviewDeclaration from './FooterApplicationReviewDeclaration';
 //import FormErrors from './FormErrors';
-import DroneAcquisitionApplicationView from './DroneAcquisitionApplicationView';
+import UINApplicationView from './UINApplicationView';
 
-class DroneAcquisitionApplicationReview extends React.Component {
+class UINApplicationReview extends React.Component {
 
     constructor() {
         super();
@@ -17,36 +17,36 @@ class DroneAcquisitionApplicationReview extends React.Component {
     }
     
     handleSubmit(event) {
-        var acquisitionApplication = {...this.props.applicationForm,
+        var applicationForm = {...this.props.applicationForm,
             status: "SUBMITTED"
         }
         event.preventDefault();
 
         var formData = new FormData();
-        formData.append("droneAcquisitionForm", JSON.stringify(acquisitionApplication)) ;
-        this.props.updateForm(formData, this.props.applicationForm.id )
+        formData.append("uinApplication", JSON.stringify(applicationForm)) ;
+        this.props.updateForm(formData, this.props.applicationForm.id );
     }
 
-    downloadDocument() {
-        this.props.downloadDocument(this.props.applicationForm.id,"securityClearanceDocument")
+    downloadDocument(documentName){
+        this.props.downloadDocument(documentName);
     }
 
     render() {
         
-        const { saving, applicationForm, goBack, applicationType} = this.props;
+        const { saving, applicationForm, goBack} = this.props;
         return (
             <div className="page-form">
                 {/* <FormErrors errors = {errors}/>
                 <FormErrors errors = {formErrors}/> */}
-                <form name="localDroneAcquisitionApplicationForm" onSubmit={ this.handleSubmit }>
+                <form name="uinApplicationForm" onSubmit={ this.handleSubmit }>
                     <div id="application-preview">
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
-                                <DroneAcquisitionApplicationView applicationForm = { applicationForm } type= { applicationType } />
+                                <UINApplicationView application= { applicationForm } downloadDocument = { this.downloadDocument } />
                             </div>
                         </div>
                     </div>
-                    <FooterApplicationReviewDeclaration applicant = { applicationForm.applicant } type= { applicationType }/>
+                    <FooterApplicationReviewDeclaration applicant = { this.props.applicationForm.applicant } type="uin"/>
                     <FooterApplicationForm  step= { this.props.step } saving={ saving } goBack= { goBack }/>
                 </form>
             </div>  
@@ -54,4 +54,4 @@ class DroneAcquisitionApplicationReview extends React.Component {
     }
 }
 
-export default DroneAcquisitionApplicationReview;
+export default UINApplicationReview;

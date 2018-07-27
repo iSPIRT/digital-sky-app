@@ -1,6 +1,5 @@
 import React from 'react';
 import FooterApplicationForm from './FooterApplicationForm';
-import FormErrors from './FormErrors';
 
 class DroneAcquisitionApplicationStep2 extends React.Component {
 
@@ -77,8 +76,8 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
             return (<option value={mode} key={mode}> {mode} </option>);
         });
 
-        const { saving, saved, errors, applicationForm, goBack, applicationType} = this.props;
-        const { formErrors, submitted } = this.state;
+        const { saving, applicationForm, goBack, applicationType} = this.props;
+       // const { formErrors, submitted } = this.state;
         const aquisitionDisplay = applicationType === "importDrone" ? "Mode of import" : "Mode of acquisition";
         return (
             <div className="page-form">

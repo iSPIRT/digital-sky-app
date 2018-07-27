@@ -11,7 +11,7 @@ const initialState = {
   errors: null
 };
 
-export function saveImportDroneApplication(state = initialState, action) {
+export function importDroneApplications(state = initialState, action) {
   switch (action.type) {
     case SAVE_IMPORTDRONE_APPLICATION_REQUEST:
       return { ...state, saving: true, saved: false, errors: null };

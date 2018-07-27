@@ -4,30 +4,34 @@ import { connect } from 'react-redux';
 
 import AuthenticatedRoute  from './AuthenticatedRoute';
 import AdminAuthenticatedRoute  from './AdminAuthenticatedRoute';
+
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 import ResetPasswordLinkPage from './ResetPasswordLinkPage';
 import ResetPasswordPage from './ResetPasswordPage';
 import ImportDroneApplicationPage from './ImportDroneApplicationPage';
-import DroneAcquisitionApplicationPage from './LocalDroneAcquisitionApplicationPage';
+import LocalDroneAcquisitionApplicationPage from './LocalDroneAcquisitionApplicationPage';
+import DashboardPage from '../containers/DashboardPage';
+import AdminDashboardPage from '../containers/AdminDashboardPage';
+import AdminApplicationViewPage from '../containers/AdminApplicationViewPage';
+import UserProfilePage from './UserProfilePage';
+import PilotProfilePage from './PilotProfilePage';
+import IndividualOperatorProfilePage from './IndividualOperatorProfilePage';
+import OrganizationOperatorProfilePage from './OrganizationOperatorProfilePage';
+import UAOPApplicationPage from './UAOPApplicationPage';
+import UINApplicationPage from './UINApplicationPage';
+
 import Logout from './Logout';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Home from '../components/Home';
-import DashboardPage from '../containers/DashboardPage';
-import AdminDashboardPage from '../containers/AdminDashboardPage';
-import UserProfilePage from '../containers/UserProfilePage';
-import PilotProfilePage from '../containers/PilotProfilePage';
-import IndividualOperatorProfilePage from '../containers/IndividualOperatorProfilePage';
-import OrganizationOperatorProfilePage from '../containers/OrganizationOperatorProfilePage';
-import UAOPApplicationPage from '../containers/UAOPApplicationPage';
-import AdminApplicationViewPage from '../containers/AdminApplicationViewPage';
 
 import { history } from '../store/configureStore';
 
 import $ from 'jquery';
 
 import 'foundation-sites';
+
 
 class App extends React.Component {
 
@@ -69,7 +73,10 @@ class App extends React.Component {
                     <AuthenticatedRoute exact path="/organizationOperatorProfile" loggedIn={loggedIn} component={OrganizationOperatorProfilePage} />
                     <AuthenticatedRoute exact path="/uaopApplication" loggedIn={loggedIn} component={UAOPApplicationPage} />
                     <AuthenticatedRoute exact path="/logout" loggedIn={loggedIn} component={Logout} />
-
+                    <AuthenticatedRoute exact path="/localDroneAcquisitionApplication" component={LocalDroneAcquisitionApplicationPage} loggedIn={loggedIn}/>
+                    <AuthenticatedRoute exact path="/importDroneApplication" component={ImportDroneApplicationPage} loggedIn={loggedIn}/>
+                    <AuthenticatedRoute exact path="/uinApplication" component={UINApplicationPage} loggedIn={loggedIn}/>
+                    
                     <AdminAuthenticatedRoute path="/admin/dashboard" loggedIn={loggedIn} user={user} component={AdminDashboardPage} />
                     <AdminAuthenticatedRoute path="/admin/application" loggedIn={loggedIn} user={user} component={AdminApplicationViewPage} />
 
@@ -78,9 +85,7 @@ class App extends React.Component {
                     <Route path="/register" component={RegisterPage} />
                     <Route path="/resetPasswordLink" component={ResetPasswordLinkPage} />
                     <Route path="/resetPassword" component={ResetPasswordPage} />
-                    <Route path="/localDroneAcquisitionApplication" component={DroneAcquisitionApplicationPage} type='import'/>
-                    <Route path="/importDroneApplication" component={ImportDroneApplicationPage} type='local'/>
-
+                  
                     <Footer/>
                 </div>
               </Router>

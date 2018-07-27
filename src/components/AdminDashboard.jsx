@@ -5,9 +5,9 @@ import FormErrors from '../components/FormErrors';
 import view from '../img/view.svg';
 
 import { LOCAL_DRONE_ACQUISITION_APPLICATION } from '../constants/applicationType';
-import { IMPORT_DRONE_ACQUISITION_APPLICATION } from '../constants/applicationType';
+import { IMPORT_DRONE_APPLICATION } from '../constants/applicationType';
 import { UAOP_APPLICATION_APPLICATION } from '../constants/applicationType';
-import { UIN_UAOP_APPLICATION } from '../constants/applicationType';
+import { UIN_APPLICATION } from '../constants/applicationType';
 
 function Applications(props) {
     const {applications} = props;
@@ -59,10 +59,10 @@ class AdminDashboard extends React.Component {
                         <div className="grid-x grid-padding-x">
                             <div className="large-12 cell">
                                 <ul className="menu">
-                                    <li><a onClick={(e) =>  this.applicationTypeSelected(LOCAL_DRONE_ACQUISITION_APPLICATION)} className={this.cssClassMenu(LOCAL_DRONE_ACQUISITION_APPLICATION)}><span>Local Drone Acquisitions Applications</span></a></li>
-                                    <li><a onClick={(e) =>  this.applicationTypeSelected(IMPORT_DRONE_ACQUISITION_APPLICATION.landOwnerPermissionDocName)} className={this.cssClassMenu(IMPORT_DRONE_ACQUISITION_APPLICATION)}><span>Imported Drone Acquisitions Applications</span></a></li>
+                                    <li><a onClick={(e) =>  this.applicationTypeSelected(LOCAL_DRONE_ACQUISITION_APPLICATION)} className={this.cssClassMenu(LOCAL_DRONE_ACQUISITION_APPLICATION)}><span>Local Drone Acquisition Applications</span></a></li>
+                                    <li><a onClick={(e) =>  this.applicationTypeSelected(IMPORT_DRONE_APPLICATION)} className={this.cssClassMenu(IMPORT_DRONE_APPLICATION)}><span>Import Drone Applications</span></a></li>
                                     <li><a onClick={(e) =>  this.applicationTypeSelected(UAOP_APPLICATION_APPLICATION)} className={this.cssClassMenu(UAOP_APPLICATION_APPLICATION)}><span>UAOP Applications</span></a></li>
-                                    <li><a onClick={(e) =>  this.applicationTypeSelected(UIN_UAOP_APPLICATION)} className={this.cssClassMenu(UIN_UAOP_APPLICATION)}><span>UIN Applications</span></a></li>
+                                    <li><a onClick={(e) =>  this.applicationTypeSelected(UIN_APPLICATION)} className={this.cssClassMenu(UIN_APPLICATION)}><span>UIN Applications</span></a></li>
                                 </ul>
                             </div>
                         </div>

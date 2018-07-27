@@ -1,10 +1,8 @@
 import React from 'react';
 
-import FormErrors from '../components/FormErrors';
+import FormErrors from './FormErrors';
 
 import back from '../img/back.svg';
-
-import UAOPApplicationView from './UAOPApplicationView'
 
 class UAOPApplicationStep3 extends React.Component {
 
@@ -68,16 +66,38 @@ class UAOPApplicationStep3 extends React.Component {
                                         </ul>
                                     </div>
                                 </div>
-
-                                <UAOPApplicationView application={application} downloadDocument={this.downloadDocument}/>
-
+                                <div className="large-12 cell">
+                                    <div className="question">
+                                        <h6>Name:</h6>
+                                        <p>{application.name}</p>
+                                    </div>
+                                    <div className="question">
+                                        <h6>Designation:</h6>
+                                        <p>{application.designation}</p>
+                                    </div>
+                                    <div className="question">
+                                        <h6>Security Program Document:</h6>
+                                        <a onClick={(e) =>  this.downloadDocument(application.securityProgramDocName)}>{application.securityProgramDocName}</a>
+                                    </div>
+                                    <div className="question">
+                                        <h6>Insurance Document:</h6>
+                                        <a onClick={(e) =>  this.downloadDocument(application.insuranceDocName)}>{application.insuranceDocName}</a>
+                                    </div>
+                                    <div className="question">
+                                        <h6>Standard Operating Procedure Document:</h6>
+                                        <a onClick={(e) =>  this.downloadDocument(application.sopDocName)}>{application.sopDocName}</a>
+                                    </div>
+                                    <div className="question">
+                                        <h6>Land Owner Permission Document:</h6>
+                                        <a onClick={(e) =>  this.downloadDocument(application.landOwnerPermissionDocName)}>{application.landOwnerPermissionDocName}</a>
+                                    </div>
+                                </div>
                                 { application.status === 'DRAFT' &&
                                     <div className="large-12 cell">
                                         <a className="back" onClick={this.props.previousStep}>
                                             <img src={back} alt="back"/> Go back to previous step
                                         </a>
                                         <button type="submit" className="button" name="button">Submit Application</button>
-
                                         {
                                            savingApplication && <img alt="Loading..." src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                         }
