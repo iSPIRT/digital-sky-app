@@ -1,9 +1,13 @@
+import applicationProperties from '../helpers/applicationPropertiesHelper'
+
+
 export const adminService = {
   loadApplications,
   approveApplication
 };
 
 function loadApplications(applicationType) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "GET",
@@ -11,7 +15,7 @@ function loadApplications(applicationType) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/" + applicationType + "/getAll",
+    apiRoot+"/applicationForm/" + applicationType + "/getAll",
     requestOptions
   ).then(handleResponse);
 }
@@ -21,6 +25,7 @@ function approveApplication(
   applicationId,
   applicationApproval
 ) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "PATCH",
@@ -28,7 +33,7 @@ function approveApplication(
     body: JSON.stringify(applicationApproval)
   };
   const url =
-    "https://localhost:9443/api/applicationForm/" +
+    apiRoot+"/applicationForm/" +
     applicationType +
     "/approve/" +
     applicationId;

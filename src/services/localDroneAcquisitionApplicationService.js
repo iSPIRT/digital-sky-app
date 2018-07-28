@@ -1,4 +1,5 @@
 import { handleResponseService } from "./handleResponseService";
+import applicationProperties from '../helpers/applicationPropertiesHelper'
 
 export const localDroneAcquisitionApplicationService = {
   create,
@@ -7,6 +8,7 @@ export const localDroneAcquisitionApplicationService = {
 };
 
 function create(localDroneAcquisitionForm) {
+  const apiRoot = applicationProperties().apiRoot;
   var accessToken = localStorage.getItem("accessToken");
   const requestOptions = {
     method: "POST",
@@ -18,12 +20,13 @@ function create(localDroneAcquisitionForm) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/localDroneAcquisitionApplication",
+    apiRoot+"/applicationForm/localDroneAcquisitionApplication",
     requestOptions
   ).then(handleResponseService.handleResponse);
 }
 
 function edit(localDroneAcquisitionFormData, applicationId) {
+  const apiRoot = applicationProperties().apiRoot;
   var accessToken = localStorage.getItem("accessToken");
   const requestOptions = {
     method: "PATCH",
@@ -34,20 +37,21 @@ function edit(localDroneAcquisitionFormData, applicationId) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/localDroneAcquisitionApplication/" +
+    apiRoot+"/applicationForm/localDroneAcquisitionApplication/" +
       applicationId,
     requestOptions
   ).then(handleResponseService.handleResponse);
 }
 
 function load(applicationId) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "GET",
     headers: { Authorization: authToken }
   };
   return fetch(
-    "https://localhost:9443/api/applicationForm/localDroneAcquisitionApplication/" +
+    apiRoot+"/applicationForm/localDroneAcquisitionApplication/" +
       applicationId,
     requestOptions
   ).then(handleResponseService.handleResponse);

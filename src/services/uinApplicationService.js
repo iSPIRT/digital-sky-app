@@ -1,4 +1,5 @@
 import { handleResponseService } from "./handleResponseService";
+import applicationProperties from '../helpers/applicationPropertiesHelper'
 
 export const uinApplicationService = {
   create,
@@ -7,6 +8,7 @@ export const uinApplicationService = {
 };
 
 function create(application) {
+  const apiRoot = applicationProperties().apiRoot;
   var accessToken = localStorage.getItem("accessToken");
   const requestOptions = {
     method: "POST",
@@ -17,12 +19,13 @@ function create(application) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/uinApplication",
+    apiRoot+"/applicationForm/uinApplication",
     requestOptions
   ).then(handleResponseService.handleResponse);
 }
 
 function edit(application, applicationId) {
+  const apiRoot = applicationProperties().apiRoot;
   var accessToken = localStorage.getItem("accessToken");
   const requestOptions = {
     method: "PATCH",
@@ -33,13 +36,14 @@ function edit(application, applicationId) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/uinApplication/" +
+    apiRoot+"/applicationForm/uinApplication/" +
       applicationId,
     requestOptions
   ).then(handleResponseService.handleResponse);
 }
 
 function load(applicationId) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "GET",
@@ -47,7 +51,7 @@ function load(applicationId) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/uinApplication/" +
+    apiRoot+"/applicationForm/uinApplication/" +
       applicationId,
     requestOptions
   ).then(handleResponseService.handleResponse);
