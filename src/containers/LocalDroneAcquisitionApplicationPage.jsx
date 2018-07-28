@@ -12,6 +12,10 @@ import { createLocalDroneAcquisitionApplicationAction,editLocalDroneAcquisitionA
 import { formStepReduceAction } from '../actions/applicationFormStepActions';
 import { downloadFile } from '../actions/downloadFileActions';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
 class LocalDroneAcquisitionApplicationPage extends React.Component {
    
     constructor(props) {

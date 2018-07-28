@@ -1,27 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import queryString from 'query-string'
+=======
+>>>>>>> upstream/master
 
 import UINApplicationStep1 from '../components/UINApplicationStep1';
 import UINApplicationStep2 from '../components/UINApplicationStep2';
 import UINApplicationReview from '../components/UINApplicationReview';
+<<<<<<< HEAD
 import UINApplicationView from '../components/UINApplicationView';
 import HeaderApplicationForm from '../components/HeaderApplicationForm';
 
 import { createUINApplicationAction, editUINApplicationAction, applicationFormLoadedAction, loadUINApplicationAction, } from '../actions/uinApplicationActions';
+=======
+import HeaderApplicationForm from '../components/HeaderApplicationForm';
+import Dashboard from '../components/Dashboard';
+
+import { createUINApplicationAction, editUINApplicationAction } from '../actions/uinApplicationActions';
+>>>>>>> upstream/master
 import { formStepReduceAction } from '../actions/applicationFormStepActions';
 import { downloadFile } from '../actions/downloadFileActions';
 
 class UINApplicationPage extends React.Component {
    
+<<<<<<< HEAD
     constructor(props) {
         super(props);
+=======
+    constructor() {
+        super();
+>>>>>>> upstream/master
         this.removeStep = this.removeStep.bind(this);
         this.createForm = this.createForm.bind(this);
         this.updateForm = this.updateForm.bind(this);
         this.downloadDocument = this.downloadDocument.bind(this);
         this.state = {
             nationalityOptions : ['Indian', 'Chinese', 'Korean'],
+<<<<<<< HEAD
             formErrors:[],
             step: 1
         }
@@ -30,6 +46,9 @@ class UINApplicationPage extends React.Component {
         const applicationId = queryParams.id
         if( applicationId && applicationId !== this.props.applicationForm.id){
             this.props.dispatch(loadUINApplicationAction(applicationId));
+=======
+            formErrors:[]
+>>>>>>> upstream/master
         }
     }
 
@@ -56,6 +75,7 @@ class UINApplicationPage extends React.Component {
     }
 
     render() {
+<<<<<<< HEAD
         const { saving, saved, errors, applicationForm} = this.props;
         const { nationalityOptions, modeOfAcquisitionOptions } = this.state;
 
@@ -107,6 +127,35 @@ class UINApplicationPage extends React.Component {
                                 </div>
                             </div>
                         );
+=======
+        const { saving, saved, errors, applicationForm, step} = this.props;
+        const { nationalityOptions, modeOfAcquisitionOptions } = this.state;
+        return (
+            <div className="page-form">
+                <HeaderApplicationForm applicationType="UIN Application" step= { step }/>   
+                {(() => {
+                    switch(step) {
+                        case 1: 
+                            return(<UINApplicationStep1 name="applicationStep1" 
+                                saving={ saving } saved={ saved } errors={ errors } 
+                                applicationForm={ applicationForm }
+                                createForm={ this.createForm } updateForm={ this.updateForm }
+                                step= { step } goBack={ this.removeStep } 
+                                downloadDocument= { this.downloadDocument }/>);
+                        case 2:
+                            return(<UINApplicationStep2 name="applicationStep2" 
+                                nationalityOptions = { nationalityOptions }
+                                modeOfAcquisitionOptions={ modeOfAcquisitionOptions } 
+                                saving={ saving } saved={ saved } errors={ errors } applicationForm={ applicationForm }
+                                updateForm={ this.updateForm }
+                                step= { step } goBack={ this.removeStep }
+                                downloadDocument= { this.downloadDocument } />);
+                        case 3:
+                            return(<UINApplicationReview name="applicationReview" applicationForm={ applicationForm } updateForm={ this.updateForm } 
+                                step= { step } errors={ errors } saved={ saved } saving={ saving } goBack={ this.removeStep }
+                                downloadDocument= { this.downloadDocument } />);  
+                        default: return(<Dashboard />)
+>>>>>>> upstream/master
                     }
                 })()} 
             </div>           
