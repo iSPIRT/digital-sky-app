@@ -26,6 +26,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Home from '../components/Home';
 
+import ScrollToTop from './ScrollToTop'
+
 import { history } from '../store/configureStore';
 
 import $ from 'jquery';
@@ -63,7 +65,7 @@ class App extends React.Component {
         return (
             <div>
              <Router history={history}>
-               <div>
+                <ScrollToTop>
                     <Header stickyHeader={stickyHeader} homepage='true' loggedIn={loggedIn}/>
 
                     <AuthenticatedRoute exact path="/dashboard" loggedIn={loggedIn} component={DashboardPage} />
@@ -87,7 +89,7 @@ class App extends React.Component {
                     <Route path="/resetPassword" component={ResetPasswordPage} />
                   
                     <Footer/>
-                </div>
+                </ScrollToTop>
               </Router>
             </div>
         );
