@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import FormErrors from '../components/FormErrors';
 
+import { requiredCheck, emailCheck } from '../helpers/formValidationHelpers';
+
 import email from '../img/email.svg';
 import password from '../img/password.svg';
 
@@ -13,9 +15,11 @@ class Login extends React.Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-            submitted: false
+            submitted: false,
+            formErrors: []
         };
     }
+
 
     handleSubmit(event) {
         event.preventDefault();
@@ -23,13 +27,21 @@ class Login extends React.Component {
                     email: this.refs.email.value,
                     password: this.refs.password.value
         };
-        this.setState({submitted: true});
-        this.props.loginUser(credentials);
+        const formErrors = [];
+        requiredCheck(formErrors, 'Email', credentials.email);
+        emailCheck(formErrors, 'Email', credentials.email);
+        requiredCheck(formErrors, 'Password', credentials.password);
+        if( formErrors.length > 0) {
+            this.setState({formErrors});
+        } else {
+            this.setState({submitted: true});
+            this.props.loginUser(credentials);
+        }
     }
 
     render() {
         const { loggingIn, errors} = this.props;
-        const { submitted } = this.state;
+        const { submitted, formErrors } = this.state;
         console.log(submitted);
         return (
             <div>
@@ -45,6 +57,7 @@ class Login extends React.Component {
                 </div>
                 <div className="page-form">
                     <FormErrors errors = {errors}/>
+                    <FormErrors errors = {formErrors}/>
                     <form name="loginForm" onSubmit={this.handleSubmit}>
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">

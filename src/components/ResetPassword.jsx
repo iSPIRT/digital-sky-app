@@ -2,6 +2,7 @@ import React from 'react';
 
 import FormErrors from '../components/FormErrors';
 
+import { requiredCheck } from '../helpers/formValidationHelpers';
 
 class ResetPassword extends React.Component {
 
@@ -16,19 +17,24 @@ class ResetPassword extends React.Component {
 
     componentWillReceiveProps(nextProps){
         this.setState({submitted: false});
-        this.setState({formErrors: []});
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({submitted: true});
         const payload = {
             token: this.props.token,
             password: this.refs.password.value
         }
+        const formErrors = [];
+        requiredCheck(formErrors, 'Token', payload.token);
+        requiredCheck(formErrors, 'Password', payload.password);
         if(this.refs.password.value !== this.refs.confirmPassword.value) {
-            this.setState({formErrors: ['Passwords did not match']});
+            formErrors.push('Passwords did not match');
+        }
+        if( formErrors.length > 0) {
+            this.setState({formErrors});
         } else {
+            this.setState({submitted: true});
             this.props.resetPassword(payload);
         }
     }
