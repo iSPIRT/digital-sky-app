@@ -201,16 +201,17 @@ function loadOperatorProfile(profile_type, operatorProfileId) {
   ).then(handleResponse);
 }
 
-function loadApplications(){
-    const authToken = "Bearer " + localStorage.getItem("accessToken");
-    const requestOptions = {
-        method: "GET",
-        headers: { "Content-Type": "application/json", Authorization: authToken }
-    };
+function loadApplications() {
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", Authorization: authToken }
+  };
 
-    return fetch( "https://localhost:9443/api/user/applications", requestOptions
-    ).then(handleResponse);
-
+  return fetch(
+    "https://localhost:9443/api/user/applications",
+    requestOptions
+  ).then(handleResponse);
 }
 
 function handleResponse(response) {

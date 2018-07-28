@@ -27,5 +27,3 @@ export const loadApplicationsAction = () => {
     return { type: LOAD_USER_APPLICATIONS_FAILURE, errors };
   }
 };
-
-
