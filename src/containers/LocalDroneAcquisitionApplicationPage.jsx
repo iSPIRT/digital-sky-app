@@ -1,21 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import queryString from 'query-string'
 
 import DroneAcquisitionApplicationStep1 from '../components/DroneAcquisitionApplicationStep1';
 import DroneAcquisitionApplicationStep2 from '../components/DroneAcquisitionApplicationStep2';
 import DroneAcquisitionApplicationReview from '../components/DroneAcquisitionApplicationReview';
+import DroneAcquisitionApplicationView from '../components/DroneAcquisitionApplicationView';
 import HeaderApplicationForm from '../components/HeaderApplicationForm';
-import Dashboard from '../components/Dashboard';
 
-import { createLocalDroneAcquisitionApplicationAction,editLocalDroneAcquisitionApplicationAction } from '../actions/localDroneAcquisitionApplicationActions';
+import { createLocalDroneAcquisitionApplicationAction,editLocalDroneAcquisitionApplicationAction, applicationFormLoadedAction, loadLocalDroneAcquisitionApplicationAction } from '../actions/localDroneAcquisitionApplicationActions';
 import { formStepReduceAction } from '../actions/applicationFormStepActions';
 import { downloadFile } from '../actions/downloadFileActions';
 
-
 class LocalDroneAcquisitionApplicationPage extends React.Component {
    
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.removeStep = this.removeStep.bind(this);
         this.createForm = this.createForm.bind(this);
         this.updateForm = this.updateForm.bind(this);
@@ -24,7 +24,14 @@ class LocalDroneAcquisitionApplicationPage extends React.Component {
             categoryOptions : ['EXISTING_UAOP_HOLDER','UAOP_APPLICANT','WITHOUT_UAOP'],
             modeOfAcquisitionOptions : ['LEASE', 'PURCHASE'],
             nationalityOptions : ['Indian', 'Chinese', 'Korean'],
-            formErrors:[]
+            formErrors:[],
+            step: 1
+        }
+        this.props.dispatch(applicationFormLoadedAction());
+        const queryParams = queryString.parse(this.props.location.search)
+        const applicationId = queryParams.id
+        if( applicationId && applicationId !== this.props.currentApplicationForm.id){
+            this.props.dispatch(loadLocalDroneAcquisitionApplicationAction(applicationId));
         }
     }
 
@@ -51,31 +58,59 @@ class LocalDroneAcquisitionApplicationPage extends React.Component {
     }
 
     render() {
-        const { saving, saved, errors, currentApplicationForm, step} = this.props;
+        const { saving, saved, errors, currentApplicationForm} = this.props;
+        const step = currentApplicationForm.status && currentApplicationForm.status  !== 'DRAFT' ? 4 : this.props.step;
+
         return (
             <div className="page-form">
-                <HeaderApplicationForm applicationType="Acquiring Local Drones" step= { step }/>   
+                { step && step < 4 && <HeaderApplicationForm applicationType="Local Drones Acquisition" step= { step }/> } 
                 {(() => {
                     switch(step) {
                         case 1: 
-                            return(<DroneAcquisitionApplicationStep1 name="applicationStep1" ref="applicationStep1"
-                                categoryOptions={ this.state.categoryOptions } 
-                                nationalityOptions={ this.state.nationalityOptions }
-                                saving={ saving } saved={ saved } errors={ errors } 
-                                applicationForm={ currentApplicationForm }
-                                createForm={ this.createForm } updateForm={ this.updateForm }
-                                step= { step } goBack={ this.removeStep }/>);
+                            return(
+                                <DroneAcquisitionApplicationStep1 name="applicationStep1" ref="applicationStep1"
+                                    categoryOptions={ this.state.categoryOptions } 
+                                    nationalityOptions={ this.state.nationalityOptions }
+                                    saving={ saving } saved={ saved } errors={ errors } 
+                                    applicationForm={ currentApplicationForm }
+                                    createForm={ this.createForm } updateForm={ this.updateForm }
+                                    step= { step } goBack={ this.removeStep }
+                                />
+                            );
                         case 2:
-                            return(<DroneAcquisitionApplicationStep2 name="applicationStep2" ref="applicationStep2"
-                                modeOfAcquisitionOptions={ this.state.modeOfAcquisitionOptions } 
-                                saving={ saving } saved={ saved } errors={ errors } applicationForm={ currentApplicationForm }
-                                updateForm={ this.updateForm }
-                                step= { step } goBack={ this.removeStep } applicationType="localDroneAcquisition"
-                                downloadDocument= { this.downloadDocument } />);
+                            return(
+                                <DroneAcquisitionApplicationStep2 name="applicationStep2" ref="applicationStep2"
+                                    modeOfAcquisitionOptions={ this.state.modeOfAcquisitionOptions } 
+                                    saving={ saving } saved={ saved } errors={ errors } applicationForm={ currentApplicationForm }
+                                    updateForm={ this.updateForm }
+                                    step= { step } goBack={ this.removeStep } applicationType="localDroneAcquisition"
+                                    downloadDocument= { this.downloadDocument } 
+                                />
+                            );
                         case 3:
-                            return(<DroneAcquisitionApplicationReview name="applicationReview" applicationForm={ currentApplicationForm } updateForm={ this.updateForm } 
-                                step= { step } errors={ errors } saved={ saved } saving={ saving } goBack={ this.removeStep } applicationType="localDroneAcquisition" downloadDocument= { this.downloadDocument }/>);  
-                        default: return(<Dashboard />)
+                            return(
+                                <DroneAcquisitionApplicationReview name="applicationReview" 
+                                    applicationForm={ currentApplicationForm } 
+                                    updateForm={ this.updateForm } 
+                                    step= { step } errors={ errors } saved={ saved } 
+                                    saving={ saving } goBack={ this.removeStep } 
+                                    applicationType="localDroneAcquisition" 
+                                    downloadDocument= { this.downloadDocument }
+                                />
+                            );  
+                        case 4:
+                        default: return(
+                            <div id="application-preview">
+                                <div className="grid-container">
+                                    <div className="grid-x grid-padding-x">
+                                            <div className="large-12 cell">
+                                                <h2>Local Drone Acquisition Application</h2>
+                                            </div>
+                                        <DroneAcquisitionApplicationView applicationForm= { currentApplicationForm } downloadDocument = { this.downloadDocument } />
+                                    </div>
+                                </div>
+                            </div>
+                        );
                     }
                 })()} 
             </div>           

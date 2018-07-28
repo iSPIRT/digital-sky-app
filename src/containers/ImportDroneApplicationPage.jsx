@@ -1,20 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import queryString from 'query-string'
 
 import DroneAcquisitionApplicationStep1 from '../components/DroneAcquisitionApplicationStep1';
 import DroneAcquisitionApplicationStep2 from '../components/DroneAcquisitionApplicationStep2';
 import DroneAcquisitionApplicationReview from '../components/DroneAcquisitionApplicationReview';
+import DroneAcquisitionApplicationView from '../components/DroneAcquisitionApplicationView';
 import HeaderApplicationForm from '../components/HeaderApplicationForm';
-import Dashboard from '../components/Dashboard';
 
-import { createImportDroneApplicationAction, editImportDroneApplicationAction } from '../actions/importDroneApplicationActions';
+import { createImportDroneApplicationAction, editImportDroneApplicationAction, applicationFormLoadedAction, loadImportDroneApplicationAction } from '../actions/importDroneApplicationActions';
 import { formStepReduceAction } from '../actions/applicationFormStepActions';
 import { downloadFile } from '../actions/downloadFileActions';
 
 class ImportDroneApplicationPage extends React.Component {
    
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.removeStep = this.removeStep.bind(this);
         this.createForm = this.createForm.bind(this);
         this.updateForm = this.updateForm.bind(this);
@@ -24,6 +25,12 @@ class ImportDroneApplicationPage extends React.Component {
             modeOfAcquisitionOptions : ['LEASE', 'PURCHASE'],
             nationalityOptions : ['Indian', 'Chinese', 'Korean'],
             formErrors:[]
+        }
+        this.props.dispatch(applicationFormLoadedAction());
+        const queryParams = queryString.parse(this.props.location.search)
+        const applicationId = queryParams.id
+        if( applicationId && applicationId !== this.props.currentApplicationForm.id){
+            this.props.dispatch(loadImportDroneApplicationAction(applicationId));
         }
     }
 
@@ -50,10 +57,12 @@ class ImportDroneApplicationPage extends React.Component {
     }
 
     render() {
-        const { saving, saved, errors, currentApplicationForm, step} = this.props;
+        const { saving, saved, errors, currentApplicationForm} = this.props;
+        const step = currentApplicationForm.status && currentApplicationForm.status  !== 'DRAFT' ? 4 : this.props.step;
+
         return (
             <div className="page-form">
-                <HeaderApplicationForm applicationType="Importing Drones" step= { step }/>   
+                { step && step < 4 && <HeaderApplicationForm applicationType="Local Drones Acquisition" step= { step }/> }   
                 {(() => {
                     switch(step) {
                         case 1: 
@@ -75,7 +84,19 @@ class ImportDroneApplicationPage extends React.Component {
                             return(<DroneAcquisitionApplicationReview name="applicationReview" applicationForm={ currentApplicationForm } updateForm={ this.updateForm } 
                                 step= { step } errors={ errors } saved={ saved } saving={ saving } goBack={ this.removeStep } applicationType="importDrone"
                                 downloadDocument= { this.downloadDocument } />);  
-                        default: return(<Dashboard />)
+                                case 4:
+                                default: return(
+                                    <div id="application-preview">
+                                        <div className="grid-container">
+                                            <div className="grid-x grid-padding-x">
+                                                    <div className="large-12 cell">
+                                                        <h2>Import Drone Application</h2>
+                                                    </div>
+                                                <DroneAcquisitionApplicationView applicationForm= { currentApplicationForm } downloadDocument = { this.downloadDocument } />
+                                            </div>
+                                        </div>
+                                    </div>
+                            );
                     }
                 })()} 
             </div>           

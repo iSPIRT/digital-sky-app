@@ -7,6 +7,12 @@ export const SAVE_IMPORTDRONE_APPLICATION_REQUEST_SUCCESS =
   "SAVE_IMPORTDRONE_APPLICATION_REQUEST_SUCCESS";
 export const SAVE_IMPORTDRONE_APPLICATION_REQUEST_FAILURE =
   "SAVE_IMPORTDRONE_APPLICATION_REQUEST_FAILURE";
+export const IMPORTDRONE_APPLICATION_FORM_LOADED =
+  "IMPORTDRONE_APPLICATION_FORM_LOADED";
+export const LOAD_IMPORTDRONE_APPLICATION_SUCCESS =
+  "LOAD_IMPORTDRONE_APPLICATION_SUCCESS";
+export const LOAD_IMPORTDRONE_APPLICATION_FAILURE =
+  "LOAD_IMPORTDRONE_APPLICATION_FAILURE";
 
 export const createImportDroneApplicationAction = applicationForm => {
   return dispatch => {
@@ -39,6 +45,35 @@ export const editImportDroneApplicationAction = (
       }
     );
   };
+};
+
+export const loadImportDroneApplicationAction = applicationId => {
+  return dispatch => {
+    importDroneApplicationService.load(applicationId).then(
+      loadedApplication => {
+        dispatch(successLoading(loadedApplication));
+      },
+      errors => {
+        dispatch(failureLoading(errors));
+      }
+    );
+  };
+  function successLoading(application) {
+    return {
+      type: LOAD_IMPORTDRONE_APPLICATION_SUCCESS,
+      payload: application
+    };
+  }
+  function failureLoading(errors) {
+    return {
+      type: LOAD_IMPORTDRONE_APPLICATION_FAILURE,
+      payload: errors
+    };
+  }
+};
+
+export const applicationFormLoadedAction = () => {
+  return { type: IMPORTDRONE_APPLICATION_FORM_LOADED };
 };
 
 function request() {
