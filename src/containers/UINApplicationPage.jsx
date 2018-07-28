@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import queryString from 'query-string'
 
 import UINApplicationStep1 from '../components/UINApplicationStep1';
@@ -8,7 +9,8 @@ import UINApplicationReview from '../components/UINApplicationReview';
 import UINApplicationView from '../components/UINApplicationView';
 import HeaderApplicationForm from '../components/HeaderApplicationForm';
 
-import { createUINApplicationAction, editUINApplicationAction, applicationFormLoadedAction, loadUINApplicationAction, } from '../actions/uinApplicationActions';
+import { createUINApplicationAction, editUINApplicationAction, applicationFormLoadedAction, loadUINApplicationAction } from '../actions/uinApplicationActions';
+
 import { formStepReduceAction } from '../actions/applicationFormStepActions';
 import { downloadFile } from '../actions/downloadFileActions';
 
@@ -56,6 +58,7 @@ class UINApplicationPage extends React.Component {
     }
 
     render() {
+
         const { saving, saved, errors, applicationForm} = this.props;
         const { nationalityOptions, modeOfAcquisitionOptions } = this.state;
 
@@ -108,7 +111,7 @@ class UINApplicationPage extends React.Component {
                             </div>
                         );
                     }
-                })()} 
+                })()}     
             </div>           
         );
     }
