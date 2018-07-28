@@ -11,7 +11,8 @@ export const userService = {
   loadPilotProfile,
   createOperatorProfile,
   updateOperatorProfile,
-  loadOperatorProfile
+  loadOperatorProfile,
+  loadApplications
 };
 
 function register(user) {
@@ -198,6 +199,18 @@ function loadOperatorProfile(profile_type, operatorProfileId) {
       operatorProfileId,
     requestOptions
   ).then(handleResponse);
+}
+
+function loadApplications(){
+    const authToken = "Bearer " + localStorage.getItem("accessToken");
+    const requestOptions = {
+        method: "GET",
+        headers: { "Content-Type": "application/json", Authorization: authToken }
+    };
+
+    return fetch( "https://localhost:9443/api/user/applications", requestOptions
+    ).then(handleResponse);
+
 }
 
 function handleResponse(response) {

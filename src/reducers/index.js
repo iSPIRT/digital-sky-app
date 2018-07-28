@@ -13,6 +13,7 @@ import { formStepChange } from "./applicationFormStepReducer";
 import { uaopApplications } from "./uaopApplicationsReducer";
 import { uinApplications } from "./uinApplicationsReducer";
 import { adminApplications } from "./adminApplicationsReducer";
+import { userApplications } from "./userApplicationsReducer";
 
 const rootReducer = combineReducers({
   authentication,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   formStepChange,
   uaopApplications,
   uinApplications,
-  adminApplications
+  adminApplications,
+  userApplications
 });
 
 export default rootReducer;
