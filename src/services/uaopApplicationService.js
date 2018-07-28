@@ -1,3 +1,5 @@
+import applicationProperties from '../helpers/applicationPropertiesHelper'
+
 export const uaopApplicationService = {
   createApplication,
   updateApplication,
@@ -5,6 +7,7 @@ export const uaopApplicationService = {
 };
 
 function createApplication(applicationFormData) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "POST",
@@ -13,12 +16,13 @@ function createApplication(applicationFormData) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/uaopApplication",
+    apiRoot+"/applicationForm/uaopApplication",
     requestOptions
   ).then(handleResponse);
 }
 
 function updateApplication(applicationId, applicationFormData) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "PATCH",
@@ -27,13 +31,14 @@ function updateApplication(applicationId, applicationFormData) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/uaopApplication/" +
+    apiRoot+"/applicationForm/uaopApplication/" +
       applicationId,
     requestOptions
   ).then(handleResponse);
 }
 
 function loadApplication(applicationId) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "GET",
@@ -41,7 +46,7 @@ function loadApplication(applicationId) {
   };
 
   return fetch(
-    "https://localhost:9443/api/applicationForm/uaopApplication/" +
+    apiRoot+"/applicationForm/uaopApplication/" +
       applicationId,
     requestOptions
   ).then(handleResponse);

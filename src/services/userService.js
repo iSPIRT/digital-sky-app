@@ -1,5 +1,8 @@
 import { INDIVIDUAL_OPERATOR_TYPE } from "../constants/operatorType";
 
+import applicationProperties from '../helpers/applicationPropertiesHelper'
+
+
 export const userService = {
   login,
   logout,
@@ -16,25 +19,27 @@ export const userService = {
 };
 
 function register(user) {
+  const apiRoot = applicationProperties().apiRoot;
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user)
   };
 
-  return fetch("https://localhost:9443/api/user", requestOptions).then(
+  return fetch(apiRoot+"/user", requestOptions).then(
     handleResponse
   );
 }
 
 function login(credentials) {
+  const apiRoot = applicationProperties().apiRoot;
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(credentials)
   };
 
-  return fetch("https://localhost:9443/api/auth/token", requestOptions)
+  return fetch(apiRoot+"/auth/token", requestOptions)
     .then(handleResponse)
     .then(token => {
       if (token.accessToken) {
@@ -63,6 +68,7 @@ function logout() {
 }
 
 function sendResetPasswordLink(email) {
+  const apiRoot = applicationProperties().apiRoot;
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -70,12 +76,13 @@ function sendResetPasswordLink(email) {
   };
 
   return fetch(
-    "https://localhost:9443/api/user/resetPasswordLink",
+    apiRoot+"/user/resetPasswordLink",
     requestOptions
   ).then(handleResponse);
 }
 
 function resetPassword(payload) {
+  const apiRoot = applicationProperties().apiRoot;
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -83,12 +90,13 @@ function resetPassword(payload) {
   };
 
   return fetch(
-    "https://localhost:9443/api/user/resetPassword",
+    apiRoot+"/user/resetPassword",
     requestOptions
   ).then(handleResponse);
 }
 
 function createPilotProfile(pilotProfile) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "POST",
@@ -96,7 +104,7 @@ function createPilotProfile(pilotProfile) {
     body: JSON.stringify(pilotProfile)
   };
 
-  return fetch("https://localhost:9443/api/pilot", requestOptions)
+  return fetch(apiRoot+"/pilot", requestOptions)
     .then(handleResponse)
     .then(response => {
       if (response.id) {
@@ -106,6 +114,7 @@ function createPilotProfile(pilotProfile) {
 }
 
 function updatePilotProfile(pilotProfileId, pilotProfile) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "PUT",
@@ -113,12 +122,13 @@ function updatePilotProfile(pilotProfileId, pilotProfile) {
     body: JSON.stringify(pilotProfile)
   };
   return fetch(
-    "https://localhost:9443/api/pilot/" + pilotProfileId,
+    apiRoot+"/pilot/" + pilotProfileId,
     requestOptions
   ).then(handleResponse);
 }
 
 function loadPilotProfile(pilotProfileId) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "GET",
@@ -126,12 +136,13 @@ function loadPilotProfile(pilotProfileId) {
   };
 
   return fetch(
-    "https://localhost:9443/api/pilot/" + pilotProfileId,
+    apiRoot+"/pilot/" + pilotProfileId,
     requestOptions
   ).then(handleResponse);
 }
 
 function createOperatorProfile(profile_type, operatorProfile) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "POST",
@@ -143,7 +154,7 @@ function createOperatorProfile(profile_type, operatorProfile) {
     profile_type === INDIVIDUAL_OPERATOR_TYPE ? "operator" : "orgOperator";
 
   return fetch(
-    "https://localhost:9443/api/" + profileRelativePath,
+    apiRoot+"/" + profileRelativePath,
     requestOptions
   )
     .then(handleResponse)
@@ -163,6 +174,7 @@ function updateOperatorProfile(
   operatorProfileId,
   operatorProfile
 ) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "PUT",
@@ -174,7 +186,7 @@ function updateOperatorProfile(
     profile_type === INDIVIDUAL_OPERATOR_TYPE ? "operator" : "orgOperator";
 
   return fetch(
-    "https://localhost:9443/api/" +
+    apiRoot+"/" +
       profileRelativePath +
       "/" +
       operatorProfileId,
@@ -183,6 +195,7 @@ function updateOperatorProfile(
 }
 
 function loadOperatorProfile(profile_type, operatorProfileId) {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "GET",
@@ -193,7 +206,7 @@ function loadOperatorProfile(profile_type, operatorProfileId) {
     profile_type === INDIVIDUAL_OPERATOR_TYPE ? "operator" : "orgOperator";
 
   return fetch(
-    "https://localhost:9443/api/" +
+    apiRoot+"/" +
       profileRelativePath +
       "/" +
       operatorProfileId,
@@ -202,6 +215,7 @@ function loadOperatorProfile(profile_type, operatorProfileId) {
 }
 
 function loadApplications() {
+  const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "GET",
@@ -209,7 +223,7 @@ function loadApplications() {
   };
 
   return fetch(
-    "https://localhost:9443/api/user/applications",
+    apiRoot+"/user/applications",
     requestOptions
   ).then(handleResponse);
 }
