@@ -2,7 +2,8 @@ import { handleResponseService } from "./handleResponseService";
 
 export const importDroneApplicationService = {
   create,
-  edit
+  edit,
+  load
 };
 
 function create(droneAcquisitionForm) {
@@ -32,6 +33,19 @@ function edit(droneAcquisitionFormData, applicationId) {
     body: droneAcquisitionFormData
   };
 
+  return fetch(
+    "https://localhost:9443/api/applicationForm/importDroneApplication/" +
+      applicationId,
+    requestOptions
+  ).then(handleResponseService.handleResponse);
+}
+
+function load(applicationId) {
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { Authorization: authToken }
+  };
   return fetch(
     "https://localhost:9443/api/applicationForm/importDroneApplication/" +
       applicationId,

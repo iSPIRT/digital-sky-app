@@ -1,8 +1,9 @@
 import { handleResponseService } from "./handleResponseService";
 
-export const UINApplicationService = {
+export const uinApplicationService = {
   create,
-  edit
+  edit,
+  load
 };
 
 function create(application) {
@@ -29,6 +30,20 @@ function edit(application, applicationId) {
       Authorization: "Bearer " + accessToken
     },
     body: application
+  };
+
+  return fetch(
+    "https://localhost:9443/api/applicationForm/uinApplication/" +
+      applicationId,
+    requestOptions
+  ).then(handleResponseService.handleResponse);
+}
+
+function load(applicationId) {
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { Authorization: authToken }
   };
 
   return fetch(

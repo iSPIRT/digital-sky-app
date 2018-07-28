@@ -1,4 +1,4 @@
-import { UINApplicationService } from "../services/UINApplicationService";
+import { uinApplicationService } from "../services/uinApplicationService";
 import { formStepAddAction } from "./applicationFormStepActions";
 
 export const SAVE_UIN_APPLICATION_REQUEST = "SAVE_UIN_APPLICATION_REQUEST";
@@ -6,11 +6,14 @@ export const SAVE_UIN_APPLICATION_REQUEST_SUCCESS =
   "SAVE_UIN_APPLICATION_REQUEST_SUCCESS";
 export const SAVE_UIN_APPLICATION_REQUEST_FAILURE =
   "SAVE_UIN_APPLICATION_REQUEST_FAILURE";
+export const UIN_APPLICATION_FORM_LOADED = "UIN_APPLICATION_FORM_LOADED";
+export const LOAD_UIN_APPLICATION_SUCCESS = "LOAD_UIN_APPLICATION_SUCCESS";
+export const LOAD_UIN_APPLICATION_FAILURE = "LOAD_UIN_APPLICATION_FAILURE";
 
 export const createUINApplicationAction = UINApplication => {
   return dispatch => {
     dispatch(request());
-    UINApplicationService.create(UINApplication).then(
+    uinApplicationService.create(UINApplication).then(
       createdApplication => {
         dispatch(success(createdApplication));
         dispatch(formStepAddAction());
@@ -25,7 +28,7 @@ export const createUINApplicationAction = UINApplication => {
 export const editUINApplicationAction = (UINApplication, applicationId) => {
   return dispatch => {
     dispatch(request());
-    UINApplicationService.edit(UINApplication, applicationId).then(
+    uinApplicationService.edit(UINApplication, applicationId).then(
       editedApplication => {
         dispatch(success(editedApplication));
         dispatch(formStepAddAction());
@@ -35,6 +38,35 @@ export const editUINApplicationAction = (UINApplication, applicationId) => {
       }
     );
   };
+};
+
+export const loadUINApplicationAction = applicationId => {
+  return dispatch => {
+    uinApplicationService.load(applicationId).then(
+      loadedApplication => {
+        dispatch(successLoading(loadedApplication));
+      },
+      errors => {
+        dispatch(failureLoading(errors));
+      }
+    );
+  };
+  function successLoading(application) {
+    return {
+      type: LOAD_UIN_APPLICATION_SUCCESS,
+      payload: application
+    };
+  }
+  function failureLoading(errors) {
+    return {
+      type: LOAD_UIN_APPLICATION_FAILURE,
+      payload: errors
+    };
+  }
+};
+
+export const applicationFormLoadedAction = () => {
+  return { type: UIN_APPLICATION_FORM_LOADED };
 };
 
 function request() {
