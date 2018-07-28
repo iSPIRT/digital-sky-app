@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import FormErrors from '../components/FormErrors';
 
+import { requiredCheck, emailCheck } from '../helpers/formValidationHelpers';
 
 class Register extends React.Component {
 
@@ -17,20 +18,30 @@ class Register extends React.Component {
 
     componentWillReceiveProps(nextProps){
         this.setState({submitted: false});
-        this.setState({formErrors: []});
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({submitted: true});
         const user = {
             fullName: this.refs.fullName.value,
             email: this.refs.email.value,
             password: this.refs.password.value
         };
+
+        const formErrors = [];
+        requiredCheck(formErrors, 'Name', user.fullName);
+        requiredCheck(formErrors, 'Email', user.email);
+        emailCheck(formErrors, 'Email', user.email);
+        requiredCheck(formErrors, 'Password', user.password);
+
         if(this.refs.password.value !== this.refs.confirmPassword.value) {
-            this.setState({formErrors: ['Passwords did not match']});
+            formErrors.push('Passwords did not match');
+        }
+
+        if( formErrors.length > 0) {
+            this.setState({formErrors});
         } else {
+            this.setState({submitted: true});
             this.props.registerUser(user);
         }
     }

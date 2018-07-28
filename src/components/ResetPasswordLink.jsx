@@ -2,6 +2,8 @@ import React from 'react';
 
 import FormErrors from '../components/FormErrors';
 
+import { requiredCheck, emailCheck } from '../helpers/formValidationHelpers';
+
 class ResetPasswordLink extends React.Component {
 
     constructor(props) {
@@ -15,14 +17,20 @@ class ResetPasswordLink extends React.Component {
 
     componentWillReceiveProps(nextProps){
         this.setState({submitted: false});
-        this.setState({formErrors: []});
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({submitted: true});
         const email = this.refs.email.value
-        this.props.sendResetPasswordLink({ email });
+        const formErrors = [];
+        requiredCheck(formErrors, 'Email', email);
+        emailCheck(formErrors, 'Email', email);
+        if( formErrors.length > 0) {
+            this.setState({formErrors});
+        } else {
+            this.setState({submitted: true});
+            this.props.sendResetPasswordLink({ email });
+        }
     }
 
 

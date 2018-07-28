@@ -2,6 +2,8 @@ import React from 'react';
 
 import FormErrors from './FormErrors';
 
+import { requiredCheck } from '../helpers/formValidationHelpers';
+
 class UAOPApplicationStep1 extends React.Component {
 
     constructor(props) {
@@ -44,13 +46,19 @@ class UAOPApplicationStep1 extends React.Component {
 
     handleSaveApplication(event) {
         event.preventDefault();
-        this.setState({submitted: true});
-        const formData = new FormData();
-        formData.append("uaopApplicationForm", JSON.stringify(this.state.application))
-        if(this.props.application.id !== 0 ){
-            this.props.updateApplication(this.props.application.id, formData);
-        } else{
-            this.props.createApplication(formData);
+        const formErrors = [];
+        requiredCheck(formErrors, 'Name', this.state.application.name);
+        if( formErrors.length > 0) {
+            this.setState({formErrors});
+        } else {
+            this.setState({submitted: true});
+            const formData = new FormData();
+            formData.append("uaopApplicationForm", JSON.stringify(this.state.application))
+            if(this.props.application.id !== 0 ){
+                this.props.updateApplication(this.props.application.id, formData);
+            } else{
+                this.props.createApplication(formData);
+            }
         }
     }
 
