@@ -37,13 +37,10 @@ class UINApplicationStep2 extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-       // const { applicationForm, errors } = nextProps;
-       // const {submitted } = this.state;
-        // if (submitted && ( !errors || errors.length === 0)  &&  (applicationForm.id !== 0)){
-        //     this.props.nextStep();
-        // }
         this.setState({formErrors: []});
-        this.setState({applicationForm: nextProps.applicationForm});
+        if(!nextProps.applicationForm.empty){
+            this.setState({applicationForm: nextProps.applicationForm});
+        }
     }
 
     handleChange(event) {
@@ -52,7 +49,7 @@ class UINApplicationStep2 extends React.Component {
         if( type === 'file'){
             this.setState({[name]: event.target.files[0]});
         } else {
-            const { applicationForm } = this.state;
+            const { applicationForm } = this.props;
             this.updateObjProp(applicationForm, value, name);
             this.setState({applicationForm: applicationForm});
         }
@@ -71,17 +68,22 @@ class UINApplicationStep2 extends React.Component {
         this.setState({submitted: true});
 
         const formData = new FormData();
-        formData.append("opManualDoc", this.state.opManualDoc)
-        formData.append("maintenanceGuidelinesDoc", this.state.maintenanceGuidelinesDoc)
+        if(this.state.opManualDoc){
+            formData.append("opManualDoc", this.state.opManualDoc)
+        }
+        if(this.state.maintenanceGuidelinesDoc) {
+            formData.append("maintenanceGuidelinesDoc", this.state.maintenanceGuidelinesDoc);
+        }
         formData.append("uinApplication", JSON.stringify(this.state.applicationForm))
-       
+        console.log(formData);
+        
         this.props.updateForm(formData, this.props.applicationForm.id);
     }
 
     render() {
     
-        const { nationalityOptions, saving, goBack, step} = this.props
-        const { opManualDoc, maintenanceGuidelinesDoc, applicationForm } = this.state;
+        const { nationalityOptions, saving, goBack, step, applicationForm} = this.props
+        const { opManualDoc, maintenanceGuidelinesDoc } = this.state;
         return (
             <div className="page-form">
                 {/* <FormErrors errors = {errors}/>
@@ -110,14 +112,14 @@ class UINApplicationStep2 extends React.Component {
                             </div>
                             <div className="help-wrap">
                                 <label>Copy of Remotely Piloted Aircraft Flight Manual/Manufacturer’s Operating Manual (as applicable)
-                                    <span>{ opManualDoc && opManualDoc.name }</span>
+                                    <span>{ (opManualDoc && opManualDoc.name)   || applicationForm.opManualDocName }</span>
                                 </label>
                                 <label htmlFor="opManualDoc" className="button button-file-upload">Upload File</label>
                                 <input type="file" id="opManualDoc" name="opManualDoc" className="show-for-sr" onChange={ this.handleChange }/>
                             </div>
                             <div className="help-wrap">
                                 <label>Copy of Manufacturer’s Maintenance guidelines (as applicable)
-                                    <span>{ maintenanceGuidelinesDoc && maintenanceGuidelinesDoc.name }</span>
+                                    <span>{ (maintenanceGuidelinesDoc && maintenanceGuidelinesDoc.name) || applicationForm.maintenanceGuidelinesDocName}</span>
                                 </label>
                                 <label htmlFor="maintenanceGuidelinesDoc" className="button button-file-upload">Upload File</label>
                                 <input type="file" id="maintenanceGuidelinesDoc" name="maintenanceGuidelinesDoc" className="show-for-sr" onChange={ this.handleChange }/>

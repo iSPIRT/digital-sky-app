@@ -3,8 +3,6 @@ import React from 'react';
 const UINApplicationView = (props) => {
 
     const { application, downloadDocument } = props;
-    const isNew = application.isNew? "Yes": "No";
-    const wingType = application.fixedWing? "Fixed": "Rotary";
 
     return(
           <div className="large-12 cell">
@@ -44,7 +42,7 @@ const UINApplicationView = (props) => {
                     <h6>Name of Manufacturer:</h6>
                     <p>{application.manufacturer}</p> 
                 </div>
-                <div className="question">
+                {/* <div className="question">
                     <h6>Address of Manufacturer:</h6>
                     { application.manufacturerAddress ?
                         (<p>{ application.manufacturerAddress.lineOne } <br/>
@@ -55,7 +53,7 @@ const UINApplicationView = (props) => {
                         { application.manufacturerAddress.country }<br/>
                         </p>) : <p> </p>
                     }
-                </div>
+                </div> */}
                 <div className="question">
                     <h6>Nationality of Manufacturer:</h6>
                     <p>{ application.manufacturerNationality }</p> 
@@ -72,17 +70,17 @@ const UINApplicationView = (props) => {
                     <h6>Date of Manufacture:</h6>
                     <p>{ application.dateOfManufacture }</p>
                 </div>
-                <div className="question">
+                {/* <div className="question">
                     <h6>Year of Manufacture:</h6>
                     <p>{ application.yearOfManufacture }</p>
-                </div>
+                </div> */}
                 <div className="question">
                     <h6>Wing type:</h6>
-                    <p>{ wingType }</p>
+                    <p>{ application.wingType }</p>
                 </div>
                 <div className="question">
                     <h6>Is New:</h6>
-                    <p>{ isNew }</p>
+                    <p>{ application.isNew ? "True": "False"}</p>
                 </div>
                 <div className="question">
                     <h6>Maximum take-off weight (including Payload) in kgs:</h6>
@@ -98,7 +96,7 @@ const UINApplicationView = (props) => {
                 </div>
                 <div className="question">
                     <h6>Category of RPA: </h6>
-                    <p>{ application.rpaCategory }</p>
+                    <p>{ application.droneCategoryType }</p>
                 </div>
                 <div className="question">
                     <h6>Place & region of operation as per AAI FIR: </h6>
@@ -114,7 +112,7 @@ const UINApplicationView = (props) => {
                 </div>
                 <div className="question">
                     <h6>Engine/Motor Power Rating in (kW): </h6>
-                    <p>{ application.motorPower } </p>
+                    <p>{ application.enginePower } </p>
                 </div>
                 <div className="question">
                     <h6>No of Engines/Motors: </h6>
@@ -128,10 +126,10 @@ const UINApplicationView = (props) => {
                     <h6>Propeller details: </h6>
                     <p>{ application.propellerDetails }</p>
                 </div>
-                <div className="question">
+                {/* <div className="question">
                     <h6>Overall dimensions (l x b x h):</h6>
                     <p>{ application.dimension_l } x { application.dimension_b } x { application.dimension_h }</p>
-                </div>
+                </div> */}
                 <div className="question">
                     <h6>Maximum Endurance (in minutes):</h6>
                     <p>{ application.maxEndurance }</p>

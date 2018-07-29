@@ -52,8 +52,8 @@ class LocalDroneAcquisitionApplicationPage extends React.Component {
         this.props.dispatch(editLocalDroneAcquisitionApplicationAction(applicationForm, id));
     }
 
-    downloadDocument(id, documentName){
-        const filePath = "applicationForm/localDroneAcquisitionApplication/"+id+"/document/"+documentName;
+    downloadDocument(documentName){
+        const filePath = "applicationForm/localDroneAcquisitionApplication/"+this.props.currentApplicationForm.id+"/document/"+documentName;
         this.props.dispatch(downloadFile(filePath, documentName));
     }
 
@@ -63,7 +63,7 @@ class LocalDroneAcquisitionApplicationPage extends React.Component {
 
         return (
             <div className="page-form">
-                { step && step < 4 && <HeaderApplicationForm applicationType="Local Drones Acquisition" step= { step }/> } 
+                { step && step < 4 && <HeaderApplicationForm headerText="Local Drone Acquisition" step= { step }/> } 
                 {(() => {
                     switch(step) {
                         case 1: 
@@ -100,17 +100,17 @@ class LocalDroneAcquisitionApplicationPage extends React.Component {
                             );  
                         case 4:
                         default: return(
-                            <div id="application-preview">
-                                <div className="grid-container">
-                                    <div className="grid-x grid-padding-x">
-                                            <div className="large-12 cell">
-                                                <h2>Local Drone Acquisition Application</h2>
-                                            </div>
-                                        <DroneAcquisitionApplicationView applicationForm= { currentApplicationForm } downloadDocument = { this.downloadDocument } />
+                                <div id="application-preview">
+                                    <div className="grid-container">
+                                        <div className="grid-x grid-padding-x">
+                                                <div className="large-12 cell">
+                                                    <h2>Local Drone Acquisition Application</h2>
+                                                </div>
+                                            <DroneAcquisitionApplicationView applicationForm= { currentApplicationForm } downloadDocument = { this.downloadDocument } />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        );
+                            );
                     }
                 })()} 
             </div>           

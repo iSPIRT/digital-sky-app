@@ -33,7 +33,7 @@ class UINApplicationReview extends React.Component {
 
     render() {
         
-        const { saving, applicationForm, goBack} = this.props;
+        const { saving, applicationForm, goBack, step} = this.props;
         return (
             <div className="page-form">
                 {/* <FormErrors errors = {errors}/>
@@ -46,8 +46,8 @@ class UINApplicationReview extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <FooterApplicationReviewDeclaration applicant = { this.props.applicationForm.applicant } type="uin"/>
-                    <FooterApplicationForm  step= { this.props.step } saving={ saving } goBack= { goBack }/>
+                    <FooterApplicationReviewDeclaration applicant = { applicationForm.applicant } type="uin"/>
+                    <FooterApplicationForm  step= { step } saving={ saving } goBack= { goBack }/>
                 </form>
             </div>  
         );

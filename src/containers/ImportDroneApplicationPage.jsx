@@ -51,8 +51,8 @@ class ImportDroneApplicationPage extends React.Component {
         this.props.dispatch(editImportDroneApplicationAction(applicationForm, id));
     }
 
-    downloadDocument(id, documentName){
-        const filePath = "applicationForm/importDroneApplication/"+id+"/document/"+documentName;
+    downloadDocument(documentName){
+        const filePath = "applicationForm/importDroneApplication/"+this.props.currentApplicationForm.id+"/document/"+documentName;
         this.props.dispatch(downloadFile(filePath, documentName));
     }
 
@@ -62,7 +62,7 @@ class ImportDroneApplicationPage extends React.Component {
 
         return (
             <div className="page-form">
-                { step && step < 4 && <HeaderApplicationForm applicationType="Local Drones Acquisition" step= { step }/> }   
+                { step && step < 4 && <HeaderApplicationForm headerText="Importing Drones" step= { step }/> }   
                 {(() => {
                     switch(step) {
                         case 1: 
@@ -72,30 +72,35 @@ class ImportDroneApplicationPage extends React.Component {
                                 saving={ saving } saved={ saved } errors={ errors } 
                                 applicationForm={ currentApplicationForm }
                                 createForm={ this.createForm } updateForm={ this.updateForm }
-                                step= { step } goBack={ this.removeStep } applicationType="importDrone" />);
+                                step= { step } goBack={ this.removeStep } applicationType="importDrone" />
+                            );
                         case 2:
                             return(<DroneAcquisitionApplicationStep2 name="applicationStep2" ref="applicationStep2"
                                 modeOfAcquisitionOptions={ this.state.modeOfAcquisitionOptions } 
                                 saving={ saving } saved={ saved } errors={ errors } applicationForm={ currentApplicationForm }
                                 updateForm={ this.updateForm }
                                 step= { step } goBack={ this.removeStep }
-                                downloadDocument= { this.downloadDocument } applicationType="importDrone"/>);
+                                downloadDocument= { this.downloadDocument } applicationType="importDrone"/>
+                            );
                         case 3:
-                            return(<DroneAcquisitionApplicationReview name="applicationReview" applicationForm={ currentApplicationForm } updateForm={ this.updateForm } 
-                                step= { step } errors={ errors } saved={ saved } saving={ saving } goBack={ this.removeStep } applicationType="importDrone"
-                                downloadDocument= { this.downloadDocument } />);  
-                                case 4:
-                                default: return(
-                                    <div id="application-preview">
-                                        <div className="grid-container">
-                                            <div className="grid-x grid-padding-x">
-                                                    <div className="large-12 cell">
-                                                        <h2>Import Drone Application</h2>
-                                                    </div>
-                                                <DroneAcquisitionApplicationView applicationForm= { currentApplicationForm } downloadDocument = { this.downloadDocument } />
-                                            </div>
+                            return(<DroneAcquisitionApplicationReview name="applicationReview" applicationForm={ currentApplicationForm } 
+                                updateForm={ this.updateForm } 
+                                step= { step } errors={ errors } saved={ saved } saving={ saving } 
+                                goBack={ this.removeStep } applicationType="importDrone"
+                                downloadDocument= { this.downloadDocument } />
+                            );  
+                        case 4:
+                            default: return(
+                                <div id="application-preview">
+                                    <div className="grid-container">
+                                        <div className="grid-x grid-padding-x">
+                                                <div className="large-12 cell">
+                                                    <h2>Import Drone Application</h2>
+                                                </div>
+                                            <DroneAcquisitionApplicationView applicationForm= { currentApplicationForm } downloadDocument = { this.downloadDocument } />
                                         </div>
                                     </div>
+                                </div>
                             );
                     }
                 })()} 

@@ -3,7 +3,7 @@ import React from 'react';
 const HeaderApplicationFormReview = (props)=> {
 
     var step1ClassName, step2ClassName, step3ClassName;
-    var { step, applicationType } = props;
+    var { step, headerText } = props;
 
     switch (step) {
         case 2: 
@@ -27,7 +27,7 @@ const HeaderApplicationFormReview = (props)=> {
             <div className="grid-x grid-padding-x">
                 { step && step<=3  &&
                     (<div className="large-12 cell">
-                        <h2>Application <br/>for { applicationType }</h2>
+                        <h2>Application <br/>for { headerText }</h2>
                         <div className="form-steps">
                             <ul>
                                 <li className={ step1ClassName }><p>Step 1</p>
@@ -50,9 +50,9 @@ const HeaderApplicationFormReview = (props)=> {
                     </div>) :
                     <div> </div>
                 }
-                {(!step || step) >4 &&
+                {(!step || step >4) &&
                     (<div className="large-12 cell">
-                            <h2> { applicationType } </h2>
+                            <h2> { headerText } </h2>
                     </div>
                     )
                 }

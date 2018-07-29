@@ -17,23 +17,25 @@ class DroneAcquisitionApplicationReview extends React.Component {
     }
     
     handleSubmit(event) {
+        event.preventDefault();
+        
         var acquisitionApplication = {...this.props.applicationForm,
             status: "SUBMITTED"
         }
-        event.preventDefault();
 
         var formData = new FormData();
         formData.append("droneAcquisitionForm", JSON.stringify(acquisitionApplication)) ;
+        console.log(formData);
         this.props.updateForm(formData, this.props.applicationForm.id )
     }
 
-    downloadDocument() {
-        this.props.downloadDocument(this.props.applicationForm.id,"securityClearanceDocument")
+    downloadDocument(documentName) {
+        this.props.downloadDocument(documentName)
     }
 
     render() {
         
-        const { saving, applicationForm, goBack, applicationType} = this.props;
+        const { saving, applicationForm, goBack, applicationType, step } = this.props;
         return (
             <div className="page-form">
                 {/* <FormErrors errors = {errors}/>
@@ -42,12 +44,12 @@ class DroneAcquisitionApplicationReview extends React.Component {
                     <div id="application-preview">
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
-                                <DroneAcquisitionApplicationView applicationForm = { applicationForm } type= { applicationType } />
+                                <DroneAcquisitionApplicationView applicationForm = { applicationForm } type= { applicationType } downloadDocument = { this.downloadDocument } />
                             </div>
                         </div>
                     </div>
                     <FooterApplicationReviewDeclaration applicant = { applicationForm.applicant } type= { applicationType }/>
-                    <FooterApplicationForm  step= { this.props.step } saving={ saving } goBack= { goBack }/>
+                    <FooterApplicationForm  step= { step } saving={ saving } goBack= { goBack }/>
                 </form>
             </div>  
         );

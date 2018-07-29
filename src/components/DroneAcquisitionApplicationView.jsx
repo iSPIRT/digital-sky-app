@@ -2,9 +2,7 @@ import React from 'react';
 
 const DroneAcquisitionApplicationView = (props) => {
 
-    const { applicationForm, type} = props;
-    const isNew = applicationForm.isNew? "Yes": "No";
-    const wingType = applicationForm.fixedWing? "Fixed": "Rotary";
+    const { applicationForm, type, downloadDocument} = props;
 
     return(
         <div className="large-12 cell">
@@ -24,10 +22,10 @@ const DroneAcquisitionApplicationView = (props) => {
                     </p>) : <p> </p>
                     }
             </div>
-            <div className="question">
+            {/* <div className="question">
                 <h6>Nationality:</h6>
                 <p>{applicationForm.applicantNationality}</p>  
-            </div>
+            </div> */}
             <div className="question">
                 <h6>Category:</h6>
                 <p>{applicationForm.applicantCategory}</p>  
@@ -36,7 +34,7 @@ const DroneAcquisitionApplicationView = (props) => {
                 <h6>Name of Manufacturer:</h6>
                 <p>{applicationForm.manufacturer}</p> 
             </div>
-            <div className="question">
+            {/* <div className="question">
                 <h6>Address of Manufacturer:</h6>
                 { applicationForm.manufacturerAddress ?
                     (<p>{ applicationForm.manufacturerAddress.lineOne } <br/>
@@ -47,7 +45,7 @@ const DroneAcquisitionApplicationView = (props) => {
                     { applicationForm.manufacturerAddress.country }<br/>
                     </p>) : <p> </p>
                 }
-            </div>
+            </div> */}
             <div className="question">
                 <h6>Nationality of Manufacturer:</h6>
                 <p>{ applicationForm.manufacturerNationality }</p> 
@@ -64,17 +62,17 @@ const DroneAcquisitionApplicationView = (props) => {
                 <h6>Date of Manufacture:</h6>
                 <p>{ applicationForm.dateOfManufacture }</p>
             </div>
-            <div className="question">
+            {/* <div className="question">
                 <h6>Year of Manufacture:</h6>
                 <p>{ applicationForm.yearOfManufacture }</p>
-            </div>
+            </div> */}
             <div className="question">
                 <h6>Wing type:</h6>
-                <p>{ wingType }</p>
+                <p>{ applicationForm.wingType }</p>
             </div>
             <div className="question">
                 <h6>Is New:</h6>
-                <p>{ isNew }</p>
+                <p>{ applicationForm.isNew }</p>
             </div>
             <div className="question">
                 <h6>Maximum take-off weight:</h6>
@@ -118,7 +116,7 @@ const DroneAcquisitionApplicationView = (props) => {
             </div>
                 <div className="question">
                     <h6>Security Clearance Document: </h6>
-                    <p> <a onClick={ this.downloadDocument }> { applicationForm.securityClearanceDoc } </a></p>
+                    <p> <a onClick={()=> downloadDocument(applicationForm.securityClearanceDocName) }> { applicationForm.securityClearanceDocName } </a></p>
                 </div>
         </div>
     )

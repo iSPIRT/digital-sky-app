@@ -54,7 +54,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
 
     updateObjProp(obj, value, propPath) {
         const [head, ...rest] = propPath.split('.');
-
+        console.log(obj, value, obj[head], head);
         !rest.length
             ? obj[head] = value
             : this.updateObjProp(obj[head], value, rest.join("."));

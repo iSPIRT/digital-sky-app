@@ -53,7 +53,7 @@ class UINApplicationPage extends React.Component {
     }
 
     downloadDocument(documentName){
-        const filePath = "applicationForm/UINApplication/"+this.props.applicationForm.id+"/document/"+documentName;
+        const filePath = "applicationForm/uinApplication/"+this.props.applicationForm.id+"/document/"+documentName;
         this.props.dispatch(downloadFile(filePath, documentName));
     }
 

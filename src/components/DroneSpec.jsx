@@ -25,7 +25,7 @@ class DroneSpec extends React.Component {
                 <DroneDetails nationalityOptions={ nationalityOptions } details = { applicationForm } onChange= { this.handleChange }/>
                 <div className="large-12 cell">
                     <label>Category of RPA
-                        <select name="droneCategoryType" value={ applicationForm.rpaCategory } onChange={ this.handleChange } >
+                        <select name="droneCategoryType" value={ applicationForm.droneCategoryType } onChange={ this.handleChange } >
                             { rpaSelectCategoryOptions }
                         </select>
                     </label>
