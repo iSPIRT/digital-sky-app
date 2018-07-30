@@ -36,17 +36,20 @@ class HeaderSiteNavigationMenu extends React.Component {
                     <div className="the-site-navigation">
                         <ul>
                             <li>
-                                <Link to="/">
-                                Home</Link></li>
+                                <Link to="/">Home</Link>
+                            </li>
                             <li>
-                                <Link to="#">
-                                Application Process</Link></li>
+                                <Link to="#">Know Requirements</Link>
+                            </li>
                             <li>
-                                <Link to="#">
-                                Know the requirements</Link></li>
+                                <Link to="#">Apply</Link>
+                            </li>
                             <li>
-                                <Link to="#">
-                                Operating restrictions</Link></li>
+                                <Link to="#">Operating Guidelines</Link>
+                            </li>
+                            <li>
+                                <Link to="#">Regulations & Policies</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
