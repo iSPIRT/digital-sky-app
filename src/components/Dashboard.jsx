@@ -45,7 +45,7 @@ class Dashboard extends React.Component {
                             <div className="large-12 cell">
                                 {   !hasOperatorProfile &&
                                     <div>
-                                        <p> If you are operator, setup your operator profile to begin</p>
+                                        <p> If you are an operator, setup your operator profile to begin</p>
                                         <Link to="/profile" className="button">Setup my Operator Profile</Link>
                                     </div>
                                 }

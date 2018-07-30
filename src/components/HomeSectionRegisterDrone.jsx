@@ -13,7 +13,7 @@ class HomeSectionRegisterDrone extends React.Component {
                 <div className="grid-x grid-padding-x">
                   <div className="large-12 cell">
                     <h2>Register a <br/>drone today</h2>
-                    <p>Get a license to become a pilot, operator or manufacturer with us. Before you can apply, you need to be registered. Get started with the link below.</p>
+                    <p>Get a license to become a pilot, operator or manufacturer with us. Then register your drone to start flying</p>
                     <Link to="/register" className="button"><img src={getStartedImg} alt="get-started"/>Get Started</Link>
                   </div>
                 </div>

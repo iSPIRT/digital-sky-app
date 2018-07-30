@@ -11,7 +11,7 @@ class Footer extends React.Component {
                 <div className="grid-container">
                     <div className="grid-x grid-padding-x">
                         <div className="large-12 cell">
-                            <p>List of identified area for testing and<br/>demonstration of remotely piloted aircrafts</p>
+                            <p>The DGCA has demarcated areas for testing and demonstration of remotely piloted aircraft.</p>
                             <Link to="test-locations.php" className="button button-light"><img src={locationImg} alt="locationImg"/>Find test location</Link>
                         </div>
                     </div>
@@ -24,7 +24,7 @@ class Footer extends React.Component {
                             <ul>
                                 <li><Link to="#">Know the requirements</Link></li>
                                 <li><Link to="#">Legal obligations</Link></li>
-                                <li><Link to="#">Insurence</Link></li>
+                                <li><Link to="#">Insurance</Link></li>
                                 <li><Link to="#">Enforcement action</Link></li>
                             </ul>
                         </div>
