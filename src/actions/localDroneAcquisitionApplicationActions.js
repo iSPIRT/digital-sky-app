@@ -1,5 +1,4 @@
 import { localDroneAcquisitionApplicationService } from "../services/localDroneAcquisitionApplicationService";
-import { formStepAddAction } from "./applicationFormStepActions";
 
 export const SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST =
   "SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST";
@@ -22,7 +21,6 @@ export const createLocalDroneAcquisitionApplicationAction = localDroneAcquisitio
       .then(
         createdForm => {
           dispatch(success(createdForm));
-          dispatch(formStepAddAction());
         },
         errors => {
           dispatch(failure(errors));
@@ -42,7 +40,6 @@ export const editLocalDroneAcquisitionApplicationAction = (
       .then(
         editedForm => {
           dispatch(success(editedForm));
-          dispatch(formStepAddAction());
         },
         errors => {
           dispatch(failure(errors));

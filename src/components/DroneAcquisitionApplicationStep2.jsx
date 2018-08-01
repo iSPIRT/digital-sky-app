@@ -17,6 +17,11 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
 
     componentWillReceiveProps(nextProps){
         this.setState({formErrors: []});
+        const { errors } = nextProps;
+        const { submitted } = this.state;
+        if (submitted && ( !errors || errors.length === 0)  &&  (nextProps.applicationForm.id !== 0)){
+            this.props.nextStep();
+        }
         if(!nextProps.applicationForm.empty){
             this.setState({applicationForm: nextProps.applicationForm});
         }
@@ -47,6 +52,8 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.setState({submitted: true});
+        
         var applicationString = JSON.stringify(this.state.applicationForm);
 
         if( this.props.applicationForm.id ) {
@@ -54,7 +61,7 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
             formData.append("securityClearanceDoc", this.state.securityClearanceDoc);
             formData.append("droneAcquisitionForm", applicationString) ;
             console.log(formData);
-            this.props.updateForm(formData, this.props.applicationForm.id )
+            this.props.updateApplication(formData, this.props.applicationForm.id )
         }
     }
     
@@ -64,9 +71,8 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
             return (<option value={mode} key={mode}> {mode} </option>);
         });
 
-        const { saving, applicationForm, goBack, applicationType} = this.props;
+        const { saving, applicationForm, previousStep, step, applicationType} = this.props;
         const { securityClearanceDoc } = this.state;
-       // const { formErrors, submitted } = this.state;
         const aquisitionDisplay = applicationType === "importDrone" ? "Mode of import" : "Mode of acquisition";
         return (
             <div className="page-form">
@@ -122,7 +128,7 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    <FooterApplicationForm step= { this.props.step } saving= { saving } goBack= { goBack }/>
+                    <FooterApplicationForm step= { step } saving= { saving } previousStep= { previousStep }/>
                 </form>
             </div>  
         );

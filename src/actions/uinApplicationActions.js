@@ -1,5 +1,4 @@
 import { uinApplicationService } from "../services/uinApplicationService";
-import { formStepAddAction } from "./applicationFormStepActions";
 
 export const SAVE_UIN_APPLICATION_REQUEST = "SAVE_UIN_APPLICATION_REQUEST";
 export const SAVE_UIN_APPLICATION_REQUEST_SUCCESS =
@@ -16,7 +15,7 @@ export const createUINApplicationAction = UINApplication => {
     uinApplicationService.create(UINApplication).then(
       createdApplication => {
         dispatch(success(createdApplication));
-        dispatch(formStepAddAction());
+        //dispatch(formStepAddAction());
       },
       errors => {
         dispatch(failure(errors));
@@ -31,7 +30,7 @@ export const editUINApplicationAction = (UINApplication, applicationId) => {
     uinApplicationService.edit(UINApplication, applicationId).then(
       editedApplication => {
         dispatch(success(editedApplication));
-        dispatch(formStepAddAction());
+        //dispatch(formStepAddAction());
       },
       errors => {
         dispatch(failure(errors));

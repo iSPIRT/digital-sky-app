@@ -3,7 +3,7 @@ import React from 'react';
 const HeaderApplicationFormReview = (props)=> {
 
     var step1ClassName, step2ClassName, step3ClassName;
-    var { step, headerText } = props;
+    var { step, headerText, applicationStatus } = props;
 
     switch (step) {
         case 2: 
@@ -25,36 +25,28 @@ const HeaderApplicationFormReview = (props)=> {
     return (
         <div className="grid-container">
             <div className="grid-x grid-padding-x">
-                { step && step<=3  &&
-                    (<div className="large-12 cell">
-                        <h2>Application <br/>for { headerText }</h2>
-                        <div className="form-steps">
-                            <ul>
-                                <li className={ step1ClassName }><p>Step 1</p>
-                                    <div className="circle"></div>
-                                </li>
-                                <li className={ step2ClassName }><p>Step 2</p>
-                                    <div className="circle"></div>
-                                </li>
-                                <li className={ step3ClassName }><p>Step 3</p>
-                                    <div className="circle"></div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    )
-                }
-                { props.step ===3?
-                    (<div className="large-12 cell" >
+                <div className="large-12 cell">
+                    <h2>Application <br/>for { headerText }</h2>
+                    { step && step<=3  && applicationStatus === 'DRAFT' &&
+                            <div className="form-steps">
+                                <ul>
+                                    <li className={ step1ClassName }><p>Step 1</p>
+                                        <div className="circle"></div>
+                                    </li>
+                                    <li className={ step2ClassName }><p>Step 2</p>
+                                        <div className="circle"></div>
+                                    </li>
+                                    <li className={ step3ClassName }><p>Step 3</p>
+                                        <div className="circle"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                    }
+                </div>
+                { step === 3 && applicationStatus === 'DRAFT'  &&
+                    <div className="large-12 cell" >
                     <label>Review your application</label>
-                    </div>) :
-                    <div> </div>
-                }
-                {(!step || step >4) &&
-                    (<div className="large-12 cell">
-                            <h2> { headerText } </h2>
                     </div>
-                    )
                 }
             </div>
        </div>             

@@ -38,7 +38,12 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
+        const { errors } = nextProps;
         this.setState({formErrors: []});
+        const {submitted } = this.state;
+        if (submitted && ( !errors || errors.length === 0)  &&  (nextProps.applicationForm.id !== 0)){
+            this.props.nextStep();
+        }
         if(!nextProps.applicationForm.empty){
             this.setState({applicationForm: nextProps.applicationForm});
         }
@@ -47,7 +52,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
     handleChange(event) {
         var { name, value } = event.target;
         value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
-        const { applicationForm } = this.props;
+        const { applicationForm } = this.state;
         this.updateObjProp(applicationForm, value, name);
         this.setState({applicationForm: applicationForm});
     }
@@ -62,15 +67,16 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
     
     handleSubmit(event) {
         event.preventDefault();
+        this.setState({submitted: true});
         var applicationString = JSON.stringify(this.state.applicationForm);
 
         if( this.props.applicationForm.id ) {
             var formData = new FormData();
             formData.append("droneAcquisitionForm", applicationString) ;
-            this.props.updateForm(formData, this.props.applicationForm.id )
+            this.props.updateApplication(formData, this.props.applicationForm.id )
         }
         else {
-            this.props.createForm(applicationString);
+            this.props.createApplication(applicationString);
         }
     }
    
@@ -83,8 +89,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
             return (<option value={nationality} key={nationality}> {nationality} </option>);
         });
 
-        const { saving, applicationForm, step, goBack} = this.props;
-       // const { formErrors, submitted } = this.state;
+        const { saving, applicationForm, step} = this.props;
 
         return (
             <div>
@@ -95,7 +100,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                         <div className="grid-x grid-padding-x">
                             <div className="large-12 cell">
                                 <label>Name of Applicant
-                                    <input type="text" name="applicant" ref="applicant" placeholder="Full Name" defaultValue= { applicationForm.applicant } onChange= { this.handleChange }/>
+                                    <input type="text" name="applicant" placeholder="Full Name" defaultValue= { applicationForm.applicant } onChange= { this.handleChange }/>
                                 </label>
                             </div>
                             {/* <div className="large-12 cell">
@@ -110,7 +115,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                             </div> */}
                             <div className="large-12 cell">
                                 <label>Nationality
-                                    <select name="applicantNationality" ref="applicantNationality" value={ applicationForm.applicantNationality } onChange={ this.handleChange } >
+                                    <select name="applicantNationality" value={ applicationForm.applicantNationality } onChange={ this.handleChange } >
                                         { nationalityOptions }
                                     </select>
                                 </label>
@@ -121,11 +126,11 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                 </label>
                             </div> */}
                             <div className="large-12 cell">
-                                <DroneDetails name="droneDetails" ref="droneDetails" nationalityOptions={ this.props.nationalityOptions } details = { applicationForm } onChange= { this.handleChange }/>
+                                <DroneDetails name="droneDetails" nationalityOptions={ this.props.nationalityOptions } details = { applicationForm } onChange= { this.handleChange }/>
                             </div>
                         </div>
                     </div>
-                    <FooterApplicationForm step= { step } saving= { saving} goBack= { goBack }/>
+                    <FooterApplicationForm step= { step } saving= { saving} />
                 </form>
             </div>  
         );

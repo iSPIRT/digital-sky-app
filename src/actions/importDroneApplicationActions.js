@@ -1,5 +1,4 @@
 import { importDroneApplicationService } from "../services/importDroneApplicationService";
-import { formStepAddAction } from "./applicationFormStepActions";
 
 export const SAVE_IMPORTDRONE_APPLICATION_REQUEST =
   "SAVE_IMPORTDRONE_APPLICATION_REQUEST";
@@ -20,7 +19,6 @@ export const createImportDroneApplicationAction = applicationForm => {
     importDroneApplicationService.create(applicationForm).then(
       createdForm => {
         dispatch(success(createdForm));
-        dispatch(formStepAddAction());
       },
       errors => {
         dispatch(failure(errors));
@@ -38,7 +36,6 @@ export const editImportDroneApplicationAction = (
     importDroneApplicationService.edit(applicationFormData, applicationId).then(
       editedForm => {
         dispatch(success(editedForm));
-        dispatch(formStepAddAction());
       },
       errors => {
         dispatch(failure(errors));

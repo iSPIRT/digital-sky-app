@@ -9,7 +9,6 @@ import { importDroneApplications } from "./importDroneApplicationsReducer";
 
 import { pilotProfile } from "./pilotProfileReducer";
 import { operatorProfile } from "./operatorProfileReducer";
-import { formStepChange } from "./applicationFormStepReducer";
 import { uaopApplications } from "./uaopApplicationsReducer";
 import { uinApplications } from "./uinApplicationsReducer";
 import { adminApplications } from "./adminApplicationsReducer";
@@ -24,7 +23,6 @@ const rootReducer = combineReducers({
   importDroneApplications,
   pilotProfile,
   operatorProfile,
-  formStepChange,
   uaopApplications,
   uinApplications,
   adminApplications,

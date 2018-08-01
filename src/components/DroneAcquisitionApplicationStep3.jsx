@@ -4,7 +4,7 @@ import FooterApplicationReviewDeclaration from './FooterApplicationReviewDeclara
 //import FormErrors from './FormErrors';
 import DroneAcquisitionApplicationView from './DroneAcquisitionApplicationView';
 
-class DroneAcquisitionApplicationReview extends React.Component {
+class DroneAcquisitionApplicationStep3 extends React.Component {
 
     constructor() {
         super();
@@ -18,15 +18,15 @@ class DroneAcquisitionApplicationReview extends React.Component {
     
     handleSubmit(event) {
         event.preventDefault();
-        
+        this.setState({submitted: true});
+
         var acquisitionApplication = {...this.props.applicationForm,
             status: "SUBMITTED"
         }
-
+        this.setState({applicationForm : this.props.applicationForm});
         var formData = new FormData();
         formData.append("droneAcquisitionForm", JSON.stringify(acquisitionApplication)) ;
-        console.log(formData);
-        this.props.updateForm(formData, this.props.applicationForm.id )
+        this.props.updateApplication(formData, this.props.applicationForm.id )
     }
 
     downloadDocument(documentName) {
@@ -35,7 +35,7 @@ class DroneAcquisitionApplicationReview extends React.Component {
 
     render() {
         
-        const { saving, applicationForm, goBack, applicationType, step } = this.props;
+        const { saving, applicationForm, previousStep, applicationType, step } = this.props;
         return (
             <div className="page-form">
                 {/* <FormErrors errors = {errors}/>
@@ -48,12 +48,16 @@ class DroneAcquisitionApplicationReview extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <FooterApplicationReviewDeclaration applicant = { applicationForm.applicant } type= { applicationType }/>
-                    <FooterApplicationForm  step= { step } saving={ saving } goBack= { goBack }/>
+                    { (!applicationForm.status || applicationForm.status === 'DRAFT' ) &&
+                        <div className="large-12 cell"> 
+                            <FooterApplicationReviewDeclaration applicant = { applicationForm.applicant } type= { applicationType }/>
+                            <FooterApplicationForm  step= { step } saving={ saving } previousStep= { previousStep }/>
+                        </div>
+                    }
                 </form>
             </div>  
         );
     }
 }
 
-export default DroneAcquisitionApplicationReview;
+export default DroneAcquisitionApplicationStep3;

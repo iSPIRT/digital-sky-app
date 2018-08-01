@@ -4,7 +4,7 @@ import FooterApplicationReviewDeclaration from './FooterApplicationReviewDeclara
 //import FormErrors from './FormErrors';
 import UINApplicationView from './UINApplicationView';
 
-class UINApplicationReview extends React.Component {
+class UINApplicationStep3 extends React.Component {
 
     constructor() {
         super();
@@ -17,14 +17,17 @@ class UINApplicationReview extends React.Component {
     }
     
     handleSubmit(event) {
+        event.preventDefault();
+        this.setState({submitted: true});
+        
         var applicationForm = {...this.props.applicationForm,
             status: "SUBMITTED"
         }
-        event.preventDefault();
+        this.setState({applicationForm : this.props.applicationForm });
 
         var formData = new FormData();
         formData.append("uinApplication", JSON.stringify(applicationForm)) ;
-        this.props.updateForm(formData, this.props.applicationForm.id );
+        this.props.updateApplication(formData, this.props.applicationForm.id );
     }
 
     downloadDocument(documentName){
@@ -33,7 +36,8 @@ class UINApplicationReview extends React.Component {
 
     render() {
         
-        const { saving, applicationForm, goBack, step} = this.props;
+        const { saving, applicationForm, previousStep, step} = this.props;
+        const { submitted } = this.state;
         return (
             <div className="page-form">
                 {/* <FormErrors errors = {errors}/>
@@ -46,12 +50,16 @@ class UINApplicationReview extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <FooterApplicationReviewDeclaration applicant = { applicationForm.applicant } type="uin"/>
-                    <FooterApplicationForm  step= { step } saving={ saving } goBack= { goBack }/>
+                    { (!applicationForm.status || applicationForm.status === 'DRAFT' ) &&
+                        <div className="large-12 cell"> 
+                            <FooterApplicationReviewDeclaration applicant = { applicationForm.applicant } type="uin"/>
+                            <FooterApplicationForm  step= { step } saving={ saving } previousStep= { previousStep }/>
+                        </div>
+                    }
                 </form>
             </div>  
         );
     }
 }
 
-export default UINApplicationReview;
+export default UINApplicationStep3;

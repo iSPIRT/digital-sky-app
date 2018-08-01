@@ -38,6 +38,11 @@ class UINApplicationStep2 extends React.Component {
 
     componentWillReceiveProps(nextProps){
         this.setState({formErrors: []});
+        const { errors } = nextProps;
+        const { submitted } = this.state;
+        if (submitted && ( !errors || errors.length === 0)  &&  (nextProps.applicationForm.id !== 0)){
+            this.props.nextStep();
+        }
         if(!nextProps.applicationForm.empty){
             this.setState({applicationForm: nextProps.applicationForm});
         }
@@ -77,12 +82,12 @@ class UINApplicationStep2 extends React.Component {
         formData.append("uinApplication", JSON.stringify(this.state.applicationForm))
         console.log(formData);
         
-        this.props.updateForm(formData, this.props.applicationForm.id);
+        this.props.updateApplication(formData, this.props.applicationForm.id);
     }
 
     render() {
     
-        const { nationalityOptions, saving, goBack, step, applicationForm} = this.props
+        const { nationalityOptions, saving, previousStep, step, applicationForm} = this.props
         const { opManualDoc, maintenanceGuidelinesDoc } = this.state;
         return (
             <div className="page-form">
@@ -130,7 +135,7 @@ class UINApplicationStep2 extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <FooterApplicationForm step= { step } saving= { saving } goBack= { goBack }/>
+                    <FooterApplicationForm step= { step } saving= { saving } previousStep= { previousStep }/>
                 </form>
             </div>  
         );
