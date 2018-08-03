@@ -33,7 +33,7 @@ export const invalidDateOfBirth = (value) => {
 }
 
 export const invalidName = (value) => {
-    return value && !(/^[a-zA-Z]*$/i.test(value))
+    return value && !(/^[a-zA-Z ]*$/i.test(value))
 }
 
 export const emptyValue = (value) => ( !value || value.trim().length === 0 )
