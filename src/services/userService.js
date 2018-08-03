@@ -15,7 +15,8 @@ export const userService = {
   createOperatorProfile,
   updateOperatorProfile,
   loadOperatorProfile,
-  loadApplications
+  loadApplications,
+  verifyAccount
 };
 
 function register(user) {
@@ -91,6 +92,20 @@ function resetPassword(payload) {
 
   return fetch(
     apiRoot+"/user/resetPassword",
+    requestOptions
+  ).then(handleResponse);
+}
+
+function verifyAccount(token) {
+  const apiRoot = applicationProperties().apiRoot;
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(token)
+  };
+
+  return fetch(
+    apiRoot+"/user/verify",
     requestOptions
   ).then(handleResponse);
 }
