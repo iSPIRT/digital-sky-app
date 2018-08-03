@@ -37,7 +37,6 @@ class UINApplicationStep3 extends React.Component {
     render() {
         
         const { saving, applicationForm, previousStep, step} = this.props;
-        const { submitted } = this.state;
         return (
             <div className="page-form">
                 {/* <FormErrors errors = {errors}/>

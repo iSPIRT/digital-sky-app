@@ -2,6 +2,10 @@ import React from 'react';
 
 import FormErrors from '../components/FormErrors';
 
+import FieldError from '../components/FieldError';
+
+import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
+
 import { Link } from 'react-router-dom'
 
 class OrganizationOperatorProfile extends React.Component {
@@ -15,6 +19,7 @@ class OrganizationOperatorProfile extends React.Component {
         this.state = {
             submitted: false,
             formErrors:[],
+            fieldErrors: {},
             profile: {
                 addressList:[
                     {
@@ -54,6 +59,13 @@ class OrganizationOperatorProfile extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        const fieldErrors = validateForm(event.target)
+        for (const key of Object.keys(fieldErrors)) {
+            if(!fieldErrors[key].valid){
+                this.setState({fieldErrors});
+                return;
+            }
+        }
         this.setState({submitted: true});
         if(this.props.operatorProfileSaved){
             this.props.updateOperatorProfile(this.state.profile);
@@ -89,38 +101,53 @@ class OrganizationOperatorProfile extends React.Component {
 
                                 <div className="large-12 cell">
                                     <label>Organization Name
-                                        <input type="text" placeholder="Name" name="name" onChange={this.handleChange} value={profile.name} maxLength="50" />
+                                        <input type="text" placeholder="Name" name="name" onChange={this.handleChange} value={profile.name} maxLength="50" className={decorateInputClass(this.state.fieldErrors['name'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='name'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Organization Email
-                                        <input type="text" placeholder="email" name="email" onChange={this.handleChange} value={profile.email} maxLength="50" />
+                                        <input type="text" placeholder="email" name="email" onChange={this.handleChange} value={profile.email} maxLength="50" className={decorateInputClass(this.state.fieldErrors['email'],[])} validate="required,email" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='email'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Organization Mobile Number
-                                        <input type="text" placeholder="Mobile Number" name="mobileNumber" onChange={this.handleChange} value={profile.mobileNumber} maxLength="13" />
+                                        <input type="text" placeholder="Mobile Number" name="mobileNumber" onChange={this.handleChange} value={profile.mobileNumber} maxLength="13" className={decorateInputClass(this.state.fieldErrors['mobileNumber'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='mobileNumber'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Organization Phone Number
-                                        <input type="text" placeholder="Phone Number" name="contactNumber" onChange={this.handleChange} value={profile.contactNumber} maxLength="13" />
+                                        <input type="text" placeholder="Phone Number" name="contactNumber" onChange={this.handleChange} value={profile.contactNumber} maxLength="13" className={decorateInputClass(this.state.fieldErrors['contactNumber'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='contactNumber'/>
                                     </label>
                                 </div>
 
                                 <div className="large-12 cell">
                                     <label>Country (Registered)
-                                        <input type="text" placeholder="country" name="country" onChange={this.handleChange} value={profile.country}/>
+                                        <input type="text" placeholder="country" name="country" onChange={this.handleChange} value={profile.country} maxLength="100" className={decorateInputClass(this.state.fieldErrors['country'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='country'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Address
-                                        <input type="text" placeholder="Line One" name="addressList.0.lineOne" onChange={this.handleChange} value={ profile.addressList && profile.addressList[0].lineOne}/>
+                                        <input type="text" placeholder="Line One" name="addressList.0.lineOne" onChange={this.handleChange} value={ profile.addressList && profile.addressList[0].lineOne} className={decorateInputClass(this.state.fieldErrors['addressList.0.lineOne'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.lineOne'/>
+
                                         <input type="text" placeholder="Line Two" name="addressList.0.lineTwo" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].lineTwo}/>
-                                        <input type="text" placeholder="City Or Town" name="addressList.0.city" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].city}/>
-                                        <input type="text" placeholder="State" name="addressList.0.state" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].state}/>
-                                        <input type="text" placeholder="Country" name="addressList.0.country" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].country}/>
-                                        <input type="text" placeholder="Pin Code" name="addressList.0.pinCode" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].pinCode}/>
+
+                                        <input type="text" placeholder="City Or Town" name="addressList.0.city" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].city} className={decorateInputClass(this.state.fieldErrors['addressList.0.city'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.city'/>
+
+                                        <input type="text" placeholder="State" name="addressList.0.state" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].state} className={decorateInputClass(this.state.fieldErrors['addressList.0.state'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.state'/>
+
+                                        <input type="text" placeholder="Country" name="addressList.0.country" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].country} className={decorateInputClass(this.state.fieldErrors['addressList.0.country'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.country'/>
+
+                                        <input type="text" placeholder="Pin Code" name="addressList.0.pinCode" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].pinCode} className={decorateInputClass(this.state.fieldErrors['addressList.0.pinCode'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.pinCode'/>
                                     </label>
                                 </div>
                                <div className="large-12 cell">

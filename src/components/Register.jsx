@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 
 import FormErrors from '../components/FormErrors';
 
-import { requiredCheck, emailCheck } from '../helpers/formValidationHelpers';
+import FieldError from '../components/FieldError';
+
+import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 
 class Register extends React.Component {
 
@@ -12,7 +14,9 @@ class Register extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             submitted: false,
-            formErrors:[]
+            formErrors:[],
+            fieldErrors: {}
+
         };
     }
 
@@ -22,6 +26,16 @@ class Register extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        const fieldErrors = validateForm(event.target)
+        for (const key of Object.keys(fieldErrors)) {
+            if(!fieldErrors[key].valid){
+                this.setState({fieldErrors});
+                return;
+            }
+        }
+
+        this.setState({fieldErrors:{}});
+
         const user = {
             fullName: this.refs.fullName.value,
             email: this.refs.email.value,
@@ -29,20 +43,14 @@ class Register extends React.Component {
         };
 
         const formErrors = [];
-        requiredCheck(formErrors, 'Name', user.fullName);
-        requiredCheck(formErrors, 'Email', user.email);
-        emailCheck(formErrors, 'Email', user.email);
-        requiredCheck(formErrors, 'Password', user.password);
 
         if(this.refs.password.value !== this.refs.confirmPassword.value) {
             formErrors.push('Passwords did not match');
         }
-
-        if( formErrors.length > 0) {
-            this.setState({formErrors});
-        } else {
-            this.setState({submitted: true});
-            this.props.registerUser(user);
+        this.setState({formErrors});
+        if( formErrors.length === 0 ) {
+             this.setState({submitted: true});
+             this.props.registerUser(user);
         }
     }
 
@@ -71,22 +79,26 @@ class Register extends React.Component {
 
                                 <div className="large-12 cell">
                                     <label>Full name
-                                        <input type="text" placeholder="Full name" name="fullName" ref="fullName" />
+                                        <input type="text" placeholder="Full name" name="fullName" ref="fullName" className={decorateInputClass(this.state.fieldErrors['fullName'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='fullName'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Email
-                                        <input type="text" placeholder="Email" name="email" ref="email"/>
+                                        <input type="text" placeholder="Email" name="email" ref="email" className={decorateInputClass(this.state.fieldErrors['email'],[])} validate="required,email" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='email'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Password
-                                        <input type="password" placeholder="Password" name="password" ref="password"/>
+                                        <input type="password" placeholder="Password" name="password" ref="password" className={decorateInputClass(this.state.fieldErrors['password'],[])} validate="required,minLength8" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='password'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Confirm Password
-                                        <input type="password" placeholder="Confirm Password" name="confirmPassword" ref="confirmPassword"/>
+                                        <input type="password" placeholder="Confirm Password" name="confirmPassword" ref="confirmPassword" className={decorateInputClass(this.state.fieldErrors['confirmPassword'],[])} validate="required,minLength8" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='confirmPassword'/>
                                     </label>
                                 </div>
                                 <div className="large-6 cell">

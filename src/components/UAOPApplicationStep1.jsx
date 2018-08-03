@@ -2,7 +2,9 @@ import React from 'react';
 
 import FormErrors from './FormErrors';
 
-import { requiredCheck } from '../helpers/formValidationHelpers';
+import FieldError from '../components/FieldError';
+
+import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 
 class UAOPApplicationStep1 extends React.Component {
 
@@ -15,6 +17,7 @@ class UAOPApplicationStep1 extends React.Component {
         this.state = {
             submitted: false,
             formErrors:[],
+            fieldErrors: {},
             application: {},
         };
     }
@@ -46,19 +49,21 @@ class UAOPApplicationStep1 extends React.Component {
 
     handleSaveApplication(event) {
         event.preventDefault();
-        const formErrors = [];
-        requiredCheck(formErrors, 'Name', this.state.application.name);
-        if( formErrors.length > 0) {
-            this.setState({formErrors});
-        } else {
-            this.setState({submitted: true});
-            const formData = new FormData();
-            formData.append("uaopApplicationForm", JSON.stringify(this.state.application))
-            if(this.props.application.id !== 0 ){
-                this.props.updateApplication(this.props.application.id, formData);
-            } else{
-                this.props.createApplication(formData);
+        const fieldErrors = validateForm(event.target)
+        for (const key of Object.keys(fieldErrors)) {
+            if(!fieldErrors[key].valid){
+                this.setState({fieldErrors});
+                return;
             }
+        }
+
+        this.setState({submitted: true});
+        const formData = new FormData();
+        formData.append("uaopApplicationForm", JSON.stringify(this.state.application))
+        if(this.props.application.id !== 0 ){
+            this.props.updateApplication(this.props.application.id, formData);
+        } else{
+            this.props.createApplication(formData);
         }
     }
 
@@ -91,7 +96,8 @@ class UAOPApplicationStep1 extends React.Component {
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Name
-                                        <input type="text" placeholder="Name" name="name" onChange={this.handleChange} value={application.name} maxLength="100" />
+                                        <input type="text" placeholder="Name" name="name" onChange={this.handleChange} value={application.name} maxLength="100" className={decorateInputClass(this.state.fieldErrors['name'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='name'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">

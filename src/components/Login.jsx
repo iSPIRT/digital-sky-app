@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 import FormErrors from '../components/FormErrors';
+import FieldError from '../components/FieldError';
 
-import { requiredCheck, emailCheck } from '../helpers/formValidationHelpers';
+import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 
 import email from '../img/email.svg';
 import password from '../img/password.svg';
@@ -16,27 +17,27 @@ class Login extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             submitted: false,
-            formErrors: []
+            formErrors: [],
+            fieldErrors: {}
         };
     }
 
-
     handleSubmit(event) {
         event.preventDefault();
+        const fieldErrors = validateForm(event.target)
+        for (const key of Object.keys(fieldErrors)) {
+            if(!fieldErrors[key].valid){
+                this.setState({fieldErrors});
+                return;
+            }
+        }
+        this.setState({fieldErrors:{}});
         const credentials = {
                     email: this.refs.email.value,
                     password: this.refs.password.value
         };
-        const formErrors = [];
-        requiredCheck(formErrors, 'Email', credentials.email);
-        emailCheck(formErrors, 'Email', credentials.email);
-        requiredCheck(formErrors, 'Password', credentials.password);
-        if( formErrors.length > 0) {
-            this.setState({formErrors});
-        } else {
-            this.setState({submitted: true});
-            this.props.loginUser(credentials);
-        }
+        this.setState({submitted: true});
+        this.props.loginUser(credentials);
     }
 
     render() {
@@ -65,7 +66,8 @@ class Login extends React.Component {
                                     <label>Email
                                         <div className="special-feild-wrap">
                                             <span className="special-icon"><img src={email} alt="email"/></span>
-                                            <input type="text" name="email" ref="email" className="special-email" placeholder="Email"/>
+                                            <input type="text" name="email" ref="email" className={decorateInputClass(this.state.fieldErrors['email'],['special-email'])} placeholder="Email" validate="required,email" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                            <FieldError fieldErrors={this.state.fieldErrors} field='email'/>
                                         </div>
                                     </label>
                                 </div>
@@ -74,7 +76,8 @@ class Login extends React.Component {
                                     <label>Password
                                         <div className="special-feild-wrap">
                                             <span className="special-icon"><img src={password} alt="password"/></span>
-                                            <input type="password" name="password" ref="password" className="special-password" placeholder="Password"/>
+                                            <input type="password" name="password" ref="password" className={decorateInputClass(this.state.fieldErrors['password'],['special-password'])} placeholder="Password" validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                            <FieldError fieldErrors={this.state.fieldErrors} field='password'/>
                                         </div>
 
                                     </label>
