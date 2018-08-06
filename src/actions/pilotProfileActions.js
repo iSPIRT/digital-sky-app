@@ -13,8 +13,8 @@ export const createPilotProfileAction = (pilotProfile) => {
         dispatch(request());
         userService.createPilotProfile(pilotProfile)
                     .then(
-                        data => {
-                            dispatch(success(pilotProfile));
+                        savedProfile => {
+                            dispatch(success(savedProfile));
                         },
                         errors => {
                             dispatch(failure(errors));
@@ -34,8 +34,8 @@ export const updatePilotProfileAction = (pilotProfileId, pilotProfile) => {
         dispatch(request());
         userService.updatePilotProfile(pilotProfileId, pilotProfile)
                     .then(
-                        data => {
-                            dispatch(success(pilotProfile));
+                        updatedProfile => {
+                            dispatch(success(updatedProfile));
                         },
                         errors => {
                             dispatch(failure(errors));

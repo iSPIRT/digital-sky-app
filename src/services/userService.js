@@ -110,13 +110,13 @@ function verifyAccount(token) {
   ).then(handleResponse);
 }
 
-function createPilotProfile(pilotProfile) {
+function createPilotProfile(pilotProfileFormData) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: authToken },
-    body: JSON.stringify(pilotProfile)
+    headers: { Authorization: authToken },
+    body: pilotProfileFormData
   };
 
   return fetch(apiRoot+"/pilot", requestOptions)
@@ -125,16 +125,17 @@ function createPilotProfile(pilotProfile) {
       if (response.id) {
         localStorage.setItem("pilotProfileId", response.id);
       }
+      return response;
     });
 }
 
-function updatePilotProfile(pilotProfileId, pilotProfile) {
+function updatePilotProfile(pilotProfileId, pilotProfileFormData) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "PUT",
-    headers: { "Content-Type": "application/json", Authorization: authToken },
-    body: JSON.stringify(pilotProfile)
+    headers: { Authorization: authToken },
+    body: pilotProfileFormData
   };
   return fetch(
     apiRoot+"/pilot/" + pilotProfileId,
