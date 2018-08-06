@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
+import ReCAPTCHA from 'react-google-recaptcha';
+
 import FormErrors from '../components/FormErrors';
 
 import FieldError from '../components/FieldError';
@@ -12,12 +14,17 @@ class Register extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.captchaVerified = this.captchaVerified.bind(this);
         this.state = {
             submitted: false,
             formErrors:[],
             fieldErrors: {}
 
         };
+    }
+
+    captchaVerified(value){
+        this.setState({reCaptcha: value});
     }
 
     componentWillReceiveProps(nextProps){
@@ -39,12 +46,16 @@ class Register extends React.Component {
         const user = {
             fullName: this.refs.fullName.value,
             email: this.refs.email.value,
-            password: this.refs.password.value
+            password: this.refs.password.value,
+            reCaptcha: this.state.reCaptcha
         };
 
         const formErrors = [];
 
-        if(this.refs.password.value !== this.refs.confirmPassword.value) {
+        if(!this.state.reCaptcha) {
+            formErrors.push('Please click on reCaptcha');
+        }
+        else if(this.refs.password.value !== this.refs.confirmPassword.value) {
             formErrors.push('Passwords did not match');
         }
         this.setState({formErrors});
@@ -100,6 +111,10 @@ class Register extends React.Component {
                                         <input type="password" placeholder="Confirm Password" name="confirmPassword" ref="confirmPassword" className={decorateInputClass(this.state.fieldErrors['confirmPassword'],[])} validate="required,minLength8" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
                                         <FieldError fieldErrors={this.state.fieldErrors} field='confirmPassword'/>
                                     </label>
+                                </div>
+                                <div className="large-12 cell">
+                                    <ReCAPTCHA ref="recaptcha" sitekey="6LdKiWgUAAAAAGxALniEO7b9FfmLBKi6O4bPrZLj" onChange={this.captchaVerified}/>
+                                    <br/><br/>
                                 </div>
                                 <div className="large-6 cell">
                                     <button type="submit" className="button" name="button">Sign Up</button>
