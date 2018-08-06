@@ -21,6 +21,7 @@ class PilotProfile extends React.Component {
             formErrors:[],
             fieldErrors: {},
             profile: {
+                droneCategory: 'nano',
                 addressList:[
                     {
                         lineOne: '',
@@ -43,10 +44,14 @@ class PilotProfile extends React.Component {
     }
 
     handleChange(event) {
-        const { name, value } = event.target;
-        const { profile } = this.state;
-        this.updateObjProp(profile, value, name);
-        this.setState({profile: profile});
+        const { name, value, type } = event.target;
+        if( type === 'file'){
+            this.setState({[name]: event.target.files[0]});
+        } else {
+            const { profile } = this.state;
+            this.updateObjProp(profile, value, name);
+            this.setState({profile: profile});
+        }
     }
 
     updateObjProp(obj, value, propPath) {
@@ -68,17 +73,21 @@ class PilotProfile extends React.Component {
         }
         this.setState({fieldErrors:{}});
         this.setState({submitted: true});
+        const formData = new FormData();
+        formData.append("trainingCertificateDocument", this.state.trainingCertificateDoc)
+        formData.append("pilotPayload", JSON.stringify(this.state.profile))
+
         if(this.props.pilotProfileSaved){
-            this.props.updatePilotProfile(this.state.profile);
+            this.props.updatePilotProfile(formData);
         } else{
-            this.props.setupPilotProfile(this.state.profile);
+            this.props.setupPilotProfile(formData);
         }
     }
 
 
     render() {
         const { savingPilotProfile, pilotProfileSaved, errors} = this.props;
-        const { formErrors, submitted, profile } = this.state;
+        const { formErrors, submitted, profile, trainingCertificateDoc } = this.state;
         return (
             <div>
                 <div className="page-header">
@@ -138,7 +147,62 @@ class PilotProfile extends React.Component {
                                         <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.pinCode'/>
                                     </label>
                                 </div>
-                               <div className="large-12 cell">
+                                <div className="large-12 cell">
+                                    <div className="help-wrap">
+                                        <label>Training Certificate
+                                            { pilotProfileSaved && profile.trainingCertificateDocName &&
+                                                <span><a onClick={(e) =>  this.props.downloadDocument(profile.trainingCertificateDocName)}>{profile.trainingCertificateDocName}</a></span>
+                                            }
+                                            <span>{trainingCertificateDoc && trainingCertificateDoc.name}</span>
+                                        </label>
+                                         <label htmlFor="trainingCertificateDoc" className="button button-file-upload">Upload File</label>
+                                         <input type="file" id="trainingCertificateDoc" name="trainingCertificateDoc" className="show-for-sr" onChange={this.handleChange}/>
+                                    </div>
+                                </div>
+                                <div className="large-12 cell" id="drone-category">
+                                    <label className="main">Drone Category</label>
+                                
+                                    <div className="category-wrap">
+                                        <label className="radio">Nano
+                                            <span className="info">Less than or equal to <br/>250 grams</span>
+                                            <input type="radio" value="nano" checked={this.state.profile.droneCategory === 'nano'} name="droneCategory" onChange={this.handleChange}/>
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                
+                                    <div className="category-wrap">
+                                        <label className="radio">Micro
+                                            <span className="info">Greater than 250 grams and <br/>less than or equal to 2 kg</span>
+                                            <input type="radio" value="micro" checked={this.state.profile.droneCategory === 'micro'} name="droneCategory" onChange={this.handleChange}/>
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                
+                                    <div className="category-wrap">
+                                        <label className="radio">Small
+                                            <span className="info">Greater than 2 kg and less <br/>than or equal to 25 kg</span>
+                                            <input type="radio" value="small" checked={this.state.profile.droneCategory === 'small'} name="droneCategory" onChange={this.handleChange}/>
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                
+                                    <div className="category-wrap">
+                                        <label className="radio">Medium
+                                            <span className="info">Greater than 25 kg and less <br/>than or equal to 150 kg</span>
+                                            <input type="radio" value="medium" checked={this.state.profile.droneCategory === 'medium'} name="droneCategory" onChange={this.handleChange}/>
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                
+                                    <div className="category-wrap">
+                                        <label className="radio">Large
+                                            <span className="info">Greater than <br/>150 kg</span>
+                                            <input type="radio" value="large" checked={this.state.profile.droneCategory === 'large'} name="droneCategory" onChange={this.handleChange}/>
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>                                
+                                <div className="large-12 cell">
 
                                     { submitted && ( !errors || errors.length === 0)  &&  pilotProfileSaved && <p> Successfully Saved Pilot Profile <br/></p>}
 
