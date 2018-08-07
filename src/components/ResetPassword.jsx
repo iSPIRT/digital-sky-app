@@ -2,7 +2,9 @@ import React from 'react';
 
 import FormErrors from '../components/FormErrors';
 
-import { requiredCheck } from '../helpers/formValidationHelpers';
+import FieldError from '../components/FieldError';
+
+import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 
 class ResetPassword extends React.Component {
 
@@ -11,7 +13,8 @@ class ResetPassword extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             submitted: false,
-            formErrors:[]
+            formErrors:[],
+            fieldErrors: {}
         };
     }
 
@@ -21,19 +24,26 @@ class ResetPassword extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const payload = {
-            token: this.props.token,
-            password: this.refs.password.value
+        const fieldErrors = validateForm(event.target)
+        for (const key of Object.keys(fieldErrors)) {
+            if(!fieldErrors[key].valid){
+                this.setState({fieldErrors});
+                return;
+            }
         }
+        this.setState({fieldErrors:{}});
+
         const formErrors = [];
-        requiredCheck(formErrors, 'Token', payload.token);
-        requiredCheck(formErrors, 'Password', payload.password);
         if(this.refs.password.value !== this.refs.confirmPassword.value) {
             formErrors.push('Passwords did not match');
         }
-        if( formErrors.length > 0) {
-            this.setState({formErrors});
-        } else {
+        this.setState({formErrors});
+
+        if( formErrors.length === 0) {
+            const payload = {
+                token: this.props.token,
+                password: this.refs.password.value
+            }
             this.setState({submitted: true});
             this.props.resetPassword(payload);
         }
@@ -63,12 +73,14 @@ class ResetPassword extends React.Component {
                             <div className="grid-x grid-padding-x">
                                 <div className="large-12 cell">
                                     <label>New Password
-                                        <input type="password" placeholder="Password" name="password" ref="password"/>
+                                        <input type="password" placeholder="Password" name="password" ref="password" className={decorateInputClass(this.state.fieldErrors['password'],[])} validate="required,minLength8" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='password'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Confirm New Password
-                                        <input type="password" placeholder="Confirm Password" name="confirmPassword" ref="confirmPassword"/>
+                                        <input type="password" placeholder="Confirm Password" name="confirmPassword" ref="confirmPassword" className={decorateInputClass(this.state.fieldErrors['confirmPassword'],[])} validate="required,minLength8" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='confirmPassword'/>
                                     </label>
                                 </div>
                                 <div className="large-6 cell">

@@ -106,7 +106,6 @@ export default class DroneAcquisitionApplicationPage extends React.Component {
                                     updateApplication={ this.updateApplication } 
                                     step= { currentStep } errors={ errors } saved={ saved } 
                                     saving={ saving } previousStep={this.previousStep}
-                                    step = { currentStep }
                                     applicationType= { this.applicationType }
                                     downloadDocument= { this.downloadDocument }
                                 />

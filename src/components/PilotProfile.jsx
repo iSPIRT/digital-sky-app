@@ -2,6 +2,10 @@ import React from 'react';
 
 import FormErrors from '../components/FormErrors';
 
+import FieldError from '../components/FieldError';
+
+import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
+
 import { Link } from 'react-router-dom'
 
 class PilotProfile extends React.Component {
@@ -15,7 +19,9 @@ class PilotProfile extends React.Component {
         this.state = {
             submitted: false,
             formErrors:[],
+            fieldErrors: {},
             profile: {
+                droneCategory: 'nano',
                 addressList:[
                     {
                         lineOne: '',
@@ -38,10 +44,14 @@ class PilotProfile extends React.Component {
     }
 
     handleChange(event) {
-        const { name, value } = event.target;
-        const { profile } = this.state;
-        this.updateObjProp(profile, value, name);
-        this.setState({profile: profile});
+        const { name, value, type } = event.target;
+        if( type === 'file'){
+            this.setState({[name]: event.target.files[0]});
+        } else {
+            const { profile } = this.state;
+            this.updateObjProp(profile, value, name);
+            this.setState({profile: profile});
+        }
     }
 
     updateObjProp(obj, value, propPath) {
@@ -54,18 +64,30 @@ class PilotProfile extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        const fieldErrors = validateForm(event.target)
+        for (const key of Object.keys(fieldErrors)) {
+            if(!fieldErrors[key].valid){
+                this.setState({fieldErrors});
+                return;
+            }
+        }
+        this.setState({fieldErrors:{}});
         this.setState({submitted: true});
+        const formData = new FormData();
+        formData.append("trainingCertificateDocument", this.state.trainingCertificateDoc)
+        formData.append("pilotPayload", JSON.stringify(this.state.profile))
+
         if(this.props.pilotProfileSaved){
-            this.props.updatePilotProfile(this.state.profile);
+            this.props.updatePilotProfile(formData);
         } else{
-            this.props.setupPilotProfile(this.state.profile);
+            this.props.setupPilotProfile(formData);
         }
     }
 
 
     render() {
         const { savingPilotProfile, pilotProfileSaved, errors} = this.props;
-        const { formErrors, submitted, profile } = this.state;
+        const { formErrors, submitted, profile, trainingCertificateDoc } = this.state;
         return (
             <div>
                 <div className="page-header">
@@ -89,30 +111,98 @@ class PilotProfile extends React.Component {
 
                                 <div className="large-12 cell">
                                     <label>Mobile Number
-                                        <input type="text" placeholder="Mobile Number" name="mobileNumber" onChange={this.handleChange} value={profile.mobileNumber} maxLength="13" />
+                                        <input type="text" placeholder="Mobile Number" name="mobileNumber" onChange={this.handleChange} value={profile.mobileNumber} maxLength="13" className={decorateInputClass(this.state.fieldErrors['mobileNumber'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='mobileNumber'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Date of Birth
-                                        <input type="text" placeholder="DD-MM-YYYY" name="dateOfBirth" onChange={this.handleChange} value={profile.dateOfBirth} maxLength="10" />
+                                        <input type="text" placeholder="DD-MM-YYYY" name="dateOfBirth" onChange={this.handleChange} value={profile.dateOfBirth} maxLength="10" className={decorateInputClass(this.state.fieldErrors['dateOfBirth'],[])} validate="required,dateOfBirth" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='dateOfBirth'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Country (Nationality)
-                                        <input type="text" placeholder="country" name="country" onChange={this.handleChange} value={profile.country}/>
+                                        <input type="text" placeholder="country" name="country" onChange={this.handleChange} value={profile.country} className={decorateInputClass(this.state.fieldErrors['country'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='country'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Address
-                                        <input type="text" placeholder="Line One" name="addressList.0.lineOne" onChange={this.handleChange} value={ profile.addressList && profile.addressList[0].lineOne}/>
+                                        <input type="text" placeholder="Line One" name="addressList.0.lineOne" onChange={this.handleChange} value={ profile.addressList && profile.addressList[0].lineOne} className={decorateInputClass(this.state.fieldErrors['addressList.0.lineOne'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.lineOne'/>
+
                                         <input type="text" placeholder="Line Two" name="addressList.0.lineTwo" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].lineTwo}/>
-                                        <input type="text" placeholder="City Or Town" name="addressList.0.city" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].city}/>
-                                        <input type="text" placeholder="State" name="addressList.0.state" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].state}/>
-                                        <input type="text" placeholder="Country" name="addressList.0.country" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].country}/>
-                                        <input type="text" placeholder="Pin Code" name="addressList.0.pinCode" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].pinCode}/>
+
+                                        <input type="text" placeholder="City Or Town" name="addressList.0.city" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].city} className={decorateInputClass(this.state.fieldErrors['addressList.0.city'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.city'/>
+
+                                        <input type="text" placeholder="State" name="addressList.0.state" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].state} className={decorateInputClass(this.state.fieldErrors['addressList.0.state'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.state'/>
+
+                                        <input type="text" placeholder="Country" name="addressList.0.country" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].country} className={decorateInputClass(this.state.fieldErrors['addressList.0.country'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.country'/>
+
+                                        <input type="text" placeholder="Pin Code" name="addressList.0.pinCode" maxLength="8" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].pinCode} className={decorateInputClass(this.state.fieldErrors['addressList.0.pinCode'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.pinCode'/>
                                     </label>
                                 </div>
-                               <div className="large-12 cell">
+                                <div className="large-12 cell">
+                                    <div className="help-wrap">
+                                        <label>Training Certificate
+                                            { pilotProfileSaved && profile.trainingCertificateDocName &&
+                                                <span><a onClick={(e) =>  this.props.downloadDocument(profile.trainingCertificateDocName)}>{profile.trainingCertificateDocName}</a></span>
+                                            }
+                                            <span>{trainingCertificateDoc && trainingCertificateDoc.name}</span>
+                                        </label>
+                                         <label htmlFor="trainingCertificateDoc" className="button button-file-upload">Upload File</label>
+                                         <input type="file" id="trainingCertificateDoc" name="trainingCertificateDoc" className="show-for-sr" onChange={this.handleChange}/>
+                                    </div>
+                                </div>
+                                <div className="large-12 cell" id="drone-category">
+                                    <label className="main">Drone Category</label>
+                                
+                                    <div className="category-wrap">
+                                        <label className="radio">Nano
+                                            <span className="info">Less than or equal to <br/>250 grams</span>
+                                            <input type="radio" value="nano" checked={this.state.profile.droneCategory === 'nano'} name="droneCategory" onChange={this.handleChange}/>
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                
+                                    <div className="category-wrap">
+                                        <label className="radio">Micro
+                                            <span className="info">Greater than 250 grams and <br/>less than or equal to 2 kg</span>
+                                            <input type="radio" value="micro" checked={this.state.profile.droneCategory === 'micro'} name="droneCategory" onChange={this.handleChange}/>
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                
+                                    <div className="category-wrap">
+                                        <label className="radio">Small
+                                            <span className="info">Greater than 2 kg and less <br/>than or equal to 25 kg</span>
+                                            <input type="radio" value="small" checked={this.state.profile.droneCategory === 'small'} name="droneCategory" onChange={this.handleChange}/>
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                
+                                    <div className="category-wrap">
+                                        <label className="radio">Medium
+                                            <span className="info">Greater than 25 kg and less <br/>than or equal to 150 kg</span>
+                                            <input type="radio" value="medium" checked={this.state.profile.droneCategory === 'medium'} name="droneCategory" onChange={this.handleChange}/>
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                
+                                    <div className="category-wrap">
+                                        <label className="radio">Large
+                                            <span className="info">Greater than <br/>150 kg</span>
+                                            <input type="radio" value="large" checked={this.state.profile.droneCategory === 'large'} name="droneCategory" onChange={this.handleChange}/>
+                                            <span className="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>                                
+                                <div className="large-12 cell">
 
                                     { submitted && ( !errors || errors.length === 0)  &&  pilotProfileSaved && <p> Successfully Saved Pilot Profile <br/></p>}
 

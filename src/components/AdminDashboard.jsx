@@ -9,24 +9,38 @@ import { IMPORT_DRONE_APPLICATION } from '../constants/applicationType';
 import { UAOP_APPLICATION_APPLICATION } from '../constants/applicationType';
 import { UIN_APPLICATION } from '../constants/applicationType';
 
-function Applications(props) {
-    const {applications} = props;
-    if(!applications) return null;
-    if(applications.length < 1) return <p> No Applications to Show </p>;
-    return applications.map((application) =>
-        <div className="application">
-            <div className="details">
-                <div className="wrap">
-                    <h3>{application.applicant}</h3>
-                    <p>{application.submittedDate}</p>
+class Applications extends React.Component {
+
+    applicationStatusClass(status) {
+        var cssClass = 'application';
+        if(status ===  'APPROVED'){
+            cssClass = 'application status-accepted';
+        } else if (status ===  'REJECTED'){
+            cssClass = 'application status-declined';
+        }
+        return cssClass;
+    }
+
+    render() {
+        const {applications} = this.props;
+        if(!applications) return null;
+        if(applications.length < 1) return <p> No Applications to Show </p>;
+        return applications.map((application) =>
+            <div className={this.applicationStatusClass(application.status)}>
+                <div className="details">
+                    <div className="wrap">
+                        <h3>{application.applicant}</h3>
+                        <p>{application.submittedDate}</p>
+                    </div>
+                </div>
+                <div className="go-to-location">
+                    <a onClick={(e) => this.props.applicationSelected(application.id)} className="button"><img src={view} alt="view"/></a>
                 </div>
             </div>
-            <div className="go-to-location">
-                <a onClick={(e) => props.applicationSelected(application.id)} className="button"><img src={view} alt="view"/></a>
-            </div>
-        </div>
-   );
+       );
+   }
 }
+
 class AdminDashboard extends React.Component {
 
     constructor(props) {

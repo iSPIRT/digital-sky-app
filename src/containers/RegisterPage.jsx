@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { Link } from 'react-router-dom'
-
-
 import Register from '../components/Register';
 import { registerUserAction, registerFormLoaded } from '../actions/registrationActions';
 
@@ -30,7 +27,7 @@ class RegisterPage extends React.Component {
                     <div className="grid-x grid-padding-x">
                       <div className="large-12 cell">
                         <h2>Registration Successful</h2>
-                        <p><Link to="/login">Sign In</Link></p>
+                        <p>Please verify your account by clicking on a link sent to your email</p>
                       </div>
                     </div>
                   </div>

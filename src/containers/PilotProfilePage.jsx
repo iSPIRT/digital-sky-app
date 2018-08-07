@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 
 import PilotProfile from '../components/PilotProfile';
 import { createPilotProfileAction, pilotProfileFormLoaded, loadPilotProfile, updatePilotProfileAction } from '../actions/pilotProfileActions';
+import { downloadFile } from '../actions/downloadFileActions';
 
 class PilotProfilePage extends React.Component {
 
     constructor(props) {
         super(props);
+        this.downloadDocument = this.downloadDocument.bind(this);
         this.props.dispatch(pilotProfileFormLoaded());
         const pilotProfileId = localStorage.getItem('pilotProfileId');
         if( this.props.pilotProfileSaved && this.props.profile.empty ){
@@ -24,6 +26,12 @@ class PilotProfilePage extends React.Component {
         return pilotProfile => dispatch(updatePilotProfileAction(pilotProfileId, pilotProfile));
     }
 
+    downloadDocument(documentName){
+        const pilotProfileId = localStorage.getItem('pilotProfileId');
+        const filePath = "pilot/"+pilotProfileId+"/trainingCertificate";
+        this.props.dispatch(downloadFile(filePath, documentName));
+    }
+
     render(){
         const { savingPilotProfile, pilotProfileSaved, profile, errors } = this.props;
         return <PilotProfile
@@ -33,6 +41,7 @@ class PilotProfilePage extends React.Component {
                     errors={errors}
                     setupPilotProfile={this.setupPilotProfile(this.props.dispatch)}
                     updatePilotProfile={this.updatePilotProfile(this.props.dispatch)}
+                    downloadDocument={this.downloadDocument}
                 />
 
     }

@@ -2,7 +2,9 @@ import React from 'react';
 
 import FormErrors from '../components/FormErrors';
 
-import { requiredCheck, emailCheck } from '../helpers/formValidationHelpers';
+import FieldError from '../components/FieldError';
+
+import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 
 class ResetPasswordLink extends React.Component {
 
@@ -11,7 +13,8 @@ class ResetPasswordLink extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             submitted: false,
-            formErrors:[]
+            formErrors:[],
+            fieldErrors: {}
         };
     }
 
@@ -21,16 +24,17 @@ class ResetPasswordLink extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const email = this.refs.email.value
-        const formErrors = [];
-        requiredCheck(formErrors, 'Email', email);
-        emailCheck(formErrors, 'Email', email);
-        if( formErrors.length > 0) {
-            this.setState({formErrors});
-        } else {
-            this.setState({submitted: true});
-            this.props.sendResetPasswordLink({ email });
+        const fieldErrors = validateForm(event.target)
+        for (const key of Object.keys(fieldErrors)) {
+            if(!fieldErrors[key].valid){
+                this.setState({fieldErrors});
+                return;
+            }
         }
+        this.setState({fieldErrors:{}});
+        const email = this.refs.email.value
+        this.setState({submitted: true});
+        this.props.sendResetPasswordLink({ email });
     }
 
 
@@ -57,7 +61,8 @@ class ResetPasswordLink extends React.Component {
                             <div className="grid-x grid-padding-x">
                                 <div className="large-12 cell">
                                     <label>Email
-                                        <input type="text" placeholder="Email" name="email" ref="email" />
+                                        <input type="text" placeholder="Email" name="email" ref="email" className={decorateInputClass(this.state.fieldErrors['email'],[])} validate="required,email" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='email'/>
                                     </label>
                                 </div>
                                 <div className="large-6 cell">

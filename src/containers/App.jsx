@@ -20,6 +20,7 @@ import IndividualOperatorProfilePage from './IndividualOperatorProfilePage';
 import OrganizationOperatorProfilePage from './OrganizationOperatorProfilePage';
 import UAOPApplicationPage from './UAOPApplicationPage';
 import UINApplicationPage from './UINApplicationPage';
+import VerifyAccountPage from './VerifyAccountPage';
 
 import Logout from './Logout';
 import Header from '../components/Header';
@@ -87,7 +88,8 @@ class App extends React.Component {
                     <Route path="/register" component={RegisterPage} />
                     <Route path="/resetPasswordLink" component={ResetPasswordLinkPage} />
                     <Route path="/resetPassword" component={ResetPasswordPage} />
-                  
+                    <Route path="/verifyAccount" component={VerifyAccountPage} />
+
                     <Footer/>
                 </ScrollToTop>
               </Router>
