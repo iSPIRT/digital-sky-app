@@ -18,11 +18,14 @@ class ImportDroneApplicationPage extends DroneAcquisitionApplicationPage {
 function mapStateToProps(state) {
 
     const { saving, saved, errors, currentApplicationForm } = state.importDroneApplications;
+    const { droneTypes, metaDataerrors} = state.metaData;
     return {
        saving,
        saved,
        errors,
-       currentApplicationForm
+       currentApplicationForm,
+       droneTypes,
+       metaDataerrors
     };
 }
 

@@ -18,11 +18,14 @@ class LocalDroneAcqusitionApplicationPage extends DroneAcquisitionApplicationPag
 function mapStateToProps(state) {
 
     const { saving, saved, errors, currentApplicationForm } = state.localDroneAcquisitionApplications;
+    const { droneTypes, metaDataErrors} = state.metaData;
     return {
        saving,
        saved,
        errors,
-       currentApplicationForm
+       currentApplicationForm,
+       droneTypes,
+       metaDataErrors
     };
 }
 

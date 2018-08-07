@@ -8,6 +8,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
     constructor() {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.updateDroneDetails =  this.updateDroneDetails.bind(this);
         this.state = {
             submitted: false,
             formErrors:[],
@@ -51,10 +52,37 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
 
     handleChange(event) {
         var { name, value } = event.target;
-        value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+        if( event.target.type === 'select' && event.target.value === -1) return;
         const { applicationForm } = this.state;
         this.updateObjProp(applicationForm, value, name);
         this.setState({applicationForm: applicationForm});
+    }
+
+    updateDroneDetails(droneType) {
+
+        var application = this.state.applicationForm;
+
+        application["droneTypeId"] = droneType.id;
+        application["manufacturer"] = droneType.manufacturer;
+        application["manufacturerAddress"] = {
+            lineOne: droneType.manufacturerAddress.lineOne,
+            lineTwo: droneType.manufacturerAddress.lineTwo,
+            city: droneType.manufacturerAddress.city,
+            state: droneType.manufacturerAddress.state,
+            country: droneType.manufacturerAddress.country,
+            pincode: droneType.manufacturerAddress.pincode
+        }
+        application["manufacturerNationality"] = droneType.manufacturerNationality;
+        application["modelName"] = droneType.modelName ;
+        application["modelNo"] = droneType.modelNo;
+        application["serialNo"] = droneType.serialNo;
+        application["dateOfManufacture"] = droneType.dateOfManufacture;
+        application["wingType"] = droneType.wingType;
+        application["maxTakeOffWeight"] = droneType.maxTakeOffWeight;
+        application["maxHeightAttainable"] = droneType.maxHeightAttainable;
+        application["compatiblePayload"] = droneType.compatiblePayload;
+
+        this.setState({applicationForm: application});
     }
 
     updateObjProp(obj, value, propPath) {
@@ -88,7 +116,8 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
             return (<option value={nationality} key={nationality}> {nationality} </option>);
         });
 
-        const { saving, applicationForm, step} = this.props;
+        const { saving, applicationForm, step, droneTypes} = this.props;
+        const isReadOnly = true;
 
         return (
             <div>
@@ -102,7 +131,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                     <input type="text" name="applicant" placeholder="Full Name" defaultValue= { applicationForm.applicant } onChange= { this.handleChange }/>
                                 </label>
                             </div>
-                            {/* <div className="large-12 cell">
+                            <div className="large-12 cell">
                                 <label>Address of Applicant
                                     <input type="text" name="applicantAddress.lineOne" ref="applicantAddress.lineOne"  placeholder="Address Line1" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.lineOne } onChange= { this.handleChange }/>
                                     <input type="text" name="applicantAddress.lineTwo" ref="applicantAddress.lineTwo" placeholder=" Address Line2" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.lineTwo } onChange= { this.handleChange }/>
@@ -111,10 +140,11 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                     <input type="text" name="applicantAddress.country" ref="applicantAddress.country" placeholder="Country" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.country } onChange= { this.handleChange } />
                                     <input type="text" name="applicantAddress.pincode" ref="applicantAddress.pincode" placeholder="Pincode" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.pincode } onChange= { this.handleChange } />
                                 </label>
-                            </div> */}
+                            </div>
                             <div className="large-12 cell">
-                                <label>Nationality
+                                <label>Nationality of Applicant
                                     <select name="applicantNationality" value={ applicationForm.applicantNationality } onChange={ this.handleChange } >
+                                        { !applicationForm.applicantNationality && <option default key="-1" value="-1">Select</option> }
                                         { nationalityOptions }
                                     </select>
                                 </label>
@@ -125,7 +155,12 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                 </label>
                             </div> */}
                             <div className="large-12 cell">
-                                <DroneDetails name="droneDetails" nationalityOptions={ this.props.nationalityOptions } details = { applicationForm } onChange= { this.handleChange }/>
+                                <DroneDetails name="droneDetails" application = { applicationForm } nationalityOptions = { this.props.nationalityOptions } updateDroneDetails= { this.updateDroneDetails } isReadOnly = { isReadOnly } droneTypes = { droneTypes }/>
+                            </div>
+                            <div className="large-12 cell">
+                                <label>Nationality of Applicant
+                                    <input type="number" name="noOfDrones" defaultValue= { applicationForm && applicationForm.noOfDrones } onChange = { this.handleChange } placeholder="Drone Count"/>
+                                </label>
                             </div>
                         </div>
                     </div>

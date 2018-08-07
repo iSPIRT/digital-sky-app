@@ -28,7 +28,8 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
     }
 
     handleChange(event) {
-        const { name, value, type } = event.target;
+        const { name, type } = event.target;
+        const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
         const { applicationForm } = this.props;
         if( type === 'file'){
             this.setState({[name]: event.target.files[0]});
@@ -81,6 +82,12 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
                 <form name="localDroneAcquisitionApplicationForm" onSubmit={this.handleSubmit}>
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
+                            <div className="large-12 cell">
+                                <label className="checkbox">Is New
+                                    <input type="checkbox" name="isNew" checked = { applicationForm.isNew } onChange = { this.handleChange }/>
+                                    <span className="checkmark"></span>
+                                </label>
+                            </div>
                             <div className="large-12 cell">
                             <label>{ aquisitionDisplay }
                                     <select name="acquisitionMode" ref="acquisitionMode" value = { applicationForm.acquisitionMode } onChange= { this.handleChange }>

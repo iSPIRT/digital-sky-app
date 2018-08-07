@@ -63,7 +63,7 @@ class UINApplicationPage extends React.Component {
 
     render() {
 
-        const { saving, saved, errors, applicationForm} = this.props;
+        const { saving, saved, errors, applicationForm, droneTypes} = this.props;
         const { nationalityOptions, modeOfAcquisitionOptions } = this.state;
 
         const {currentStep} = this.state;
@@ -95,6 +95,7 @@ class UINApplicationPage extends React.Component {
                                     previousStep={this.previousStep}
                                     step = { currentStep }
                                     downloadDocument= { this.downloadDocument } 
+                                    droneTypes = { droneTypes }
                                 />
                             );
                         case 3:
@@ -118,11 +119,13 @@ class UINApplicationPage extends React.Component {
 
 function mapStateToProps(state) {
     const { saving, saved, errors, applicationForm } = state.uinApplications;
+    const { droneTypes } = state.metaData;
     return {
        saving,
        saved,
        errors,
-       applicationForm
+       applicationForm,
+       droneTypes
     };
 }
 

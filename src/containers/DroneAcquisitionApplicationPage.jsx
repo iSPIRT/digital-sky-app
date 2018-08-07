@@ -1,4 +1,5 @@
 import React from 'react';
+
 import queryString from 'query-string'
 
 import DroneAcquisitionApplicationStep1 from '../components/DroneAcquisitionApplicationStep1';
@@ -6,8 +7,9 @@ import DroneAcquisitionApplicationStep2 from '../components/DroneAcquisitionAppl
 import DroneAcquisitionApplicationStep3 from '../components/DroneAcquisitionApplicationStep3';
 import HeaderApplicationForm from '../components/HeaderApplicationForm';
 import { downloadFile } from '../actions/downloadFileActions';
+import { loadMetaDataAction } from '../actions/metaDataActions';
 
-class DroneAcquisitionApplicationPage extends React.Component {
+export default class DroneAcquisitionApplicationPage extends React.Component {
    
     constructor(props, applicationFormLoadedAction,loadApplicationAction ) {
         super(props);
@@ -24,6 +26,7 @@ class DroneAcquisitionApplicationPage extends React.Component {
             formErrors:[],
             currentStep: 1,
         }
+        this.props.dispatch(loadMetaDataAction());
         this.props.dispatch(applicationFormLoadedAction());
         const queryParams = queryString.parse(this.props.location.search)
         const applicationId = queryParams.id
@@ -60,7 +63,7 @@ class DroneAcquisitionApplicationPage extends React.Component {
     }
 
     render() {
-        const { saving, saved, errors, currentApplicationForm} = this.props;
+        const { saving, saved, errors, currentApplicationForm, droneTypes} = this.props;
         const { currentStep } = this.state;
 
         return (
@@ -78,6 +81,7 @@ class DroneAcquisitionApplicationPage extends React.Component {
                                     createApplication={ this.createApplication } updateApplication={ this.updateApplication }
                                     nextStep={ this.nextStep }
                                     step = { currentStep }
+                                    droneTypes = { droneTypes }
                                 />
                             );
                         case 2:
@@ -114,4 +118,4 @@ class DroneAcquisitionApplicationPage extends React.Component {
     }
 }
 
-export default DroneAcquisitionApplicationPage;
+
