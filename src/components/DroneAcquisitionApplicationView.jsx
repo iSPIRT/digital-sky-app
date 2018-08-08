@@ -22,34 +22,14 @@ const DroneAcquisitionApplicationView = (props) => {
                     </p>) : <p> </p>
                     }
             </div>
-            {/* <div className="question">
+            <div className="question">
                 <h6>Nationality:</h6>
                 <p>{applicationForm.applicantNationality}</p>  
-            </div> */}
-            <div className="question">
-                <h6>Category:</h6>
-                <p>{applicationForm.applicantCategory}</p>  
             </div>
             <div className="question">
-                <h6>Name of Manufacturer:</h6>
-                <p>{applicationForm.manufacturer}</p> 
+                <h6>Drone Model:</h6>
+                <p>{applicationForm.modelName}</p>  
             </div>
-            {/* <div className="question">
-                <h6>Address of Manufacturer:</h6>
-                { applicationForm.manufacturerAddress ?
-                    (<p>{ applicationForm.manufacturerAddress.lineOne } <br/>
-                    { applicationForm.manufacturerAddress.lineTwo } <br/>
-                    { applicationForm.manufacturerAddress.city } <br/>
-                    { applicationForm.manufacturerAddress.state }   <br/>
-                    { applicationForm.manufacturerAddress.pincode } <br/>
-                    { applicationForm.manufacturerAddress.country }<br/>
-                    </p>) : <p> </p>
-                }
-            </div> */}
-            <div className="question">
-                <h6>Nationality of Manufacturer:</h6>
-                <p>{ applicationForm.manufacturerNationality }</p> 
-            </div >
             <div className="question">
                 <h6>Model No:</h6>
                 <p>{ applicationForm.modelNo }</p>
@@ -62,6 +42,34 @@ const DroneAcquisitionApplicationView = (props) => {
                 <h6>Date of Manufacture:</h6>
                 <p>{ applicationForm.dateOfManufacture }</p>
             </div>
+            <div className="question">
+                <h6>Count of Drones:</h6>
+                <p>{ applicationForm.noOfDrones }</p>
+            </div>
+            {/* <div className="question">
+                <h6>Category:</h6>
+                <p>{applicationForm.applicantCategory}</p>  
+            </div> */}
+            <div className="question">
+                <h6>Name of Manufacturer:</h6>
+                <p>{applicationForm.manufacturer}</p> 
+            </div>
+            <div className="question">
+                <h6>Address of Manufacturer:</h6>
+                { applicationForm.manufacturerAddress ?
+                    (<p>{ applicationForm.manufacturerAddress.lineOne } <br/>
+                    { applicationForm.manufacturerAddress.lineTwo } <br/>
+                    { applicationForm.manufacturerAddress.city } <br/>
+                    { applicationForm.manufacturerAddress.state }   <br/>
+                    { applicationForm.manufacturerAddress.pincode } <br/>
+                    { applicationForm.manufacturerAddress.country }<br/>
+                    </p>) : <p> </p>
+                }
+            </div>
+            <div className="question">
+                <h6>Nationality of Manufacturer:</h6>
+                <p>{ applicationForm.manufacturerNationality }</p> 
+            </div >
             {/* <div className="question">
                 <h6>Year of Manufacture:</h6>
                 <p>{ applicationForm.yearOfManufacture }</p>
@@ -72,7 +80,7 @@ const DroneAcquisitionApplicationView = (props) => {
             </div>
             <div className="question">
                 <h6>Is New:</h6>
-                <p>{ applicationForm.isNew }</p>
+                <p>{ applicationForm.isNew ? "Yes" : "No" }</p>
             </div>
             <div className="question">
                 <h6>Maximum take-off weight:</h6>
@@ -83,8 +91,8 @@ const DroneAcquisitionApplicationView = (props) => {
                 <p>{ applicationForm.maxHeightAttainable }</p>
             </div>
             <div className="question">
-                <h6>Payload DroneDetails:</h6>
-                <p>{ applicationForm.payloadDetails }</p>
+                <h6>Compatible Payload:</h6>
+                <p>{ applicationForm.compatiblePayload }</p>
             </div>
             <div className="question">
                 <h6>{ type === "importDrone" ? "Mode of import" : "Mode ofAcquisition" }</h6>

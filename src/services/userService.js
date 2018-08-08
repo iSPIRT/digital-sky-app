@@ -1,7 +1,6 @@
 import { INDIVIDUAL_OPERATOR_TYPE } from "../constants/operatorType";
 
-import applicationProperties from '../helpers/applicationPropertiesHelper'
-
+import applicationProperties from "../helpers/applicationPropertiesHelper";
 
 export const userService = {
   login,
@@ -27,9 +26,7 @@ function register(user) {
     body: JSON.stringify(user)
   };
 
-  return fetch(apiRoot+"/user", requestOptions).then(
-    handleResponse
-  );
+  return fetch(apiRoot + "/user", requestOptions).then(handleResponse);
 }
 
 function login(credentials) {
@@ -40,7 +37,7 @@ function login(credentials) {
     body: JSON.stringify(credentials)
   };
 
-  return fetch(apiRoot+"/auth/token", requestOptions)
+  return fetch(apiRoot + "/auth/token", requestOptions)
     .then(handleResponse)
     .then(token => {
       if (token.accessToken) {
@@ -76,10 +73,9 @@ function sendResetPasswordLink(email) {
     body: JSON.stringify(email)
   };
 
-  return fetch(
-    apiRoot+"/user/resetPasswordLink",
-    requestOptions
-  ).then(handleResponse);
+  return fetch(apiRoot + "/user/resetPasswordLink", requestOptions).then(
+    handleResponse
+  );
 }
 
 function resetPassword(payload) {
@@ -90,10 +86,9 @@ function resetPassword(payload) {
     body: JSON.stringify(payload)
   };
 
-  return fetch(
-    apiRoot+"/user/resetPassword",
-    requestOptions
-  ).then(handleResponse);
+  return fetch(apiRoot + "/user/resetPassword", requestOptions).then(
+    handleResponse
+  );
 }
 
 function verifyAccount(token) {
@@ -104,10 +99,7 @@ function verifyAccount(token) {
     body: JSON.stringify(token)
   };
 
-  return fetch(
-    apiRoot+"/user/verify",
-    requestOptions
-  ).then(handleResponse);
+  return fetch(apiRoot + "/user/verify", requestOptions).then(handleResponse);
 }
 
 function createPilotProfile(pilotProfileFormData) {
@@ -119,7 +111,7 @@ function createPilotProfile(pilotProfileFormData) {
     body: pilotProfileFormData
   };
 
-  return fetch(apiRoot+"/pilot", requestOptions)
+  return fetch(apiRoot + "/pilot", requestOptions)
     .then(handleResponse)
     .then(response => {
       if (response.id) {
@@ -137,10 +129,9 @@ function updatePilotProfile(pilotProfileId, pilotProfileFormData) {
     headers: { Authorization: authToken },
     body: pilotProfileFormData
   };
-  return fetch(
-    apiRoot+"/pilot/" + pilotProfileId,
-    requestOptions
-  ).then(handleResponse);
+  return fetch(apiRoot + "/pilot/" + pilotProfileId, requestOptions).then(
+    handleResponse
+  );
 }
 
 function loadPilotProfile(pilotProfileId) {
@@ -151,10 +142,9 @@ function loadPilotProfile(pilotProfileId) {
     headers: { "Content-Type": "application/json", Authorization: authToken }
   };
 
-  return fetch(
-    apiRoot+"/pilot/" + pilotProfileId,
-    requestOptions
-  ).then(handleResponse);
+  return fetch(apiRoot + "/pilot/" + pilotProfileId, requestOptions).then(
+    handleResponse
+  );
 }
 
 function createOperatorProfile(profile_type, operatorProfile) {
@@ -169,10 +159,7 @@ function createOperatorProfile(profile_type, operatorProfile) {
   const profileRelativePath =
     profile_type === INDIVIDUAL_OPERATOR_TYPE ? "operator" : "orgOperator";
 
-  return fetch(
-    apiRoot+"/" + profileRelativePath,
-    requestOptions
-  )
+  return fetch(apiRoot + "/" + profileRelativePath, requestOptions)
     .then(handleResponse)
     .then(response => {
       if (response.id) {
@@ -202,10 +189,7 @@ function updateOperatorProfile(
     profile_type === INDIVIDUAL_OPERATOR_TYPE ? "operator" : "orgOperator";
 
   return fetch(
-    apiRoot+"/" +
-      profileRelativePath +
-      "/" +
-      operatorProfileId,
+    apiRoot + "/" + profileRelativePath + "/" + operatorProfileId,
     requestOptions
   ).then(handleResponse);
 }
@@ -222,10 +206,7 @@ function loadOperatorProfile(profile_type, operatorProfileId) {
     profile_type === INDIVIDUAL_OPERATOR_TYPE ? "operator" : "orgOperator";
 
   return fetch(
-    apiRoot+"/" +
-      profileRelativePath +
-      "/" +
-      operatorProfileId,
+    apiRoot + "/" + profileRelativePath + "/" + operatorProfileId,
     requestOptions
   ).then(handleResponse);
 }
@@ -238,10 +219,9 @@ function loadApplications() {
     headers: { "Content-Type": "application/json", Authorization: authToken }
   };
 
-  return fetch(
-    apiRoot+"/user/applications",
-    requestOptions
-  ).then(handleResponse);
+  return fetch(apiRoot + "/user/applications", requestOptions).then(
+    handleResponse
+  );
 }
 
 function handleResponse(response) {

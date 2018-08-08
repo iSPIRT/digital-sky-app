@@ -87,8 +87,9 @@ class UINApplicationStep2 extends React.Component {
 
     render() {
     
-        const { nationalityOptions, saving, previousStep, step, applicationForm} = this.props
+        const { nationalityOptions, saving, previousStep, step, applicationForm, droneTypes} = this.props
         const { opManualDoc, maintenanceGuidelinesDoc } = this.state;
+        const isReadOnly = true;
         return (
             <div className="page-form">
                 {/* <FormErrors errors = {errors}/>
@@ -97,7 +98,7 @@ class UINApplicationStep2 extends React.Component {
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
                             <div className="large-12 cell">
-                                <DroneSpec name="droneSpec" nationalityOptions={ nationalityOptions } applicationForm = { applicationForm } onChange= { this.handleChange }/>
+                                <DroneSpec name="droneSpec" nationalityOptions={ nationalityOptions } applicationForm = { applicationForm } onChange= { this.handleChange } droneTypes = { droneTypes } isReadOnly = { isReadOnly }/>
                             </div>
                             {/* <div className="large-12 cell">
                                 <label> Select applicable

@@ -31,7 +31,7 @@ export const loadApplicationsAction = () => {
   }
 };
 
-export const verifyAccountAction = (token) => {
+export const verifyAccountAction = token => {
   return dispatch => {
     userService.verifyAccount(token).then(
       data => {
@@ -44,7 +44,7 @@ export const verifyAccountAction = (token) => {
   };
 
   function success() {
-    return { type: VERIFY_ACCOUNT_SUCCESS};
+    return { type: VERIFY_ACCOUNT_SUCCESS };
   }
   function failure(errors) {
     return { type: VERIFY_ACCOUNT_FAILURE, errors };

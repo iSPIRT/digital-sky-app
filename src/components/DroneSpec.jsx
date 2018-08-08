@@ -18,13 +18,13 @@ class DroneSpec extends React.Component {
         let rpaSelectCategoryOptions = rpaCategoryOptions.map(option => {
             return (<option value={ option } key={ option }> { option } </option>)
         });
-        const  { nationalityOptions, applicationForm } = this.props;
+        const  { nationalityOptions, applicationForm, droneTypes, isReadOnly } = this.props;
     
         return (
             <div>
-                <DroneDetails nationalityOptions={ nationalityOptions } details = { applicationForm } onChange= { this.handleChange }/>
+                <DroneDetails nationalityOptions={ nationalityOptions } application = { applicationForm } onChange= { this.handleChange } droneTypes = { droneTypes } isReadOnly = { isReadOnly }/>
                 <div className="large-12 cell">
-                    <label>Category of RPA
+                    <label>Drone Category
                         <select name="droneCategoryType" value={ applicationForm.droneCategoryType } onChange={ this.handleChange } >
                             { rpaSelectCategoryOptions }
                         </select>
@@ -32,7 +32,7 @@ class DroneSpec extends React.Component {
                 </div>
                 <div className="large-12 cell">
                     <label>Place & region of operation as per AAI FIR
-                        <input type="text" name="regionOfOperation" placeholder="Region of operation" value= { applicationForm.regionOfOperation } onChange={ this.handleChange }/>
+                        <input type="text" name="regionOfOperation" placeholder="Region of operation" value= { applicationForm.regionOfOperation } onChange={ this.handleChange } readOnly = { true } />
                     </label>
                 </div>
                 <div className="large-12 cell">
