@@ -12,8 +12,6 @@ ENV NPM_CONFIG_PREFIX=/node/.npm-global
 
 RUN npm install -g yarn
 
-COPY entrypoint.sh /entrypoint.sh
+WORKDIR /app
 
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["sh","-c","yarn && yarn start"]

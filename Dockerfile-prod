@@ -1,0 +1,35 @@
+FROM node:8.11.2 as build-deps
+
+RUN apt-get update && apt-get install -y vim nginx openssl gettext
+
+RUN mkdir -p /node/.npm-global
+
+ENV PATH=/node/.npm-global/bin:$PATH
+
+ENV NPM_CONFIG_PREFIX=/node/.npm-global
+
+RUN npm install -g yarn
+
+COPY package.json yarn.lock /app/
+
+WORKDIR /app
+
+RUN yarn
+
+COPY public/ /app/public/
+
+COPY src/ /app/src/
+
+COPY add_self_signed_certificate.sh /app/
+
+RUN chmod +x /app/add_self_signed_certificate.sh
+
+COPY entrypoint.sh /app/
+
+RUN chmod +x /app/entrypoint.sh
+
+COPY nginx.conf.template /app/
+
+EXPOSE 8000
+
+ENTRYPOINT ["/app/entrypoint.sh"]
