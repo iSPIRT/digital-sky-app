@@ -1,6 +1,6 @@
 import React from 'react';
 import FooterApplicationForm from './FooterApplicationForm';
-import DroneSpec from './DroneSpec';
+import DroneSpecForm from './DroneSpecForm';
 
 class UINApplicationStep2 extends React.Component {
 
@@ -98,7 +98,7 @@ class UINApplicationStep2 extends React.Component {
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
                             <div className="large-12 cell">
-                                <DroneSpec name="droneSpec" nationalityOptions={ nationalityOptions } applicationForm = { applicationForm } onChange= { this.handleChange } droneTypes = { droneTypes } isReadOnly = { isReadOnly }/>
+                                <DroneSpecForm name="droneSpec" nationalityOptions={ nationalityOptions } applicationForm = { applicationForm } onChange= { this.handleChange } droneTypes = { droneTypes } isReadOnly = { isReadOnly }/>
                             </div>
                             {/* <div className="large-12 cell">
                                 <label> Select applicable

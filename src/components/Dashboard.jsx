@@ -5,9 +5,20 @@ import { Link } from 'react-router-dom'
 import FormErrors from '../components/FormErrors';
 
 import DashboardApplicationView from './DashboardApplicationView';
+import DashBoardOperatorDroneView from './DashboardOperatorDroneView';
 
 class Dashboard extends React.Component {
-  render() {
+  
+    constructor(props) {
+        super(props);
+        this.droneSelected = this.droneSelected.bind(this);
+    }
+
+    droneSelected(operatorDrone) {
+        
+    }
+
+    render() {
 
     const pilotProfileId = localStorage.getItem('pilotProfileId');
     const individualOperatorProfileId = localStorage.getItem('individualOperatorProfileId');
@@ -15,7 +26,8 @@ class Dashboard extends React.Component {
 
     const hasOperatorProfile = (individualOperatorProfileId > 0) || (organizationOperatorProfileId > 0)
     const hasPilotProfile = ( pilotProfileId > 0)
-    const { errors, applications } = this.props;
+    const { errors, applications, operatorDrones } = this.props;
+    
 
     return (
             <div>
@@ -76,9 +88,24 @@ class Dashboard extends React.Component {
                         </div>
                     </section>
                 </div>
+                {  hasOperatorProfile &&
+                    <div className="page-dashboard">
+                        <section id="my-drones">
+                            <div className="grid-container">
+                                <div className="grid-x grid-padding-x">
+                                    <div className="large-12 cell">
+                                        <h3>My Drones</h3>
+                                        <FormErrors errors = {errors}/>
+                                        <DashBoardOperatorDroneView operatorDrones={operatorDrones} droneSelected={this.droneSelected}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                }
             </div>
     );
-  }
+  } 
 }
 
 export default Dashboard;
