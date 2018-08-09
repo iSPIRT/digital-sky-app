@@ -21,7 +21,7 @@
     "redux-thunk": "^2.2.0",
     "redux-logger": "^3.0.6",
     "sanitize.css": "^5.0.0",
-    "foundation-sites": "^6.1.2",
+    "foundation-sites": "^v6.5.0-rc.1",
     "jquery": "^3.2.1",
     "what-input": "^4.2.0",
     "js-file-download": "^0.4.1",

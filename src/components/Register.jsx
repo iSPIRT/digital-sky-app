@@ -9,6 +9,8 @@ import FieldError from '../components/FieldError';
 
 import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 
+import applicationProperties from '../helpers/applicationPropertiesHelper'
+
 class Register extends React.Component {
 
     constructor(props) {
@@ -68,6 +70,7 @@ class Register extends React.Component {
     render() {
         const { registering, errors} = this.props;
         const { formErrors } = this.state;
+        const reCaptchaSiteKey = applicationProperties().reCaptchaSiteKey;
         return (
             <div>
                 <div className="page-header">
@@ -113,7 +116,7 @@ class Register extends React.Component {
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
-                                    <ReCAPTCHA ref="recaptcha" sitekey="6LeCu2gUAAAAAI1XNGYsYNNWnYTxCD_zPFUqJPMm" onChange={this.captchaVerified}/>
+                                    <ReCAPTCHA ref="recaptcha" sitekey={reCaptchaSiteKey} onChange={this.captchaVerified}/>
                                     <br/><br/>
                                 </div>
                                 <div className="large-6 cell">
