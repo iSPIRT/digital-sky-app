@@ -1,5 +1,5 @@
 import React from 'react';
-import DroneDetails from './DroneDetails';
+import DroneDetailsForm from './DroneDetailsForm';
 import FooterApplicationForm from './FooterApplicationForm';
 //import FormErrors from './FormErrors';
 
@@ -131,7 +131,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                     <input type="text" name="applicant" placeholder="Full Name" defaultValue= { applicationForm.applicant } onChange= { this.handleChange }/>
                                 </label>
                             </div>
-                            <div className="large-12 cell">
+                            {/* <div className="large-12 cell">
                                 <label>Address of Applicant
                                     <input type="text" name="applicantAddress.lineOne" ref="applicantAddress.lineOne"  placeholder="Address Line1" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.lineOne } onChange= { this.handleChange }/>
                                     <input type="text" name="applicantAddress.lineTwo" ref="applicantAddress.lineTwo" placeholder=" Address Line2" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.lineTwo } onChange= { this.handleChange }/>
@@ -140,7 +140,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                     <input type="text" name="applicantAddress.country" ref="applicantAddress.country" placeholder="Country" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.country } onChange= { this.handleChange } />
                                     <input type="text" name="applicantAddress.pincode" ref="applicantAddress.pincode" placeholder="Pincode" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.pincode } onChange= { this.handleChange } />
                                 </label>
-                            </div>
+                            </div> */}
                             <div className="large-12 cell">
                                 <label>Nationality of Applicant
                                     <select name="applicantNationality" value={ applicationForm.applicantNationality } onChange={ this.handleChange } >
@@ -155,11 +155,11 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                 </label>
                             </div> */}
                             <div className="large-12 cell">
-                                <DroneDetails name="droneDetails" application = { applicationForm } nationalityOptions = { this.props.nationalityOptions } updateDroneDetails= { this.updateDroneDetails } isReadOnly = { isReadOnly } droneTypes = { droneTypes }/>
+                                <DroneDetailsForm name="droneDetails" application = { applicationForm } nationalityOptions = { this.props.nationalityOptions } updateDroneDetails= { this.updateDroneDetails } isReadOnly = { isReadOnly } droneTypes = { droneTypes }/>
                             </div>
                             <div className="large-12 cell">
-                                <label>Nationality of Applicant
-                                    <input type="number" name="noOfDrones" defaultValue= { applicationForm && applicationForm.noOfDrones } onChange = { this.handleChange } placeholder="Drone Count"/>
+                                <label>No of Drones
+                                    <input type="number" name="noOfDrones" defaultValue= { (applicationForm && applicationForm.noOfDrones) || "1" } onChange = { this.handleChange } placeholder="Drone Count" min="1"/>
                                 </label>
                             </div>
                         </div>

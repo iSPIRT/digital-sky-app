@@ -1,7 +1,7 @@
 import React from 'react';
-import DroneDetails from './DroneDetails';
+import DroneDetailsForm from './DroneDetailsForm';
 
-class DroneSpec extends React.Component {
+class DroneSpecForm extends React.Component {
     
     constructor() {
         super();
@@ -22,7 +22,7 @@ class DroneSpec extends React.Component {
     
         return (
             <div>
-                <DroneDetails nationalityOptions={ nationalityOptions } application = { applicationForm } onChange= { this.handleChange } droneTypes = { droneTypes } isReadOnly = { isReadOnly }/>
+                <DroneDetailsForm nationalityOptions={ nationalityOptions } application = { applicationForm } onChange= { this.handleChange } droneTypes = { droneTypes } isReadOnly = { isReadOnly }/>
                 <div className="large-12 cell">
                     <label>Drone Category
                         <select name="droneCategoryType" value={ applicationForm.droneCategoryType } onChange={ this.handleChange } >
@@ -105,4 +105,4 @@ class DroneSpec extends React.Component {
     }
 }
 
-export default DroneSpec;
+export default DroneSpecForm;

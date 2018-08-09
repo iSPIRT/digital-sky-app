@@ -113,7 +113,7 @@ class Register extends React.Component {
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
-                                    <ReCAPTCHA ref="recaptcha" sitekey="6LdKiWgUAAAAAGxALniEO7b9FfmLBKi6O4bPrZLj" onChange={this.captchaVerified}/>
+                                    <ReCAPTCHA ref="recaptcha" sitekey="6LeCu2gUAAAAAI1XNGYsYNNWnYTxCD_zPFUqJPMm" onChange={this.captchaVerified}/>
                                     <br/><br/>
                                 </div>
                                 <div className="large-6 cell">

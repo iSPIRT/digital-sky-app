@@ -1,6 +1,6 @@
 import React from 'react';
 
-class DroneDetails extends React.Component {
+class DroneDetailsForm extends React.Component {
   
     constructor(props) {
         super(props);
@@ -46,7 +46,7 @@ class DroneDetails extends React.Component {
             return (<option value={ wingType } key={ wingType }> { wingType } </option>)
         });
 
-        let droneTypeOptions = droneTypes.map(droneType => { 
+        let droneTypeOptions = droneTypes.map(droneType => {   
             return (<option value={ droneType.id } key={ droneType.id }> { droneType.modelName } </option>)
         });
         
@@ -74,7 +74,7 @@ class DroneDetails extends React.Component {
                         <input type="text" name="manufacturer"  value={ selectedDroneType && selectedDroneType.manufacturer } onChange = { this.handleChange } readOnly = { isReadOnly }/>
                     </label>
                 </div>
-               {/* <div className="large-12 cell">
+               <div className="large-12 cell">
                     <label>Address of Manufacturer
                         <input type="text" name="manufacturerAddress.lineOne" placeholder="Address line 1" defaultValue ={ selectedDroneType && selectedDroneType.manufacturerAddress.lineOne } onChange = { this.handleChange } readOnly = { isReadOnly }/>
                         <input type="text" name="manufacturerAddress.lineTwo" placeholder="Address line 2" defaultValue={ selectedDroneType && selectedDroneType.manufacturerAddress.lineTwo } onChange = { this.handleChange } readOnly = { isReadOnly }/>
@@ -83,7 +83,7 @@ class DroneDetails extends React.Component {
                         <input type="text" name="manufacturerAddress.country"  placeholder="Country" defaultValue={ selectedDroneType && selectedDroneType.manufacturerAddress.country } onChange = { this.handleChange } readOnly = { isReadOnly }/>
                         <input type="text" name="manufacturerAddress.pincode" placeholder="Pincode" defaultValue={ selectedDroneType && selectedDroneType.manufacturerAddress.pincode } onChange = { this.handleChange } readOnly = { isReadOnly }/>
                     </label>
-                </div>  */}
+                </div> 
                 <div className="large-12 cell">
                     <label>Nationality of Manufacturer
                         <select name="manufacturerNationality"  value= { selectedDroneType && selectedDroneType.manufacturerNationality } onChange = { this.handleChange }  disabled = { isReadOnly }>
@@ -140,4 +140,4 @@ class DroneDetails extends React.Component {
     }
 }
 
-export default DroneDetails;
+export default DroneDetailsForm;

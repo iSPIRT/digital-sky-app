@@ -21,6 +21,7 @@ import OrganizationOperatorProfilePage from './OrganizationOperatorProfilePage';
 import UAOPApplicationPage from './UAOPApplicationPage';
 import UINApplicationPage from './UINApplicationPage';
 import VerifyAccountPage from './VerifyAccountPage';
+import OperatorDroneProfilePage from './OperatorDroneProfilePage';
 
 import Logout from './Logout';
 import Header from '../components/Header';
@@ -79,6 +80,7 @@ class App extends React.Component {
                     <AuthenticatedRoute exact path="/localDroneAcquisitionApplication" component={LocalDroneAcquisitionApplicationPage} loggedIn={loggedIn}/>
                     <AuthenticatedRoute exact path="/importDroneApplication" component={ImportDroneApplicationPage} loggedIn={loggedIn}/>
                     <AuthenticatedRoute exact path="/uinApplication" component={UINApplicationPage} loggedIn={loggedIn}/>
+                    <AuthenticatedRoute exact path="/operatorDrone" component={OperatorDroneProfilePage} loggedIn={loggedIn}/>
                     
                     <AdminAuthenticatedRoute path="/admin/dashboard" loggedIn={loggedIn} user={user} component={AdminDashboardPage} />
                     <AdminAuthenticatedRoute path="/admin/application" loggedIn={loggedIn} user={user} component={AdminApplicationViewPage} />

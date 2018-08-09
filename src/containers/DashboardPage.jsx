@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { history } from '../store/configureStore';
 
-import { loadApplicationsAction } from '../actions/userActions';
+import { loadApplicationsAction, loadDronesAction } from '../actions/userActions';
 
 
 import Dashboard from '../components/Dashboard';
@@ -16,25 +16,27 @@ class DashboardPage extends React.Component {
         console.log("");
         if( user && user.id > 0 && !user.isAdmin){
             this.props.dispatch(loadApplicationsAction());
+            this.props.dispatch(loadDronesAction());
         }
     }
 
     render() {
-        const { user, applications, errors} = this.props;
+        const { user, applications, errors, drones} = this.props;
         if(user.isAdmin){
             history.push('/admin/dashboard');
         }
-        return <Dashboard applications={applications} errors={errors}/>
+        return <Dashboard applications={applications} operatorDrones={drones} errors={errors}/>
     }
 }
 
 function mapStateToProps(state) {
      const { user} = state.authentication;
-     const {applications, errors } = state.userApplications;
+     const {applications, errors, drones } = state.userApplications;
      return {
         user,
         applications,
-        errors
+        errors,
+        drones
      };
 }
 
