@@ -13,8 +13,8 @@ class DroneDetailsForm extends React.Component {
     }
     
     onChangeOfDroneType(event) {
-        if(event.target.value !=-1) {
-            var newlySelectedDroneTypes = this.props.droneTypes.filter( drone => event.target.value == drone.id );
+        if(event.target.value !==-1) {
+            var newlySelectedDroneTypes = this.props.droneTypes.filter( drone => event.target.value === drone.id );
             this.setState({selectedDroneType: newlySelectedDroneTypes[0]});
             this.updateDroneDetails(newlySelectedDroneTypes[0]);
         }
@@ -55,7 +55,7 @@ class DroneDetailsForm extends React.Component {
             selectedDroneType = this.state.selectedDroneType;
         }
         else if(application && application.droneTypeId ){   
-            var selectedDroneTypes=  droneTypes.filter( droneType => droneType.id == application.droneTypeId );
+            var selectedDroneTypes=  droneTypes.filter( droneType => droneType.id === application.droneTypeId );
             selectedDroneType = selectedDroneTypes[0];
         }
         

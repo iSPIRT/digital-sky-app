@@ -22,6 +22,8 @@ import UAOPApplicationPage from './UAOPApplicationPage';
 import UINApplicationPage from './UINApplicationPage';
 import VerifyAccountPage from './VerifyAccountPage';
 import OperatorDroneProfilePage from './OperatorDroneProfilePage';
+import AdminBlogPage from './AdminBlogPage';
+import AdminBlogListPage from './AdminBlogListPage';
 
 import Logout from './Logout';
 import Header from '../components/Header';
@@ -84,6 +86,8 @@ class App extends React.Component {
                     
                     <AdminAuthenticatedRoute path="/admin/dashboard" loggedIn={loggedIn} user={user} component={AdminDashboardPage} />
                     <AdminAuthenticatedRoute path="/admin/application" loggedIn={loggedIn} user={user} component={AdminApplicationViewPage} />
+                    <AdminAuthenticatedRoute path="/admin/blog" loggedIn={loggedIn} user={user} component={AdminBlogPage} />
+                    <AdminAuthenticatedRoute path="/admin/blogList" loggedIn={loggedIn} user={user} component={AdminBlogListPage} />
 
                     <Route exact path="/" component={Home} />
                     <Route path="/login" component={LoginPage} />
