@@ -14,6 +14,7 @@ import { adminApplications } from "./adminApplicationsReducer";
 import { userApplications } from "./userApplicationsReducer";
 import { metaData } from "./metaDataReducer";
 import { accountVerification } from "./accountVerificationReducer";
+import { adminBlog } from "./adminBlogReducer";
 
 const rootReducer = combineReducers({
   authentication,
@@ -29,7 +30,8 @@ const rootReducer = combineReducers({
   adminApplications,
   userApplications,
   metaData,
-  accountVerification
+  accountVerification,
+  adminBlog
 });
 
 export default rootReducer;
