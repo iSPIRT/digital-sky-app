@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { connect } from 'react-redux';
 
 import imgLocation from '../img/temp/drone2.jpg';
@@ -68,20 +69,18 @@ class OperatorDroneProfilePage extends React.Component {
                     </div>
                 </div>
                 <div className="view-application-footer">
-                <div className="grid-container">
-                    <div className="grid-x grid-padding-x">
-                        <div className="large-12 cell">
-                            <a href= {this.getRedirectLink()} className="button button-accept">{operatorDroneProfile.operatorDroneStatus == "UIN_NOT_APPLIED" || operatorDroneProfile.operatorDroneStatus == "UIN_DRAFT" ? "Apply for UIN" : "View UIN"}</a>
+                    <div className="grid-container">
+                        <div className="grid-x grid-padding-x">
+                            <div className="large-12 cell">
+                                <a href= {this.getRedirectLink()} className="button button-accept">{operatorDroneProfile.operatorDroneStatus == "UIN_NOT_APPLIED" || operatorDroneProfile.operatorDroneStatus == "UIN_DRAFT" ? "Apply for UIN" : "View UIN"}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
-            
         )
     }
 }
-
 
 function mapStateToProps(state) {
     const { errors, drones } = state.userApplications;
@@ -94,3 +93,4 @@ function mapStateToProps(state) {
 export default connect(
  mapStateToProps
 )(OperatorDroneProfilePage)
+

@@ -110,6 +110,7 @@ class UINApplicationStep2 extends React.Component {
                                              onChange= { this.handleChange }  
                                              updateDroneDetails= { this.updateDroneDetails } 
                                              droneTypeDisabled = "true" />
+
                             </div>
                             <div className="large-12 cell">
                                 <label>Enter previous UIN, if applicable

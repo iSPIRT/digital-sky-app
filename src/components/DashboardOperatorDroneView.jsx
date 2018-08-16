@@ -24,7 +24,7 @@ class DashBoardOperatorDroneView extends React.Component {
                             <p>{operatorDrone.droneType.modelName}</p>
                         </a>
                     </div>
-    })
+        })
     }
 
     render() {

@@ -1,5 +1,6 @@
 import React from 'react';
 import DroneAcquisitionDroneTypeDetailsForm from './DroneAcquisitionDroneTypeDetailsForm';
+import DroneDetailsForm from './DroneDetailsForm';
 import FooterApplicationForm from './FooterApplicationForm';
 //import FormErrors from './FormErrors';
 
@@ -110,7 +111,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                     <input type="text" name="applicant" placeholder="Full Name" value= { applicationForm.applicant } onChange= { this.handleChange }/>
                                 </label>
                             </div>
-                            <div className="large-12 cell">
+                            {/* <div className="large-12 cell">
                                 <label>Address of Applicant
                                     <input type="text" name="applicantAddress.lineOne" placeholder="Address Line1" value= { applicationForm.applicantAddress && applicationForm.applicantAddress.lineOne } onChange= { this.handleChange }/>
                                     <input type="text" name="applicantAddress.lineTwo" placeholder=" Address Line2" value= { applicationForm.applicantAddress && applicationForm.applicantAddress.lineTwo } onChange= { this.handleChange }/>
@@ -119,7 +120,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                     <input type="text" name="applicantAddress.country" placeholder="Country" value= { applicationForm.applicantAddress && applicationForm.applicantAddress.country } onChange= { this.handleChange } />
                                     <input type="text" name="applicantAddress.pinCode" placeholder="PinCode" value= { applicationForm.applicantAddress && applicationForm.applicantAddress.pinCode } onChange= { this.handleChange } />
                                 </label>
-                            </div>
+                            </div> */}
                             <div className="large-12 cell">
                                 <label>Nationality of Applicant
                                     {/* <select name="applicantNationality" value={ applicationForm.applicantNationality } onChange={ this.handleChange } >
