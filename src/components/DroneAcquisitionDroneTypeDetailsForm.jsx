@@ -41,11 +41,11 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
     render(){
         const wingTypes = ["Fixed", "Rotary"];
       
-        const { nationalityOptions, droneTypes, isReadOnly, application, droneTypeDisabled, selectedDroneTypeId } = this.props;
+        const {  droneTypes, isReadOnly, application, droneTypeDisabled, selectedDroneTypeId } = this.props;
 
-        let nationalitySelectOptions = nationalityOptions.map(nationality => {
-            return (<option value={ nationality } key={ nationality }> { nationality } </option>)
-        });
+        // let nationalitySelectOptions = nationalityOptions.map(nationality => {
+        //     return (<option value={ nationality } key={ nationality }> { nationality } </option>)
+        // });
 
         let wingTypeOptions = wingTypes.map(wingType => {
             return (<option value={ wingType } key={ wingType }> { wingType } </option>)
@@ -55,17 +55,17 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
             return (<option value={ droneType.id } key={ droneType.id }> { droneType.modelName } </option>)
         });
         
-        var selectedDroneType;
+        var selectedDroneTypes, selectedDroneType;
         //selected by user
         if(this.state.selectedDroneType && this.state.selectedDroneType.id) {
             selectedDroneType = this.state.selectedDroneType;
         }// an existing created form
         else if(application && application.droneTypeId){   
-            var selectedDroneTypes=  droneTypes.filter( droneType => droneType.id == application.droneTypeId );
+            selectedDroneTypes=  droneTypes.filter( droneType => droneType.id == application.droneTypeId );
             selectedDroneType = selectedDroneTypes[0];
         } //new UIN form with droneType id coming from operatorDrone
         else if(selectedDroneTypeId) {
-            var selectedDroneTypes =  droneTypes.filter( droneType => droneType.id == selectedDroneTypeId);
+            selectedDroneTypes =  droneTypes.filter( droneType => droneType.id == selectedDroneTypeId);
             selectedDroneType = selectedDroneTypes[0];
         }
         return(

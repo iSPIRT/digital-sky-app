@@ -33,7 +33,7 @@ class DroneProfileForm extends React.Component {
     componentWillReceiveProps(nextProps) {
         if(this.props.selectedDroneTypeId){
             if(nextProps.droneTypes.length > 0){
-                var selectedDroneTypes=  nextProps.droneTypes.filter( droneType => droneType.id === parseInt(this.props.selectedDroneTypeId) );
+                var selectedDroneTypes=  nextProps.droneTypes.filter( droneType => droneType.id === parseInt(this.props.selectedDroneTypeId,15) );
                 this.setState({selectedDroneType: selectedDroneTypes[0]});
             }
         }
@@ -88,7 +88,7 @@ class DroneProfileForm extends React.Component {
 
     render() {
         const { nationalityOptions, saving, droneTypes, selectedDroneTypeId, saved, errors} = this.props
-        const { opManualDoc, maintenanceGuidelinesDoc,selectedDroneType, submitted  } = this.state;
+        const { selectedDroneType, submitted  } = this.state;
  
         const isReadOnly = false;
         return (
