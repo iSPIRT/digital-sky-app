@@ -1,25 +1,24 @@
+
 import React from 'react';
-import { connect } from 'react-redux';
 
 import imgLocation from '../img/temp/drone2.jpg';
 
 import queryString from 'query-string';
-import { userService } from '../services/userService';
 
-class OperatorDroneProfilePage extends React.Component {
+class DroneProfileView extends React.Component {
 
     constructor(props) {
         super(props);
         this.getRedirectLink = this.getRedirectLink.bind(this);
         
         const queryParams = queryString.parse(this.props.location.search);
-        const operatorDroneId = queryParams.id;
-        this.state= {operatorDroneId : operatorDroneId};
+        const droneTypeId = queryParams.id;
+        this.state= {droneTypeId : droneTypeId};
 
-        if(this.props.drones) {
-            var currentDrone = this.props.drones.find(drone => drone.id === operatorDroneId);
-            if(currentDrone) {
-                this.state = {...{operatorDroneProfile: currentDrone}};
+        if(this.props.droneTypes) {
+            var currentDroneType = this.props.droneTypes.find(droneType => droneType.id == droneTypeId);
+            if(currentDroneType) {
+                this.state = {...{droneProfile: currentDroneType}};
             }
         }
     }
@@ -82,15 +81,4 @@ class OperatorDroneProfilePage extends React.Component {
     }
 }
 
-
-function mapStateToProps(state) {
-    const { errors, drones } = state.userApplications;
-    return {
-       errors,
-       drones
-    };
-}
-
-export default connect(
- mapStateToProps
-)(OperatorDroneProfilePage)
+export default DroneProfileView;

@@ -41,7 +41,7 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
 
     updateObjProp(obj, value, propPath) {
         const [head, ...rest] = propPath.split('.');
-
+       
         !rest.length
             ? obj[head] = value
             : this.updateObjProp(obj[head], value, rest.join("."));
@@ -61,7 +61,6 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
             var formData = new FormData();
             formData.append("securityClearanceDoc", this.state.securityClearanceDoc);
             formData.append("droneAcquisitionForm", applicationString) ;
-            console.log(formData);
             this.props.updateApplication(formData, this.props.applicationForm.id )
         }
     }
@@ -71,7 +70,6 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
         const modeOfAcquisitionOptions = this.props.modeOfAcquisitionOptions.map(mode => {
             return (<option value={mode} key={mode}> {mode} </option>);
         });
-
         const { saving, applicationForm, previousStep, step, applicationType} = this.props;
         const { securityClearanceDoc } = this.state;
         const aquisitionDisplay = applicationType === "importDrone" ? "Mode of import" : "Mode of acquisition";
@@ -90,7 +88,7 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
                             </div>
                             <div className="large-12 cell">
                             <label>{ aquisitionDisplay }
-                                    <select name="acquisitionMode" ref="acquisitionMode" value = { applicationForm.acquisitionMode } onChange= { this.handleChange }>
+                                    <select name="acquisitionMode" value = { applicationForm.acquisitionMode } onChange= { this.handleChange }>
                                     { modeOfAcquisitionOptions }
                                     </select>
                             </label>
@@ -99,29 +97,29 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
                                     (<div className="large-12 cell">
                                         <div className="large-12 cell">
                                             <label>Name of Owner
-                                            <input type="text" defaultValue={ applicationForm? applicationForm.owner : undefined }  name="owner" placeholder="Full Name" ref="owner" onChange={this.handleChange}/>
+                                            <input type="text" value={ applicationForm? applicationForm.owner : undefined }  name="owner" placeholder="Full Name" ref="owner" onChange={this.handleChange}/>
                                             </label>
                                         </div>
                                         <div className="large-12 cell">
                                             <label>Address of Owner
-                                                <input type="text" name="ownerAddressLine1" ref="ownerAddressLine1" placeholder="Address Line1" defaultValue={ applicationForm.ownerAddress? applicationForm.ownerAddress.lineOne : undefined} onChange={this.handleChange} />
-                                                <input type="text" name="ownerAddressLine2" ref="ownerAddressLine2" placeholder=" Address Line2" defaultValue={ applicationForm.ownerAddress? applicationForm.ownerAddress.lineTwo : undefined} onChange={this.handleChange} />
-                                                <input type="text" name="ownerAddressCity" ref="ownerAddressCity" placeholder="City" defaultValue={ applicationForm.ownerAddress? applicationForm.ownerAddress.city : undefined} onChange={this.handleChange}/>
-                                                <input type="text" name="ownerAddressState" ref="ownerAddressState" placeholder="State" defaultValue={ applicationForm.ownerAddress? applicationForm.ownerAddress.state : undefined} onChange={this.handleChange} />
-                                                <input type="text" name="ownerAddressCountry" ref="ownerAddressCountry" placeholder="Country" defaultValue={ applicationForm.country? applicationForm.ownerAddress.country : undefined} onChange={this.handleChange} />
-                                                <input type="text" name="ownerAddressPincode" ref="ownerAddressPincode" placeholder="Pincode" defaultValue={ applicationForm.pincode? applicationForm.ownerAddress.pincode : undefined} onChange={this.handleChange} />
+                                                <input type="text" name="ownerAddress.lineOne"  placeholder="Address Line1" value={ applicationForm.ownerAddress? applicationForm.ownerAddress.lineOne : undefined} onChange={this.handleChange} />
+                                                <input type="text" name="ownerAddress.lineTwo" placeholder=" Address Line2" value={ applicationForm.ownerAddress? applicationForm.ownerAddress.lineTwo : undefined} onChange={this.handleChange} />
+                                                <input type="text" name="ownerAddress.city"  placeholder="City" value={ applicationForm.ownerAddress? applicationForm.ownerAddress.city : undefined} onChange={this.handleChange}/>
+                                                <input type="text" name="ownerAddress.state"  placeholder="State" value={ applicationForm.ownerAddress? applicationForm.ownerAddress.state : undefined} onChange={this.handleChange} />
+                                                <input type="text" name="ownerAddress.country"  placeholder="Country" value={ applicationForm.ownerAddress? applicationForm.ownerAddress.country : undefined} onChange={this.handleChange} />
+                                                <input type="text" name="ownerAddress.pinCode"  placeholder="Pincode" value={ applicationForm.ownerAddress? applicationForm.ownerAddress.pinCode : undefined} onChange={this.handleChange} />
                                             </label>
                                         </div>
                                     </div>) : <div></div>
                                 }
                             <div className="large-12 cell">
-                                <label>Purpose of Operation of RPA
-                                    <input type="text" name="purposeOfOperation" defaultValue={ applicationForm? applicationForm.purposeOfOperation : undefined } onChange={this.handleChange}/>
+                                <label>Purpose of Operation
+                                    <input type="text" name="purposeOfOperation" value={ applicationForm? applicationForm.purposeOfOperation : undefined } onChange={this.handleChange}/>
                                 </label>
                             </div>
                             <div className="large-12 cell">
                                 <label>Proposed Base of Operation
-                                    <input type="text" name="proposedBaseOfOperation" defaultValue={ applicationForm? applicationForm.proposedBaseOfOperation : undefined } onChange={this.handleChange}/>
+                                    <input type="text" name="proposedBaseOfOperation" value={ applicationForm? applicationForm.proposedBaseOfOperation : undefined } onChange={this.handleChange}/>
                                 </label>
                             </div>
                             <div className="large-12 cell">

@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import queryString from 'query-string'
+import queryString from 'query-string';
 
 import UINApplicationStep1 from '../components/UINApplicationStep1';
 import UINApplicationStep2 from '../components/UINApplicationStep2';
 import UINApplicationStep3 from '../components/UINApplicationStep3';
 import HeaderApplicationForm from '../components/HeaderApplicationForm';
+import { loadMetaDataAction } from '../actions/metaDataActions';
 
 import { createUINApplicationAction, editUINApplicationAction, applicationFormLoadedAction, loadUINApplicationAction } from '../actions/uinApplicationActions';
 
@@ -26,12 +27,6 @@ class UINApplicationPage extends React.Component {
             formErrors:[],
             currentStep: 1
         }
-        this.props.dispatch(applicationFormLoadedAction());
-        const queryParams = queryString.parse(this.props.location.search)
-        const applicationId = queryParams.id
-        if( applicationId && applicationId !== this.props.applicationForm.id){
-            this.props.dispatch(loadUINApplicationAction(applicationId));
-        }
     }
 
     nextStep(){
@@ -45,6 +40,20 @@ class UINApplicationPage extends React.Component {
     componentWillReceiveProps(nextProps){
         if(nextProps.applicationForm.status && nextProps.applicationForm.status  !== 'DRAFT'){
             this.setState({currentStep: 3});
+        }
+    }
+
+    componentWillMount() {
+        this.props.dispatch(loadMetaDataAction());
+        this.props.dispatch(applicationFormLoadedAction());
+        const queryParams = queryString.parse(this.props.location.search);
+        const applicationId = queryParams.id;
+        this.setState({
+                operatorDroneId: queryParams.operatorDroneId,
+                selectedDroneTypeId: queryParams.selectedDroneTypeId
+            });
+        if( applicationId && applicationId !== this.props.applicationForm.id){
+            this.props.dispatch(loadUINApplicationAction(applicationId));
         }
     }
 
@@ -63,10 +72,9 @@ class UINApplicationPage extends React.Component {
 
     render() {
 
-        const { saving, saved, errors, applicationForm, droneTypes} = this.props;
-        const { nationalityOptions, modeOfAcquisitionOptions } = this.state;
+        const { saving, saved, errors, applicationForm, droneTypes } = this.props;
+        const { nationalityOptions, modeOfAcquisitionOptions, currentStep, selectedDroneTypeId, operatorDroneId } = this.state;
 
-        const {currentStep} = this.state;
         return (
             <div className="page-form">
                 <HeaderApplicationForm headerText="UIN Application" step= { currentStep } applicationStatus = { applicationForm.status } /> 
@@ -80,6 +88,9 @@ class UINApplicationPage extends React.Component {
                                     createApplication={ this.createApplication } updateApplication={ this.updateApplication }
                                     nextStep={ this.nextStep }
                                     step = { currentStep }
+                                    selectedDroneTypeId =  { selectedDroneTypeId }
+                                    droneTypes = { droneTypes }
+                                    operatorDroneId = { operatorDroneId }
                                     downloadDocument= { this.downloadDocument }
                                 />
                             );
@@ -96,6 +107,8 @@ class UINApplicationPage extends React.Component {
                                     step = { currentStep }
                                     downloadDocument= { this.downloadDocument } 
                                     droneTypes = { droneTypes }
+                                    selectedDroneTypeId =  { selectedDroneTypeId }
+                                    operatorDroneId = { operatorDroneId }
                                 />
                             );
                         case 3:

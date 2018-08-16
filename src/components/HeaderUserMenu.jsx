@@ -37,6 +37,7 @@ class HeaderUserMenu extends React.Component {
                         <li><Link to="#">Occurance report</Link></li>
                         <li><Link to="#">Application Status</Link></li>
                         <li><Link to="#">Edit user settings</Link></li>
+                        <li><Link to="/admin/droneType">Edit Drones</Link></li> 
                         <li><Link to="/logout" className="logout">Logout</Link></li>
                     </ul>
                 </div>

@@ -67,8 +67,7 @@ class Dashboard extends React.Component {
                                         <Link to="/profile" className="button">Update my Operator Profile</Link>
                                         <Link to="/localDroneAcquisitionApplication" className="button">Apply here for Local Drone Acquisition</Link>
                                         <Link to="/importDroneApplication" className="button">Apply here to Import Drones</Link>
-                                        <Link to="/uaopApplication" className="button">Apply here to for UAOP Licence</Link>
-                                        <Link to="/uinApplication" className="button">Apply here to for UIN</Link>
+                                        <Link to="/uaopApplication" className="button">Apply here for UAOP Licence</Link>
                                     </div>
                                 }
                             </div>

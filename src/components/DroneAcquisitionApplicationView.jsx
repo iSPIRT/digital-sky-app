@@ -3,7 +3,6 @@ import React from 'react';
 const DroneAcquisitionApplicationView = (props) => {
 
     const { applicationForm, type, downloadDocument} = props;
-
     return(
         <div className="large-12 cell">
             <div className="question">
@@ -95,27 +94,31 @@ const DroneAcquisitionApplicationView = (props) => {
                 <p>{ applicationForm.compatiblePayload }</p>
             </div>
             <div className="question">
-                <h6>{ type === "importDrone" ? "Mode of import" : "Mode ofAcquisition" }</h6>
-                <p>{ applicationForm.acquisitionMode }</p>
+                <h6>{ type === "importDrone" ? "Mode of import:" : "Mode ofAcquisition:" }</h6>
+                <p>{ applicationForm.owner?  "LEASE" : "PURCHASE" }</p>
             </div>
+            { applicationForm.owner  &&
+                <div>
+                    <div className="question">
+                        <h6>Name of Owner:</h6>
+                        <p>{ applicationForm.owner }</p>
+                    </div>
+                    <div className="question">
+                        <h6>Address of Owner:</h6>
+                        { applicationForm.ownerAddress ?
+                            (<p>{ applicationForm.ownerAddress.lineOne } <br/>
+                            { applicationForm.ownerAddress.lineTwo } <br/>
+                            { applicationForm.ownerAddress.city } <br/>
+                            { applicationForm.ownerAddress.state } <br/>   
+                            { applicationForm.ownerAddress.pinCode } <br/>
+                            { applicationForm.ownerAddress.country }
+                            </p>) : <p></p>
+                        }
+                    </div>
+                </div>
+            }
             <div className="question">
-                <h6>Name of Owner:</h6>
-                <p>{ applicationForm.owner }</p>
-            </div>
-            <div className="question">
-                <h6>Address of Owner:</h6>
-                { applicationForm.ownerAddress ?
-                    (<p>{ applicationForm.ownerAddress.lineOne } <br/>
-                    { applicationForm.ownerAddress.lineTwo } <br/>
-                    { applicationForm.ownerAddress.city } <br/>
-                    { applicationForm.ownerAddress.state } <br/>   
-                    { applicationForm.ownerAddress.pincode } <br/>
-                    { applicationForm.ownerAddress.country }
-                    </p>) : <p></p>
-                }
-            </div>
-            <div className="question">
-                <h6>Purpose of Operation of RPA:</h6>
+                <h6>Purpose of Operation:</h6>
                 <p>{ applicationForm.purposeOfOperation }</p>
             </div>
             <div className="question">

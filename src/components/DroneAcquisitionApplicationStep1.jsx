@@ -1,5 +1,5 @@
 import React from 'react';
-import DroneDetailsForm from './DroneDetailsForm';
+import DroneAcquisitionDroneTypeDetailsForm from './DroneAcquisitionDroneTypeDetailsForm';
 import FooterApplicationForm from './FooterApplicationForm';
 //import FormErrors from './FormErrors';
 
@@ -11,28 +11,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
         this.updateDroneDetails =  this.updateDroneDetails.bind(this);
         this.state = {
             submitted: false,
-            formErrors:[],
-            applicationForm: {
-                applicantAddress:
-                    {
-                        lineOne: '',
-                        lineTwo: '',
-                        city: '',
-                        state: '',
-                        country: '',
-                        pinCode: ''
-                    },
-                manufacturerAddress:
-                    {
-                        lineOne: '',
-                        lineTwo: '',
-                        city: '',
-                        state: '',
-                        country: '',
-                        pinCode: ''
-                    }
-                
-            }
+            formErrors:[]
         };
         this.handleChange = this.handleChange.bind(this);
         this.updateObjProp = this.updateObjProp.bind(this);
@@ -45,9 +24,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
         if (submitted && ( !errors || errors.length === 0)  &&  (nextProps.applicationForm.id !== 0)){
             this.props.nextStep();
         }
-        if(!nextProps.applicationForm.empty){
-            this.setState({applicationForm: nextProps.applicationForm});
-        }
+        this.setState({applicationForm: nextProps.applicationForm});
     }
 
     handleChange(event) {
@@ -59,18 +36,17 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
     }
 
     updateDroneDetails(droneType) {
-
         var application = this.state.applicationForm;
 
         application["droneTypeId"] = droneType.id;
         application["manufacturer"] = droneType.manufacturer;
         application["manufacturerAddress"] = {
-            lineOne: droneType.manufacturerAddress.lineOne,
-            lineTwo: droneType.manufacturerAddress.lineTwo,
-            city: droneType.manufacturerAddress.city,
-            state: droneType.manufacturerAddress.state,
-            country: droneType.manufacturerAddress.country,
-            pincode: droneType.manufacturerAddress.pincode
+            lineOne: droneType.manufacturerAddress ? droneType.manufacturerAddress.lineOne : "",
+            lineTwo: droneType.manufacturerAddress ? droneType.manufacturerAddress.lineTwo : "",
+            city: droneType.manufacturerAddress ? droneType.manufacturerAddress.city : "",
+            state: droneType.manufacturerAddress ? droneType.manufacturerAddress.state : "",
+            country: droneType.manufacturerAddress ? droneType.manufacturerAddress.country : "",
+            pinCode: droneType.manufacturerAddress ? droneType.manufacturerAddress.pinCode : ""
         }
         application["manufacturerNationality"] = droneType.manufacturerNationality;
         application["modelName"] = droneType.modelName ;
@@ -83,13 +59,14 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
         application["compatiblePayload"] = droneType.compatiblePayload;
 
         this.setState({applicationForm: application});
+        alert(application["dateOfManufacture"]);
     }
 
     updateObjProp(obj, value, propPath) {
-        const [head, ...rest] = propPath.split('.');
+        var [head, ...rest] = propPath.split('.');
         !rest.length
-            ? obj[head] = value
-            : this.updateObjProp(obj[head], value, rest.join("."));
+        ? obj[head] = value
+        : this.updateObjProp(obj[head], value, rest.join("."));
     }
     
     handleSubmit(event) {
@@ -116,9 +93,11 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
             return (<option value={nationality} key={nationality}> {nationality} </option>);
         });
 
-        const { saving, applicationForm, step, droneTypes} = this.props;
+        const { saving, step, droneTypes} = this.props;
+        const { applicationForm } = this.state;
         const isReadOnly = true;
 
+        if(!applicationForm) return null;
         return (
             <div>
                 {/* <FormErrors errors = {errors}/>
@@ -128,25 +107,26 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                         <div className="grid-x grid-padding-x">
                             <div className="large-12 cell">
                                 <label>Name of Applicant
-                                    <input type="text" name="applicant" placeholder="Full Name" defaultValue= { applicationForm.applicant } onChange= { this.handleChange }/>
+                                    <input type="text" name="applicant" placeholder="Full Name" value= { applicationForm.applicant } onChange= { this.handleChange }/>
                                 </label>
                             </div>
-                            {/* <div className="large-12 cell">
+                            <div className="large-12 cell">
                                 <label>Address of Applicant
-                                    <input type="text" name="applicantAddress.lineOne" ref="applicantAddress.lineOne"  placeholder="Address Line1" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.lineOne } onChange= { this.handleChange }/>
-                                    <input type="text" name="applicantAddress.lineTwo" ref="applicantAddress.lineTwo" placeholder=" Address Line2" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.lineTwo } onChange= { this.handleChange }/>
-                                    <input type="text" name="applicantAddress.city" ref="applicantAddress.city" placeholder="City" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.city } onChange= { this.handleChange }/>
-                                    <input type="text" name="applicantAddress.state" ref="applicantAddress.state" placeholder="State" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.state } onChange= { this.handleChange } />
-                                    <input type="text" name="applicantAddress.country" ref="applicantAddress.country" placeholder="Country" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.country } onChange= { this.handleChange } />
-                                    <input type="text" name="applicantAddress.pincode" ref="applicantAddress.pincode" placeholder="Pincode" defaultValue= { applicationForm.applicantAddress && applicationForm.applicantAddress.pincode } onChange= { this.handleChange } />
+                                    <input type="text" name="applicantAddress.lineOne" placeholder="Address Line1" value= { applicationForm.applicantAddress && applicationForm.applicantAddress.lineOne } onChange= { this.handleChange }/>
+                                    <input type="text" name="applicantAddress.lineTwo" placeholder=" Address Line2" value= { applicationForm.applicantAddress && applicationForm.applicantAddress.lineTwo } onChange= { this.handleChange }/>
+                                    <input type="text" name="applicantAddress.city"  placeholder="City" value= { applicationForm.applicantAddress && applicationForm.applicantAddress.city } onChange= { this.handleChange }/>
+                                    <input type="text" name="applicantAddress.state" placeholder="State" value= { applicationForm.applicantAddress && applicationForm.applicantAddress.state } onChange= { this.handleChange } />
+                                    <input type="text" name="applicantAddress.country" placeholder="Country" value= { applicationForm.applicantAddress && applicationForm.applicantAddress.country } onChange= { this.handleChange } />
+                                    <input type="text" name="applicantAddress.pinCode" placeholder="PinCode" value= { applicationForm.applicantAddress && applicationForm.applicantAddress.pinCode } onChange= { this.handleChange } />
                                 </label>
-                            </div> */}
+                            </div>
                             <div className="large-12 cell">
                                 <label>Nationality of Applicant
-                                    <select name="applicantNationality" value={ applicationForm.applicantNationality } onChange={ this.handleChange } >
+                                    {/* <select name="applicantNationality" value={ applicationForm.applicantNationality } onChange={ this.handleChange } >
                                         { !applicationForm.applicantNationality && <option default key="-1" value="-1">Select</option> }
                                         { nationalityOptions }
-                                    </select>
+                                    </select> */}
+                                    <input type="text" name="applicantNationality"  placeholder="Applicant Nationality" value= { applicationForm.applicantNationality } onChange= { this.handleChange }/>
                                 </label>
                             </div>
                             {/* <div className="large-12 cell">
@@ -155,16 +135,16 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                 </label>
                             </div> */}
                             <div className="large-12 cell">
-                                <DroneDetailsForm name="droneDetails" application = { applicationForm } nationalityOptions = { this.props.nationalityOptions } updateDroneDetails= { this.updateDroneDetails } isReadOnly = { isReadOnly } droneTypes = { droneTypes }/>
+                                <DroneAcquisitionDroneTypeDetailsForm name="droneDetails" application = { applicationForm } nationalityOptions = { this.props.nationalityOptions } updateDroneDetails= { this.updateDroneDetails } isReadOnly = { isReadOnly } droneTypes = { droneTypes }/>
                             </div>
                             <div className="large-12 cell">
                                 <label>No of Drones
-                                    <input type="number" name="noOfDrones" defaultValue= { (applicationForm && applicationForm.noOfDrones)} onChange = { this.handleChange } placeholder="Drone Count" min="1"/>
+                                    <input type="number" name="noOfDrones" value= { (applicationForm && applicationForm.noOfDrones)} onChange = { this.handleChange } placeholder="Drone Count" min="1"/>
                                 </label>
                             </div>
                         </div>
                     </div>
-                    <FooterApplicationForm step= { step } saving= { saving} />
+                    <FooterApplicationForm step= { step } saving= { saving } />
                 </form>
             </div>  
         );

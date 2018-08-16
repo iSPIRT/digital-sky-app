@@ -13,6 +13,7 @@ import { uinApplications } from "./uinApplicationsReducer";
 import { adminApplications } from "./adminApplicationsReducer";
 import { userApplications } from "./userApplicationsReducer";
 import { metaData } from "./metaDataReducer";
+import { droneProfile } from "./droneProfileReducer";
 import { accountVerification } from "./accountVerificationReducer";
 
 const rootReducer = combineReducers({
@@ -29,7 +30,8 @@ const rootReducer = combineReducers({
   adminApplications,
   userApplications,
   metaData,
-  accountVerification
+  accountVerification,
+  droneProfile
 });
 
 export default rootReducer;

@@ -14,32 +14,37 @@ class UINApplicationStep2 extends React.Component {
             submitted: false,
             formErrors:[],
             applicationForm : {
-                droneCategoryType : "",
-                regionOfOperation: "",
-                purposeOfOperation: "",
-                engineType: "",
-                enginePower: "",
-                engineCount: "",
-                fuelCapacity: "",
-                propellerDetails: "",
-                dimensions: {
-                    length: "",
-                    breadth: "",
-                    height: ""
-                },
-                maxEndurance: "",
-                maxRange: "",
-                maxSpeed: "",
-                maxHeightAttainable: "",
-                maxHeightOfOperation:"",
+                droneType: {
+                    droneCategoryType : "",
+                    regionOfOperation: "",
+                    purposeOfOperation: "",
+                    engineType: "",
+                    enginePower: "",
+                    engineCount: "",
+                    fuelCapacity: "",
+                    propellerDetails: "",
+                    dimensions: {
+                        length: "",
+                        breadth: "",
+                        height: ""
+                    },
+                    maxEndurance: "",
+                    maxRange: "",
+                    maxSpeed: "",
+                    maxHeightAttainable: "",
+                    maxHeightOfOperation:"",
+                }
             }
         };
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState({formErrors: []});
         const { errors } = nextProps;
         const { submitted } = this.state;
+        this.setState({
+            formErrors: []
+        });
+
         if (submitted && ( !errors || errors.length === 0)  &&  (nextProps.applicationForm.id !== 0)){
             this.props.nextStep();
         }
@@ -80,14 +85,12 @@ class UINApplicationStep2 extends React.Component {
             formData.append("maintenanceGuidelinesDoc", this.state.maintenanceGuidelinesDoc);
         }
         formData.append("uinApplication", JSON.stringify(this.state.applicationForm))
-        console.log(formData);
-        
         this.props.updateApplication(formData, this.props.applicationForm.id);
     }
 
     render() {
     
-        const { nationalityOptions, saving, previousStep, step, applicationForm, droneTypes} = this.props
+        const { nationalityOptions, saving, previousStep, step, applicationForm, droneTypes, selectedDroneTypeId, operatorDroneId} = this.props;
         const { opManualDoc, maintenanceGuidelinesDoc } = this.state;
         const isReadOnly = true;
         return (
@@ -98,19 +101,16 @@ class UINApplicationStep2 extends React.Component {
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
                             <div className="large-12 cell">
-                                <DroneSpecForm name="droneSpec" nationalityOptions={ nationalityOptions } applicationForm = { applicationForm } onChange= { this.handleChange } droneTypes = { droneTypes } isReadOnly = { isReadOnly }/>
+                                <DroneSpecForm name="droneSpec" nationalityOptions={ nationalityOptions }
+                                             application = { applicationForm } 
+                                             droneTypes = { droneTypes }
+                                             selectedDroneTypeId =  { selectedDroneTypeId }
+                                             operatorDroneId = { operatorDroneId }
+                                             isReadOnly = { isReadOnly }
+                                             onChange= { this.handleChange }  
+                                             updateDroneDetails= { this.updateDroneDetails } 
+                                             droneTypeDisabled = "true" />
                             </div>
-                            {/* <div className="large-12 cell">
-                                <label> Select applicable
-                                    <select multiple onChange={ this.handleChange }>
-                                        <option value="hasGNSS">GNSS (GPS) for horizontal and vertical position fixing</option>
-                                        <option value="hasAutonomousFlightTerminationSystem">Autonomous Flight Termination System or Return Home (RH) option</option>
-                                        <option value="hasFlashingAntiCollisionStrobeLights">Flashing anti-collision strobe lights</option>
-                                        <option value="hasRFID_GSM_SIMCard">RFID and GSM SIM Card/ NPNT compliant for APP based real time tracking (except for Nano and Micro category)</option>
-                                        <option value="hasFlightController">Flight Controller with flight data logging capability</option>
-                                    </select>
-                                </label>
-                            </div> */}
                             <div className="large-12 cell">
                                 <label>Enter previous UIN, if applicable
                                     <input type="text" name="previousUIN" placeholder="previous UIN" value= { applicationForm.previousUIN } onChange={ this.handleChange }/>

@@ -8,7 +8,32 @@ import {
 } from "../actions/localDroneAcquisitionApplicationActions";
 
 const initialState = {
-  currentApplicationForm: {},
+  currentApplicationForm: {
+    applicantAddress: {
+      lineOne: "",
+      lineTwo: "",
+      city: "",
+      state: "",
+      country: "",
+      pinCode: ""
+    },
+    manufacturerAddress: {
+      lineOne: "",
+      lineTwo: "",
+      city: "",
+      state: "",
+      country: "",
+      pinCode: ""
+    },
+    ownerAddress: {
+      lineOne: "",
+      lineTwo: "",
+      city: "",
+      state: "",
+      country: "",
+      pinCode: ""
+    }
+  },
   saving: false,
   saved: false,
   errors: null

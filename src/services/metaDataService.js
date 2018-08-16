@@ -13,7 +13,7 @@ function loadDroneTypes() {
     headers: { "Content-Type": "application/json", Authorization: authToken }
   };
 
-  return fetch(apiRoot + "/droneTypes/getAll", requestOptions).then(
+  return fetch(apiRoot + "/droneType/getAll", requestOptions).then(
     handleResponseService.handleResponse
   );
 }

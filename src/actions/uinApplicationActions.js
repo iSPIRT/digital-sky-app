@@ -15,7 +15,6 @@ export const createUINApplicationAction = UINApplication => {
     uinApplicationService.create(UINApplication).then(
       createdApplication => {
         dispatch(success(createdApplication));
-        //dispatch(formStepAddAction());
       },
       errors => {
         dispatch(failure(errors));
@@ -30,7 +29,6 @@ export const editUINApplicationAction = (UINApplication, applicationId) => {
     uinApplicationService.edit(UINApplication, applicationId).then(
       editedApplication => {
         dispatch(success(editedApplication));
-        //dispatch(formStepAddAction());
       },
       errors => {
         dispatch(failure(errors));
