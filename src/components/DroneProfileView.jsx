@@ -1,26 +1,24 @@
-import React from 'react';
 
-import { connect } from 'react-redux';
+import React from 'react';
 
 import imgLocation from '../img/temp/drone2.jpg';
 
 import queryString from 'query-string';
-import { userService } from '../services/userService';
 
-class OperatorDroneProfilePage extends React.Component {
+class DroneProfileView extends React.Component {
 
     constructor(props) {
         super(props);
         this.getRedirectLink = this.getRedirectLink.bind(this);
         
         const queryParams = queryString.parse(this.props.location.search);
-        const operatorDroneId = queryParams.id;
-        this.state= {operatorDroneId : operatorDroneId};
+        const droneTypeId = queryParams.id;
+        this.state= {droneTypeId : droneTypeId};
 
-        if(this.props.drones) {
-            var currentDrone = this.props.drones.find(drone => drone.id === operatorDroneId);
-            if(currentDrone) {
-                this.state = {...{operatorDroneProfile: currentDrone}};
+        if(this.props.droneTypes) {
+            var currentDroneType = this.props.droneTypes.find(droneType => droneType.id == droneTypeId);
+            if(currentDroneType) {
+                this.state = {...{droneProfile: currentDroneType}};
             }
         }
     }
@@ -69,28 +67,18 @@ class OperatorDroneProfilePage extends React.Component {
                     </div>
                 </div>
                 <div className="view-application-footer">
-                    <div className="grid-container">
-                        <div className="grid-x grid-padding-x">
-                            <div className="large-12 cell">
-                                <a href= {this.getRedirectLink()} className="button button-accept">{operatorDroneProfile.operatorDroneStatus == "UIN_NOT_APPLIED" || operatorDroneProfile.operatorDroneStatus == "UIN_DRAFT" ? "Apply for UIN" : "View UIN"}</a>
-                            </div>
+                <div className="grid-container">
+                    <div className="grid-x grid-padding-x">
+                        <div className="large-12 cell">
+                            <a href= {this.getRedirectLink()} className="button button-accept">{operatorDroneProfile.operatorDroneStatus == "UIN_NOT_APPLIED" || operatorDroneProfile.operatorDroneStatus == "UIN_DRAFT" ? "Apply for UIN" : "View UIN"}</a>
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
+            
         )
     }
 }
 
-function mapStateToProps(state) {
-    const { errors, drones } = state.userApplications;
-    return {
-       errors,
-       drones
-    };
-}
-
-export default connect(
- mapStateToProps
-)(OperatorDroneProfilePage)
-
+export default DroneProfileView;

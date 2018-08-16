@@ -18,15 +18,13 @@ class DashBoardOperatorDroneView extends React.Component {
         
         const style =  { backgroundImage: 'url("'+locationImg+'")' };
 
-        return operatorDrones.map((operatorDrone) =>
-                                {
-                                    return <div className="drones-wrap">
-                                                <a className="wrap" style={style} href= { this.getRedirectlink(operatorDrone.id)}>
-                                                    <p>{operatorDrone.droneType.modelName}</p>
-                                                </a>
-                                            </div>
-                                }
-        )
+        return operatorDrones.map((operatorDrone) => {
+            return <div className="drones-wrap">
+                        <a className="wrap" style={style} href= { this.getRedirectlink(operatorDrone.id)}>
+                            <p>{operatorDrone.droneType.modelName}</p>
+                        </a>
+                    </div>
+        })
     }
 
     render() {

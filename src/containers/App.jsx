@@ -22,6 +22,8 @@ import UAOPApplicationPage from './UAOPApplicationPage';
 import UINApplicationPage from './UINApplicationPage';
 import VerifyAccountPage from './VerifyAccountPage';
 import OperatorDroneProfilePage from './OperatorDroneProfilePage';
+import AdminDashboardDroneTypePage from './AdminDashboardDroneTypePage';
+import DroneProfilePage from './DroneProfilePage';
 import AdminBlogPage from './AdminBlogPage';
 import AdminBlogListPage from './AdminBlogListPage';
 
@@ -37,7 +39,6 @@ import { history } from '../store/configureStore';
 import $ from 'jquery';
 
 import 'foundation-sites';
-
 
 class App extends React.Component {
 
@@ -83,9 +84,11 @@ class App extends React.Component {
                     <AuthenticatedRoute exact path="/importDroneApplication" component={ImportDroneApplicationPage} loggedIn={loggedIn}/>
                     <AuthenticatedRoute exact path="/uinApplication" component={UINApplicationPage} loggedIn={loggedIn}/>
                     <AuthenticatedRoute exact path="/operatorDrone" component={OperatorDroneProfilePage} loggedIn={loggedIn}/>
-                    
+
+                    <AdminAuthenticatedRoute exact path="/droneType" loggedIn={loggedIn} user={user} component={DroneProfilePage} /> 
                     <AdminAuthenticatedRoute path="/admin/dashboard" loggedIn={loggedIn} user={user} component={AdminDashboardPage} />
                     <AdminAuthenticatedRoute path="/admin/application" loggedIn={loggedIn} user={user} component={AdminApplicationViewPage} />
+                    <AdminAuthenticatedRoute path="/admin/droneType" loggedIn={loggedIn} user={user} component={AdminDashboardDroneTypePage} />
                     <AdminAuthenticatedRoute path="/admin/blog" loggedIn={loggedIn} user={user} component={AdminBlogPage} />
                     <AdminAuthenticatedRoute path="/admin/blogList" loggedIn={loggedIn} user={user} component={AdminBlogListPage} />
 

@@ -13,6 +13,7 @@ import { uinApplications } from "./uinApplicationsReducer";
 import { adminApplications } from "./adminApplicationsReducer";
 import { userApplications } from "./userApplicationsReducer";
 import { metaData } from "./metaDataReducer";
+import { droneProfile } from "./droneProfileReducer";
 import { accountVerification } from "./accountVerificationReducer";
 import { adminBlog } from "./adminBlogReducer";
 
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   userApplications,
   metaData,
   accountVerification,
+  droneProfile,
   adminBlog
 });
 

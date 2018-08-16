@@ -1,5 +1,4 @@
-import applicationProperties from '../helpers/applicationPropertiesHelper'
-
+import applicationProperties from "../helpers/applicationPropertiesHelper";
 
 export const adminService = {
   loadApplications,
@@ -18,7 +17,7 @@ function loadApplications(applicationType) {
   };
 
   return fetch(
-    apiRoot+"/applicationForm/" + applicationType + "/getAll",
+    apiRoot + "/applicationForm/" + applicationType + "/getAll",
     requestOptions
   ).then(handleResponse);
 }
@@ -36,7 +35,8 @@ function approveApplication(
     body: JSON.stringify(applicationApproval)
   };
   const url =
-    apiRoot+"/applicationForm/" +
+    apiRoot +
+    "/applicationForm/" +
     applicationType +
     "/approve/" +
     applicationId;
@@ -44,39 +44,38 @@ function approveApplication(
 }
 
 function saveBlog(blog) {
-
-    const apiRoot = applicationProperties().apiRoot;
-    const authToken = "Bearer " + localStorage.getItem("accessToken");
-    const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: authToken },
-        body: JSON.stringify(blog)
-    };
-    const url = apiRoot+"/blog";
-    return fetch(url, requestOptions).then(handleResponse);
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: authToken },
+    body: JSON.stringify(blog)
+  };
+  const url = apiRoot + "/blog";
+  return fetch(url, requestOptions).then(handleResponse);
 }
 
 function updateBlog(id, blog) {
-    const apiRoot = applicationProperties().apiRoot;
-    const authToken = "Bearer " + localStorage.getItem("accessToken");
-    const requestOptions = {
-        method: "PUT",
-        headers: { "Content-Type": "application/json", Authorization: authToken },
-        body: JSON.stringify(blog)
-    };
-    const url = apiRoot+"/blog/"+id;
-    return fetch(url, requestOptions).then(handleResponse);
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", Authorization: authToken },
+    body: JSON.stringify(blog)
+  };
+  const url = apiRoot + "/blog/" + id;
+  return fetch(url, requestOptions).then(handleResponse);
 }
 
 function loadBlogList() {
-    const apiRoot = applicationProperties().apiRoot;
-    const authToken = "Bearer " + localStorage.getItem("accessToken");
-    const requestOptions = {
-        method: "GET",
-        headers: { "Content-Type": "application/json", Authorization: authToken }
-    };
-    const url = apiRoot+"/blog/list";
-    return fetch(url, requestOptions).then(handleResponse);
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", Authorization: authToken }
+  };
+  const url = apiRoot + "/blog/list";
+  return fetch(url, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

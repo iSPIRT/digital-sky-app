@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 
 import ReCAPTCHA from 'react-google-recaptcha';
 
-import FormErrors from '../components/FormErrors';
+import FormErrors from './FormErrors';
 
-import FieldError from '../components/FieldError';
+import FieldError from './FieldError';
 
 import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 

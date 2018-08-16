@@ -1,4 +1,5 @@
 import React from 'react';
+
 import UINOrganizationDocuments from './UINOrganizationDocuments';
 import FooterApplicationForm from './FooterApplicationForm';
 
@@ -9,6 +10,7 @@ class UINApplicationStep1 extends React.Component {
         this.handleSaveApplication = this.handleSaveApplication.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.updateObjProp = this.updateObjProp.bind(this);
+        this.updateDroneDetails = this.updateDroneDetails.bind(this);
 
         this.state = {
             submitted: false,
@@ -19,14 +21,16 @@ class UINApplicationStep1 extends React.Component {
 
     componentWillReceiveProps(nextProps){
         const { errors } = nextProps;
-        this.setState({formErrors: []});
         const {submitted } = this.state;
+        this.setState({
+            formErrors: []
+        });
         if (submitted && ( !errors || errors.length === 0)  &&  (nextProps.applicationForm.id !== 0)){
             this.props.nextStep();
         }
         if(!nextProps.applicationForm.empty){
             this.setState({applicationForm: nextProps.applicationForm});
-        }
+        } 
     }
 
     handleChange(event) {
@@ -34,7 +38,7 @@ class UINApplicationStep1 extends React.Component {
         if( type === 'file'){
             this.setState({[name]: event.target.files[0]});
         } else {
-            const { applicationForm } = this.props;
+            const { applicationForm } = this.state;
             this.updateObjProp(applicationForm, value, name);
             this.setState({applicationForm: applicationForm});
         }
@@ -74,15 +78,72 @@ class UINApplicationStep1 extends React.Component {
         if(this.state.gstinDoc !== undefined) {
             formData.append("gstinDoc", this.state.gstinDoc);
         }
-
-        formData.append("uinApplication", JSON.stringify(this.state.applicationForm))
-        console.log(formData);
+        
+        this.updateDroneDetails();
+        formData.append("uinApplication", JSON.stringify(this.state.applicationForm));
 
         if(this.props.applicationForm.id !== undefined ){
             this.props.updateApplication(formData, this.props.applicationForm.id);
         } else{
             this.props.createApplication(formData);
         }
+    }
+
+    updateDroneDetails() {
+        const { droneTypes, operatorDroneId, selectedDroneTypeId } = this.props;
+        const { applicationForm } = this.state;
+        var selectedDroneTypes=  droneTypes.filter( droneType => droneType.id == selectedDroneTypeId );
+        const selectedDroneType = selectedDroneTypes[0];
+
+        var modifiedApplication = this.setDroneTypeDetailsInApplication(selectedDroneType, operatorDroneId, applicationForm);
+        this.setState({applicationForm: modifiedApplication});
+    }
+
+    setDroneTypeDetailsInApplication(droneType,operatorDroneId, application) {
+        application["droneTypeId"] = droneType.id;
+        application["operatorDroneId"] = operatorDroneId;
+        application["manufacturer"] = droneType.manufacturer;
+        application["manufacturerAddress"] = {
+            lineOne: droneType.manufacturerAddress ? droneType.manufacturerAddress.lineOne : "",
+            lineTwo: droneType.manufacturerAddress ? droneType.manufacturerAddress.lineTwo : "",
+            city: droneType.manufacturerAddress ? droneType.manufacturerAddress.city : "",
+            state: droneType.manufacturerAddress ? droneType.manufacturerAddress.state : "",
+            country: droneType.manufacturerAddress ? droneType.manufacturerAddress.country : "",
+            pincode: droneType.manufacturerAddress ? droneType.manufacturerAddress.pincode : ""
+        }
+        application["manufacturerNationality"] = droneType.manufacturerNationality;
+        application["modelName"] = droneType.modelName ;
+        application["modelNo"] = droneType.modelNo;
+        application["serialNo"] = droneType.serialNo;
+        application["dateOfManufacture"] = droneType.dateOfManufacture;
+        application["wingType"] = droneType.wingType;
+        application["maxTakeOffWeight"] = droneType.maxTakeOffWeight;
+        application["maxHeightAttainable"] = droneType.maxHeightAttainable;
+        application["compatiblePayload"] = droneType.compatiblePayload;
+        application["droneCategoryType"] = droneType.droneCategoryType;
+        application["regionOfOperation"] = droneType.regionOfOperation;
+        application["purposeOfOperation"] = droneType.purposeOfOperation;
+        application["engineType"] = droneType.engineType;
+        application["enginePower"] = droneType.enginePower;
+        application["engineCount"] = droneType.engineCount;
+        application["fuelCapacity"] = droneType.fuelCapacity;
+        application["propellerDetails"] = droneType.propellerDetails;
+        application["maxEndurance"] = droneType.maxEndurance;
+        application["maxRange"] = droneType.maxRange;
+        application["maxSpeed"] = droneType.maxSpeed;
+        application["maxHeightOfOperation"] = droneType.maxHeightOfOperation;
+        application["hasGNSS"] = droneType.hasGNSS;
+        application["dimensions"] = {
+            length : droneType.dimensions ? droneType.dimensions.length : 0,
+            breadth : droneType.dimensions? droneType.dimensions.breadth : 0,
+            height: droneType.dimensions ? droneType.dimensions.height : 0
+        }
+        application["hasAutonomousFlightTerminationSystem"] = droneType.hasAutonomousFlightTerminationSystem;
+        application["hasFlashingAntiCollisionStrobeLights"] = droneType.hasFlashingAntiCollisionStrobeLights;
+        application["hasRFID_GSM_SIMCard"] = droneType.hasRFID_GSM_SIMCard;
+        application["hasFlightController"] = droneType.hasFlightController;
+
+        return application;
     }
     
     render() {
@@ -147,11 +208,9 @@ class UINApplicationStep1 extends React.Component {
                                 </div>
                             </div>
                             <div className="large-12 cell">
-                                <label>Details of fees paid
-                                    <input type="text" name="feeDetails" placeholder="Details of Fees" value= { applicationForm.feeDetails } onChange={ this.handleChange }/>
-                                </label>
+                                <label className="help-wrap">Details of fees paid </label>
+                                <input type="text" name="feeDetails" placeholder="Details of Fees" value= { applicationForm.feeDetails } onChange={ this.handleChange }/>
                             </div>
-
                         </div>
                     </div>
                     <FooterApplicationForm step= { step } saving= { saving}   />

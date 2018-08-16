@@ -5,8 +5,6 @@ import { SAVE_BLOG_REQUEST } from "../actions/adminActions";
 import { SAVE_BLOG_SUCCESS } from "../actions/adminActions";
 import { SAVE_BLOG_FAILURE } from "../actions/adminActions";
 
-
-
 const initialState = {
   savingBlog: false,
   savedBlog: false,
@@ -18,11 +16,11 @@ const initialState = {
 export function adminBlog(state = initialState, action) {
   switch (action.type) {
     case LOAD_BLOG_LIST_SUCCESS:
-        const blogList = action.blogList;
-        return {
-            ...state,
-            blogList
-        };
+      const blogList = action.blogList;
+      return {
+        ...state,
+        blogList
+      };
     case LOAD_BLOG_LIST_FAILURE:
       return { ...state, errors: action.errors };
     case SAVE_BLOG_REQUEST:
@@ -39,7 +37,7 @@ export function adminBlog(state = initialState, action) {
         ...currentBlogList.slice(indexOfUpdatedBlog + 1)
       ];
       return {
-        errors:[],
+        errors: [],
         savingBlog: false,
         savedBlog: true,
         blogList: updatedBlogList
