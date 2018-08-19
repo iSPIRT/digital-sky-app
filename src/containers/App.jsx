@@ -26,6 +26,7 @@ import AdminDashboardDroneTypePage from './AdminDashboardDroneTypePage';
 import DroneProfilePage from './DroneProfilePage';
 import AdminBlogPage from './AdminBlogPage';
 import AdminBlogListPage from './AdminBlogListPage';
+import OccurrenceReportPage from './OccurrenceReportPage';
 
 import Logout from './Logout';
 import Header from '../components/Header';
@@ -84,6 +85,7 @@ class App extends React.Component {
                     <AuthenticatedRoute exact path="/importDroneApplication" component={ImportDroneApplicationPage} loggedIn={loggedIn}/>
                     <AuthenticatedRoute exact path="/uinApplication" component={UINApplicationPage} loggedIn={loggedIn}/>
                     <AuthenticatedRoute exact path="/operatorDrone" component={OperatorDroneProfilePage} loggedIn={loggedIn}/>
+                    <AuthenticatedRoute exact path="/occurrenceReport" component={OccurrenceReportPage} loggedIn={loggedIn}/>
 
                     <AdminAuthenticatedRoute exact path="/droneType" loggedIn={loggedIn} user={user} component={DroneProfilePage} /> 
                     <AdminAuthenticatedRoute path="/admin/dashboard" loggedIn={loggedIn} user={user} component={AdminDashboardPage} />

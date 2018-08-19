@@ -141,7 +141,7 @@ class AdminBlog extends React.Component {
                             <div className="grid-x grid-padding-x">
 
                                 <div className="large-12 cell">
-                                    <label>Mobile Number
+                                    <label>Title
                                         <input type="text" placeholder="Title" name="title" onChange={this.handleChange} value={blog.title} maxLength="50" className={decorateInputClass(this.state.fieldErrors['title'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
                                         <FieldError fieldErrors={this.state.fieldErrors} field='title'/>
                                     </label>
