@@ -53,7 +53,9 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
         if( event.target.type === 'select' && event.target.value === -1) return;
         const { applicationForm } = this.state;
         this.updateObjProp(applicationForm, value, name);
-        this.setState({valueChanged : true});
+        if(!this.state.valueChanged) {
+            this.setState({valueChanged : true});
+        }
         this.setState({applicationForm: applicationForm});
     }
     
@@ -126,7 +128,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
         // const nationalityOptions = this.props.nationalityOptions.map(nationality => {
         //     return (<option value={nationality} key={nationality}> {nationality} </option>);
         // });
-        const { saving, step, droneTypes, operatorProfile, user } = this.props;
+        const { saving, step, droneTypes } = this.props;
         const { applicationForm } = this.state;
         const isReadOnly = true;
         

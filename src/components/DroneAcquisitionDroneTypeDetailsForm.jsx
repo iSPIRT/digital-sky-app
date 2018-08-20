@@ -31,11 +31,6 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
         }
     }
 
-    // dateChange = (event)=> {
-    //     this.refs.yearOfManufacture.value = new Date(event.target.value).getFullYear();
-    //     this.handleChange(event);
-    // }
-    
     updateDroneDetails(droneDetails) {
         if(this.props.updateDroneDetails) {
             this.props.updateDroneDetails(droneDetails);

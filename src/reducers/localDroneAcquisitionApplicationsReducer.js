@@ -47,8 +47,7 @@ export function localDroneAcquisitionApplications(
     case LOCALDRONEACQUISITION_APPLICATION_FORM_LOADED:
       return {
         ...state,
-        errors: [],
-        currentApplicationForm: initialState.currentApplicationForm
+        errors: []
       };
     case SAVE_LOCALDRONEACQUISITION_APPLICATION_REQUEST:
       return { ...state, saving: true, saved: false, errors: null };

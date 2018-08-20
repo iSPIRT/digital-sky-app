@@ -16,6 +16,7 @@ import { metaData } from "./metaDataReducer";
 import { droneProfile } from "./droneProfileReducer";
 import { accountVerification } from "./accountVerificationReducer";
 import { adminBlog } from "./adminBlogReducer";
+import { occurrenceReport } from "./occurrenceReportReducer";
 
 const rootReducer = combineReducers({
   authentication,
@@ -34,7 +35,8 @@ const rootReducer = combineReducers({
   accountVerification,
   droneProfile,
   adminBlog,
-  user
+  user,
+  occurrenceReport
 });
 
 export default rootReducer;
