@@ -49,7 +49,6 @@ class OperatorDroneProfilePage extends React.Component {
         return "/occurrenceReport?droneId=" + this.state.operatorDroneId;;
     }
 
-
     render(){
 
         const {operatorDroneProfile} = this.state;
@@ -58,14 +57,14 @@ class OperatorDroneProfilePage extends React.Component {
 
         return (
             <div id="drone-profile">
-                <div class="grid-container">
-                    <div class="grid-x grid-padding-x">
-                        <div class="large-12 cell">
-                            <div class="drone-image">
-                                <img src={imgLocation} alt="" />
+                <div className="grid-container">
+                    <div className="grid-x grid-padding-x">
+                        <div className="large-12 cell">
+                            <div className="drone-image">
+                               <img src={imgLocation} alt="" />
                             </div>
                             <h2> {operatorDroneProfile.droneType.modelName}</h2>
-                            <div class="drone-meta">
+                            <div className="drone-meta">
                                 <p><strong>Model Number:</strong> {operatorDroneProfile.droneType.modelNo}</p>
                                 <p><strong>UIN Application Status:</strong> {operatorDroneProfile.operatorDroneStatus}</p>
                                 <p><strong>Date of registration:</strong> {operatorDroneProfile.registeredDate}</p>

@@ -54,7 +54,7 @@ function load(id) {
   );
 }
 
-function loadOccurrenceReports(droneId){
+function loadOccurrenceReports(droneId) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
@@ -62,9 +62,10 @@ function loadOccurrenceReports(droneId){
     headers: { Authorization: authToken }
   };
 
-  return fetch(apiRoot + "/occurrenceReport/drone/" + droneId+"/list", requestOptions).then(
-    handleResponse
-  );
+  return fetch(
+    apiRoot + "/occurrenceReport/drone/" + droneId + "/list",
+    requestOptions
+  ).then(handleResponse);
 }
 
 function saveOccurrenceReport(occurrenceReport) {
@@ -72,10 +73,12 @@ function saveOccurrenceReport(occurrenceReport) {
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "POST",
-    headers: { Authorization: authToken , "Content-Type": "application/json" },
+    headers: { Authorization: authToken, "Content-Type": "application/json" },
     body: JSON.stringify(occurrenceReport)
   };
-  return fetch(apiRoot + "/occurrenceReport", requestOptions).then(handleResponse);
+  return fetch(apiRoot + "/occurrenceReport", requestOptions).then(
+    handleResponse
+  );
 }
 
 function handleResponse(response) {

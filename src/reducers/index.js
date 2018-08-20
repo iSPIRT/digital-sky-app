@@ -11,7 +11,7 @@ import { operatorProfile } from "./operatorProfileReducer";
 import { uaopApplications } from "./uaopApplicationsReducer";
 import { uinApplications } from "./uinApplicationsReducer";
 import { adminApplications } from "./adminApplicationsReducer";
-import { userApplications } from "./userApplicationsReducer";
+import { userApplications, user } from "./userApplicationsReducer";
 import { metaData } from "./metaDataReducer";
 import { droneProfile } from "./droneProfileReducer";
 import { accountVerification } from "./accountVerificationReducer";
@@ -35,6 +35,7 @@ const rootReducer = combineReducers({
   accountVerification,
   droneProfile,
   adminBlog,
+  user,
   occurrenceReport
 });
 

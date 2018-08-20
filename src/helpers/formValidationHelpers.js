@@ -15,7 +15,7 @@ export const invalidDateOfBirth = value => {
     valueAsDate.getDate() !== date ||
     valueAsDate.getMonth() !== month ||
     valueAsDate.getFullYear() !== year
-  ){
+  ) {
     return true;
   }
   const currentDate = new Date();
@@ -39,7 +39,7 @@ export const invalidDate = value => {
     valueAsDate.getDate() !== date ||
     valueAsDate.getMonth() !== month ||
     valueAsDate.getFullYear() !== year
-  ){
+  ) {
     return true;
   }
   const currentDate = new Date();
@@ -54,8 +54,8 @@ export const invalidTime = value => {
   const valueTokens = value.split(":");
   const hour = parseInt(valueTokens[0], 10);
   const minutes = parseInt(valueTokens[1], 10);
-  if(hour > 23) return true;
-  if(minutes > 59) return true;
+  if (hour > 23) return true;
+  if (minutes > 59) return true;
   return false;
 };
 
@@ -73,11 +73,38 @@ export const validateForm = form => {
   for (const inputElement of inputElements) {
     fieldErrors = validateField(fieldErrors, inputElement);
   }
+  const selectElements = form.getElementsByTagName("select");
+  for (const selectElement of selectElements) {
+    fieldErrors = validateSelectField(fieldErrors, selectElement);
+  }
   return fieldErrors;
 };
 
+export const invalidDateOfManufacture = value => {
+  if (!value) return false;
+  if (!/\d{2}-\d{2}-\d{4}/i.test(value)) return true;
+  const valueTokens = value.split("-");
+  const date = parseInt(valueTokens[0], 10);
+  const month = parseInt(valueTokens[1], 10) - 1;
+  const year = parseInt(valueTokens[2], 10);
+  const valueAsDate = new Date(year, month, date);
+  if (isNaN(valueAsDate.getTime())) return true;
+  if (
+    valueAsDate.getDate() !== date ||
+    valueAsDate.getMonth() !== month ||
+    valueAsDate.getFullYear() !== year
+  )
+    return true;
+  const currentDate = new Date();
+  const dateDiffInYears =
+    (currentDate.getTime() - valueAsDate.getTime()) / (1000 * 3600 * 24 * 365);
+  if (dateDiffInYears > 100) return true;
+  if (dateDiffInYears <= 0) return true;
+  return false;
+};
+
 export const validateField = (fieldErrors, field) => {
-  if (field.tagName === "INPUT" || field.tagName === "TEXTAREA") {
+  if (field.tagName === "INPUT" && !field.readOnly) {
     if (!field.getAttribute("validate")) return fieldErrors;
     const validations = field.getAttribute("validate").split(",");
     for (const validation of validations) {
@@ -116,17 +143,19 @@ export const validateField = (fieldErrors, field) => {
           [field.name]: { message: "Invalid Date of Birth", valid: false }
         };
       } else if (
-        validation.trim() === "date" &&
-        invalidDate(field.value)
+        validation.trim() === "dateOfManufacture" &&
+        invalidDateOfManufacture(field.value)
       ) {
+        return {
+          ...fieldErrors,
+          [field.name]: { message: "Invalid Date of Manufacture", valid: false }
+        };
+      } else if (validation.trim() === "date" && invalidDate(field.value)) {
         return {
           ...fieldErrors,
           [field.name]: { message: "Invalid Date", valid: false }
         };
-      }else if (
-        validation.trim() === "time" &&
-        invalidTime(field.value)
-      ) {
+      } else if (validation.trim() === "time" && invalidTime(field.value)) {
         return {
           ...fieldErrors,
           [field.name]: { message: "Invalid Time", valid: false }
@@ -137,7 +166,28 @@ export const validateField = (fieldErrors, field) => {
       ...fieldErrors,
       [field.name]: { message: undefined, valid: true }
     };
+  } else if (field.tagName === "SELECT" && !field.disabled) {
+    return validateSelectField(fieldErrors, field);
   }
+};
+
+export const validateSelectField = (fieldErrors, field) => {
+  if (!field.disabled) {
+    if (!field.getAttribute("validate")) return fieldErrors;
+    const validations = field.getAttribute("validate").split(",");
+    for (const validation of validations) {
+      if (validation.trim() === "required" && field.value === "-1") {
+        return {
+          ...fieldErrors,
+          [field.name]: { message: "Required", valid: false }
+        };
+      }
+    }
+  }
+  return {
+    ...fieldErrors,
+    [field.name]: { message: undefined, valid: true }
+  };
 };
 
 export const decorateInputClass = (fieldError, classes) => {

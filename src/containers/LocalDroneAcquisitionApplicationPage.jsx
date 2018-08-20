@@ -19,13 +19,19 @@ function mapStateToProps(state) {
 
     const { saving, saved, errors, currentApplicationForm } = state.localDroneAcquisitionApplications;
     const { droneTypes, metaDataErrors} = state.metaData;
+    const { userDetails } = state.user;
+    const { user } = state.authentication;
+    const { profile } = state.operatorProfile;
     return {
        saving,
        saved,
        errors,
        currentApplicationForm,
        droneTypes,
-       metaDataErrors
+       metaDataErrors,
+       profile,
+       user,
+       userDetails
     };
 }
 

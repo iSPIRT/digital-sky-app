@@ -10,8 +10,12 @@ class DroneProfileView extends React.Component {
     constructor(props) {
         super(props);
         this.getRedirectLink = this.getRedirectLink.bind(this);
+<<<<<<< HEAD
+        
+=======
         this.getOccurrenceReportLink = this.getOccurrenceReportLink.bind(this);
 
+>>>>>>> upstream/master
         const queryParams = queryString.parse(this.props.location.search);
         const droneTypeId = queryParams.id;
         this.state= {droneTypeId : droneTypeId};
@@ -43,10 +47,13 @@ class DroneProfileView extends React.Component {
         return url;
     }
 
+<<<<<<< HEAD
+=======
     getOccurrenceReportLink() {
         return "/occurrenceReport?droneId=" + this.state.operatorDroneId;;
     }
 
+>>>>>>> upstream/master
     render(){
 
         const {operatorDroneProfile} = this.state;
@@ -77,9 +84,12 @@ class DroneProfileView extends React.Component {
                         <div className="large-12 cell">
                             <a href= {this.getRedirectLink()} className="button button-accept">{operatorDroneProfile.operatorDroneStatus == "UIN_NOT_APPLIED" || operatorDroneProfile.operatorDroneStatus == "UIN_DRAFT" ? "Apply for UIN" : "View UIN"}</a>
                         </div>
+<<<<<<< HEAD
+=======
                         <div className="large-12 cell">
                             <a href= {this.getOccurrenceReportLink()} className="button button-accept">Occurrence Report</a>
                         </div>
+>>>>>>> upstream/master
                     </div>
                 </div>
             </div>

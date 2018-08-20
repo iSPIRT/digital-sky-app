@@ -10,6 +10,10 @@ export const LOAD_USER_DRONES_REQUEST = "LOAD_USER_DRONES_REQUEST";
 export const LOAD_USER_DRONES_SUCCESS = "LOAD_USER_DRONES_SUCCESS";
 export const LOAD_USER_DRONES_FAILURE = "LOAD_USER_DRONES_FAILURE";
 
+export const LOAD_USER_DETAILS_REQUEST = "LOAD_USER_DETAILS_REQUEST";
+export const LOAD_USER_DETAILS_SUCCESS = "LOAD_USER_DETAILS_SUCCESS";
+export const LOAD_USER_DETAILS_FAILURE = "LOAD_USER_DETAILS_FAILURE";
+
 export const VERIFY_ACCOUNT_SUCCESS = "VERIFY_ACCOUNT_SUCCESS";
 export const VERIFY_ACCOUNT_FAILURE = "VERIFY_ACCOUNT_FAILURE";
 
@@ -58,6 +62,30 @@ export const loadDronesAction = () => {
   }
   function failure(errors) {
     return { type: LOAD_USER_DRONES_FAILURE, errors };
+  }
+};
+
+export const loadUserDetailsAction = id => {
+  return dispatch => {
+    dispatch(request());
+    userService.loadUserDetails(id).then(
+      user => {
+        dispatch(success(user));
+      },
+      errors => {
+        dispatch(failure(errors));
+      }
+    );
+  };
+
+  function request() {
+    return { type: LOAD_USER_DETAILS_REQUEST };
+  }
+  function success(user) {
+    return { type: LOAD_USER_DETAILS_SUCCESS, user };
+  }
+  function failure(errors) {
+    return { type: LOAD_USER_DETAILS_FAILURE, errors };
   }
 };
 

@@ -2,6 +2,8 @@ import React from 'react';
 
 import DroneSpecForm from './DroneSpecForm';
 
+import { validateField, validateForm } from '../helpers/formValidationHelpers';
+
 class DroneProfileForm extends React.Component {
 
     constructor(props) {
@@ -10,6 +12,7 @@ class DroneProfileForm extends React.Component {
         this.updateObjProp = this.updateObjProp.bind(this);
         this.updateDroneSpec = this.updateDroneSpec.bind(this);
         this.handleSaveApplication = this.handleSaveApplication.bind(this);
+        this.validateField = this.validateField.bind(this);
         this.state = {
             submitted : false,
             selectedDroneType: {
@@ -26,7 +29,8 @@ class DroneProfileForm extends React.Component {
                     breadth: 0,
                     height : 0
                 }
-            }
+            },
+            fieldErrors : {}
         }
     }
 
@@ -38,6 +42,11 @@ class DroneProfileForm extends React.Component {
             }
         }
     }
+
+    validateField(target) {
+        this.setState({fieldErrors: validateField(this.state.fieldErrors, target)})
+    }
+
 
     handleChange(event) {
         const { name, type, value } = event.target; 
@@ -67,6 +76,13 @@ class DroneProfileForm extends React.Component {
 
     handleSaveApplication(event) {
         event.preventDefault();
+        const fieldErrors = validateForm(event.target);
+        for (const key of Object.keys(fieldErrors)) {
+            if(!fieldErrors[key].valid){
+                this.setState({fieldErrors});
+                return;
+            }
+        }
         this.setState({submitted: true});
 
         const formData = new FormData();
@@ -88,7 +104,7 @@ class DroneProfileForm extends React.Component {
 
     render() {
         const { nationalityOptions, saving, droneTypes, selectedDroneTypeId, saved, errors} = this.props
-        const { selectedDroneType, submitted  } = this.state;
+        const { selectedDroneType, submitted, fieldErrors } = this.state;
  
         const isReadOnly = false;
         return (
@@ -107,6 +123,8 @@ class DroneProfileForm extends React.Component {
                                         onChange= { this.handleChange }  
                                         droneType = { selectedDroneType }
                                         updateDroneDetails= { this.updateDroneDetails } 
+                                        fieldErrors = { fieldErrors }
+                                        validateField =  { this.validateField }
                                 />
                             </div>
                             <div className="large-6 cell">

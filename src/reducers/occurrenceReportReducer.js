@@ -4,7 +4,6 @@ import { LOAD_OCCURRENCE_REPORTS_FAILURE } from "../actions/occurrenceReportActi
 import { SAVE_OCCURRENCE_REPORT_SUCCESS } from "../actions/occurrenceReportActions";
 import { SAVE_OCCURRENCE_REPORT_FAILURE } from "../actions/occurrenceReportActions";
 
-
 const initialState = {
   savedOccurrenceReports: false,
   errors: [],
@@ -24,17 +23,14 @@ export function occurrenceReport(state = initialState, action) {
     case SAVE_OCCURRENCE_REPORT_SUCCESS:
       const { report } = action;
       const currentList = state.occurrenceReports;
-      const updateList = [
-        report,
-        ...currentList.slice(0)
-      ];
+      const updateList = [report, ...currentList.slice(0)];
       return {
         errors: [],
         savedOccurrenceReports: true,
         occurrenceReports: updateList
       };
     case SAVE_OCCURRENCE_REPORT_FAILURE:
-      return { ...state, savedOccurrenceReports:false, errors: action.errors };
+      return { ...state, savedOccurrenceReports: false, errors: action.errors };
     default:
       return state;
   }
