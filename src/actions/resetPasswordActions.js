@@ -1,4 +1,5 @@
 import { userService } from '../services/userService';
+import { LOGIN_SUCCESS } from "./loginActions";
 
 export const RESET_PASSWORD_FORM_LOADED = 'RESET_PASSWORD_FORM_LOADED'
 export const SEND_RESET_PASSWORD_LINK_REQUEST = 'SEND_RESET_PASSWORD_LINK_REQUEST'
@@ -39,6 +40,7 @@ export const resetPassword = (payload) => {
                     .then(
                         data => {
                             dispatch(success());
+                            dispatch(loginSuccess());
                         },
                         errors => {
                             dispatch(failure(errors));
@@ -49,6 +51,7 @@ export const resetPassword = (payload) => {
 
     function request()  { return { type: RESET_PASSWORD_REQUEST} }
     function success() { return { type: RESET_PASSWORD_SUCCESS } }
+    function loginSuccess() { return { type: LOGIN_SUCCESS } }
     function failure(errors) { return { type: RESET_PASSWORD_FAILURE, errors } }
 }
 

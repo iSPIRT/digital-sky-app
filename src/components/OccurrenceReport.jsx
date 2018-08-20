@@ -67,7 +67,7 @@ class OccurrenceReport extends React.Component {
     render() {
 
         const { errors, savedOccurrenceReports } = this.props;
-        const { formErrors, submitted, occurrenceReport} = this.state;
+        const { formErrors, occurrenceReport} = this.state;
         if(savedOccurrenceReports){
             this.props.list();
             return <div/>
