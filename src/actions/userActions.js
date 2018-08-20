@@ -1,5 +1,7 @@
 import { userService } from "../services/userService";
 
+import { LOGIN_SUCCESS } from "./loginActions";
+
 export const LOAD_USER_APPLICATIONS_REQUEST = "LOAD_USER_APPLICATIONS_REQUEST";
 export const LOAD_USER_APPLICATIONS_SUCCESS = "LOAD_USER_APPLICATIONS_SUCCESS";
 export const LOAD_USER_APPLICATIONS_FAILURE = "LOAD_USER_APPLICATIONS_FAILURE";
@@ -64,6 +66,7 @@ export const verifyAccountAction = token => {
     userService.verifyAccount(token).then(
       data => {
         dispatch(success());
+        dispatch(loginSuccess());
       },
       errors => {
         dispatch(failure(errors));
@@ -74,6 +77,7 @@ export const verifyAccountAction = token => {
   function success() {
     return { type: VERIFY_ACCOUNT_SUCCESS };
   }
+  function loginSuccess() { return { type: LOGIN_SUCCESS } }
   function failure(errors) {
     return { type: VERIFY_ACCOUNT_FAILURE, errors };
   }

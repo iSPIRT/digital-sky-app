@@ -22,6 +22,9 @@ class ResetPasswordPage extends React.Component {
 
     render(){
         const { resettingPassword, resetPasswordSuccess, loggedIn, errors } = this.props;
+        if(loggedIn){
+            history.push('/dashboard');
+        }
         if(resetPasswordSuccess){
             return (
                 <div className="page-header">
@@ -35,9 +38,6 @@ class ResetPasswordPage extends React.Component {
                   </div>
                 </div>
             );
-        }
-        if(loggedIn){
-            history.push('/dashboard');
         }
         const queryParams = queryString.parse(this.props.location.search)
         return <ResetPassword token={queryParams.token} resettingPassword={resettingPassword}  errors={errors} resetPassword={this.resetPassword(this.props.dispatch)}/>
