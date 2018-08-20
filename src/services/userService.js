@@ -17,7 +17,8 @@ export const userService = {
   loadApplications,
   loadDrones,
   loadDrone,
-  verifyAccount
+  verifyAccount,
+  loadUserDetails
 };
 
 function register(user) {
@@ -249,6 +250,17 @@ function loadDrone(operatorDroneId) {
     apiRoot + "/user/drones/" + operatorDroneId,
     requestOptions
   ).then(handleResponse);
+}
+
+function loadUserDetails(id) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", Authorization: authToken }
+  };
+
+  return fetch(apiRoot + "/user/" + id, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import FooterApplicationForm from './FooterApplicationForm';
 import DroneSpecForm from './DroneSpecForm';
+import FormErrors from './FormErrors';
 
 class UINApplicationStep2 extends React.Component {
 
@@ -90,13 +91,12 @@ class UINApplicationStep2 extends React.Component {
 
     render() {
     
-        const { nationalityOptions, saving, previousStep, step, applicationForm, droneTypes, selectedDroneTypeId, operatorDroneId} = this.props;
+        const { nationalityOptions, saving, previousStep, step, applicationForm, droneTypes, selectedDroneTypeId, operatorDroneId, errors} = this.props;
         const { opManualDoc, maintenanceGuidelinesDoc } = this.state;
         const isReadOnly = true;
         return (
             <div className="page-form">
-                {/* <FormErrors errors = {errors}/>
-                <FormErrors errors = {formErrors}/> */}
+                <FormErrors errors = {errors}/>
                 <form name="uinApplicationForm" onSubmit={this.handleSaveApplication}>
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">

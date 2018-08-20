@@ -1,7 +1,11 @@
 import React from 'react';
 
+import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
+
 import UINOrganizationDocuments from './UINOrganizationDocuments';
 import FooterApplicationForm from './FooterApplicationForm';
+import FormErrors from './FormErrors';
+import FieldError from './FieldError';
 
 class UINApplicationStep1 extends React.Component {
 
@@ -16,6 +20,7 @@ class UINApplicationStep1 extends React.Component {
             submitted: false,
             formErrors:[],
             applicationForm: {},
+            fieldErrors: {}
         };
     }
 
@@ -54,6 +59,13 @@ class UINApplicationStep1 extends React.Component {
 
     handleSaveApplication(event) {
         event.preventDefault();
+        const fieldErrors = validateForm(event.target)
+        for (const key of Object.keys(fieldErrors)) {
+            if(!fieldErrors[key].valid){
+                this.setState({fieldErrors});
+                return;
+            }
+        }
         this.setState({submitted: true});
 
         const formData = new FormData();
@@ -148,14 +160,13 @@ class UINApplicationStep1 extends React.Component {
     
     render() {
       
-        const { saving,  applicationForm, step} = this.props;
+        const { saving,  applicationForm, step, errors} = this.props;
 
         const {  importPermissionDoc, panCardDoc, securityClearanceDoc, dotPermissionDoc, etaDoc, cinDoc, gstinDoc } = this.state;
 
         return (
             <div>
-                {/* <FormErrors errors = {errors}/>
-                <FormErrors errors = {formErrors}/> */}
+                <FormErrors errors = {errors}/>
                 <form name="uinApplicationForm" onSubmit={ this.handleSaveApplication }>
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
@@ -209,11 +220,12 @@ class UINApplicationStep1 extends React.Component {
                             </div>
                             <div className="large-12 cell">
                                 <label className="help-wrap">Details of fees paid </label>
-                                <input type="text" name="feeDetails" placeholder="Details of Fees" value= { applicationForm.feeDetails } onChange={ this.handleChange }/>
+                                <input type="text" name="feeDetails" placeholder="Details of Fees" value= { applicationForm.feeDetails } onChange={ this.handleChange } maxLength="100" className={decorateInputClass(this.state.fieldErrors['feeDetails'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                <FieldError fieldErrors={this.state.fieldErrors} field='feeDetails'/>
                             </div>
                         </div>
                     </div>
-                    <FooterApplicationForm step= { step } saving= { saving}   />
+                    <FooterApplicationForm step= { step } saving= { saving }   />
                 </form>
             </div>  
         );

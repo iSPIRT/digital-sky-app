@@ -5,9 +5,14 @@ import queryString from 'query-string'
 import DroneAcquisitionApplicationStep1 from '../components/DroneAcquisitionApplicationStep1';
 import DroneAcquisitionApplicationStep2 from '../components/DroneAcquisitionApplicationStep2';
 import DroneAcquisitionApplicationStep3 from '../components/DroneAcquisitionApplicationStep3';
+
+import { INDIVIDUAL_OPERATOR_TYPE, ORGANIZATION_OPERATOR_TYPE } from '../constants/operatorType';
+
 import HeaderApplicationForm from '../components/HeaderApplicationForm';
 import { downloadFile } from '../actions/downloadFileActions';
 import { loadMetaDataAction } from '../actions/metaDataActions';
+import { loadOperatorProfile } from '../actions/operatorProfileActions';
+import { loadUserDetailsAction } from '../actions/userActions';
 
 export default class DroneAcquisitionApplicationPage extends React.Component {
    
@@ -27,6 +32,15 @@ export default class DroneAcquisitionApplicationPage extends React.Component {
             currentStep: 1,
         }
         this.props.dispatch(loadMetaDataAction());
+        var operatorType, operatorProfileId;
+        if(localStorage.getItem('individualOperatorProfileId') > 0 ) {
+            operatorProfileId = localStorage.getItem('individualOperatorProfileId');
+            operatorType = INDIVIDUAL_OPERATOR_TYPE;
+        } else  {
+            operatorProfileId = localStorage.getItem('organizationOperatorProfileId');
+            operatorType = ORGANIZATION_OPERATOR_TYPE;
+        };
+        this.props.dispatch(loadOperatorProfile(operatorType, operatorProfileId));
         this.props.dispatch(applicationFormLoadedAction());
         const queryParams = queryString.parse(this.props.location.search)
         const applicationId = queryParams.id
@@ -43,6 +57,13 @@ export default class DroneAcquisitionApplicationPage extends React.Component {
         this.setState({currentStep: (this.state.currentStep-1)});
     }
 
+    componentWillMount() {
+        if(this.props.user && this.props.user.id ) {
+            const userId = this.props.user.id;
+            this.props.dispatch(loadUserDetailsAction(userId));
+        }
+    }
+    
     componentWillReceiveProps(nextProps){
         if(nextProps.currentApplicationForm.status && nextProps.currentApplicationForm.status  !== 'DRAFT'){
             this.setState({currentStep: 3});
@@ -63,7 +84,7 @@ export default class DroneAcquisitionApplicationPage extends React.Component {
     }
 
     render() {
-        const { saving, saved, errors, currentApplicationForm, droneTypes} = this.props;
+        const { saving, saved, errors, currentApplicationForm, droneTypes, profile, userDetails} = this.props;
         const { currentStep } = this.state;
 
         return (
@@ -82,6 +103,8 @@ export default class DroneAcquisitionApplicationPage extends React.Component {
                                     nextStep={ this.nextStep }
                                     step = { currentStep }
                                     droneTypes = { droneTypes }
+                                    operatorProfile = { profile }
+                                    user = { userDetails }
                                 />
                             );
                         case 2:
