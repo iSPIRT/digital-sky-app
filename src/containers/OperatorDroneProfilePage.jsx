@@ -27,7 +27,7 @@ class OperatorDroneProfilePage extends React.Component {
     }
 
     componentWillMount() {
-        if(this.state.operatorDroneProfile == undefined) {
+        if(this.state.operatorDroneProfile === undefined) {
             operatorDroneService.loadDrone(this.state.operatorDroneId).then(
                 currentDrone => {
                   this.setState({...{operatorDroneProfile: currentDrone}});
@@ -46,7 +46,7 @@ class OperatorDroneProfilePage extends React.Component {
     }
 
     getOccurrenceReportLink() {
-        return "/occurrenceReport?droneId=" + this.state.operatorDroneId;;
+        return "/occurrenceReport?droneId=" + this.state.operatorDroneId;
     }
 
     render(){
@@ -77,7 +77,7 @@ class OperatorDroneProfilePage extends React.Component {
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
                             <div className="large-12 cell">
-                                <a href= {this.getRedirectLink()} className="button button-accept">{operatorDroneProfile.operatorDroneStatus == "UIN_NOT_APPLIED" || operatorDroneProfile.operatorDroneStatus == "UIN_DRAFT" ? "Apply for UIN" : "View UIN"}</a>
+                                <a href= {this.getRedirectLink()} className="button button-accept">{operatorDroneProfile.operatorDroneStatus === "UIN_NOT_APPLIED" || operatorDroneProfile.operatorDroneStatus === "UIN_DRAFT" ? "Apply for UIN" : "View UIN"}</a>
                             </div>
                             <div className="large-12 cell">
                                 <a href= {this.getOccurrenceReportLink()} className="button button-accept">Occurrence Report</a>

@@ -9,11 +9,13 @@ class UserProfilePage extends React.Component {
         const pilotProfileId = localStorage.getItem('pilotProfileId');
         const individualOperatorProfileId = localStorage.getItem('individualOperatorProfileId');
         const organizationOperatorProfileId = localStorage.getItem('organizationOperatorProfileId');
+        const manufacturerProfileId = localStorage.getItem('manufacturerProfileId');
 
         return <UserProfile
                     pilotProfileId={pilotProfileId}
                     individualOperatorProfileId={individualOperatorProfileId}
                     organizationOperatorProfileId={organizationOperatorProfileId}
+                    manufacturerProfileId={manufacturerProfileId}
                />
     }
 }

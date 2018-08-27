@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { decorateInputClass, decorateInputClassForReadOnly } from '../helpers/formValidationHelpers';
+import { decorateInputClass } from '../helpers/formValidationHelpers';
 
 import FieldError from './FieldError';
 
@@ -18,8 +18,8 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
     }
     
     onChangeOfDroneType(event) {
-        if(event.target.value !=-1) {
-            var newlySelectedDroneTypes = this.props.droneTypes.filter( drone => event.target.value == drone.id );
+        if(event.target.value !== "-1") {
+            var newlySelectedDroneTypes = this.props.droneTypes.filter( drone => event.target.value.toString() === drone.id.toString() );
             this.setState({selectedDroneType: newlySelectedDroneTypes[0]});
             this.updateDroneDetails(newlySelectedDroneTypes[0]);
         }
@@ -60,11 +60,11 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
             selectedDroneType = this.state.selectedDroneType;
         }// an existing created form
         else if(application && application.droneTypeId){   
-            selectedDroneTypes=  droneTypes.filter( droneType => droneType.id == application.droneTypeId );
+            selectedDroneTypes=  droneTypes.filter( droneType => droneType.id.toString() === application.droneTypeId.toString() );
             selectedDroneType = selectedDroneTypes[0];
         } //new UIN form with droneType id coming from operatorDrone
         else if(selectedDroneTypeId) {
-            selectedDroneTypes =  droneTypes.filter( droneType => droneType.id == selectedDroneTypeId);
+            selectedDroneTypes =  droneTypes.filter( droneType => droneType.id.toString() === selectedDroneTypeId.toString());
             selectedDroneType = selectedDroneTypes[0];
         }
         return(
