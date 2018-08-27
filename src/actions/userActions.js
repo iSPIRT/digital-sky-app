@@ -1,4 +1,5 @@
 import { userService } from "../services/userService";
+import { operatorDroneService } from "../services/operatorDroneService";
 
 export const LOAD_USER_APPLICATIONS_REQUEST = "LOAD_USER_APPLICATIONS_REQUEST";
 export const LOAD_USER_APPLICATIONS_SUCCESS = "LOAD_USER_APPLICATIONS_SUCCESS";
@@ -42,7 +43,7 @@ export const loadApplicationsAction = () => {
 export const loadDronesAction = () => {
   return dispatch => {
     dispatch(request());
-    userService.loadDrones().then(
+    operatorDroneService.loadDrones().then(
       drones => {
         dispatch(success(drones));
       },

@@ -15,8 +15,6 @@ export const userService = {
   updateOperatorProfile,
   loadOperatorProfile,
   loadApplications,
-  loadDrones,
-  loadDrone,
   verifyAccount,
   loadUserDetails
 };
@@ -225,31 +223,6 @@ function loadApplications() {
   return fetch(apiRoot + "/user/applications", requestOptions).then(
     handleResponse
   );
-}
-
-function loadDrones() {
-  const apiRoot = applicationProperties().apiRoot;
-  const authToken = "Bearer " + localStorage.getItem("accessToken");
-  const requestOptions = {
-    method: "GET",
-    headers: { "Content-Type": "application/json", Authorization: authToken }
-  };
-
-  return fetch(apiRoot + "/user/drones", requestOptions).then(handleResponse);
-}
-
-function loadDrone(operatorDroneId) {
-  const apiRoot = applicationProperties().apiRoot;
-  const authToken = "Bearer " + localStorage.getItem("accessToken");
-  const requestOptions = {
-    method: "GET",
-    headers: { "Content-Type": "application/json", Authorization: authToken }
-  };
-
-  return fetch(
-    apiRoot + "/user/drones/" + operatorDroneId,
-    requestOptions
-  ).then(handleResponse);
 }
 
 function loadUserDetails(id) {

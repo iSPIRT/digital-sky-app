@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import imgLocation from '../img/temp/drone2.jpg';
 
 import queryString from 'query-string';
-import { userService } from '../services/userService';
+import { operatorDroneService } from '../services/operatorDroneService';
 
 class OperatorDroneProfilePage extends React.Component {
 
@@ -28,7 +28,7 @@ class OperatorDroneProfilePage extends React.Component {
 
     componentWillMount() {
         if(this.state.operatorDroneProfile == undefined) {
-            userService.loadDrone(this.state.operatorDroneId).then(
+            operatorDroneService.loadDrone(this.state.operatorDroneId).then(
                 currentDrone => {
                   this.setState({...{operatorDroneProfile: currentDrone}});
                 },
