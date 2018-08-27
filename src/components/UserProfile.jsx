@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom'
 
 import pilot from '../img/pilot.svg';
 import operator from '../img/operator.svg';
+import manufacturer from '../img/manufacturer.svg';
 
 
 class UserProfile extends React.Component {
   render() {
-    const { pilotProfileId, individualOperatorProfileId, organizationOperatorProfileId } = this.props;
+    const { pilotProfileId, individualOperatorProfileId, organizationOperatorProfileId, manufacturerProfileId } = this.props;
     const operatorProfileExist = (individualOperatorProfileId> 0) || (organizationOperatorProfileId > 0);
+    const manufacturerProfileExist = manufacturerProfileId >0;
     return (
         <div id="apply-for-block">
             <div className="grid-container">
@@ -18,87 +20,103 @@ class UserProfile extends React.Component {
                         <h2>Profile</h2>
 
                         <div className="apply-for-wrap" data-equalizer>
-                            <Link to="/pilotProfile">
-                                <div className="apply-for apply-for-pilot" data-equalizer-watch>
-                                    <div className="icon">
-                                        <img src={pilot} alt=""/>
-                                    </div>
-                                    <div className="details">
-                                        <div className="wrap">
-                                            <p className="title">Pilot Profile</p>
-                                            <p className="info">{ ( pilotProfileId && pilotProfileId > 0) ? 'View/Edit Pilot Profile' : 'Setup your pilot profile' }</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-
-                            { !operatorProfileExist ?
-
-                                (
-                                    <div><Link to="/individualOperatorProfile">
-                                        <div className="apply-for apply-for-operator" data-equalizer-watch>
+                            { !manufacturerProfileExist  &&
+                                <div className="apply-for-wrap" data-equalizer>
+                                    <Link to="/pilotProfile">
+                                        <div className="apply-for apply-for-pilot" data-equalizer-watch>
                                             <div className="icon">
-                                                <img src={operator} alt="operator"/>
+                                                <img src={pilot} alt=""/>
                                             </div>
                                             <div className="details">
                                                 <div className="wrap">
-                                                    <p className="title">Individual Operator Profile</p>
-                                                    <p className="info">Setup your operator profile as an individual</p>
+                                                    <p className="title">Pilot Profile</p>
+                                                    <p className="info">{ ( pilotProfileId && pilotProfileId > 0) ? 'View/Edit Pilot Profile' : 'Setup your pilot profile' }</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </Link>
 
-                                    <Link to="/organizationOperatorProfile">
-                                        <div className="apply-for apply-for-manufacturer" data-equalizer-watch>
-                                            <div className="icon">
-                                                <img src={operator} alt="operator"/>
-                                            </div>
-                                            <div className="details">
-                                                <div className="wrap">
-                                                    <p className="title">Operator Profile</p>
-                                                        <p className="info">Setup operator profile as organization representative</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Link></div>
-                                ) : (
-                                    individualOperatorProfileId > 0 ?
-                                    (
-                                        <Link to="/individualOperatorProfile">
-                                            <div className="apply-for apply-for-operator" data-equalizer-watch>
-                                                <div className="icon">
-                                                    <img src={operator} alt="operator"/>
-                                                </div>
-                                                <div className="details">
-                                                    <div className="wrap">
-                                                        <p className="title">Operator Profile</p>
-                                                        <p className="info">View/Edit Operator Profile</p>
+                                    { !operatorProfileExist ?
+
+                                        (
+                                            <div><Link to="/individualOperatorProfile">
+                                                <div className="apply-for apply-for-operator" data-equalizer-watch>
+                                                    <div className="icon">
+                                                        <img src={operator} alt="operator"/>
+                                                    </div>
+                                                    <div className="details">
+                                                        <div className="wrap">
+                                                            <p className="title">Individual Operator Profile</p>
+                                                            <p className="info">Setup your operator profile as an individual</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </Link>
-                                    ):
-                                    (
-                                        <Link to="/organizationOperatorProfile">
-                                            <div className="apply-for apply-for-manufacturer" data-equalizer-watch>
-                                                <div className="icon">
-                                                    <img src={operator} alt="operator"/>
-                                                </div>
-                                                <div className="details">
-                                                    <div className="wrap">
-                                                        <p className="title">Operator Profile</p>
-                                                            <p className="info">View/Edit Operator Profile</p>
+                                            </Link>
+
+                                            <Link to="/organizationOperatorProfile">
+                                                <div className="apply-for apply-for-manufacturer" data-equalizer-watch>
+                                                    <div className="icon">
+                                                        <img src={operator} alt="operator"/>
+                                                    </div>
+                                                    <div className="details">
+                                                        <div className="wrap">
+                                                            <p className="title">Operator Profile</p>
+                                                                <p className="info">Setup operator profile as organization representative</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </Link>
-                                    )
+                                            </Link></div>
+                                        ) : (
+                                            individualOperatorProfileId > 0 ?
+                                            (
+                                                <Link to="/individualOperatorProfile">
+                                                    <div className="apply-for apply-for-operator" data-equalizer-watch>
+                                                        <div className="icon">
+                                                            <img src={operator} alt="operator"/>
+                                                        </div>
+                                                        <div className="details">
+                                                            <div className="wrap">
+                                                                <p className="title">Operator Profile</p>
+                                                                <p className="info">View/Edit Operator Profile</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                            ):
+                                            (
+                                                <Link to="/organizationOperatorProfile">
+                                                    <div className="apply-for apply-for-manufacturer" data-equalizer-watch>
+                                                        <div className="icon">
+                                                            <img src={operator} alt="operator"/>
+                                                        </div>
+                                                        <div className="details">
+                                                            <div className="wrap">
+                                                                <p className="title">Operator Profile</p>
+                                                                    <p className="info">View/Edit Operator Profile</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                            )
 
-                                )
+                                        )
 
+                                    }
+                                </div>
                             }
-
+                            <Link to="/manufacturerProfile">
+                                <div className="apply-for apply-for-manufacturer" data-equalizer-watch>
+                                    <div className="icon">
+                                        <img src={manufacturer} alt=""/>
+                                    </div>
+                                    <div className="details">
+                                        <div className="wrap">
+                                            <p className="title">Manufacturer Profile</p>
+                                            <p className="info">{ ( manufacturerProfileId && manufacturerProfileId > 0) ? 'View/Edit Manufacturer Profile' : 'Setup your manufacturer profile' }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>    
                         </div>
                     </div>
                 </div>

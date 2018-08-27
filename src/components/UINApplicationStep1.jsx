@@ -104,7 +104,7 @@ class UINApplicationStep1 extends React.Component {
     updateDroneDetails() {
         const { droneTypes, operatorDroneId, selectedDroneTypeId } = this.props;
         const { applicationForm } = this.state;
-        var selectedDroneTypes=  droneTypes.filter( droneType => droneType.id == selectedDroneTypeId );
+        var selectedDroneTypes=  droneTypes.filter( droneType => droneType.id.toString() === selectedDroneTypeId.toString() );
         const selectedDroneType = selectedDroneTypes[0];
 
         var modifiedApplication = this.setDroneTypeDetailsInApplication(selectedDroneType, operatorDroneId, applicationForm);

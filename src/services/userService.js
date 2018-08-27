@@ -14,6 +14,9 @@ export const userService = {
   createOperatorProfile,
   updateOperatorProfile,
   loadOperatorProfile,
+  createManufacturerProfile,
+  updateManufacturerProfile,
+  loadManufacturerProfile,
   loadApplications,
   verifyAccount,
   loadUserDetails
@@ -48,6 +51,7 @@ function logout() {
   localStorage.removeItem("pilotProfileId");
   localStorage.removeItem("individualOperatorProfileId");
   localStorage.removeItem("organizationOperatorProfileId");
+  localStorage.removeItem("manufacturerProfileId");
   localStorage.removeItem("userId");
 }
 
@@ -199,6 +203,53 @@ function loadOperatorProfile(profile_type, operatorProfileId) {
   ).then(handleResponse);
 }
 
+function createManufacturerProfile(manufacturerProfile) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: authToken },
+    body: JSON.stringify(manufacturerProfile)
+  };
+
+  return fetch(apiRoot + "/manufacturer", requestOptions)
+    .then(handleResponse)
+    .then(response => {
+      if (response.id) {
+        localStorage.setItem("manufacturerProfileId", response.id);
+      }
+    });
+}
+
+function updateManufacturerProfile(manufacturerProfileId, manufacturerProfile) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", Authorization: authToken },
+    body: JSON.stringify(manufacturerProfile)
+  };
+
+  return fetch(
+    apiRoot + "/manufacturer/" + manufacturerProfileId,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function loadManufacturerProfile(manufacturerProfileId) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", Authorization: authToken }
+  };
+
+  return fetch(
+    apiRoot + "/manufacturer/" + manufacturerProfileId,
+    requestOptions
+  ).then(handleResponse);
+}
+
 function loadApplications() {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
@@ -210,17 +261,6 @@ function loadApplications() {
   return fetch(apiRoot + "/user/applications", requestOptions).then(
     handleResponse
   );
-}
-
-function loadUserDetails(id) {
-  const apiRoot = applicationProperties().apiRoot;
-  const authToken = "Bearer " + localStorage.getItem("accessToken");
-  const requestOptions = {
-    method: "GET",
-    headers: { "Content-Type": "application/json", Authorization: authToken }
-  };
-
-  return fetch(apiRoot + "/user/" + id, requestOptions).then(handleResponse);
 }
 
 function loadUserDetails(id) {
@@ -251,6 +291,7 @@ function loginUser(token) {
     localStorage.setItem("userId", token.id);
     localStorage.setItem("isAdmin", token.isAdmin);
     localStorage.setItem("pilotProfileId", token.pilotProfileId);
+    localStorage.setItem("manufacturerProfileId", token.manufacturerProfileId);
     localStorage.setItem(
       "individualOperatorProfileId",
       token.individualOperatorProfileId
