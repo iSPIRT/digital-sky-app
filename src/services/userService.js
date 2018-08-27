@@ -15,8 +15,6 @@ export const userService = {
   updateOperatorProfile,
   loadOperatorProfile,
   loadApplications,
-  loadDrones,
-  loadDrone,
   verifyAccount,
   loadUserDetails
 };
@@ -41,7 +39,8 @@ function login(credentials) {
   };
 
   return fetch(apiRoot + "/auth/token", requestOptions)
-    .then(handleResponse).then(loginUser);
+    .then(handleResponse)
+    .then(loginUser);
 }
 
 function logout() {
@@ -73,7 +72,9 @@ function resetPassword(payload) {
     body: JSON.stringify(payload)
   };
 
-  return fetch(apiRoot + "/user/resetPassword", requestOptions).then(handleResponse).then(loginUser);
+  return fetch(apiRoot + "/user/resetPassword", requestOptions)
+    .then(handleResponse)
+    .then(loginUser);
 }
 
 function verifyAccount(token) {
@@ -84,7 +85,9 @@ function verifyAccount(token) {
     body: JSON.stringify(token)
   };
 
-  return fetch(apiRoot + "/user/verify", requestOptions).then(handleResponse).then(loginUser);
+  return fetch(apiRoot + "/user/verify", requestOptions)
+    .then(handleResponse)
+    .then(loginUser);
 }
 
 function createPilotProfile(pilotProfileFormData) {
@@ -209,7 +212,7 @@ function loadApplications() {
   );
 }
 
-function loadDrones() {
+function loadUserDetails(id) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
@@ -217,21 +220,7 @@ function loadDrones() {
     headers: { "Content-Type": "application/json", Authorization: authToken }
   };
 
-  return fetch(apiRoot + "/user/drones", requestOptions).then(handleResponse);
-}
-
-function loadDrone(operatorDroneId) {
-  const apiRoot = applicationProperties().apiRoot;
-  const authToken = "Bearer " + localStorage.getItem("accessToken");
-  const requestOptions = {
-    method: "GET",
-    headers: { "Content-Type": "application/json", Authorization: authToken }
-  };
-
-  return fetch(
-    apiRoot + "/user/drones/" + operatorDroneId,
-    requestOptions
-  ).then(handleResponse);
+  return fetch(apiRoot + "/user/" + id, requestOptions).then(handleResponse);
 }
 
 function loadUserDetails(id) {
@@ -256,19 +245,19 @@ function handleResponse(response) {
   });
 }
 
-function loginUser(token){
-    if (token.accessToken) {
-        localStorage.setItem("accessToken", token.accessToken);
-        localStorage.setItem("userId", token.id);
-        localStorage.setItem("isAdmin", token.isAdmin);
-        localStorage.setItem("pilotProfileId", token.pilotProfileId);
-        localStorage.setItem(
-          "individualOperatorProfileId",
-          token.individualOperatorProfileId
-        );
-        localStorage.setItem(
-          "organizationOperatorProfileId",
-          token.organizationOperatorProfileId
-        );
-    }
+function loginUser(token) {
+  if (token.accessToken) {
+    localStorage.setItem("accessToken", token.accessToken);
+    localStorage.setItem("userId", token.id);
+    localStorage.setItem("isAdmin", token.isAdmin);
+    localStorage.setItem("pilotProfileId", token.pilotProfileId);
+    localStorage.setItem(
+      "individualOperatorProfileId",
+      token.individualOperatorProfileId
+    );
+    localStorage.setItem(
+      "organizationOperatorProfileId",
+      token.organizationOperatorProfileId
+    );
+  }
 }

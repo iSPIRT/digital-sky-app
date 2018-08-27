@@ -1,4 +1,5 @@
 import { userService } from "../services/userService";
+import { operatorDroneService } from "../services/operatorDroneService";
 
 import { LOGIN_SUCCESS } from "./loginActions";
 
@@ -44,7 +45,7 @@ export const loadApplicationsAction = () => {
 export const loadDronesAction = () => {
   return dispatch => {
     dispatch(request());
-    userService.loadDrones().then(
+    operatorDroneService.loadDrones().then(
       drones => {
         dispatch(success(drones));
       },
@@ -105,7 +106,9 @@ export const verifyAccountAction = token => {
   function success() {
     return { type: VERIFY_ACCOUNT_SUCCESS };
   }
-  function loginSuccess() { return { type: LOGIN_SUCCESS } }
+  function loginSuccess() {
+    return { type: LOGIN_SUCCESS };
+  }
   function failure(errors) {
     return { type: VERIFY_ACCOUNT_FAILURE, errors };
   }

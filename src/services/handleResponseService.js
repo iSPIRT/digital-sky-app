@@ -6,7 +6,8 @@ function handleResponse(response) {
   return response.text().then(text => {
     const data = text && JSON.parse(text);
     if (!response.ok) {
-      return Promise.reject(data.message);
+      const errors = (data && data.errors) || [data.toString()];
+      return Promise.reject(errors);
     }
     return data;
   });
