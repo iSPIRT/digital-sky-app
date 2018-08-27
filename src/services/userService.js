@@ -40,22 +40,7 @@ function login(credentials) {
 
   return fetch(apiRoot + "/auth/token", requestOptions)
     .then(handleResponse)
-    .then(token => {
-      if (token.accessToken) {
-        localStorage.setItem("accessToken", token.accessToken);
-        localStorage.setItem("userId", token.id);
-        localStorage.setItem("isAdmin", token.isAdmin);
-        localStorage.setItem("pilotProfileId", token.pilotProfileId);
-        localStorage.setItem(
-          "individualOperatorProfileId",
-          token.individualOperatorProfileId
-        );
-        localStorage.setItem(
-          "organizationOperatorProfileId",
-          token.organizationOperatorProfileId
-        );
-      }
-    });
+    .then(loginUser);
 }
 
 function logout() {
@@ -87,9 +72,9 @@ function resetPassword(payload) {
     body: JSON.stringify(payload)
   };
 
-  return fetch(apiRoot + "/user/resetPassword", requestOptions).then(
-    handleResponse
-  );
+  return fetch(apiRoot + "/user/resetPassword", requestOptions)
+    .then(handleResponse)
+    .then(loginUser);
 }
 
 function verifyAccount(token) {
@@ -100,7 +85,9 @@ function verifyAccount(token) {
     body: JSON.stringify(token)
   };
 
-  return fetch(apiRoot + "/user/verify", requestOptions).then(handleResponse);
+  return fetch(apiRoot + "/user/verify", requestOptions)
+    .then(handleResponse)
+    .then(loginUser);
 }
 
 function createPilotProfile(pilotProfileFormData) {
@@ -236,6 +223,17 @@ function loadUserDetails(id) {
   return fetch(apiRoot + "/user/" + id, requestOptions).then(handleResponse);
 }
 
+function loadUserDetails(id) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", Authorization: authToken }
+  };
+
+  return fetch(apiRoot + "/user/" + id, requestOptions).then(handleResponse);
+}
+
 function handleResponse(response) {
   return response.text().then(text => {
     const data = text && JSON.parse(text);
@@ -245,4 +243,21 @@ function handleResponse(response) {
     }
     return data;
   });
+}
+
+function loginUser(token) {
+  if (token.accessToken) {
+    localStorage.setItem("accessToken", token.accessToken);
+    localStorage.setItem("userId", token.id);
+    localStorage.setItem("isAdmin", token.isAdmin);
+    localStorage.setItem("pilotProfileId", token.pilotProfileId);
+    localStorage.setItem(
+      "individualOperatorProfileId",
+      token.individualOperatorProfileId
+    );
+    localStorage.setItem(
+      "organizationOperatorProfileId",
+      token.organizationOperatorProfileId
+    );
+  }
 }
