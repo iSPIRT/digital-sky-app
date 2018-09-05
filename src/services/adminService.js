@@ -5,7 +5,10 @@ export const adminService = {
   approveApplication,
   saveBlog,
   updateBlog,
-  loadBlogList
+  loadBlogList,
+  loadAirspaceCategories,
+  saveAirspaceCategory,
+  updateAirspaceCategory
 };
 
 function loadApplications(applicationType) {
@@ -78,13 +81,47 @@ function loadBlogList() {
   return fetch(url, requestOptions).then(handleResponse);
 }
 
+function loadAirspaceCategories() {
+    const apiRoot = applicationProperties().apiRoot;
+    const authToken = "Bearer " + localStorage.getItem("accessToken");
+    const requestOptions = {
+        method: "GET",
+        headers: { Authorization: authToken }
+    };
+    return fetch( apiRoot + "/airspaceCategory/list", requestOptions).then(handleResponse);
+}
+
+function saveAirspaceCategory(airspaceCategory) {
+    const apiRoot = applicationProperties().apiRoot;
+    const authToken = "Bearer " + localStorage.getItem("accessToken");
+    const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: authToken },
+        body: JSON.stringify(airspaceCategory)
+        };
+    const url = apiRoot + "/airspaceCategory";
+    return fetch(url, requestOptions).then(handleResponse);
+}
+
+function updateAirspaceCategory(id, airspaceCategory) {
+    const apiRoot = applicationProperties().apiRoot;
+    const authToken = "Bearer " + localStorage.getItem("accessToken");
+    const requestOptions = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", Authorization: authToken },
+        body: JSON.stringify(airspaceCategory)
+    };
+    const url = apiRoot + "/airspaceCategory/" + id;
+    return fetch(url, requestOptions).then(handleResponse);
+}
+
 function handleResponse(response) {
-  return response.text().then(text => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      const errors = (data && data.errors) || [data.toString()];
-      return Promise.reject(errors);
-    }
-    return data;
-  });
+    return response.text().then(text => {
+        const data = text && JSON.parse(text);
+        if (!response.ok) {
+          const errors = (data && data.errors) || [data.toString()];
+          return Promise.reject(errors);
+        }
+        return data;
+    });
 }

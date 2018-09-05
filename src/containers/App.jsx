@@ -27,6 +27,8 @@ import AdminDashboardDroneTypePage from './AdminDashboardDroneTypePage';
 import DroneProfilePage from './DroneProfilePage';
 import AdminBlogPage from './AdminBlogPage';
 import AdminBlogListPage from './AdminBlogListPage';
+import AdminAirspaceCategoryPage from './AdminAirspaceCategoryPage';
+import AdminAirspaceCategoryListPage from './AdminAirspaceCategoryListPage';
 import OccurrenceReportPage from './OccurrenceReportPage';
 
 import Logout from './Logout';
@@ -73,7 +75,7 @@ class App extends React.Component {
             <div>
              <Router history={history}>
                 <ScrollToTop>
-                    <Header stickyHeader={stickyHeader} homepage='true' loggedIn={loggedIn}/>
+                    <Header stickyHeader={stickyHeader} homepage='true' loggedIn={loggedIn} user={user}/>
 
                     <AuthenticatedRoute exact path="/dashboard" loggedIn={loggedIn} component={DashboardPage} />
                     <AuthenticatedRoute exact path="/profile" loggedIn={loggedIn} component={UserProfilePage} />
@@ -95,6 +97,8 @@ class App extends React.Component {
                     <AdminAuthenticatedRoute path="/admin/droneType" loggedIn={loggedIn} user={user} component={AdminDashboardDroneTypePage} />
                     <AdminAuthenticatedRoute path="/admin/blog" loggedIn={loggedIn} user={user} component={AdminBlogPage} />
                     <AdminAuthenticatedRoute path="/admin/blogList" loggedIn={loggedIn} user={user} component={AdminBlogListPage} />
+                    <AdminAuthenticatedRoute path="/admin/airspaceCategory" loggedIn={loggedIn} user={user} component={AdminAirspaceCategoryPage} />
+                    <AdminAuthenticatedRoute path="/admin/airspaceCategoryList" loggedIn={loggedIn} user={user} component={AdminAirspaceCategoryListPage} />
 
                     <Route exact path="/" component={Home} />
                     <Route path="/login" component={LoginPage} />
