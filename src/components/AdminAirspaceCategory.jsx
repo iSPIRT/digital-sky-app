@@ -60,15 +60,31 @@ class AdminAirspaceCategory extends React.Component {
                 return;
             }
         }
+        const formErrors = [];
+        var geoJson = {};
+        try {
+            if(!this.refs.geoJson.value){
+                formErrors.push('Please provide valid geo json');
+            } else {
+                geoJson= JSON.parse(this.refs.geoJson.value);
+            }
+        } catch (e){
+            formErrors.push('Please provide valid geo json');
+        }
+
+        this.setState({formErrors});
+
+        if( formErrors.length > 0 ) return;
 
         this.setState({fieldErrors:{}});
         this.setState({submitted: true});
         const { airspaceCategory } = this.state;
+
         const formData = {
             id: airspaceCategory.id,
             name: airspaceCategory.name,
             type: airspaceCategory.type ? airspaceCategory.type : "RED",
-            geoJson: JSON.parse(this.refs.geoJson.value)
+            geoJson
         }
         if(this.state.airspaceCategory.id){
             this.props.updateAirspaceCategory(this.state.airspaceCategory.id, formData);
@@ -134,7 +150,7 @@ class AdminAirspaceCategory extends React.Component {
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Geo json
-                                        <textarea name="geoJson" rows="10" defaultValue= { JSON.stringify(airspaceCategory.geoJson, undefined, 2) } ref="geoJson" validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <textarea name="geoJson" rows="10" defaultValue= { JSON.stringify(airspaceCategory.geoJson, undefined, 2) } ref="geoJson"/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">

@@ -15,6 +15,7 @@ class AdminBlogPage extends React.Component {
         super(props);
         this.saveBlog = this.saveBlog.bind(this);
         this.updateBlog = this.updateBlog.bind(this);
+        this.findCurrentBlogId = this.findCurrentBlogId.bind(this);
         const blogId = this.findCurrentBlogId();
         const { blogList } = this.props;
         if( blogId && blogList.length === 0 ){
