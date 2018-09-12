@@ -69,10 +69,6 @@ const DroneAcquisitionApplicationView = (props) => {
                 <h6>Nationality of Manufacturer:</h6>
                 <p>{ applicationForm.manufacturerNationality }</p> 
             </div >
-            {/* <div className="question">
-                <h6>Year of Manufacture:</h6>
-                <p>{ applicationForm.yearOfManufacture }</p>
-            </div> */}
             <div className="question">
                 <h6>Wing type:</h6>
                 <p>{ applicationForm.wingType }</p>

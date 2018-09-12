@@ -65,14 +65,14 @@ class UINApplicationPage extends React.Component {
         this.props.dispatch(editUINApplicationAction(applicationForm, id));
     }
 
-    downloadDocument(documentName){
+    downloadDocument(documentName) {
         const filePath = "applicationForm/uinApplication/"+this.props.applicationForm.id+"/document/"+documentName;
         this.props.dispatch(downloadFile(filePath, documentName));
     }
 
     render() {
 
-        const { saving, saved, errors, applicationForm, droneTypes } = this.props;
+        const { saving, saved, errors, applicationForm, droneTypes, deviceIds } = this.props;
         const { nationalityOptions, modeOfAcquisitionOptions, currentStep, selectedDroneTypeId, operatorDroneId } = this.state;
 
         return (
@@ -102,13 +102,14 @@ class UINApplicationPage extends React.Component {
                                     saving={ saving } saved={ saved } errors={ errors } 
                                     applicationForm={ applicationForm }
                                     updateApplication={ this.updateApplication }
-                                    nextStep={this.nextStep}
+                                    nextStep={ this.nextStep }
                                     previousStep={this.previousStep}
                                     step = { currentStep }
                                     downloadDocument= { this.downloadDocument } 
                                     droneTypes = { droneTypes }
                                     selectedDroneTypeId =  { selectedDroneTypeId }
                                     operatorDroneId = { operatorDroneId }
+                                    deviceIds = { deviceIds }
                                 />
                             );
                         case 3:
@@ -132,13 +133,14 @@ class UINApplicationPage extends React.Component {
 
 function mapStateToProps(state) {
     const { saving, saved, errors, applicationForm } = state.uinApplications;
-    const { droneTypes } = state.metaData;
+    const { droneTypes, deviceIds } = state.metaData;
     return {
        saving,
        saved,
        errors,
        applicationForm,
-       droneTypes
+       droneTypes,
+       deviceIds
     };
 }
 

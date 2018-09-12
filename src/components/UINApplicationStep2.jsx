@@ -2,6 +2,8 @@ import React from 'react';
 import FooterApplicationForm from './FooterApplicationForm';
 import DroneSpecForm from './DroneSpecForm';
 import FormErrors from './FormErrors';
+import FieldError from './FieldError';
+import { decorateInputClass, validateField, validateForm } from '../helpers/formValidationHelpers';
 
 class UINApplicationStep2 extends React.Component {
 
@@ -35,7 +37,8 @@ class UINApplicationStep2 extends React.Component {
                     maxHeightAttainable: "",
                     maxHeightOfOperation:"",
                 }
-            }
+            },
+            fieldErrors: {}
         };
     }
 
@@ -76,6 +79,13 @@ class UINApplicationStep2 extends React.Component {
 
     handleSaveApplication(event) {
         event.preventDefault();
+        const fieldErrors = validateForm(event.target)
+        for (const key of Object.keys(fieldErrors)) {
+            if(!fieldErrors[key].valid){
+                this.setState({fieldErrors});
+                return;
+            }
+        }
         this.setState({submitted: true});
 
         const formData = new FormData();
@@ -90,16 +100,34 @@ class UINApplicationStep2 extends React.Component {
     }
 
     render() {
-    
-        const { nationalityOptions, saving, previousStep, step, applicationForm, droneTypes, selectedDroneTypeId, operatorDroneId, errors} = this.props;
+        
+        const { nationalityOptions, saving, previousStep, step, applicationForm, droneTypes, selectedDroneTypeId, operatorDroneId, errors, deviceIds, fieldErrors} = this.props;
         const { opManualDoc, maintenanceGuidelinesDoc } = this.state;
         const isReadOnly = true;
+        
+        if(applicationForm.uniqueDeviceId) {
+            deviceIds.push(applicationForm.uniqueDeviceId);
+        }
+
+        let deviceIdSelectOptions = deviceIds.map(option => {
+            return (<option value={ option } key={ option }> { option } </option>)
+        });
+        
         return (
             <div className="page-form">
                 <FormErrors errors = {errors}/>
                 <form name="uinApplicationForm" onSubmit={this.handleSaveApplication}>
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
+                            <div className="large-12 cell">
+                                <label>UniqueDevice Id
+                                <select name="uniqueDeviceId" value={ applicationForm.uniqueDeviceId }  onChange={ this.handleChange } className={fieldErrors && decorateInputClass(fieldErrors['uniqueDeviceId'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)}) }>
+                                    { (!applicationForm.uniqueDeviceId) && <option default key="-1" value="-1">Select</option> }
+                                    { deviceIdSelectOptions }
+                                </select>
+                                { fieldErrors && <FieldError fieldErrors={fieldErrors} field='uniqueDeviceId'/>  }
+                                </label>
+                            </div>
                             <div className="large-12 cell">
                                 <DroneSpecForm name="droneSpec" nationalityOptions={ nationalityOptions }
                                              application = { applicationForm } 
@@ -109,7 +137,8 @@ class UINApplicationStep2 extends React.Component {
                                              isReadOnly = { isReadOnly }
                                              onChange= { this.handleChange }  
                                              updateDroneDetails= { this.updateDroneDetails } 
-                                             droneTypeDisabled = "true" />
+                                             droneTypeDisabled = "true" 
+                                />
 
                             </div>
                             <div className="large-12 cell">

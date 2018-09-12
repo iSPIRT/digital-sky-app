@@ -106,7 +106,7 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
                                     <FieldError fieldErrors={this.state.fieldErrors} field='acquisitionMode'/>
                             </label>
                             </div>
-                                { (applicationForm.acquisitionMode === "LEASE"  || applicationForm.acquisitionMode === null) ?
+                                { applicationForm.acquisitionMode === "LEASE"  &&
                                     (<div className="large-12 cell">
                                         <div className="large-12 cell">
                                             <label>Name of Owner
@@ -129,17 +129,17 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
                                                 <FieldError fieldErrors={this.state.fieldErrors} field='ownerAddress.pinCode'/>
                                             </label>
                                         </div>
-                                    </div>) : <div></div>
+                                    </div>
+                                    )
                                 }
                             <div className="large-12 cell">
                                 <label>Purpose of Operation
-                                    <input type="text" name="purposeOfOperation" value={ applicationForm? applicationForm.purposeOfOperation : undefined } onChange={this.handleChange} className={decorateInputClass(this.state.fieldErrors['purposeOfOperation'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
-                                    <FieldError fieldErrors={this.state.fieldErrors} field='purposeOfOperation'/>
+                                    <input type="text" name="purposeOfOperation" value={ applicationForm? applicationForm.purposeOfOperation : undefined } onChange={this.handleChange} />
                                 </label>
                             </div>
                             <div className="large-12 cell">
                                 <label>Proposed Base of Operation
-                                    <input type="text" name="proposedBaseOfOperation" value={ applicationForm? applicationForm.proposedBaseOfOperation : undefined } onChange={this.handleChange} className={decorateInputClass(this.state.fieldErrors['proposedBaseOfOperation'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                    <input type="text" name="proposedBaseOfOperation" value={ applicationForm? applicationForm.proposedBaseOfOperation : undefined } onChange={this.handleChange} />
                                     <FieldError fieldErrors={this.state.fieldErrors} field='proposedBaseOfOperation'/>
                                 </label>
                             </div>
