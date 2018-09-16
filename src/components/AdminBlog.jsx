@@ -42,8 +42,14 @@ class AdminBlog extends React.Component {
 
     componentWillReceiveProps(nextProps){
         this.setState({formErrors: []});
-        if( nextProps.errors.length === 0 ){
-            this.setState({blog: nextProps.blog});
+        if( nextProps.errors.length === 0){
+            if(this.state.blog) {
+                const { blog }  = this.state;
+                blog.id = nextProps.blog ? nextProps.blog.id : blog.id;
+                this.setState({blog});
+            } else {
+                this.setState({blog: nextProps.blog});
+            }
         }
     }
 
@@ -103,7 +109,6 @@ class AdminBlog extends React.Component {
     render() {
         const { savingBlog, savedBlog, errors} = this.props;
         const { formErrors, submitted, blog} = this.state;
-        console.log("");
         if(!blog){
             return (
                     <div className="page-header">

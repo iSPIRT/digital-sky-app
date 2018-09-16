@@ -18,6 +18,9 @@ import { droneProfile } from "./droneProfileReducer";
 import { accountVerification } from "./accountVerificationReducer";
 import { adminBlog } from "./adminBlogReducer";
 import { occurrenceReport } from "./occurrenceReportReducer";
+import { adminAirspaceCategory } from "./adminAirspaceCategoryReducer";
+import { flyDronePermissionApplications } from "./flyDronePermissionApplicationsReducer";
+import { userAirspaceCategory } from "./userAirspaceCategoryReducer";
 
 const rootReducer = combineReducers({
   authentication,
@@ -38,7 +41,10 @@ const rootReducer = combineReducers({
   droneProfile,
   adminBlog,
   user,
-  occurrenceReport
+  occurrenceReport,
+  adminAirspaceCategory,
+  flyDronePermissionApplications,
+  userAirspaceCategory
 });
 
 export default rootReducer;

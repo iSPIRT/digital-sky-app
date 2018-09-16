@@ -48,6 +48,28 @@ export const invalidDate = value => {
   return false;
 };
 
+export const invalidFutureDate = value => {
+  if (!value) return false;
+  if (!/\d{2}-\d{2}-\d{4}/i.test(value)) return true;
+  const valueTokens = value.split("-");
+  const date = parseInt(valueTokens[0], 10);
+  const month = parseInt(valueTokens[1], 10) - 1;
+  const year = parseInt(valueTokens[2], 10);
+  const valueAsDate = new Date(year, month, date);
+  if (isNaN(valueAsDate.getTime())) return true;
+  if (
+    valueAsDate.getDate() !== date ||
+    valueAsDate.getMonth() !== month ||
+    valueAsDate.getFullYear() !== year
+  ) {
+    return true;
+  }
+  const currentDate = new Date();
+  const dateDiff = (currentDate.getTime() - valueAsDate.getTime()) / 1000;
+  if (dateDiff >= 0) return true;
+  return false;
+};
+
 export const invalidTime = value => {
   if (!value) return false;
   if (!/\d{2}:\d{2}/i.test(value)) return true;
@@ -151,6 +173,11 @@ export const validateField = (fieldErrors, field) => {
           [field.name]: { message: "Invalid Date of Manufacture", valid: false }
         };
       } else if (validation.trim() === "date" && invalidDate(field.value)) {
+        return {
+          ...fieldErrors,
+          [field.name]: { message: "Invalid Date", valid: false }
+        };
+      } else if (validation.trim() === "futureDate" && invalidFutureDate(field.value)) {
         return {
           ...fieldErrors,
           [field.name]: { message: "Invalid Date", valid: false }
