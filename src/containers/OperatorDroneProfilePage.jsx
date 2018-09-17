@@ -49,7 +49,7 @@ class OperatorDroneProfilePage extends React.Component {
         return "/occurrenceReport?droneId=" + this.state.operatorDroneId;
     }
 
-    getFlyDronePermissionsLink() {
+    getFlyDronePermissionLink() {
         return "/flyDronePermissionApplications?droneId=" + this.state.operatorDroneId;
     }
 
