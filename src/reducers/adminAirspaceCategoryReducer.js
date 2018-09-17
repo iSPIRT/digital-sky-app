@@ -5,7 +5,7 @@ import { SAVE_AIRSPACE_CATEGORY_REQUEST } from "../actions/adminActions";
 import { SAVE_AIRSPACE_CATEGORY_SUCCESS } from "../actions/adminActions";
 import { SAVE_AIRSPACE_CATEGORY_FAILURE } from "../actions/adminActions";
 
-import {insertOrUpdate} from "../helpers/arrayHelper";
+import { insertOrUpdate } from "../helpers/arrayHelper";
 
 const initialState = {
   savingAirspaceCategory: false,
@@ -30,7 +30,11 @@ export function adminAirspaceCategory(state = initialState, action) {
     case SAVE_AIRSPACE_CATEGORY_SUCCESS:
       const { airspaceCategory } = action;
       const currentAirspaceCategoryList = state.airspaceCategoryList;
-      const updatedAirspaceCategoryList = insertOrUpdate(currentAirspaceCategoryList, airspaceCategory, (a,b) => a.id===b.id)
+      const updatedAirspaceCategoryList = insertOrUpdate(
+        currentAirspaceCategoryList,
+        airspaceCategory,
+        (a, b) => a.id === b.id
+      );
       return {
         errors: [],
         savedAirspaceCategory: true,

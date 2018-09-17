@@ -18,7 +18,6 @@ class DroneSpecForm extends React.Component {
 
     handleChange(event) {
          this.props.onChange(event);
-       // alert("value" + event.target.attributes["multiple"] === undefined)
     }
 
     updateDroneSpec(droneDetails) {
@@ -151,18 +150,6 @@ class DroneSpecForm extends React.Component {
                         <input type="number" name="maxHeightOfOperation" placeholder="" value= { selectedDroneType && selectedDroneType.maxHeightOfOperation !==0 &&  selectedDroneType.maxHeightOfOperation} onChange={ this.handleChange } readOnly = { isReadOnly } />
                     </label>
                 </div>
-                {/* <div className="large-12 cell">
-                    <label> Select whichever applicable
-                        <select multiple onChange={ this.handleChange } disabled = { isReadOnly } >
-                        { !selectApplicableIsEmpty && <option default key="-1" value="-1"> Select</option> }
-                            <option value={ selectedDroneType && selectedDroneType.hasGNSS } key="hasGNSS">GNSS (GPS) for horizontal and vertical position fixing</option>
-                            <option value={ selectedDroneType && selectedDroneType.hasAutonomousFlightTerminationSystem }>Autonomous Flight Termination System or Return Home (RH) option</option>
-                            <option value={ selectedDroneType && selectedDroneType.hasFlashingAntiCollisionStrobeLights }>Flashing anti-collision strobe lights</option>
-                            <option value={ selectedDroneType && selectedDroneType.hasRFID_GSM_SIMCard }>RFID and GSM SIM Card/ NPNT compliant for APP based real time tracking (except for Nano and Micro category)</option>
-                            <option value={ selectedDroneType && selectedDroneType.hasFlightController }>Flight Controller with flight data logging capability</option>
-                        </select>
-                    </label>
-                </div> */}
             </div>
         )
     }

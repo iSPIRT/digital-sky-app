@@ -13,7 +13,12 @@ export const createApplicationAction = application => {
     flyDronePermissionApplicationService.createApplication(application).then(
       savedApplication => {
         dispatch(success(savedApplication));
-        history.push("/flyDronePermissionApplication?droneId="+savedApplication.droneId+"&id="+savedApplication.id)
+        history.push(
+          "/flyDronePermissionApplication?droneId=" +
+            savedApplication.droneId +
+            "&id=" +
+            savedApplication.id
+        );
       },
       errors => {
         dispatch(failure(errors));
@@ -58,7 +63,6 @@ export const updateApplicationAction = (applicationId, application) => {
   }
 };
 
-
 export const loadApplicationsAction = droneId => {
   return dispatch => {
     flyDronePermissionApplicationService.loadApplications(droneId).then(
@@ -77,4 +81,3 @@ export const loadApplicationsAction = droneId => {
     return { type: LOAD_FDP_APPLICATIONS_FAILURE, errors };
   }
 };
-

@@ -177,7 +177,10 @@ export const validateField = (fieldErrors, field) => {
           ...fieldErrors,
           [field.name]: { message: "Invalid Date", valid: false }
         };
-      } else if (validation.trim() === "futureDate" && invalidFutureDate(field.value)) {
+      } else if (
+        validation.trim() === "futureDate" &&
+        invalidFutureDate(field.value)
+      ) {
         return {
           ...fieldErrors,
           [field.name]: { message: "Invalid Date", valid: false }

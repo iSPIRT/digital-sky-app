@@ -1,4 +1,4 @@
-import applicationProperties from '../helpers/applicationPropertiesHelper'
+import applicationProperties from "../helpers/applicationPropertiesHelper";
 
 export const flyDronePermissionApplicationService = {
   createApplication,
@@ -11,12 +11,12 @@ function createApplication(application) {
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "POST",
-    headers: { Authorization: authToken, "Content-Type": "application/json"  },
+    headers: { Authorization: authToken, "Content-Type": "application/json" },
     body: JSON.stringify(application)
   };
 
   return fetch(
-    apiRoot+"/applicationForm/flyDronePermissionApplication",
+    apiRoot + "/applicationForm/flyDronePermissionApplication",
     requestOptions
   ).then(handleResponse);
 }
@@ -26,13 +26,12 @@ function updateApplication(applicationId, application) {
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "PATCH",
-    headers: { Authorization: authToken, "Content-Type": "application/json"  },
+    headers: { Authorization: authToken, "Content-Type": "application/json" },
     body: JSON.stringify(application)
   };
 
   return fetch(
-    apiRoot+"/applicationForm/flyDronePermissionApplication/" +
-      applicationId,
+    apiRoot + "/applicationForm/flyDronePermissionApplication/" + applicationId,
     requestOptions
   ).then(handleResponse);
 }
@@ -46,7 +45,8 @@ function loadApplications(droneId) {
   };
 
   return fetch(
-    apiRoot+"/applicationForm/flyDronePermissionApplication/list?droneId=" +
+    apiRoot +
+      "/applicationForm/flyDronePermissionApplication/list?droneId=" +
       droneId,
     requestOptions
   ).then(handleResponse);

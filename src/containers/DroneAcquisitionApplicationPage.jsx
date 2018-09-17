@@ -26,7 +26,7 @@ export default class DroneAcquisitionApplicationPage extends React.Component {
         this.downloadDocument = this.downloadDocument.bind(this);
         this.state = {
             categoryOptions : ['EXISTING_UAOP_HOLDER','UAOP_APPLICANT','WITHOUT_UAOP'],
-            modeOfAcquisitionOptions : ['LEASE', 'PURCHASE'],
+            modeOfAcquisitionOptions : ['PURCHASE','LEASE'],
             nationalityOptions : ['Indian', 'Chinese', 'Korean'],
             formErrors:[],
             currentStep: 1,

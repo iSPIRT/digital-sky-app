@@ -1,7 +1,7 @@
 import React from 'react';
 import FooterApplicationForm from './FooterApplicationForm';
 import FooterApplicationReviewDeclaration from './FooterApplicationReviewDeclaration';
-//import FormErrors from './FormErrors';
+import FormErrors from './FormErrors';
 import UINApplicationView from './UINApplicationView';
 
 class UINApplicationStep3 extends React.Component {
@@ -11,8 +11,7 @@ class UINApplicationStep3 extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.downloadDocument = this.downloadDocument.bind(this);
         this.state = {
-            submitted: false,
-            formErrors:[]
+            submitted: false
         };
     }
     
@@ -36,11 +35,10 @@ class UINApplicationStep3 extends React.Component {
 
     render() {
         
-        const { saving, applicationForm, previousStep, step} = this.props;
+        const { saving, applicationForm, previousStep, step, errors} = this.props;
         return (
             <div className="page-form">
-                {/* <FormErrors errors = {errors}/>
-                <FormErrors errors = {formErrors}/> */}
+                <FormErrors errors = {errors}/>
                 <form name="uinApplicationForm" onSubmit={ this.handleSubmit }>
                     <div id="application-preview">
                         <div className="grid-container">
