@@ -25,7 +25,8 @@
     "jquery": "^3.2.1",
     "what-input": "^4.2.0",
     "js-file-download": "^0.4.1",
-    "react-google-recaptcha": "^0.12.0"
+    "react-google-recaptcha": "^0.12.0",
+    "ol": "^5.1.3"
   },
   "scripts": {
     "start": "react-scripts start",

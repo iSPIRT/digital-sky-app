@@ -49,6 +49,10 @@ class OperatorDroneProfilePage extends React.Component {
         return "/occurrenceReport?droneId=" + this.state.operatorDroneId;
     }
 
+    getFlyDronePermissionsLink() {
+        return "/flyDronePermissionApplications?droneId=" + this.state.operatorDroneId;
+    }
+
     render(){
 
         const {operatorDroneProfile} = this.state;
@@ -82,6 +86,9 @@ class OperatorDroneProfilePage extends React.Component {
                             </div>
                             <div className="large-12 cell">
                                 <a href= {this.getOccurrenceReportLink()} className="button button-accept">Occurrence Report</a>
+                            </div>
+                            <div className="large-12 cell">
+                                <a href= {this.getFlyDronePermissionLink()} className="button button-accept">Fly Drone Application</a>
                             </div>
                         </div>
                     </div>

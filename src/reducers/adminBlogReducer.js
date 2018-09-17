@@ -5,6 +5,8 @@ import { SAVE_BLOG_REQUEST } from "../actions/adminActions";
 import { SAVE_BLOG_SUCCESS } from "../actions/adminActions";
 import { SAVE_BLOG_FAILURE } from "../actions/adminActions";
 
+import { insertOrUpdate } from "../helpers/arrayHelper";
+
 const initialState = {
   savingBlog: false,
   savedBlog: false,
@@ -28,14 +30,11 @@ export function adminBlog(state = initialState, action) {
     case SAVE_BLOG_SUCCESS:
       const { blog } = action;
       const currentBlogList = state.blogList;
-      const indexOfUpdatedBlog = currentBlogList.findIndex(
-        b => b.id === blog.id
-      );
-      const updatedBlogList = [
-        ...currentBlogList.slice(0, indexOfUpdatedBlog),
+      const updatedBlogList = insertOrUpdate(
+        currentBlogList,
         blog,
-        ...currentBlogList.slice(indexOfUpdatedBlog + 1)
-      ];
+        (a, b) => a.id === b.id
+      );
       return {
         errors: [],
         savingBlog: false,

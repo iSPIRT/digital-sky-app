@@ -5,7 +5,10 @@ export const adminService = {
   approveApplication,
   saveBlog,
   updateBlog,
-  loadBlogList
+  loadBlogList,
+  loadAirspaceCategories,
+  saveAirspaceCategory,
+  updateAirspaceCategory
 };
 
 function loadApplications(applicationType) {
@@ -75,6 +78,42 @@ function loadBlogList() {
     headers: { "Content-Type": "application/json", Authorization: authToken }
   };
   const url = apiRoot + "/blog/list";
+  return fetch(url, requestOptions).then(handleResponse);
+}
+
+function loadAirspaceCategories() {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { Authorization: authToken }
+  };
+  return fetch(apiRoot + "/airspaceCategory/list", requestOptions).then(
+    handleResponse
+  );
+}
+
+function saveAirspaceCategory(airspaceCategory) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: authToken },
+    body: JSON.stringify(airspaceCategory)
+  };
+  const url = apiRoot + "/airspaceCategory";
+  return fetch(url, requestOptions).then(handleResponse);
+}
+
+function updateAirspaceCategory(id, airspaceCategory) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", Authorization: authToken },
+    body: JSON.stringify(airspaceCategory)
+  };
+  const url = apiRoot + "/airspaceCategory/" + id;
   return fetch(url, requestOptions).then(handleResponse);
 }
 

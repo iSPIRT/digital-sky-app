@@ -142,3 +142,80 @@ export const loadBlogListAction = () => {
     return { type: LOAD_BLOG_LIST_FAILURE, errors };
   }
 };
+
+export const LOAD_AIRSPACE_CATEGORY_LIST_SUCCESS =
+  "LOAD_AIRSPACE_CATEGORY_LIST_SUCCESS";
+export const LOAD_AIRSPACE_CATEGORY_LIST_FAILURE =
+  "LOAD_AIRSPACE_CATEGORY_LIST_FAILURE";
+
+export const SAVE_AIRSPACE_CATEGORY_REQUEST = "SAVE_AIRSPACE_CATEGORY_REQUEST";
+export const SAVE_AIRSPACE_CATEGORY_SUCCESS = "SAVE_AIRSPACE_CATEGORY_SUCCESS";
+export const SAVE_AIRSPACE_CATEGORY_FAILURE = "SAVE_AIRSPACE_CATEGORY_FAILURE";
+
+export const loadAirspaceCategoriesAction = () => {
+  return dispatch => {
+    adminService.loadAirspaceCategories().then(
+      airspaceCategoryList => {
+        dispatch(success(airspaceCategoryList));
+      },
+      errors => {
+        dispatch(failure(errors));
+      }
+    );
+  };
+
+  function success(airspaceCategoryList) {
+    return { type: LOAD_AIRSPACE_CATEGORY_LIST_SUCCESS, airspaceCategoryList };
+  }
+  function failure(errors) {
+    return { type: LOAD_AIRSPACE_CATEGORY_LIST_FAILURE, errors };
+  }
+};
+export const saveAirspaceCategoryAction = airspaceCategory => {
+  return dispatch => {
+    dispatch(request());
+    adminService.saveAirspaceCategory(airspaceCategory).then(
+      savedAirspaceCategory => {
+        dispatch(success(savedAirspaceCategory));
+        history.push("/admin/airspaceCategory?id=" + savedAirspaceCategory.id);
+      },
+      errors => {
+        dispatch(failure(errors));
+      }
+    );
+  };
+
+  function request() {
+    return { type: SAVE_AIRSPACE_CATEGORY_REQUEST };
+  }
+  function success(airspaceCategory) {
+    return { type: SAVE_AIRSPACE_CATEGORY_SUCCESS, airspaceCategory };
+  }
+  function failure(errors) {
+    return { type: SAVE_AIRSPACE_CATEGORY_FAILURE, errors };
+  }
+};
+
+export const updateAirspaceCategoryAction = (id, airspaceCategory) => {
+  return dispatch => {
+    dispatch(request());
+    adminService.updateAirspaceCategory(id, airspaceCategory).then(
+      updateAirspaceCategory => {
+        dispatch(success(updateAirspaceCategory));
+      },
+      errors => {
+        dispatch(failure(errors));
+      }
+    );
+  };
+
+  function request() {
+    return { type: SAVE_AIRSPACE_CATEGORY_REQUEST };
+  }
+  function success(airspaceCategory) {
+    return { type: SAVE_AIRSPACE_CATEGORY_SUCCESS, airspaceCategory };
+  }
+  function failure(errors) {
+    return { type: SAVE_AIRSPACE_CATEGORY_FAILURE, errors };
+  }
+};

@@ -2383,3 +2383,7 @@ footer.site-footer .footer-logo {
   border-bottom: 2px solid #b13232;
   box-shadow: 0px 6px 5px 0px #ffe1e1;
 }
+
+.map {
+  height: 570px;
+}
