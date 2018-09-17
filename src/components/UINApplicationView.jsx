@@ -19,6 +19,10 @@ const UINApplicationView = (props) => {
                     <p>{ application.serialNo }</p>
                 </div>
                 <div className="question">
+                    <h6>Device Unique Id:</h6>
+                    <p>{ application.uniqueDeviceId }</p>
+                </div>
+                <div className="question">
                     <h6>Date of Manufacture:</h6>
                     <p>{ application.dateOfManufacture }</p>
                 </div>
@@ -74,10 +78,6 @@ const UINApplicationView = (props) => {
                     <h6>Nationality of Manufacturer:</h6>
                     <p>{ application.manufacturerNationality }</p> 
                 </div >
-                {/* <div className="question">
-                    <h6>Year of Manufacture:</h6>
-                    <p>{ application.yearOfManufacture }</p>
-                </div> */}
                 <div className="question">
                     <h6>Wing type:</h6>
                     <p>{ application.wingType }</p>

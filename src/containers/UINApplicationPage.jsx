@@ -7,7 +7,7 @@ import UINApplicationStep1 from '../components/UINApplicationStep1';
 import UINApplicationStep2 from '../components/UINApplicationStep2';
 import UINApplicationStep3 from '../components/UINApplicationStep3';
 import HeaderApplicationForm from '../components/HeaderApplicationForm';
-import { loadMetaDataAction } from '../actions/metaDataActions';
+import { loadMetaDataAction, loadDroneDeviceIds } from '../actions/metaDataActions';
 
 import { createUINApplicationAction, editUINApplicationAction, applicationFormLoadedAction, loadUINApplicationAction } from '../actions/uinApplicationActions';
 
@@ -45,6 +45,7 @@ class UINApplicationPage extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(loadMetaDataAction());
+        this.props.dispatch(loadDroneDeviceIds());
         this.props.dispatch(applicationFormLoadedAction());
         const queryParams = queryString.parse(this.props.location.search);
         const applicationId = queryParams.id;

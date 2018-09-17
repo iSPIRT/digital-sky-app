@@ -66,6 +66,7 @@ class OperatorDroneProfilePage extends React.Component {
                             <h2> {operatorDroneProfile.droneType.modelName}</h2>
                             <div className="drone-meta">
                                 <p><strong>Model Number:</strong> {operatorDroneProfile.droneType.modelNo}</p>
+                                <p><strong>Device Unique Id:</strong> {operatorDroneProfile.deviceId}</p>
                                 <p><strong>UIN Application Status:</strong> {operatorDroneProfile.operatorDroneStatus}</p>
                                 <p><strong>Date of registration:</strong> {operatorDroneProfile.registeredDate}</p>
                                 <p><strong>UIN Number:</strong> {operatorDroneProfile.UINNo}</p>

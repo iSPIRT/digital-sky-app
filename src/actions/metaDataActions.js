@@ -8,26 +8,28 @@ export const LOAD_METADATA_FAILURE = "LOAD_METADATA_FAILURE";
 export const loadMetaDataAction = () => {
   return dispatch => {
     dispatch(request());
-    metaDataService
-      .loadDroneTypes()
-      .then(
-        droneTypes => {
-          dispatch(loadDroneTypeSuccess(droneTypes));
-        },
-        errors => {
-          dispatch(failure(errors));
-        }
-      )
-      .then(
-        metaDataService.loadOperatorDeviceIds().then(
-          operatorDeviceIds => {
-            dispatch(loadOperatorDeviceIdSuccess(operatorDeviceIds));
-          },
-          errors => {
-            dispatch(failure(errors));
-          }
-        )
-      );
+    metaDataService.loadDroneTypes().then(
+      droneTypes => {
+        dispatch(loadDroneTypeSuccess(droneTypes));
+      },
+      errors => {
+        dispatch(failure(errors));
+      }
+    );
+  };
+};
+
+export const loadDroneDeviceIds = () => {
+  return dispatch => {
+    dispatch(request());
+    metaDataService.loadOperatorDeviceIds().then(
+      operatorDeviceIds => {
+        dispatch(loadOperatorDeviceIdSuccess(operatorDeviceIds));
+      },
+      errors => {
+        dispatch(failure(errors));
+      }
+    );
   };
 };
 
