@@ -17,7 +17,10 @@ import {defaults as defaultControls} from 'ol/control';
 import {fromLonLat, toLonLat} from 'ol/proj';
 import {Draw, Modify, Snap} from 'ol/interaction';
 
+import Geocoder from 'ol-geocoder';
+
 require('ol/ol.css');
+require('ol-geocoder/dist/ol-geocoder.min.css');
 
 class FlyDronePermissionApplicationStep2 extends React.Component {
 
@@ -31,6 +34,7 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
         this.resetDraw = this.resetDraw.bind(this);
         this.handleDraw = this.handleDraw.bind(this);
         this.handleModifyDraw = this.handleModifyDraw.bind(this);
+        this.addressChosen = this.addressChosen.bind(this);
 
         this.state = {
             submitted: false,
@@ -69,6 +73,20 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
             })
         });
 
+        var geoCoder = new Geocoder('nominatim', {
+            provider: 'osm',
+            lang: 'en',
+            placeholder: 'Search for ...',
+            limit: 5,
+            debug: false,
+            autoComplete: true,
+            countrycodes: 'in',
+            preventDefault: true,
+            keepOpen: false
+        });
+
+
+
         var map = new Map({
             target: this.refs.mapContainer,
             layers: [ new Tile({ source: new OSM({
@@ -79,10 +97,17 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
                     collapsible: false
                 }
             }),
-            view: new View({ center: fromLonLat([79.08060, 22.14980]), zoom: 4,})
+            view: new View({ center: fromLonLat([79.08060, 22.14980]), zoom: 4})
         });
 
+        geoCoder.on('addresschosen', this.addressChosen);
+
+        map.addControl(geoCoder);
         this.setState({  map: map});
+    }
+
+    addressChosen(event){
+        this.state.map.setView(new View({ center: event.coordinate, zoom: 8}));
     }
 
     startDraw(event) {
