@@ -6,6 +6,8 @@ import queryString from 'query-string'
 
 import { Link } from 'react-router-dom'
 
+import FormErrors from './FormErrors';
+
 import UAOPApplicationView from '../components/UAOPApplicationView'
 import DroneAcquisitionApplicationView from '../components/DroneAcquisitionApplicationView';
 import UINApplicationView from '../components/UINApplicationView';
@@ -62,6 +64,7 @@ class AdminApplicationViewPage extends React.Component {
     render() {
         const {applicationType, applicationId} = this.state;
         const applications = this.props.adminApplications[applicationType];
+        const errors = this.props.adminApplications.errors;
         const {airspaceCategories} = this.props;
 
         if(!applications || applications.length === 0) return <div/>;
@@ -82,6 +85,7 @@ class AdminApplicationViewPage extends React.Component {
                                                 <h2>UAOP Application</h2>
                                                 <Link to={'/admin/dashboard?type='+applicationType}>Back</Link>
                                             </div>
+                                            <FormErrors errors = {errors}/>
                                             { applicationType === UAOP_APPLICATION_APPLICATION && <UAOPApplicationView application={currentApplication} downloadDocument={this.downloadDocument}/> }
                                         </div>
                                     )
@@ -92,6 +96,7 @@ class AdminApplicationViewPage extends React.Component {
                                                 <h2>Import Drone Application</h2>
                                                 <Link to={'/admin/dashboard?type='+applicationType}>Back</Link>
                                             </div>
+                                            <FormErrors errors = {errors}/>
                                             { applicationType === IMPORT_DRONE_APPLICATION && <DroneAcquisitionApplicationView applicationForm={currentApplication} downloadDocument={this.downloadDocument} type="importDrone" /> }
                                         </div>
                                     )
@@ -102,6 +107,7 @@ class AdminApplicationViewPage extends React.Component {
                                                 <h2>UIN Application</h2>
                                                 <Link to={'/admin/dashboard?type='+applicationType}>Back</Link>
                                             </div>
+                                            <FormErrors errors = {errors}/>
                                             { applicationType === UIN_APPLICATION && <UINApplicationView application={currentApplication} downloadDocument={this.downloadDocument} /> }
                                         </div>
                                     )
@@ -112,6 +118,7 @@ class AdminApplicationViewPage extends React.Component {
                                                 <h2>Fly Drone Permission Application</h2>
                                                 <Link to={'/admin/dashboard?type='+applicationType}>Back</Link>
                                             </div>
+                                            <FormErrors errors = {errors}/>
                                             { applicationType === FLY_DRONE_PERMISSION_APPLICATION && <FlyDronePermissionApplicationView application={currentApplication} airspaceCategories={airspaceCategories} downloadDocument={this.downloadDocument} loadAirspaceCategories={this.loadAirspaceCategories}/> }
                                         </div>
                                     )
@@ -123,6 +130,7 @@ class AdminApplicationViewPage extends React.Component {
                                                 <h2>Local Drone Acquisition Application</h2>
                                                 <Link to={'/admin/dashboard?type='+applicationType}>Back</Link>
                                             </div>
+                                            <FormErrors errors = {errors}/>
                                             { applicationType === LOCAL_DRONE_ACQUISITION_APPLICATION && <DroneAcquisitionApplicationView applicationForm={currentApplication} downloadDocument={this.downloadDocument} type="localDroneAcquisition" /> }
                                         </div>
                                     )

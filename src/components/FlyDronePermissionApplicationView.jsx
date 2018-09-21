@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom'
+
 import Map from 'ol/Map';
 import View from 'ol/View';
 import Tile from 'ol/layer/Tile';
@@ -96,7 +98,17 @@ class FlyDronePermissionApplicationView extends React.Component {
                 </div>
                 <div className="question">
                     <h6>Pilot Id:</h6>
-                    <p>{application.pilotId}</p>
+                    <p>
+                        <Link to={ "/admin/pilot?profileId="+application.pilotId } >{application.pilotId}</Link>
+                    </p>
+                </div>
+                <div className="question">
+                    <h6>Operator Id:</h6>
+                    <p>
+                        <Link to={ "/admin/operator?profileId="+application.operatorId+"&profileType="+application.applicantType } >
+                            {application.operatorId}
+                        </Link>
+                    </p>
                 </div>
                 <div className="question">
                     <h6>Drone Id:</h6>
