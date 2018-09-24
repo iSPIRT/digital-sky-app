@@ -8,6 +8,7 @@ import { LOCAL_DRONE_ACQUISITION_APPLICATION } from '../constants/applicationTyp
 import { IMPORT_DRONE_APPLICATION } from '../constants/applicationType';
 import { UAOP_APPLICATION_APPLICATION } from '../constants/applicationType';
 import { UIN_APPLICATION } from '../constants/applicationType';
+import { FLY_DRONE_PERMISSION_APPLICATION } from '../constants/applicationType';
 
 class Applications extends React.Component {
 
@@ -77,6 +78,7 @@ class AdminDashboard extends React.Component {
                                     <li><a onClick={(e) =>  this.applicationTypeSelected(IMPORT_DRONE_APPLICATION)} className={this.cssClassMenu(IMPORT_DRONE_APPLICATION)}><span>Import Drone Applications</span></a></li>
                                     <li><a onClick={(e) =>  this.applicationTypeSelected(UAOP_APPLICATION_APPLICATION)} className={this.cssClassMenu(UAOP_APPLICATION_APPLICATION)}><span>UAOP Applications</span></a></li>
                                     <li><a onClick={(e) =>  this.applicationTypeSelected(UIN_APPLICATION)} className={this.cssClassMenu(UIN_APPLICATION)}><span>UIN Applications</span></a></li>
+                                    <li><a onClick={(e) =>  this.applicationTypeSelected(FLY_DRONE_PERMISSION_APPLICATION)} className={this.cssClassMenu(FLY_DRONE_PERMISSION_APPLICATION)}><span>Permission Applications</span></a></li>
                                 </ul>
                             </div>
                         </div>

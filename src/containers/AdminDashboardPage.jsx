@@ -2,6 +2,8 @@ import React from 'react';
 
 import { connect } from 'react-redux'
 
+import queryString from 'query-string'
+
 import { history } from '../store/configureStore';
 
 import AdminDashboard from '../components/AdminDashboard';
@@ -16,8 +18,9 @@ class AdminDashboardPage extends React.Component {
         super(props);
         this.applicationTypeSelected = this.applicationTypeSelected.bind(this);
         this.applicationSelected = this.applicationSelected.bind(this);
+        const queryParams = queryString.parse(this.props.location.search);
         this.state = {
-            selectedApplicationType: LOCAL_DRONE_ACQUISITION_APPLICATION
+            selectedApplicationType: queryParams.type ? queryParams.type: LOCAL_DRONE_ACQUISITION_APPLICATION
         };
         this.props.dispatch(loadApplicationsAction(LOCAL_DRONE_ACQUISITION_APPLICATION));
     }

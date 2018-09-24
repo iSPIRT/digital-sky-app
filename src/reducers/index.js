@@ -21,6 +21,7 @@ import { occurrenceReport } from "./occurrenceReportReducer";
 import { adminAirspaceCategory } from "./adminAirspaceCategoryReducer";
 import { flyDronePermissionApplications } from "./flyDronePermissionApplicationsReducer";
 import { userAirspaceCategory } from "./userAirspaceCategoryReducer";
+import { adminView } from "./adminViewReducer";
 
 const rootReducer = combineReducers({
   authentication,
@@ -44,7 +45,8 @@ const rootReducer = combineReducers({
   occurrenceReport,
   adminAirspaceCategory,
   flyDronePermissionApplications,
-  userAirspaceCategory
+  userAirspaceCategory,
+  adminView
 });
 
 export default rootReducer;

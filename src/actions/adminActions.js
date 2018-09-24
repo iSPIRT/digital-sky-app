@@ -1,4 +1,5 @@
 import { adminService } from "../services/adminService";
+import { userService } from "../services/userService";
 
 import { history } from "../store/configureStore";
 
@@ -219,3 +220,44 @@ export const updateAirspaceCategoryAction = (id, airspaceCategory) => {
     return { type: SAVE_AIRSPACE_CATEGORY_FAILURE, errors };
   }
 };
+
+
+export const ADMIN_VIEW_OPERATOR_PROFILE_SUCCESS = "ADMIN_VIEW_OPERATOR_PROFILE_SUCCESS";
+export const ADMIN_VIEW_OPERATOR_PROFILE_FAILURE = "ADMIN_VIEW_OPERATOR_PROFILE_FAILURE";
+
+export const viewOperatorProfile = (profileType, operatorProfileId) => {
+    return dispatch => {
+        userService.loadOperatorProfile(profileType, operatorProfileId)
+                    .then(
+                        data => {
+                            dispatch(success(profileType, data));
+                        },
+                        errors => {
+                            dispatch(failure(errors));
+                        }
+                    );
+
+    };
+    function success(profileType, operatorProfile) { return { type: ADMIN_VIEW_OPERATOR_PROFILE_SUCCESS, profileType, operatorProfile } }
+    function failure(errors) { return { type: ADMIN_VIEW_OPERATOR_PROFILE_FAILURE, errors } }
+}
+
+export const ADMIN_VIEW_PILOT_PROFILE_SUCCESS = "ADMIN_VIEW_PILOT_PROFILE_SUCCESS";
+export const ADMIN_VIEW_PILOT_PROFILE_FAILURE = "ADMIN_VIEW_PILOT_PROFILE_FAILURE";
+
+export const viewPilotProfile = (pilotProfileId) => {
+    return dispatch => {
+        userService.loadPilotProfile(pilotProfileId)
+                    .then(
+                        data => {
+                            dispatch(success(data));
+                        },
+                        errors => {
+                            dispatch(failure(errors));
+                        }
+                    );
+
+    };
+    function success(pilotProfile) { return { type: ADMIN_VIEW_PILOT_PROFILE_SUCCESS, pilotProfile } }
+    function failure(errors) { return { type: ADMIN_VIEW_PILOT_PROFILE_FAILURE, errors } }
+}
