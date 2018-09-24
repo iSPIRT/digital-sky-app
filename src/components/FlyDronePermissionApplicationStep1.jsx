@@ -164,7 +164,7 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
                                 </div>
 
                                 <div className="large-12 cell">
-                                    <label>Start Date and Time</label>
+                                    <label>End Date and Time</label>
                                         <DatePicker
                                             selected={endDateTime}
                                             onChange={this.handleChangeEndDateTime}
