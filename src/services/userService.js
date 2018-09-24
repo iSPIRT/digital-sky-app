@@ -203,13 +203,13 @@ function loadOperatorProfile(profile_type, operatorProfileId) {
   ).then(handleResponse);
 }
 
-function createManufacturerProfile(manufacturerProfile) {
+function createManufacturerProfile(manufacturerProfileFormData) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: authToken },
-    body: JSON.stringify(manufacturerProfile)
+    headers: { Authorization: authToken },
+    body: manufacturerProfileFormData
   };
 
   return fetch(apiRoot + "/manufacturer", requestOptions)
@@ -221,13 +221,16 @@ function createManufacturerProfile(manufacturerProfile) {
     });
 }
 
-function updateManufacturerProfile(manufacturerProfileId, manufacturerProfile) {
+function updateManufacturerProfile(
+  manufacturerProfileId,
+  manufacturerProfileFormData
+) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "PUT",
-    headers: { "Content-Type": "application/json", Authorization: authToken },
-    body: JSON.stringify(manufacturerProfile)
+    headers: { Authorization: authToken },
+    body: manufacturerProfileFormData
   };
 
   return fetch(
