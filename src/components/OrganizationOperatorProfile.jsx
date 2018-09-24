@@ -98,7 +98,13 @@ class OrganizationOperatorProfile extends React.Component {
                     <form name="organizationOperatorProfileForm" onSubmit={this.handleSubmit}>
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
-
+                                {  profile &&  profile.id &&
+                                    <div className="large-12 cell">
+                                        <label>Id
+                                            <p>{profile.id}</p>
+                                        </label>
+                                    </div>
+                                }
                                 <div className="large-12 cell">
                                     <label>Organization Name
                                         <input type="text" placeholder="Name" name="name" onChange={this.handleChange} value={profile.name} maxLength="50" className={decorateInputClass(this.state.fieldErrors['name'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
