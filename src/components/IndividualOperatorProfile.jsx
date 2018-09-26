@@ -98,7 +98,13 @@ class IndividualOperatorProfile extends React.Component {
                     <form name="individualOperatorProfileForm" onSubmit={this.handleSubmit}>
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
-
+                                {  profile &&  profile.id &&
+                                    <div className="large-12 cell">
+                                        <label>Id
+                                            <p>{profile.id}</p>
+                                        </label>
+                                    </div>
+                                }
                                 <div className="large-12 cell">
                                     <label>Mobile Number
                                         <input type="text" placeholder="Mobile Number" name="mobileNumber" onChange={this.handleChange} value={profile.mobileNumber} maxLength="13" className={decorateInputClass(this.state.fieldErrors['mobileNumber'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
