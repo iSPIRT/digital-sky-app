@@ -12,7 +12,7 @@ class ManufacturerProfilePage extends React.Component {
         this.updateManufacturerProfile = this.updateManufacturerProfile.bind(this)
         this.props.dispatch(manufacturerProfileFormLoaded());
         const manufacturerProfileId = localStorage.getItem('manufacturerProfileId');
-        if( manufacturerProfileId>0 && this.props.manufacturerProfileSaved){
+        if( manufacturerProfileId>0 ){
             this.props.dispatch(loadManufacturerProfile(manufacturerProfileId));
         }
     }
@@ -36,7 +36,6 @@ class ManufacturerProfilePage extends React.Component {
                     setupManufacturerProfile={this.setupManufacturerProfile}
                     updateManufacturerProfile={this.updateManufacturerProfile}
                 />
-
     }
 }
 

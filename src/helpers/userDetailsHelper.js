@@ -10,5 +10,6 @@ export function userDetails() {
   user.organizationOperatorProfileId = localStorage.getItem(
     "organizationOperatorProfileId"
   );
+  user.manufacturerProfileId = localStorage.getItem("manufacturerProfileId");
   return user;
 }

@@ -1,10 +1,10 @@
-import { droneService } from "../services/droneService";
+import { droneService } from "../services/droneTypeService";
 
 export const SAVE_DRONE_PROFILE_REQUEST = "SAVE_DRONE_PROFILE_REQUEST";
 export const SAVE_DRONE_PROFILE_SUCCESS = "SAVE_DRONE_PROFILE_SUCCESS";
 export const SAVE_DRONE_PROFILE_FAILURE = "SAVE_DRONE_PROFILE_FAILURE";
 
-export const createDroneProfileAction = droneType => {
+export const createDroneTypeAction = droneType => {
   return dispatch => {
     dispatch(request());
     droneService.create(droneType).then(
@@ -18,7 +18,7 @@ export const createDroneProfileAction = droneType => {
   };
 };
 
-export const updateDroneProfileAction = (droneType, id) => {
+export const updateDroneTypeAction = (droneType, id) => {
   return dispatch => {
     dispatch(request());
     droneService.edit(droneType, id).then(

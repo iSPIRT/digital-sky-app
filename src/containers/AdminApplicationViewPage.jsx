@@ -6,7 +6,7 @@ import queryString from 'query-string'
 
 import { Link } from 'react-router-dom'
 
-import FormErrors from './FormErrors';
+import FormErrors from '../components/FormErrors';
 
 import UAOPApplicationView from '../components/UAOPApplicationView'
 import DroneAcquisitionApplicationView from '../components/DroneAcquisitionApplicationView';

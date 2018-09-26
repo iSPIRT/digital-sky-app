@@ -218,6 +218,7 @@ function createManufacturerProfile(manufacturerProfileFormData) {
       if (response.id) {
         localStorage.setItem("manufacturerProfileId", response.id);
       }
+      return response;
     });
 }
 

@@ -100,7 +100,7 @@ class UINApplicationStep2 extends React.Component {
 
     render() {
         
-        const { nationalityOptions, saving, previousStep, step, applicationForm, droneTypes, selectedDroneTypeId, operatorDroneId, errors, deviceIds} = this.props;
+        const { saving, previousStep, step, applicationForm, droneTypes, selectedDroneTypeId, operatorDroneId, errors, deviceIds} = this.props;
         const { opManualDoc, maintenanceGuidelinesDoc } = this.state;
         const isReadOnly = true;
         
@@ -127,7 +127,7 @@ class UINApplicationStep2 extends React.Component {
                                 </label>
                             </div>
                             <div className="large-12 cell">
-                                <DroneSpecForm name="droneSpec" nationalityOptions={ nationalityOptions }
+                                <DroneSpecForm name="droneSpec" 
                                              application = { applicationForm } 
                                              droneTypes = { droneTypes }
                                              selectedDroneTypeId =  { selectedDroneTypeId }

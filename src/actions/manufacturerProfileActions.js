@@ -17,8 +17,8 @@ export const createManufacturerProfileAction = manufacturerProfileFormData => {
   return dispatch => {
     dispatch(request());
     userService.createManufacturerProfile(manufacturerProfileFormData).then(
-      data => {
-        dispatch(success(manufacturerProfileFormData));
+      profile => {
+        dispatch(success(profile));
       },
       errors => {
         dispatch(failure(errors));
@@ -49,8 +49,8 @@ export const updateManufacturerProfileAction = (
         manufacturerProfileFormData
       )
       .then(
-        data => {
-          dispatch(success(manufacturerProfileFormData));
+        profile => {
+          dispatch(success(profile));
         },
         errors => {
           dispatch(failure(errors));

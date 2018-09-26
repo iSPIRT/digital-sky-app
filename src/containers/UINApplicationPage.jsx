@@ -23,7 +23,6 @@ class UINApplicationPage extends React.Component {
         this.updateApplication = this.updateApplication.bind(this);
         this.downloadDocument = this.downloadDocument.bind(this);
         this.state = {
-            nationalityOptions : ['Indian', 'Chinese', 'Korean'],
             formErrors:[],
             currentStep: 1
         }

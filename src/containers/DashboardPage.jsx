@@ -14,8 +14,12 @@ class DashboardPage extends React.Component {
         super(props);
         const { user } = this.props;
         if( user && user.id > 0 && !user.isAdmin){
-            this.props.dispatch(loadApplicationsAction());
-            this.props.dispatch(loadDronesAction());
+            if(!(user.manufacturerProfileId > 0) ) {
+                this.props.dispatch(loadApplicationsAction());
+            }
+            if(user.individualOperatorProfileId > 0  || user.organizationOperatorProfileId > 0) {
+                this.props.dispatch(loadDronesAction());
+            }
         }
     }
 
