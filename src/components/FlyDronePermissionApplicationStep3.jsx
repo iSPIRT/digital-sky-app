@@ -1,6 +1,7 @@
 import React from 'react';
 
 import FormErrors from './FormErrors';
+import FlyDronePermissionApplicationView from './FlyDronePermissionApplicationView';
 
 import { Link } from 'react-router-dom'
 
@@ -66,35 +67,8 @@ class FlyDronePermissionApplicationStep3 extends React.Component {
                                         </ul>
                                     </div>
                                 </div>
+                                <FlyDronePermissionApplicationView application={application} loadAirspaceCategories={this.props.loadAirspaceCategories} airspaceCategories={this.props.airspaceCategories} />
                                 <div className="large-12 cell">
-                                    <div className="question">
-                                        <h6>Pilot Id:</h6>
-                                        <p>{application.pilotId}</p>
-                                    </div>
-                                    <div className="question">
-                                        <h6>Start Date and Time:</h6>
-                                        <p>{application.startDateTime}</p>
-                                    </div>
-                                    <div className="question">
-                                        <h6>End Date and Time:</h6>
-                                        <p>{application.endDateTime}</p>
-                                    </div>
-                                    <div className="question">
-                                        <h6>Payload Wight In Kgs:</h6>
-                                        <p>{application.payloadWeightInKg}</p>
-                                    </div>
-                                    <div className="question">
-                                        <h6>Payload Details:</h6>
-                                        <p>{application.payloadDetails}</p>
-                                    </div>
-                                    <div className="question">
-                                        <h6>Purpose of Flight:</h6>
-                                        <p>{application.flightPurpose}</p>
-                                    </div>
-                                    <div className="question">
-                                        <h6>Fly Area:</h6>
-                                        <p>{JSON.stringify(application.flyArea, undefined, 2)}</p>
-                                    </div>
                                     { application.status === 'APPROVED' &&
                                         <div className="question">
                                             <h6>Permission Artifact:</h6>

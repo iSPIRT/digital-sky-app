@@ -20,7 +20,8 @@ import {Draw, Modify, Snap} from 'ol/interaction';
 import Geocoder from 'ol-geocoder';
 
 require('ol/ol.css');
-require('ol-geocoder/dist/ol-geocoder.min.css');
+
+require ('../css/ol-geocoder.css');
 
 class FlyDronePermissionApplicationStep2 extends React.Component {
 
@@ -80,6 +81,7 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
             limit: 5,
             debug: false,
             autoComplete: true,
+            targetType: 'text-input',
             countrycodes: 'in',
             preventDefault: true,
             keepOpen: false
@@ -101,8 +103,32 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
         });
 
         geoCoder.on('addresschosen', this.addressChosen);
-
         map.addControl(geoCoder);
+
+        if(this.props.application.flyArea && this.props.application.flyArea.length > 0){
+            const coordinates = this.props.application.flyArea.map(coordinate => fromLonLat([coordinate.longitude, coordinate.latitude]));
+            var permission = {
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [
+                       coordinates
+                    ]
+                }
+            };
+
+            var permissionLayer = new VectorLayer({
+                source: new VectorSource({ features: (new GeoJSON()).readFeatures(permission)}),
+                style: new Style({
+                    stroke: new Stroke({ color: 'blue',width: 1}),
+                    fill: new Fill({ color: 'rgba(101, 141, 242, 0.1)'})
+                })
+            });
+
+            map.addLayer(permissionLayer);
+            map.setView(new View({ center: coordinates[0], zoom: 12}));
+        }
+
         this.setState({  map: map});
     }
 
@@ -268,11 +294,6 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
                                         </ul>
                                     </div>
                                 </div>
-                                { application.flyArea && ( application.flyArea.length > 0) &&
-                                    <div className="large-12 cell">
-                                        <p>{JSON.stringify(application.flyArea, undefined, 2)}</p>
-                                    </div>
-                                }
                                 <div className="large-12 cell">
                                     <label>Please choose fly area
                                         <a className="button button-light-clean" onClick={this.startDraw}>Start Draw</a>
