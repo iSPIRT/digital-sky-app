@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 class HomeSectionFaq extends React.Component {
   render() {
     return (
-        <section id="faq" data-equalizer-watch>
+        <section id="faq">
             <div className="grid-container">
                 <div className="grid-x grid-padding-x">
                     <div className="large-12 cell">

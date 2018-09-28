@@ -27,7 +27,7 @@ const HeaderApplicationFormReview = (props)=> {
             <div className="grid-x grid-padding-x">
                 <div className="large-12 cell">
                     <h2>Application <br/>for { headerText }</h2>
-                    { step && step<=3  && applicationStatus === 'DRAFT' &&
+                    { step && step<=3  && ( !applicationStatus || applicationStatus === 'DRAFT') &&
                             <div className="form-steps">
                                 <ul>
                                     <li className={ step1ClassName }><p>Step 1</p>

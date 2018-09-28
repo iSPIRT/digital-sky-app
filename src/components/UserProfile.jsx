@@ -17,7 +17,7 @@ class UserProfile extends React.Component {
         <div id="apply-for-block">
             <div className="grid-container">
                 <div className="grid-x grid-padding-x">
-                    <div className="large-12 cell">
+                    <div className="large-6 large-offset-3 cell">
                         <h2>Profile</h2>
 
                         <div className="apply-for-wrap" data-equalizer>
