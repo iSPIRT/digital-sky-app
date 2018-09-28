@@ -81,7 +81,7 @@ class FlyDronePermissionApplicationView extends React.Component {
                     collapsible: false
                 }
             }),
-            view: new View({ center: coordinates[0], zoom: 8})
+            view: new View({ center: coordinates[0], zoom: 12})
         });
 
         this.setState({  map: map});
