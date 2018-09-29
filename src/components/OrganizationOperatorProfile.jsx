@@ -74,7 +74,6 @@ class OrganizationOperatorProfile extends React.Component {
         }
     }
 
-
     render() {
         const { savingOperatorProfile, operatorProfileSaved, errors} = this.props;
         const { formErrors, submitted, profile } = this.state;
@@ -102,6 +101,13 @@ class OrganizationOperatorProfile extends React.Component {
                                     <div className="large-12 cell">
                                         <label>Id
                                             <p>{profile.id}</p>
+                                        </label>
+                                    </div>
+                                }
+                                {  profile &&  profile.businessIdentifier &&
+                                    <div className="large-12 cell">
+                                        <label>Business Identifier
+                                            <p>{profile.businessIdentifier}</p>
                                         </label>
                                     </div>
                                 }
@@ -140,7 +146,7 @@ class OrganizationOperatorProfile extends React.Component {
                                     <label>Address
                                         <input type="text" placeholder="Line One" name="addressList.0.lineOne" onChange={this.handleChange} value={ profile.addressList && profile.addressList[0].lineOne} className={decorateInputClass(this.state.fieldErrors['addressList.0.lineOne'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
                                         <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.lineOne'/>
-
+                                
                                         <input type="text" placeholder="Line Two" name="addressList.0.lineTwo" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].lineTwo}/>
 
                                         <input type="text" placeholder="City Or Town" name="addressList.0.city" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].city} className={decorateInputClass(this.state.fieldErrors['addressList.0.city'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
