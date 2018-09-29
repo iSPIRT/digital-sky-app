@@ -131,6 +131,8 @@ class FlyDronePermissionApplicationPage extends React.Component {
                             previousStep={this.previousStep}
                             updateApplication={this.updateApplication}
                             downloadDocument={this.downloadDocument}
+                            loadAirspaceCategories= {this.loadAirspaceCategories}
+                            airspaceCategories= {airspaceCategories}
                         />
         }
     }
