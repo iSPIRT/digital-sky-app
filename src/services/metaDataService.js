@@ -21,24 +21,13 @@ function loadDroneTypes() {
 
 function loadOperatorDeviceIds() {
   const apiRoot = applicationProperties().apiRoot;
-  const individualOperatorProfileId = localStorage.getItem(
-    "individualOperatorProfileId"
-  );
-  const organizationOperatorProfileId = localStorage.getItem(
-    "organizationOperatorProfileId"
-  );
-  const operatorCode =
-    individualOperatorProfileId > 0
-      ? individualOperatorProfileId
-      : organizationOperatorProfileId;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "GET",
     headers: { "Content-Type": "application/json", Authorization: authToken }
   };
 
-  return fetch(
-    apiRoot + "/droneDevice/list?operatorCode=" + operatorCode,
-    requestOptions
-  ).then(handleResponseService.handleResponse);
+  return fetch(apiRoot + "/droneDevice/list", requestOptions).then(
+    handleResponseService.handleResponse
+  );
 }

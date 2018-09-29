@@ -35,18 +35,24 @@ class DroneProfileForm extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.props.selectedDroneTypeId){
-            if(nextProps.droneTypes.length > 0){
-                var selectedDroneTypes=  nextProps.droneTypes.filter( droneType => droneType.id === parseInt(this.props.selectedDroneTypeId,15) );
+       
+        if(this.props.selectedDroneTypeId) {
+            if(nextProps.droneTypes.length > 0) {
+                var selectedDroneTypes=  nextProps.droneTypes.filter( droneType => droneType.id === Number(this.props.selectedDroneTypeId) );
                 this.setState({selectedDroneType: selectedDroneTypes[0]});
             }
+            return; 
+        }
+
+        if(this.props.savedDroneType && this.props.savedDroneType.id && this.props.savedDroneType.id >0 ) {
+            this.setState({selectedDroneType: this.props.savedDroneType});
+            return;
         }
     }
 
     validateField(target) {
         this.setState({fieldErrors: validateField(this.state.fieldErrors, target)})
     }
-
 
     handleChange(event) {
         const { name, type, value } = event.target; 
@@ -103,20 +109,18 @@ class DroneProfileForm extends React.Component {
     }
 
     render() {
-        const { nationalityOptions, saving, droneTypes, selectedDroneTypeId, saved, errors} = this.props
+        const { saving, droneTypes, selectedDroneTypeId, saved, errors} = this.props
         const { selectedDroneType, submitted, fieldErrors } = this.state;
  
         const isReadOnly = false;
+       
         return (
             <div className="page-form">
-                {/* <FormErrors errors = {errors}/>
-                <FormErrors errors = {formErrors}/> */}
                 <form name="droneTypeProfileForm" onSubmit={this.handleSaveApplication}>
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
                             <div className="large-12 cell">
                                 <DroneSpecForm name="droneSpec" 
-                                        nationalityOptions={ nationalityOptions }
                                         droneTypes = { droneTypes }
                                         selectedDroneTypeId =  { selectedDroneTypeId }
                                         isReadOnly = { isReadOnly }
@@ -134,7 +138,7 @@ class DroneProfileForm extends React.Component {
                                        saving && <img alt="Loading..." src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                     }
                             </div>
-                        </div>
+                        </div>  
                     </div>
                 </form>
             </div>

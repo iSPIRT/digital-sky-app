@@ -42,9 +42,6 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
         const {  droneTypes, isReadOnly, application, droneTypeDisabled, selectedDroneTypeId, fieldErrors } = this.props;
 
         const validateField = this.props.validateField ? this.props.validateField :  (e)=>{ return };
-        // let nationalitySelectOptions = nationalityOptions.map(nationality => {
-        //     return (<option value={ nationality } key={ nationality }> { nationality } </option>)
-        // });
 
         let wingTypeOptions = wingTypes.map(wingType => {
             return (<option value={ wingType } key={ wingType }> { wingType } </option>)
@@ -82,6 +79,24 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
                         </label>
                     </div>
                  }
+                 <div className="large-12 cell">
+                    <label>Model Name
+                        <input type="text" name="modelName"  value= { selectedDroneType && selectedDroneType.modelName } onChange = { this.handleChange } readOnly = { isReadOnly } className={fieldErrors && decorateInputClass(fieldErrors['modelName'],[])} validate="required" onBlur={(e) => validateField(e.target)}/>   
+                        { fieldErrors && <FieldError fieldErrors={fieldErrors} field='modelName'/> }
+                    </label>
+                </div >
+                <div className="large-12 cell">
+                    <label>Model No.
+                        <input type="text" name="modelNo"  value= { selectedDroneType && selectedDroneType.modelNo } onChange = { this.handleChange } readOnly = { isReadOnly } className={fieldErrors && decorateInputClass(fieldErrors['modelNo'],[])} validate="required" onBlur={(e) => validateField(e.target)}/>
+                        { fieldErrors && <FieldError fieldErrors={fieldErrors} field='modelNo'/> }
+                    </label>
+                </div>
+                <div className="large-12 cell">
+                    <label>Serial No.
+                        <input type="text" name="serialNo" value= { selectedDroneType && selectedDroneType.serialNo} onChange = { this.handleChange } readOnly = { isReadOnly } className={fieldErrors && decorateInputClass(fieldErrors['serialNo'],[])} validate="required" onBlur={(e) => validateField(e.target)}/>
+                        { fieldErrors && <FieldError fieldErrors={fieldErrors} field='serialNo'/> }
+                    </label>
+                </div>
                 <div className="large-12 cell">
                     <label>Name of Manufacturer
                         <input type="text" name="manufacturer"  value={ selectedDroneType && selectedDroneType.manufacturer } onChange = { this.handleChange } readOnly = { isReadOnly } maxLength="100" className={ fieldErrors && decorateInputClass(fieldErrors['manufacturer'],[])} validate="required,alphabetsOnly" onBlur={(e) => validateField(e.target)} />
@@ -105,32 +120,10 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
                 </div> 
                 <div className="large-12 cell">
                     <label>Nationality of Manufacturer
-                        {/* <select name="manufacturerNationality"  value= { selectedDroneType && selectedDroneType.manufacturerNationality } onChange = { this.handleChange }  disabled = { isReadOnly }>
-                            { (!selectedDroneType || !selectedDroneType.manufacturerNationality) && <option default key="-1" value="-1"> </option> }
-                            { nationalitySelectOptions }
-                        </select> */}
                         <input type="text" name="manufacturerNationality" placeholder="Manufacturer Nationality" value ={ selectedDroneType && selectedDroneType.manufacturerNationality } onChange = { this.handleChange } readOnly = { isReadOnly } className={fieldErrors && decorateInputClass(fieldErrors['manufacturerNationality'],[])} validate="required" onBlur={(e) => validateField(e.target)}/>
                         { fieldErrors && <FieldError fieldErrors={fieldErrors} field='manufacturerNationality'/> }
                     </label>
                 </div >
-                <div className="large-12 cell">
-                    <label>Model Name
-                        <input type="text" name="modelName"  value= { selectedDroneType && selectedDroneType.modelName } onChange = { this.handleChange } readOnly = { isReadOnly } className={fieldErrors && decorateInputClass(fieldErrors['modelName'],[])} validate="required" onBlur={(e) => validateField(e.target)}/>   
-                        { fieldErrors && <FieldError fieldErrors={fieldErrors} field='modelName'/> }
-                    </label>
-                </div >
-                <div className="large-12 cell">
-                    <label>Model No.
-                        <input type="text" name="modelNo"  value= { selectedDroneType && selectedDroneType.modelNo } onChange = { this.handleChange } readOnly = { isReadOnly } className={fieldErrors && decorateInputClass(fieldErrors['modelNo'],[])} validate="required" onBlur={(e) => validateField(e.target)}/>
-                        { fieldErrors && <FieldError fieldErrors={fieldErrors} field='modelNo'/> }
-                    </label>
-                </div>
-                <div className="large-12 cell">
-                    <label>Serial No.
-                        <input type="text" name="serialNo" value= { selectedDroneType && selectedDroneType.serialNo} onChange = { this.handleChange } readOnly = { isReadOnly } className={fieldErrors && decorateInputClass(fieldErrors['serialNo'],[])} validate="required" onBlur={(e) => validateField(e.target)}/>
-                        { fieldErrors && <FieldError fieldErrors={fieldErrors} field='serialNo'/> }
-                    </label>
-                </div>
                 <div className="large-12 cell">
                     <label>Date of Manufacture
                         <input type="text" placeholder="DD-MM-YYYY" name="dateOfManufacture" value= { selectedDroneType && selectedDroneType.dateOfManufacture } onChange = { this.handleChange } readOnly = { isReadOnly } maxLength="10" className={fieldErrors && decorateInputClass(fieldErrors['dateOfManufacture'],[])} validate="required,dateOfManufacture" onBlur={(e) => validateField(e.target)}/>

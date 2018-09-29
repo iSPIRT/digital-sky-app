@@ -2,7 +2,7 @@ import {
   SAVE_DRONE_PROFILE_REQUEST,
   SAVE_DRONE_PROFILE_SUCCESS,
   SAVE_DRONE_PROFILE_FAILURE
-} from "../actions/droneProfileActions";
+} from "../actions/droneTypeActions";
 
 const initialState = {
   saving: false,
@@ -25,7 +25,7 @@ const initialState = {
   errors: []
 };
 
-export function droneProfile(state = initialState, action) {
+export function droneType(state = initialState, action) {
   switch (action.type) {
     case SAVE_DRONE_PROFILE_REQUEST:
       return { ...state, saving: true, errors: [] };

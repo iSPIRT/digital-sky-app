@@ -24,7 +24,7 @@ import UINApplicationPage from './UINApplicationPage';
 import VerifyAccountPage from './VerifyAccountPage';
 import OperatorDroneProfilePage from './OperatorDroneProfilePage';
 import AdminDashboardDroneTypePage from './AdminDashboardDroneTypePage';
-import DroneProfilePage from './DroneProfilePage';
+import DroneTypePage from './DroneTypePage';
 import AdminBlogPage from './AdminBlogPage';
 import AdminBlogListPage from './AdminBlogListPage';
 import AdminAirspaceCategoryPage from './AdminAirspaceCategoryPage';
@@ -97,7 +97,7 @@ class App extends React.Component {
                     <AuthenticatedRoute exact path="/flyDronePermissionApplications" component={FlyDronePermissionApplicationsPage} loggedIn={loggedIn}/>
                     <AuthenticatedRoute exact path="/flyDronePermissionApplication" component={FlyDronePermissionApplicationPage} loggedIn={loggedIn}/>
 
-                    <AdminAuthenticatedRoute exact path="/droneType" loggedIn={loggedIn} user={user} component={DroneProfilePage} /> 
+                    <AdminAuthenticatedRoute exact path="/droneType" loggedIn={loggedIn} user={user} component={DroneTypePage} /> 
                     <AdminAuthenticatedRoute path="/admin/dashboard" loggedIn={loggedIn} user={user} component={AdminDashboardPage} />
                     <AdminAuthenticatedRoute path="/admin/application" loggedIn={loggedIn} user={user} component={AdminApplicationViewPage} />
                     <AdminAuthenticatedRoute path="/admin/droneType" loggedIn={loggedIn} user={user} component={AdminDashboardDroneTypePage} />

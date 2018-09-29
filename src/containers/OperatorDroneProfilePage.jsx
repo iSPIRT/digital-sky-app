@@ -54,7 +54,6 @@ class OperatorDroneProfilePage extends React.Component {
     }
 
     render(){
-
         const {operatorDroneProfile} = this.state;
 
         if(!operatorDroneProfile) return null;

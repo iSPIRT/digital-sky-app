@@ -32,7 +32,7 @@ class DroneSpecForm extends React.Component {
         let rpaSelectCategoryOptions = rpaCategoryOptions.map(option => {
             return (<option value={ option } key={ option }> { option } </option>)
         });
-        const  { nationalityOptions, application, droneTypes, isReadOnly, selectedDroneTypeId, droneTypeDisabled, droneType, fieldErrors } = this.props;
+        const  { application, droneTypes, isReadOnly, selectedDroneTypeId, droneTypeDisabled, droneType, fieldErrors } = this.props;
         const validateField = this.props.validateField ? this.props.validateField :  (e)=>{ return };
         var selectedDroneType;
         //used by Acquisition forms
@@ -50,7 +50,6 @@ class DroneSpecForm extends React.Component {
         return (
             <div>
                 <DroneAcquisitionDroneTypeDetailsForm
-                            nationalityOptions={ nationalityOptions }
                             application = { application }
                             droneTypes = { droneTypes }
                             selectedDroneTypeId = { selectedDroneTypeId }

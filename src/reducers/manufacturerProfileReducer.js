@@ -19,7 +19,7 @@ const initialState = {
 export function manufacturerProfile(state = initialState, action) {
   switch (action.type) {
     case MANUFACTURER_PROFILE_FORM_LOADED:
-      return { ...state, errors: [] };
+      return { ...state, errors: [], profile: { empty: "empty" } };
     case SAVE_MANUFACTURER_PROFILE_REQUEST:
       return {
         ...state,
