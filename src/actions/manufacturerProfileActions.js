@@ -13,12 +13,12 @@ export const LOAD_MANUFACTURER_PROFILE_SUCCESS =
 export const LOAD_MANUFACTURER_PROFILE_FAILURE =
   "LOAD_MANUFACTURER_PROFILE_FAILURE";
 
-export const createManufacturerProfileAction = manufacturerProfile => {
+export const createManufacturerProfileAction = manufacturerProfileFormData => {
   return dispatch => {
     dispatch(request());
-    userService.createManufacturerProfile(manufacturerProfile).then(
-      data => {
-        dispatch(success(manufacturerProfile));
+    userService.createManufacturerProfile(manufacturerProfileFormData).then(
+      profile => {
+        dispatch(success(profile));
       },
       errors => {
         dispatch(failure(errors));
@@ -39,15 +39,18 @@ export const createManufacturerProfileAction = manufacturerProfile => {
 
 export const updateManufacturerProfileAction = (
   manufacturerProfileId,
-  manufacturerProfile
+  manufacturerProfileFormData
 ) => {
   return dispatch => {
     dispatch(request());
     userService
-      .updateManufacturerProfile(manufacturerProfileId, manufacturerProfile)
+      .updateManufacturerProfile(
+        manufacturerProfileId,
+        manufacturerProfileFormData
+      )
       .then(
-        data => {
-          dispatch(success(manufacturerProfile));
+        profile => {
+          dispatch(success(profile));
         },
         errors => {
           dispatch(failure(errors));

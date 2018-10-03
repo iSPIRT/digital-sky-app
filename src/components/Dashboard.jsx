@@ -91,19 +91,21 @@ class Dashboard extends React.Component {
                     </div>
                 }
                 <br/>
-                <div className="page-dashboard">
-                    <section id="application-status">
-                        <div className="grid-container">
-                            <div className="grid-x grid-padding-x">
-                                <div className="large-12 cell">
-                                    <h2> Application Status</h2>
-                                     <FormErrors errors = {errors}/>
-                                     <DashboardApplicationView applications={applications}/>
+                { !hasManufacturerProfile &&
+                    <div className="page-dashboard">
+                        <section id="application-status">
+                            <div className="grid-container">
+                                <div className="grid-x grid-padding-x">
+                                    <div className="large-12 cell">
+                                        <h2> Application Status</h2>
+                                        <FormErrors errors = {errors}/>
+                                        <DashboardApplicationView applications={applications}/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
-                </div>
+                        </section>
+                    </div>
+                }
                 {  hasOperatorProfile &&
                     <div className="page-dashboard">
                         <section id="my-drones">

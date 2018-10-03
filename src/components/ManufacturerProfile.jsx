@@ -43,10 +43,15 @@ class ManufacturerProfile extends React.Component {
     }
 
     handleChange(event) {
-        const { name, value } = event.target;
-        const { profile } = this.state;
-        this.updateObjProp(profile, value, name);
-        this.setState({profile: profile});
+        const { name, value, type } = event.target;
+
+        if( type === 'file'){
+            this.setState({[name]: event.target.files[0]});
+        } else {
+            const { profile } = this.state;
+            this.updateObjProp(profile, value, name);
+            this.setState({profile: profile});
+        }
     }
 
     updateObjProp(obj, value, propPath) {
@@ -66,18 +71,28 @@ class ManufacturerProfile extends React.Component {
                 return;
             }
         }
+
         this.setState({submitted: true});
-        if(this.props.manufacturerProfileSaved){
-            this.props.updateManufacturerProfile(this.state.profile);
+
+        const formData = new FormData();
+        if(this.state.trustedCertificateDoc !== undefined) {
+            formData.append("trustedCertificateDoc", this.state.trustedCertificateDoc);
+        }
+        
+        formData.append("manufacturer", JSON.stringify(this.state.profile));
+        const manufacturerProfileId = localStorage.getItem("manufacturerProfileId");
+        const manufacturerProfileSaved = manufacturerProfileId > 0 ? true : false;
+        if(manufacturerProfileSaved){
+            this.props.updateManufacturerProfile(formData);
         } else{
-            this.props.setupManufacturerProfile(this.state.profile);
+            this.props.setupManufacturerProfile(formData);
         }
     }
 
 
     render() {
         const { savingManufacturerProfile, manufacturerProfileSaved, errors} = this.props;
-        const { formErrors, submitted, profile } = this.state;
+        const { formErrors, submitted, profile, trustedCertificateDoc } = this.state;
         return (
             <div>
                 <div className="page-header">
@@ -98,7 +113,13 @@ class ManufacturerProfile extends React.Component {
                     <form name="manufacturerProfileForm" onSubmit={this.handleSubmit}>
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
-
+                            {  profile &&  profile.businessIdentifier &&
+                                    <div className="large-12 cell">
+                                        <label>Business Identifier
+                                            <p>{profile.businessIdentifier}</p>
+                                        </label>
+                                    </div>
+                                }
                                 <div className="large-12 cell">
                                     <label>Organization Name
                                         <input type="text" placeholder="Name" name="name" onChange={this.handleChange} value={profile.name} maxLength="50" className={decorateInputClass(this.state.fieldErrors['name'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
@@ -149,6 +170,13 @@ class ManufacturerProfile extends React.Component {
                                         <input type="text" placeholder="Pin Code" name="addressList.0.pinCode" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].pinCode} className={decorateInputClass(this.state.fieldErrors['addressList.0.pinCode'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
                                         <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.pinCode'/>
                                     </label>
+                                </div>
+                                <div className="large-12 cell">
+                                    <label>Trusted Certificate Chain 
+                                        <span>{ (trustedCertificateDoc && trustedCertificateDoc.name) || profile.trustedCertificateDocName }</span>
+                                    </label>
+                                    <label htmlFor="trustedCertificateDoc" className="button button-file-upload">Upload Certificate</label>
+                                    <input type="file" id="trustedCertificateDoc" name="trustedCertificateDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pem"/>
                                 </div>
                                <div className="large-12 cell">
                                     { submitted && ( !errors || errors.length === 0)  &&  manufacturerProfileSaved && <p> Successfully Saved Manufacturer Profile <br/></p>}

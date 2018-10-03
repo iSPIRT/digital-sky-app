@@ -8,20 +8,22 @@ class ManufacturerProfilePage extends React.Component {
 
     constructor(props) {
         super(props);
+        this.setupManufacturerProfile = this.setupManufacturerProfile.bind(this);
+        this.updateManufacturerProfile = this.updateManufacturerProfile.bind(this)
         this.props.dispatch(manufacturerProfileFormLoaded());
         const manufacturerProfileId = localStorage.getItem('manufacturerProfileId');
-        if( manufacturerProfileId>0 && this.props.manufacturerProfileSaved && this.props.profile.empty ){
+        if( manufacturerProfileId>0 ){
             this.props.dispatch(loadManufacturerProfile(manufacturerProfileId));
         }
     }
 
-    setupManufacturerProfile(dispatch) {
-        return manufacturerProfile => dispatch(createManufacturerProfileAction(manufacturerProfile));
+    setupManufacturerProfile(manufacturerProfileFormData) {
+        this.props.dispatch(createManufacturerProfileAction(manufacturerProfileFormData));
     }
 
-    updateManufacturerProfile(dispatch) {
+    updateManufacturerProfile(manufacturerProfileFormData) {
         const manufacturerProfileId = localStorage.getItem('manufacturerProfileId');
-        return manufacturerProfile => dispatch(updateManufacturerProfileAction(manufacturerProfileId, manufacturerProfile));
+        this.props.dispatch(updateManufacturerProfileAction(manufacturerProfileId, manufacturerProfileFormData));
     }
 
     render(){
@@ -31,10 +33,9 @@ class ManufacturerProfilePage extends React.Component {
                     manufacturerProfileSaved={manufacturerProfileSaved}
                     savingManufacturerProfile={savingManufacturerProfile}
                     errors={errors}
-                    setupManufacturerProfile={this.setupManufacturerProfile(this.props.dispatch)}
-                    updateManufacturerProfile={this.updateManufacturerProfile(this.props.dispatch)}
+                    setupManufacturerProfile={this.setupManufacturerProfile}
+                    updateManufacturerProfile={this.updateManufacturerProfile}
                 />
-
     }
 }
 

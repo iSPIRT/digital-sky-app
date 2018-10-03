@@ -105,6 +105,13 @@ class IndividualOperatorProfile extends React.Component {
                                         </label>
                                     </div>
                                 }
+                                {  profile &&  profile.businessIdentifier &&
+                                    <div className="large-12 cell">
+                                        <label>Business Identifier
+                                            <p>{profile.businessIdentifier}</p>
+                                        </label>
+                                    </div>
+                                }
                                 <div className="large-12 cell">
                                     <label>Mobile Number
                                         <input type="text" placeholder="Mobile Number" name="mobileNumber" onChange={this.handleChange} value={profile.mobileNumber} maxLength="13" className={decorateInputClass(this.state.fieldErrors['mobileNumber'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>

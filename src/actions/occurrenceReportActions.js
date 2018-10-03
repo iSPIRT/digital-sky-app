@@ -1,4 +1,4 @@
-import { droneService } from "../services/droneService";
+import { droneService } from "../services/droneTypeService";
 
 export const SAVE_OCCURRENCE_REPORT_SUCCESS = "SAVE_OCCURRENCE_REPORT_SUCCESS";
 export const SAVE_OCCURRENCE_REPORT_FAILURE = "SAVE_OCCURRENCE_REPORT_FAILURE";

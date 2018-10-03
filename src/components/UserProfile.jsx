@@ -10,6 +10,7 @@ import manufacturer from '../img/manufacturer.svg';
 class UserProfile extends React.Component {
   render() {
     const { pilotProfileId, individualOperatorProfileId, organizationOperatorProfileId, manufacturerProfileId } = this.props;
+    const pilotProfileExist = pilotProfileId > 0;
     const operatorProfileExist = (individualOperatorProfileId> 0) || (organizationOperatorProfileId > 0);
     const manufacturerProfileExist = manufacturerProfileId >0;
     return (
@@ -104,19 +105,21 @@ class UserProfile extends React.Component {
                                     }
                                 </div>
                             }
-                            <Link to="/manufacturerProfile">
-                                <div className="apply-for apply-for-manufacturer" data-equalizer-watch>
-                                    <div className="icon">
-                                        <img src={manufacturer} alt=""/>
-                                    </div>
-                                    <div className="details">
-                                        <div className="wrap">
-                                            <p className="title">Manufacturer Profile</p>
-                                            <p className="info">{ ( manufacturerProfileId && manufacturerProfileId > 0) ? 'View/Edit Manufacturer Profile' : 'Setup your manufacturer profile' }</p>
+                            {!pilotProfileExist && !operatorProfileExist &&
+                                <Link to="/manufacturerProfile">
+                                    <div className="apply-for apply-for-manufacturer" data-equalizer-watch>
+                                        <div className="icon">
+                                            <img src={manufacturer} alt=""/>
+                                        </div>
+                                        <div className="details">
+                                            <div className="wrap">
+                                                <p className="title">Manufacturer Profile</p>
+                                                <p className="info">{ ( manufacturerProfileId && manufacturerProfileId > 0) ? 'View/Edit Manufacturer Profile' : 'Setup your manufacturer profile' }</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </Link>    
+                                </Link>    
+                            }
                         </div>
                     </div>
                 </div>
