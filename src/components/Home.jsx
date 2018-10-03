@@ -15,11 +15,8 @@ class Home extends React.Component {
             <HomeSectionRegisterDrone/>
             <HomeSectionHelpMeApply/>
             <div className="clearfix"></div>
-            <div className="home-feature show-for-large"></div>
-            <div className="equalizer" data-equalizer data-equalize-on="large">
-                <HomeSectionPressRelease/>
-                <HomeSectionFaq/>
-            </div>
+            <HomeSectionPressRelease/>
+            <HomeSectionFaq/>
             <div className="clearfix"></div>
         </div>
     );

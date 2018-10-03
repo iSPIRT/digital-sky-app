@@ -21,7 +21,7 @@ class HeaderAdminUserMenu extends React.Component {
             <div className={ userNavigationOpen && !siteNavigationOpen ? 'user-nav dashboard open' : 'user-nav dashboard'} onClick={this.onUserNavigationClick}>
                 <div className="open-wrap">
                     <img src={user} alt="user"/>
-                    <p>User</p>
+                    <p>Admin</p>
                 </div>
                 <div className="close-wrap">
                     <img src={hambargarClose} alt="hambargarClose"/>

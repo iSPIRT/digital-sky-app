@@ -72,72 +72,30 @@ class AdminApplicationViewPage extends React.Component {
         const currentApplication =  applications.find( application => application.id === applicationId )
 
         return(
-            <div className="view-application">
-                <div id="application-preview">
-                    <div className="page-form">
-                        <div className="grid-container">
-                            {(() => {
-                                switch(applicationType) {
-                                    case UAOP_APPLICATION_APPLICATION:
-                                    return (
-                                        <div className="grid-x grid-padding-x">
-                                            <div className="large-12 cell">
-                                                <h2>UAOP Application</h2>
-                                                <Link to={'/admin/dashboard?type='+applicationType}>Back</Link>
-                                            </div>
-                                            <FormErrors errors = {errors}/>
-                                            { applicationType === UAOP_APPLICATION_APPLICATION && <UAOPApplicationView application={currentApplication} downloadDocument={this.downloadDocument}/> }
-                                        </div>
-                                    )
-                                    case IMPORT_DRONE_APPLICATION:
-                                    return (
-                                        <div className="grid-x grid-padding-x">
-                                            <div className="large-12 cell">
-                                                <h2>Import Drone Application</h2>
-                                                <Link to={'/admin/dashboard?type='+applicationType}>Back</Link>
-                                            </div>
-                                            <FormErrors errors = {errors}/>
-                                            { applicationType === IMPORT_DRONE_APPLICATION && <DroneAcquisitionApplicationView applicationForm={currentApplication} downloadDocument={this.downloadDocument} type="importDrone" /> }
-                                        </div>
-                                    )
-                                    case UIN_APPLICATION:
-                                    return (
-                                        <div className="grid-x grid-padding-x">
-                                            <div className="large-12 cell">
-                                                <h2>UIN Application</h2>
-                                                <Link to={'/admin/dashboard?type='+applicationType}>Back</Link>
-                                            </div>
-                                            <FormErrors errors = {errors}/>
-                                            { applicationType === UIN_APPLICATION && <UINApplicationView application={currentApplication} downloadDocument={this.downloadDocument} /> }
-                                        </div>
-                                    )
-                                    case FLY_DRONE_PERMISSION_APPLICATION:
-                                    return (
-                                        <div className="grid-x grid-padding-x">
-                                            <div className="large-12 cell">
-                                                <h2>Fly Drone Permission Application</h2>
-                                                <Link to={'/admin/dashboard?type='+applicationType}>Back</Link>
-                                            </div>
-                                            <FormErrors errors = {errors}/>
-                                            { applicationType === FLY_DRONE_PERMISSION_APPLICATION && <FlyDronePermissionApplicationView application={currentApplication} airspaceCategories={airspaceCategories} downloadDocument={this.downloadDocument} loadAirspaceCategories={this.loadAirspaceCategories}/> }
-                                        </div>
-                                    )
-                                    case LOCAL_DRONE_ACQUISITION_APPLICATION:
-                                    default:
-                                    return (
-                                        <div className="grid-x grid-padding-x">
-                                            <div className="large-12 cell">
-                                                <h2>Local Drone Acquisition Application</h2>
-                                                <Link to={'/admin/dashboard?type='+applicationType}>Back</Link>
-                                            </div>
-                                            <FormErrors errors = {errors}/>
-                                            { applicationType === LOCAL_DRONE_ACQUISITION_APPLICATION && <DroneAcquisitionApplicationView applicationForm={currentApplication} downloadDocument={this.downloadDocument} type="localDroneAcquisition" /> }
-                                        </div>
-                                    )
-                                }
-                            })()} 
-                        </div> 
+            <div id="view-application">
+                <div className="grid-container">
+                    <div className="grid-x grid-padding-x">
+                        <div className="large-5 cell">
+                            { applicationType === UAOP_APPLICATION_APPLICATION && <label className="page-heading">UAOP Application</label> }
+                            { applicationType === LOCAL_DRONE_ACQUISITION_APPLICATION && <label className="page-heading">Local Drone Acquisition Application</label> }
+                            { applicationType === IMPORT_DRONE_APPLICATION && <label className="page-heading">Import Drone Application</label> }
+                            { applicationType === UIN_APPLICATION && <label className="page-heading">UIN Application</label> }
+                            { applicationType === FLY_DRONE_PERMISSION_APPLICATION && <label className="page-heading">Fly Drone Permission Application</label> }
+                            <Link to={'/admin/dashboard?type='+applicationType}>Back</Link>
+                        </div>
                     </div>
+                </div>
+                <div id="application-preview">
+                    <div className="grid-container">
+                        <div className="grid-x grid-padding-x">
+                            <FormErrors errors = {errors}/>
+                            { applicationType === UAOP_APPLICATION_APPLICATION && <UAOPApplicationView application={currentApplication} downloadDocument={this.downloadDocument}/> }
+                            { applicationType === LOCAL_DRONE_ACQUISITION_APPLICATION && <DroneAcquisitionApplicationView applicationForm={currentApplication} downloadDocument={this.downloadDocument} type="localDroneAcquisition" /> }
+                            { applicationType === IMPORT_DRONE_APPLICATION && <DroneAcquisitionApplicationView applicationForm={currentApplication} downloadDocument={this.downloadDocument} type="importDrone" /> }
+                            { applicationType === UIN_APPLICATION && <UINApplicationView application={currentApplication} downloadDocument={this.downloadDocument} /> }
+                            { applicationType === FLY_DRONE_PERMISSION_APPLICATION && <FlyDronePermissionApplicationView application={currentApplication} airspaceCategories={airspaceCategories} downloadDocument={this.downloadDocument} loadAirspaceCategories={this.loadAirspaceCategories}/> }
+                        </div>
+                     </div>
                 </div>
                 {   currentApplication.status === 'SUBMITTED' &&
                     <div className="view-application-footer">

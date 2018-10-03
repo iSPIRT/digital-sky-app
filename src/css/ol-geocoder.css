@@ -127,9 +127,9 @@
 .ol-geocoder.gcd-txt-container {
     box-sizing: border-box;
     height: 4.375em;
-    left: calc(50% - 12.5em);
+    left: 70.5em;
     position: absolute;
-    top: .5em;
+    top: 1.0em;
     width: 25em
 }
 

@@ -39,6 +39,8 @@ import Logout from './Logout';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Home from '../components/Home';
+import TestLocations from '../components/TestLocations';
+
 
 import ScrollToTop from './ScrollToTop'
 
@@ -114,6 +116,7 @@ class App extends React.Component {
                     <Route path="/resetPasswordLink" component={ResetPasswordLinkPage} />
                     <Route path="/resetPassword" component={ResetPasswordPage} />
                     <Route path="/verifyAccount" component={VerifyAccountPage} />
+                    <Route path="/testLocations" component={TestLocations} />
 
                     <Footer/>
                 </ScrollToTop>
