@@ -111,7 +111,7 @@ class PilotProfile extends React.Component {
                                 {  profile &&  profile.id &&
                                     <div className="large-12 cell">
                                         <label>Id
-                                            <p>{profile.id}</p>
+                                            <p>{profile.businessIdentifier}</p>
                                         </label>
                                     </div>
                                 }
