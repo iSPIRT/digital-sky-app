@@ -37,25 +37,25 @@ class Header extends React.Component {
         const siteHeaderClass = 'site-header '+ (stickyHeader ? 'sticky ' : '') + (homepage ? 'homepage ' : '') + ( (siteNavigationOpen || userNavigationOpen) ? 'menu-open' : '');
         return(
             <header className={siteHeaderClass}>
-                <div class="grid-container">
-                    <div class="grid-wrap">
+                <div className="grid-container">
+                    <div className="grid-wrap">
                         <Link to="/">
                             <div className="site-logo">
                                 <img src={logo} alt="logo"/>
                             </div>
                         </Link>
-                        <div class={ siteNavigationOpen ? 'site-nav open': 'site-nav' } onClick={this.onSiteNavigationClick}>
-                            <div class="wrap">
-                                <div class="open-wrap">
+                        <div className={ siteNavigationOpen ? 'site-nav open': 'site-nav' } onClick={this.onSiteNavigationClick}>
+                            <div className="wrap">
+                                <div className="open-wrap">
                                     <img src={hambargar} alt="hambargar"/>
                                     <p>Menu</p>
                                 </div>
-                                <div class="close-wrap">
+                                <div className="close-wrap">
                                     <img src={hambargarClose} alt="hambargarClose"/>
                                     <p>Close</p>
                                 </div>
 
-                                <div class="the-site-navigation">
+                                <div className="the-site-navigation">
                                     <ul>
                                         <li><Link to="/index">Home</Link></li>
                                         <li><Link to="#">Application Process</Link></li>

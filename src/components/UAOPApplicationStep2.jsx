@@ -92,7 +92,7 @@ class UAOPApplicationStep2 extends React.Component {
                                 <div className="large-12 cell">
                                     <div className="help-wrap">
                                         <label>Security Program Document
-                                            <span>{securityProgramDoc && securityProgramDoc.name}</span>
+                                            <p>{securityProgramDoc && securityProgramDoc.name}</p>
                                         </label>
                                         <label htmlFor="securityProgramDoc" className="button button-file-upload">Upload File</label>
                                         <input type="file" id="securityProgramDoc" name="securityProgramDoc" className="show-for-sr" onChange={this.handleChange}/>
@@ -102,29 +102,29 @@ class UAOPApplicationStep2 extends React.Component {
                                 <div className="large-12 cell">
                                     <div className="help-wrap">
                                         <label>Insurance Document
-                                            <span>{insuranceDoc && insuranceDoc.name}</span>
+                                            <p>{insuranceDoc && insuranceDoc.name}</p>
                                         </label>
-                                         <label htmlFor="insuranceDoc" className="button button-file-upload">Upload File</label>
-                                         <input type="file" id="insuranceDoc" name="insuranceDoc" className="show-for-sr" onChange={this.handleChange}/>
+                                        <label htmlFor="insuranceDoc" className="button button-file-upload">Upload File</label>
+                                        <input type="file" id="insuranceDoc" name="insuranceDoc" className="show-for-sr" onChange={this.handleChange}/>
                                     </div>
                                 </div>
 
                                 <div className="large-12 cell">
                                     <div className="help-wrap">
                                         <label>Land Owner Permission Document
-                                            <span>{landOwnerPermissionDoc && landOwnerPermissionDoc.name}</span>
+                                            <p>{landOwnerPermissionDoc && landOwnerPermissionDoc.name}</p>
                                         </label>
-                                         <label htmlFor="landOwnerPermissionDoc" className="button button-file-upload">Upload File</label>
-                                         <input type="file" id="landOwnerPermissionDoc" name="landOwnerPermissionDoc" className="show-for-sr" onChange={this.handleChange}/>
+                                        <label htmlFor="landOwnerPermissionDoc" className="button button-file-upload">Upload File</label>
+                                        <input type="file" id="landOwnerPermissionDoc" name="landOwnerPermissionDoc" className="show-for-sr" onChange={this.handleChange}/>
                                     </div>
                                 </div>
                                 <div className="large-12 cell">
                                     <div className="help-wrap">
                                         <label>Standard Operating Procedure Document
-                                            <span>{sopDoc && sopDoc.name}</span>
+                                            <p>{sopDoc && sopDoc.name}</p>
                                         </label>
-                                         <label htmlFor="sopDoc" className="button button-file-upload">Upload File</label>
-                                         <input type="file" id="sopDoc" name="sopDoc" className="show-for-sr" onChange={this.handleChange}/>
+                                        <label htmlFor="sopDoc" className="button button-file-upload">Upload File</label>
+                                        <input type="file" id="sopDoc" name="sopDoc" className="show-for-sr" onChange={this.handleChange}/>
                                     </div>
                                 </div>
 

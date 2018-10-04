@@ -119,18 +119,16 @@ class DroneProfileForm extends React.Component {
                 <form name="droneTypeProfileForm" onSubmit={this.handleSaveApplication}>
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
-                            <div className="large-12 cell">
-                                <DroneSpecForm name="droneSpec" 
-                                        droneTypes = { droneTypes }
-                                        selectedDroneTypeId =  { selectedDroneTypeId }
-                                        isReadOnly = { isReadOnly }
-                                        onChange= { this.handleChange }  
-                                        droneType = { selectedDroneType }
-                                        updateDroneDetails= { this.updateDroneDetails } 
-                                        fieldErrors = { fieldErrors }
-                                        validateField =  { this.validateField }
-                                />
-                            </div>
+                            <DroneSpecForm name="droneSpec"
+                                    droneTypes = { droneTypes }
+                                    selectedDroneTypeId =  { selectedDroneTypeId }
+                                    isReadOnly = { isReadOnly }
+                                    onChange= { this.handleChange }
+                                    droneType = { selectedDroneType }
+                                    updateDroneDetails= { this.updateDroneDetails }
+                                    fieldErrors = { fieldErrors }
+                                    validateField =  { this.validateField }
+                            />
                             <div className="large-6 cell">
                                 { submitted && ( !errors || errors.length === 0)  &&  saved && <p> Successfully Saved Drone Profile <br/></p>}
                                     <button type="submit" className="button" name="button">Submit</button>

@@ -225,6 +225,7 @@ class UINApplicationStep1 extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <br/>
                     <FooterApplicationForm step= { step } saving= { saving }   />
                 </form>
             </div>  

@@ -154,16 +154,14 @@ class PilotProfile extends React.Component {
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
-                                    <div className="help-wrap">
                                         <label>Training Certificate
                                             { pilotProfileSaved && profile.trainingCertificateDocName &&
-                                                <span><a onClick={(e) =>  this.props.downloadDocument(profile.trainingCertificateDocName)}>{profile.trainingCertificateDocName}</a></span>
+                                                <p><a onClick={(e) =>  this.props.downloadDocument(profile.trainingCertificateDocName)}>{profile.trainingCertificateDocName}</a></p>
                                             }
-                                            <span>{trainingCertificateDoc && trainingCertificateDoc.name}</span>
+                                            <p>{trainingCertificateDoc && trainingCertificateDoc.name}</p>
                                         </label>
                                          <label htmlFor="trainingCertificateDoc" className="button button-file-upload">Upload File</label>
                                          <input type="file" id="trainingCertificateDoc" name="trainingCertificateDoc" className="show-for-sr" onChange={this.handleChange}/>
-                                    </div>
                                 </div>
                                 <div className="large-12 cell" id="drone-category">
                                     <label className="main">Drone Category</label>
