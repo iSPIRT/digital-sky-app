@@ -176,17 +176,15 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                     <select name="applicantCategory" ref="applicantCategory" value= { applicationForm.applicantCategory } disabled>{ categoryOptions }</select>
                                 </label>
                             </div> */}
-                            <div className="large-12 cell">
-                                <DroneAcquisitionDroneTypeDetailsForm name="droneDetails"   
-                                    application = { applicationForm } 
-                                    nationalityOptions = { this.props.nationalityOptions } 
-                                    updateDroneDetails= { this.updateDroneDetails } 
-                                    isReadOnly = { isReadOnly } 
-                                    droneTypes = { droneTypes }
-                                    fieldErrors = { this.state.fieldErrors }
-                                    validateField =  { this.validateFieldValue }
-                                />
-                            </div>
+                            <DroneAcquisitionDroneTypeDetailsForm name="droneDetails"
+                                application = { applicationForm }
+                                nationalityOptions = { this.props.nationalityOptions }
+                                updateDroneDetails= { this.updateDroneDetails }
+                                isReadOnly = { isReadOnly }
+                                droneTypes = { droneTypes }
+                                fieldErrors = { this.state.fieldErrors }
+                                validateField =  { this.validateFieldValue }
+                            />
                             <div className="large-12 cell">
                                 <label>No of Drones
                                     <input type="number" name="noOfDrones" value= { (applicationForm && applicationForm.noOfDrones)} onChange = { this.handleChange } placeholder="Drone Count" min="1" className={decorateInputClass(this.state.fieldErrors['noOfDrones'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>

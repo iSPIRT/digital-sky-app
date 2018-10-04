@@ -77,7 +77,7 @@ class HomeSectionHelpMeApply extends React.Component {
             <section id="help-me-apply">
                 <div className="grid-container">
                     <div className="grid-x grid-padding-x">
-                        <div class="large-5 cell">
+                        <div className="large-5 cell">
                             <h2>Help me apply</h2>
                         </div>
                         <div className="large-7 cell">

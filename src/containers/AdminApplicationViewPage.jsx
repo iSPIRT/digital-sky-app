@@ -98,7 +98,7 @@ class AdminApplicationViewPage extends React.Component {
                      </div>
                 </div>
                 {   currentApplication.status === 'SUBMITTED' &&
-                    <div className="view-application-footer">
+                    <div className="view-application-footer admin-footer">
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
                                 <div className="large-12 cell">

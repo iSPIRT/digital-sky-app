@@ -65,7 +65,7 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
             selectedDroneType = selectedDroneTypes[0];
         }
         return(
-            <div>
+            <React.Fragment>
                  { isReadOnly && <div className="large-12 cell">
                         <label>Drone Type
                         <select name="droneType" onChange = { this.onChangeOfDroneType } 
@@ -157,7 +157,7 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
                         { fieldErrors && <FieldError fieldErrors={fieldErrors} field='compatiblePayload'/> }
                     </label>
                 </div>
-            </div>
+           </React.Fragment>
         );
     }
 }

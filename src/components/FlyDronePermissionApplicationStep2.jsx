@@ -270,15 +270,15 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
                 <FormErrors errors = {formErrors}/>
                 <FormErrors errors = {errors}/>
                 <div id="permission-map">
-                    <div class="map-wrapper">
+                    <div className="map-wrapper">
                         <div id="map" ref="mapContainer" className="map"> </div>
                     </div>
-                    <div class="permission-navigation">
-                        <div class="wrap">
+                    <div className="permission-navigation">
+                        <div className="wrap">
                           <a className="button button-light-clean" onClick={this.startDraw}>Start Draw</a>
                           <a className="button button-light-clean" onClick={this.endDraw}>Finish Draw</a>
                           <a className="button button-light-clean" onClick={this.resetDraw}>Reset Draw</a>
-                          <a onClick={this.props.previousStep} class="button button-light back">back</a>
+                          <a onClick={this.props.previousStep} className="button button-light back">back</a>
                           <button type="submit" className="button" name="button">Save & Continue</button>
                         </div>
                     </div>
