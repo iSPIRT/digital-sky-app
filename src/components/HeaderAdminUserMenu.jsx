@@ -21,7 +21,7 @@ class HeaderAdminUserMenu extends React.Component {
             <div className={ userNavigationOpen && !siteNavigationOpen ? 'user-nav dashboard open' : 'user-nav dashboard'} onClick={this.onUserNavigationClick}>
                 <div className="open-wrap">
                     <img src={user} alt="user"/>
-                    <p>User</p>
+                    <p>Admin</p>
                 </div>
                 <div className="close-wrap">
                     <img src={hambargarClose} alt="hambargarClose"/>
@@ -30,7 +30,7 @@ class HeaderAdminUserMenu extends React.Component {
 
                 <div className="the-user-navigation">
                     <ul>
-                        <li><Link to="/profile">Profile</Link></li>
+                        <li><Link to="/admin/droneTpe">Drone Types</Link></li>
                         <li><Link to="/dashboard">Dashboard</Link></li>
                         <li><Link to="/admin/blogList">Manage Blog List</Link></li>
                         <li><Link to="/admin/airspaceCategoryList">Manage Airspace Categories</Link></li>

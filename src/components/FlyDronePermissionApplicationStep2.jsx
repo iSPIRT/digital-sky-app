@@ -2,10 +2,6 @@ import React from 'react';
 
 import FormErrors from './FormErrors';
 
-import { Link } from 'react-router-dom'
-
-import back from '../img/back.svg';
-
 import Map from 'ol/Map';
 import View from 'ol/View';
 import Tile from 'ol/layer/Tile';
@@ -267,58 +263,27 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
     }
 
     render() {
-        const { savingApplication, errors} = this.props;
-        const { formErrors, application, submitted } = this.state;
+        const { errors} = this.props;
+        const { formErrors } = this.state;
         return (
-            <div>
-                <div className="page-form">
-                    <form name="uaopApplicationForm" onSubmit={this.handleSaveApplication}>
-                        <div className="grid-container">
-                            <div className="grid-x grid-padding-x">
-                                <div className="large-12 cell">
-                                    <h2>Fly Drone Permission Application</h2>
-                                    <FormErrors errors = {errors}/>
-                                    <FormErrors errors = {formErrors}/>
-                                    <p><Link to={'/flyDronePermissionApplications?droneId='+application.droneId}>Back To Applications</Link></p>
-                                    <div className="form-steps">
-                                        <ul>
-                                            <li className="done step-1"><p>Step 1</p>
-                                                <div className="circle"></div>
-                                            </li>
-                                            <li className="now step-2"><p>Step 2</p>
-                                                <div className="circle"></div>
-                                            </li>
-                                            <li className="todo step-3"><p>Step 3</p>
-                                                <div className="circle"></div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="large-12 cell">
-                                    <label>Please choose fly area
-                                        <a className="button button-light-clean" onClick={this.startDraw}>Start Draw</a>
-                                        <a className="button button-light-clean" onClick={this.endDraw}>Finish Draw</a>
-                                        <a className="button button-light-clean" onClick={this.resetDraw}>Reset Draw</a>
-                                    </label>
-                                </div>
-                                <div className="large-12 cell">
-                                        <div ref="mapContainer" className="map"> </div>
-                                </div>
-                                <div className="large-12 cell">
-                                    <a className="back" onClick={this.props.previousStep}>
-                                        <img src={back} alt="back"/> Go back to previous step
-                                    </a>
-                                    <button type="submit" className="button" name="button">Save & Continue</button>
-
-                                    {
-                                       submitted && savingApplication && <img alt="Loading..." src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                                    }
-                                </div>
-                            </div>
+            <form name="uaopApplicationForm" onSubmit={this.handleSaveApplication}>
+                <FormErrors errors = {formErrors}/>
+                <FormErrors errors = {errors}/>
+                <div id="permission-map">
+                    <div className="map-wrapper">
+                        <div id="map" ref="mapContainer" className="map"> </div>
+                    </div>
+                    <div className="permission-navigation">
+                        <div className="wrap">
+                          <a className="button button-light-clean" onClick={this.startDraw}>Start Draw</a>
+                          <a className="button button-light-clean" onClick={this.endDraw}>Finish Draw</a>
+                          <a className="button button-light-clean" onClick={this.resetDraw}>Reset Draw</a>
+                          <a onClick={this.props.previousStep} className="button button-light back">back</a>
+                          <button type="submit" className="button" name="button">Save & Continue</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         );
     }
 }

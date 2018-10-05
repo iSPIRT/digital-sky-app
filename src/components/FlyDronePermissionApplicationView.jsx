@@ -99,7 +99,7 @@ class FlyDronePermissionApplicationView extends React.Component {
                 <div className="question">
                     <h6>Pilot Id:</h6>
                     <p>
-                        <Link to={ "/admin/pilot?profileId="+application.pilotId } >{application.pilotId}</Link>
+                        <Link to={ "/admin/pilot?profileId="+application.pilotId } >{application.pilotBusinessIdentifier}</Link>
                     </p>
                 </div>
                 <div className="question">
@@ -121,6 +121,14 @@ class FlyDronePermissionApplicationView extends React.Component {
                 <div className="question">
                     <h6>End Date and Time:</h6>
                     <p>{application.endDateTime}</p>
+                </div>
+                <div className="question">
+                    <h6>Recurrence Time Pattern (Cron Quartz Expression):</h6>
+                    <p>{application.recurringTimeExpression}</p>
+                </div>
+                <div className="question">
+                    <h6>Duration In Minutes :</h6>
+                    <p>{application.recurringTimeDurationInMinutes}</p>
                 </div>
                 <div className="question">
                     <h6>Payload Wight In Kgs:</h6>

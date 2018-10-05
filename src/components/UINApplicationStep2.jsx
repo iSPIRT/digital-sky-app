@@ -126,19 +126,16 @@ class UINApplicationStep2 extends React.Component {
                                 </select>
                                 </label>
                             </div>
-                            <div className="large-12 cell">
-                                <DroneSpecForm name="droneSpec" 
-                                             application = { applicationForm } 
-                                             droneTypes = { droneTypes }
-                                             selectedDroneTypeId =  { selectedDroneTypeId }
-                                             operatorDroneId = { operatorDroneId }
-                                             isReadOnly = { isReadOnly }
-                                             onChange= { this.handleChange }  
-                                             updateDroneDetails= { this.updateDroneDetails } 
-                                             droneTypeDisabled = "true" 
-                                />
-
-                            </div>
+                            <DroneSpecForm name="droneSpec"
+                                         application = { applicationForm }
+                                         droneTypes = { droneTypes }
+                                         selectedDroneTypeId =  { selectedDroneTypeId }
+                                         operatorDroneId = { operatorDroneId }
+                                         isReadOnly = { isReadOnly }
+                                         onChange= { this.handleChange }
+                                         updateDroneDetails= { this.updateDroneDetails }
+                                         droneTypeDisabled = "true"
+                            />
                             <div className="large-12 cell">
                                 <label>Enter previous UIN, if applicable
                                     <input type="text" name="previousUIN" placeholder="previous UIN" value= { applicationForm.previousUIN } onChange={ this.handleChange }/>
@@ -164,6 +161,7 @@ class UINApplicationStep2 extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <br/>
                     <FooterApplicationForm step= { step } saving= { saving } previousStep= { previousStep }/>
                 </form>
             </div>  

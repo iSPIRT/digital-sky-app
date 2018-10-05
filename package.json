@@ -6,7 +6,7 @@
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
     "prettier": "^1.11.0",
-    "react-scripts": "^1.0.17",
+    "react-scripts": "^2.0.3",
     "script-loader": "^0.6.1"
   },
   "dependencies": {
@@ -29,7 +29,9 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "sanitize.css": "^5.0.0",
-    "what-input": "^4.2.0"
+    "what-input": "^4.2.0",
+    "query-string": "^6.2.0",
+    "browserslist": "4.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,5 +46,11 @@
       "prettier --write",
       "git add"
     ]
-  }
+  },
+  "browserslist": [
+    "last 10 version",
+    "> 1%",
+    "maintained node versions",
+    "not dead"
+  ]
 }

@@ -48,7 +48,7 @@ class DroneSpecForm extends React.Component {
         }
 
         return (
-            <div>
+             <React.Fragment>
                 <DroneAcquisitionDroneTypeDetailsForm
                             application = { application }
                             droneTypes = { droneTypes }
@@ -149,7 +149,7 @@ class DroneSpecForm extends React.Component {
                         <input type="number" name="maxHeightOfOperation" placeholder="" value= { selectedDroneType && selectedDroneType.maxHeightOfOperation !==0 &&  selectedDroneType.maxHeightOfOperation} onChange={ this.handleChange } readOnly = { isReadOnly } />
                     </label>
                 </div>
-            </div>
+             </React.Fragment>
         )
     }
 }

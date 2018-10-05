@@ -143,39 +143,58 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
                                     </div>
                                 </div>
                                 <div className="large-12 cell">
-                                    <label>Name
-                                        <input type="text" placeholder="Pilot Id" name="pilotId" onChange={this.handleChange} value={application.pilotId} maxLength="20" className={decorateInputClass(this.state.fieldErrors['pilotId'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
-                                        <FieldError fieldErrors={this.state.fieldErrors} field='pilotId'/>
+                                    <label>Pilot Id
+                                        <input type="text" placeholder="Pilot Id" name="pilotBusinessIdentifier" onChange={this.handleChange} value={application.pilotBusinessIdentifier} maxLength="100" className={decorateInputClass(this.state.fieldErrors['pilotBusinessIdentifier'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                        <FieldError fieldErrors={this.state.fieldErrors} field='pilotBusinessIdentifier'/>
                                     </label>
                                 </div>
-                                <div className="large-12 cell">
+
+                                <div className="large-3 cell">
                                     <label>Start Date and Time</label>
-                                        <DatePicker
-                                            selected={startDateTime}
-                                            onChange={this.handleChangeStartDateTime}
-                                            showTimeSelect
-                                            timeFormat="HH:mm"
-                                            timeIntervals={15}
-                                            dateFormat="DD-MM-YYYY HH:mm:00"
-                                            timeCaption="time"
-                                            minDate={moment()}
-                                        />
-                                        <br/>
+                                </div>
+
+                                <div className="large-8 cell-fix">
+                                    <DatePicker
+                                        selected={startDateTime}
+                                        onChange={this.handleChangeStartDateTime}
+                                        showTimeSelect
+                                        timeFormat="HH:mm"
+                                        timeIntervals={15}
+                                        dateFormat="DD-MM-YYYY HH:mm:00"
+                                        timeCaption="time"
+                                        minDate={moment()}
+                                    />
+                                    <br/>
+                                </div>
+
+                                <div className="large-3 cell">
+                                    <label>End Date and Time</label>
+                                </div>
+
+                                <div className="large-8 cell-fix">
+                                    <DatePicker
+                                        selected={endDateTime}
+                                        onChange={this.handleChangeEndDateTime}
+                                        showTimeSelect
+                                        timeFormat="HH:mm"
+                                        timeIntervals={15}
+                                        dateFormat="DD-MM-YYYY HH:mm:00"
+                                        timeCaption="time"
+                                        minDate={moment()}
+                                    />
+                                    <br/>
                                 </div>
 
                                 <div className="large-12 cell">
-                                    <label>End Date and Time</label>
-                                        <DatePicker
-                                            selected={endDateTime}
-                                            onChange={this.handleChangeEndDateTime}
-                                            showTimeSelect
-                                            timeFormat="HH:mm"
-                                            timeIntervals={15}
-                                            dateFormat="DD-MM-YYYY HH:mm:00"
-                                            timeCaption="time"
-                                            minDate={moment()}
-                                        />
-                                        <br/>
+                                    <label>Recurrence Time Pattern (Cron Quartz Expression)
+                                        <input type="text" placeholder="Cron Quartz Expression" name="recurringTimeExpression" onChange={this.handleChange} value={application.recurringTimeExpression} maxLength="20" />
+                                    </label>
+                                </div>
+
+                                <div className="large-12 cell">
+                                    <label> Duration In Minutes  (when Recurrence Time Pattern specified)
+                                        <input type="text" placeholder="Duration In Minutes" name="recurringTimeDurationInMinutes" onChange={this.handleChange} value={application.recurringTimeDurationInMinutes} maxLength="5" />
+                                    </label>
                                 </div>
 
                                 <div className="large-12 cell">
@@ -184,6 +203,7 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
                                         <FieldError fieldErrors={this.state.fieldErrors} field='payloadWeightInKg'/>
                                     </label>
                                 </div>
+
                                 <div className="large-12 cell">
                                     <label>Payload Details
                                         <input type="text" placeholder="" name="payloadDetails" onChange={this.handleChange} value={application.payloadDetails} maxLength="100" className={decorateInputClass(this.state.fieldErrors['payloadDetails'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
