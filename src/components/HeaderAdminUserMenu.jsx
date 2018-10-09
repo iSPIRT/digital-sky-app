@@ -30,7 +30,7 @@ class HeaderAdminUserMenu extends React.Component {
 
                 <div className="the-user-navigation">
                     <ul>
-                        <li><Link to="/admin/droneTpe">Drone Types</Link></li>
+                        <li><Link to="/admin/droneType">Drone Types</Link></li>
                         <li><Link to="/dashboard">Dashboard</Link></li>
                         <li><Link to="/admin/blogList">Manage Blog List</Link></li>
                         <li><Link to="/admin/airspaceCategoryList">Manage Airspace Categories</Link></li>

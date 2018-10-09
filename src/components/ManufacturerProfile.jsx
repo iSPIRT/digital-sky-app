@@ -173,7 +173,7 @@ class ManufacturerProfile extends React.Component {
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Trusted Certificate Chain 
-                                        <span>{ (trustedCertificateDoc && trustedCertificateDoc.name) || profile.trustedCertificateDocName }</span>
+                                        <p>{ (trustedCertificateDoc && trustedCertificateDoc.name) || profile.trustedCertificateDocName }</p>
                                     </label>
                                     <label htmlFor="trustedCertificateDoc" className="button button-file-upload">Upload Certificate</label>
                                     <input type="file" id="trustedCertificateDoc" name="trustedCertificateDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pem"/>

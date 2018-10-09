@@ -146,10 +146,10 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
                             <div className="large-12 cell">
                                     <div className="help-wrap">
                                         <label>Security Clearance Document
-                                            <span>{ (securityClearanceDoc && securityClearanceDoc.name) || applicationForm.securityClearanceDocName }</span>
+                                            <p>{ (securityClearanceDoc && securityClearanceDoc.name) || applicationForm.securityClearanceDocName }</p>
                                         </label>
                                         <label htmlFor="securityClearanceDoc" className="button button-file-upload">Upload File</label>
-                                        <input type="file" id="securityClearanceDoc" name="securityClearanceDoc" className="show-for-sr" onChange={this.handleChange}/>
+                                        <input type="file" id="securityClearanceDoc" name="securityClearanceDoc" className="show-for-sr" onChange={this.handleChange} accept=".pdf"/>
                                         <FieldError fieldErrors={this.state.fieldErrors} field='securityClearanceDoc'/>
                                  </div>
                                 </div>

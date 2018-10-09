@@ -143,17 +143,17 @@ class UINApplicationStep2 extends React.Component {
                             </div>
                             <div className="help-wrap">
                                 <label>Copy of Remotely Piloted Aircraft Flight Manual/Manufacturer’s Operating Manual (as applicable)
-                                    <span>{ (opManualDoc && opManualDoc.name)   || applicationForm.opManualDocName }</span>
+                                    <p>{ (opManualDoc && opManualDoc.name)   || applicationForm.opManualDocName }</p>
                                 </label>
                                 <label htmlFor="opManualDoc" className="button button-file-upload">Upload File</label>
-                                <input type="file" id="opManualDoc" name="opManualDoc" className="show-for-sr" onChange={ this.handleChange }/>
+                                <input type="file" id="opManualDoc" name="opManualDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pdf"/>
                             </div>
                             <div className="help-wrap">
                                 <label>Copy of Manufacturer’s Maintenance guidelines (as applicable)
-                                    <span>{ (maintenanceGuidelinesDoc && maintenanceGuidelinesDoc.name) || applicationForm.maintenanceGuidelinesDocName}</span>
+                                    <p>{ (maintenanceGuidelinesDoc && maintenanceGuidelinesDoc.name) || applicationForm.maintenanceGuidelinesDocName}</p>
                                 </label>
                                 <label htmlFor="maintenanceGuidelinesDoc" className="button button-file-upload">Upload File</label>
-                                <input type="file" id="maintenanceGuidelinesDoc" name="maintenanceGuidelinesDoc" className="show-for-sr" onChange={ this.handleChange }/>
+                                <input type="file" id="maintenanceGuidelinesDoc" name="maintenanceGuidelinesDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pdf"/>
                             </div>
                             <div className="help-wrap">
                                 <label>History of incidents/accidents (if any) along with nature and extent of damage sustained by the RPA and details of any repairs carried out </label>

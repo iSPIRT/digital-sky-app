@@ -173,10 +173,10 @@ class UINApplicationStep1 extends React.Component {
                             <div className="large-12 cell">
                                 <div className="help-wrap">
                                     <label>Copy of import permission / filled proforma for information of local acquisition
-                                        <span>{ (importPermissionDoc && importPermissionDoc.name) || applicationForm.importPermissionDocName }</span>
+                                        <p>{ (importPermissionDoc && importPermissionDoc.name) || applicationForm.importPermissionDocName }</p>
                                     </label>
                                     <label htmlFor="importPermissionDoc" className="button button-file-upload">Upload File</label>
-                                    <input type="file" id="importPermissionDoc" name="importPermissionDoc" className="show-for-sr" onChange={ this.handleChange }/>
+                                    <input type="file" id="importPermissionDoc" name="importPermissionDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pdf"/>
                                 </div>
                             </div>
                             <div className="large-12 cell">
@@ -185,37 +185,37 @@ class UINApplicationStep1 extends React.Component {
                             <div className="large-12 cell">
                                 <div className="help-wrap">
                                     <label>Copy of PanCard 
-                                        <span>{ (panCardDoc && panCardDoc.name) || applicationForm.panCardDocName }</span>
+                                        <p>{ (panCardDoc && panCardDoc.name) || applicationForm.panCardDocName }</p>
                                     </label>
                                     <label htmlFor="panCardDoc" className="button button-file-upload">Upload File</label>
-                                    <input type="file" id="panCardDoc" name="panCardDoc" className="show-for-sr" onChange={ this.handleChange }/>
+                                    <input type="file" id="panCardDoc" name="panCardDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pdf"/>
                                 </div>
                             </div>
                             <div className="large-12 cell">
                                 <div className="help-wrap">
                                     <label>Copy of security clearance from MHA or self-attested copies of at least two out of three valid identity proofs viz. Passport, Driving License or Aadhar Card (in case of individual/Indian remote pilot
-                                        <span>{ (securityClearanceDoc && securityClearanceDoc.name) || applicationForm.securityClearanceDocName }</span>
+                                        <p>{ (securityClearanceDoc && securityClearanceDoc.name) || applicationForm.securityClearanceDocName }</p>
                                     </label>
                                     <label htmlFor="securityClearanceDoc" className="button button-file-upload">Upload File</label>
-                                    <input type="file" id="securityClearanceDoc" name="securityClearanceDoc" className="show-for-sr" onChange={ this.handleChange }/>
+                                    <input type="file" id="securityClearanceDoc" name="securityClearanceDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pdf"/>
                                 </div>
                             </div>
                             <div className="large-12 cell">
                                 <div className="help-wrap">
                                     <label>Copy of Permission/ license from WPC Wing, Department of Telecommunication for usage of licensed frequencies used in RPA. (as applicable)
-                                        <span>{ (dotPermissionDoc && dotPermissionDoc.name) ||  applicationForm.dotPermissionDocName}</span>
+                                        <p>{ (dotPermissionDoc && dotPermissionDoc.name) ||  applicationForm.dotPermissionDocName}</p>
                                     </label>
                                     <label htmlFor="dotPermissionDoc" className="button button-file-upload">Upload File</label>
-                                    <input type="file" id="dotPermissionDoc" name="dotPermissionDoc" className="show-for-sr" onChange={ this.handleChange }/>
+                                    <input type="file" id="dotPermissionDoc" name="dotPermissionDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pdf"/>
                                 </div>
                             </div>
                             <div className="large-12 cell">
                                 <div className="help-wrap">
                                     <label>Copy of ETA from WPC Wing, Department of Telecommunication for RPA operating in de-licensed frequency band(s) (as applicable)
-                                        <span>{ (etaDoc && etaDoc.name) || applicationForm.etaDocName }</span>
+                                        <p>{ (etaDoc && etaDoc.name) || applicationForm.etaDocName }</p>
                                     </label>
                                     <label htmlFor="etaDoc" className="button button-file-upload">Upload File</label>
-                                    <input type="file" id="etaDoc" name="etaDoc" className="show-for-sr" onChange={ this.handleChange }/>
+                                    <input type="file" id="etaDoc" name="etaDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pdf"/>
                                 </div>
                             </div>
                             <div className="large-12 cell">
