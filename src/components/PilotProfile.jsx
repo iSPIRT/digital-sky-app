@@ -8,6 +8,10 @@ import { validateField, validateForm, decorateInputClass } from '../helpers/form
 
 import { Link } from 'react-router-dom'
 
+import DatePicker from 'react-datepicker';
+
+import moment from 'moment';
+
 class PilotProfile extends React.Component {
 
     constructor(props) {
@@ -15,6 +19,7 @@ class PilotProfile extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.updateObjProp = this.updateObjProp.bind(this);
+        this.handleChangeDateOfBirth = this.handleChangeDateOfBirth.bind(this);
 
         this.state = {
             submitted: false,
@@ -40,7 +45,14 @@ class PilotProfile extends React.Component {
         this.setState({formErrors: []});
         if(!nextProps.profile.empty){
             this.setState({profile: nextProps.profile});
+            if(!this.state.dateOfBirth && nextProps.profile.dateOfBirth){
+                this.setState({dateOfBirth: moment(nextProps.profile.dateOfBirth, 'DD-MM-YYYY')})
+            }
         }
+    }
+
+    handleChangeDateOfBirth(dateOfBirth){
+        this.setState({dateOfBirth: dateOfBirth});
     }
 
     handleChange(event) {
@@ -72,10 +84,24 @@ class PilotProfile extends React.Component {
             }
         }
         this.setState({fieldErrors:{}});
+
+        const formErrors = [];
+
+        if(!this.state.dateOfBirth){
+            formErrors.push("Please select date of birth");
+        }
+
+        if(formErrors.length > 0){
+            this.setState({formErrors});
+            return;
+        }
+
         this.setState({submitted: true});
         const formData = new FormData();
         formData.append("trainingCertificateDocument", this.state.trainingCertificateDoc)
-        formData.append("pilotPayload", JSON.stringify(this.state.profile))
+        const {profile} = this.state;
+        profile.dateOfBirth = this.state.dateOfBirth.format('DD-MM-YYYY');
+        formData.append("pilotPayload", JSON.stringify(profile))
 
         if(this.props.pilotProfileSaved){
             this.props.updatePilotProfile(formData);
@@ -117,16 +143,27 @@ class PilotProfile extends React.Component {
                                 }
                                 <div className="large-12 cell">
                                     <label>Mobile Number
-                                        <input type="text" placeholder="Mobile Number" name="mobileNumber" onChange={this.handleChange} value={profile.mobileNumber} maxLength="13" className={decorateInputClass(this.state.fieldErrors['mobileNumber'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                        <input type="text" placeholder="Mobile Number" name="mobileNumber" onChange={this.handleChange} value={profile.mobileNumber} maxLength="13" className={decorateInputClass(this.state.fieldErrors['mobileNumber'],[])} validate="required,mobileNumber" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
                                         <FieldError fieldErrors={this.state.fieldErrors} field='mobileNumber'/>
                                     </label>
                                 </div>
-                                <div className="large-12 cell">
-                                    <label>Date of Birth
-                                        <input type="text" placeholder="DD-MM-YYYY" name="dateOfBirth" onChange={this.handleChange} value={profile.dateOfBirth} maxLength="10" className={decorateInputClass(this.state.fieldErrors['dateOfBirth'],[])} validate="required,dateOfBirth" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
-                                        <FieldError fieldErrors={this.state.fieldErrors} field='dateOfBirth'/>
-                                    </label>
+                                <div className="large-3 cell">
+                                    <label>Date of Birth</label>
                                 </div>
+
+                                <div className="large-8 cell-fix">
+                                    <DatePicker
+                                        selected={this.state.dateOfBirth}
+                                        onChange={this.handleChangeDateOfBirth}
+                                        dateFormat="DD-MM-YYYY"
+                                        maxDate={moment().add(-10,"years")}
+                                        showMonthDropdown
+                                        showYearDropdown
+                                        dropdownMode="select"
+                                    />
+                                    <br/>
+                                </div>
+
                                 <div className="large-12 cell">
                                     <label>Country (Nationality)
                                         <input type="text" placeholder="country" name="country" onChange={this.handleChange} value={profile.country} className={decorateInputClass(this.state.fieldErrors['country'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>

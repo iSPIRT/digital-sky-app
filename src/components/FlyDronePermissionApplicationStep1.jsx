@@ -41,11 +41,11 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
         const currentApplication = this.state.application;
         currentApplication.id = application.id;
 
-        if(currentApplication.startDateTime){
+        if(!this.state.startDateTime && currentApplication.startDateTime){
             this.setState({startDateTime: moment(currentApplication.startDateTime, 'DD-MM-YYYY HH:mm:ss')})
         }
 
-        if(currentApplication.endDateTime) {
+        if(!this.state.endDateTime && currentApplication.endDateTime) {
             this.setState({endDateTime: moment(currentApplication.endDateTime, 'DD-MM-YYYY HH:mm:ss')})
         }
         this.setState({application: currentApplication});
@@ -163,6 +163,8 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
                                         dateFormat="DD-MM-YYYY HH:mm:00"
                                         timeCaption="time"
                                         minDate={moment()}
+                                        maxDate={moment().add(1,"years")}
+
                                     />
                                     <br/>
                                 </div>
@@ -181,6 +183,7 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
                                         dateFormat="DD-MM-YYYY HH:mm:00"
                                         timeCaption="time"
                                         minDate={moment()}
+                                        maxDate={moment().add(1,"years")}
                                     />
                                     <br/>
                                 </div>

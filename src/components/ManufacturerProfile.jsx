@@ -134,13 +134,13 @@ class ManufacturerProfile extends React.Component {
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Organization Mobile Number
-                                        <input type="text" placeholder="Mobile Number" name="mobileNumber" onChange={this.handleChange} value={profile.mobileNumber} maxLength="13" className={decorateInputClass(this.state.fieldErrors['mobileNumber'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                        <input type="text" placeholder="Mobile Number" name="mobileNumber" onChange={this.handleChange} value={profile.mobileNumber} maxLength="13" className={decorateInputClass(this.state.fieldErrors['mobileNumber'],[])} validate="required,mobileNumber" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
                                         <FieldError fieldErrors={this.state.fieldErrors} field='mobileNumber'/>
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Organization Phone Number
-                                        <input type="text" placeholder="Phone Number" name="contactNumber" onChange={this.handleChange} value={profile.contactNumber} maxLength="13" className={decorateInputClass(this.state.fieldErrors['contactNumber'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                        <input type="text" placeholder="Phone Number" name="contactNumber" onChange={this.handleChange} value={profile.contactNumber} maxLength="18" className={decorateInputClass(this.state.fieldErrors['contactNumber'],[])} validate="required,phoneNumber" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
                                         <FieldError fieldErrors={this.state.fieldErrors} field='contactNumber'/>
                                     </label>
                                 </div>
