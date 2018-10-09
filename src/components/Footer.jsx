@@ -22,10 +22,10 @@ class Footer extends React.Component {
                     <div className="grid-x grid-padding-x">
                         <div className="large-12 cell">
                             <ul>
-                                <li><Link to="#">Know the requirements</Link></li>
-                                <li><Link to="#">Legal obligations</Link></li>
-                                <li><Link to="#">Insurance</Link></li>
-                                <li><Link to="#">Enforcement action</Link></li>
+                                <li><a href="http://dgca.nic.in/cars/D3X-X1.pdf" target="_blank">RPAS CAR</a></li>
+                                <li><a href="https://bit.ly/DigitalSkyForum" target="_blank">Digital Sky Forum</a></li>
+                                <li><a href="https://ispirt.github.io/digital-sky-docs/apis" target="_blank">API Reference</a></li>
+                                <li><a href="https://docs.google.com/document/d/19lD0nFBhZiMJ3Vgbg_YgtVzd2Ua7yXFRuYSTtaxpaQk/edit?usp=sharing" target="_blank">Registered Flight Module Technical Standard</a></li>
                             </ul>
                         </div>
                     </div>
