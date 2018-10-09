@@ -95,13 +95,13 @@ class AdminBlog extends React.Component {
         const removeSection = this.removeSection;
         return this.state.blog.sections.map((section, index) => {
             return (
-                <span>
+                <p>
                     <textarea name={'sections.'+index} rows="3" value= { blog.sections[index] } onChange={ handleChange }/>
                     { index > 0 &&
                         <button className="button button-light-clean" name="removeSection" onClick={(e) => removeSection(index)}>Remove</button>
                     }
                     <br/>
-                </span>
+                </p>
             );
         });
     }
@@ -152,9 +152,10 @@ class AdminBlog extends React.Component {
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
-                                    <label>Section
-                                        { this.sectionMarkup(blog) }
-                                    </label>
+                                    <label>Section</label>
+                                </div>
+                                <div className="large-12 cell">
+                                    { this.sectionMarkup(blog) }
                                 </div>
                                 <div className="large-6 cell">
 

@@ -10,23 +10,10 @@ class HomeSectionPressRelease extends React.Component {
                 <div className="grid-x grid-padding-x">
                     <div className="large-12 cell">
                         <h2>Press Releases</h2>
-        
                         <div className="article">
-                            <Link to="#"><h4>New drone policy launched in India</h4></Link>
-                            <div className="date">10 January 2018</div>
+                            <a href="http://pib.nic.in/newsite/PrintRelease.aspx?relid=183093" target="_blank"><h4>Government announces Regulations for Drones</h4></a>
+                            <div className="date">27 August 2018</div>
                         </div>
-        
-                        <div className="article">
-                            <Link to="#"><h4>New drone policy launched in India</h4></Link>
-                            <div className="date">10 January 2018</div>
-                        </div>
-        
-                        <div className="article">
-                            <Link to="#"><h4>New drone policy launched in India</h4></Link>
-                            <div className="date">10 January 2018</div>
-                        </div>
-        
-                        <Link to="#" className="button">Read More</Link>
                     </div>
                 </div>
             </div>
