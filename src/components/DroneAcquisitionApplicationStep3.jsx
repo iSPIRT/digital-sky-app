@@ -1,8 +1,8 @@
 import React from 'react';
 import FooterApplicationForm from './FooterApplicationForm';
 import FooterApplicationReviewDeclaration from './FooterApplicationReviewDeclaration';
-//import FormErrors from './FormErrors';
 import DroneAcquisitionApplicationView from './DroneAcquisitionApplicationView';
+import HeaderApplicationForm from './HeaderApplicationForm';
 
 class DroneAcquisitionApplicationStep3 extends React.Component {
 
@@ -35,7 +35,7 @@ class DroneAcquisitionApplicationStep3 extends React.Component {
 
     render() {
         
-        const { saving, applicationForm, previousStep, applicationType, step } = this.props;
+        const { saving, applicationForm, previousStep, applicationType, step, headerText } = this.props;
         return (
             <div className="page-form">
                 {/* <FormErrors errors = {errors}/>
@@ -44,16 +44,22 @@ class DroneAcquisitionApplicationStep3 extends React.Component {
                     <div id="application-preview">
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
+                                <HeaderApplicationForm headerText= { headerText } step= { step } applicationStatus = { applicationForm.status } /> 
                                 <DroneAcquisitionApplicationView applicationForm = { applicationForm } type= { applicationType } downloadDocument = { this.downloadDocument } />
+                                { (!applicationForm.status || applicationForm.status === 'DRAFT' ) &&
+                                    <React.Fragment>
+                                    <div className="large-12 cell"> 
+                                        <FooterApplicationReviewDeclaration applicant = { applicationForm.applicant } type= { applicationType }/>
+                                        
+                                    </div>
+                                    <div className="large-12 cell"> 
+                                        <FooterApplicationForm  step= { step } saving={ saving } previousStep= { previousStep }/>
+                                    </div>
+                                    </React.Fragment>
+                                }
                             </div>
                         </div>
                     </div>
-                    { (!applicationForm.status || applicationForm.status === 'DRAFT' ) &&
-                        <div className="large-12 cell"> 
-                            <FooterApplicationReviewDeclaration applicant = { applicationForm.applicant } type= { applicationType }/>
-                            <FooterApplicationForm  step= { step } saving={ saving } previousStep= { previousStep }/>
-                        </div>
-                    }
                 </form>
             </div>  
         );

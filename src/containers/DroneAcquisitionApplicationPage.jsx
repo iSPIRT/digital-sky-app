@@ -8,7 +8,6 @@ import DroneAcquisitionApplicationStep3 from '../components/DroneAcquisitionAppl
 
 import { INDIVIDUAL_OPERATOR_TYPE, ORGANIZATION_OPERATOR_TYPE } from '../constants/operatorType';
 
-import HeaderApplicationForm from '../components/HeaderApplicationForm';
 import { downloadFile } from '../actions/downloadFileActions';
 import { loadMetaDataAction } from '../actions/metaDataActions';
 import { loadOperatorProfile } from '../actions/operatorProfileActions';
@@ -89,7 +88,6 @@ export default class DroneAcquisitionApplicationPage extends React.Component {
 
         return (
             <div className="page-form">
-                <HeaderApplicationForm headerText= { this.headerText } step= { currentStep } applicationStatus = { currentApplicationForm.status } /> 
                 {(() => {
                     switch(currentStep) {
                         case 1: 
@@ -105,6 +103,7 @@ export default class DroneAcquisitionApplicationPage extends React.Component {
                                     droneTypes = { droneTypes }
                                     operatorProfile = { profile }
                                     user = { userDetails }
+                                    headerText = { this.headerText }
                                 />
                             );
                         case 2:
@@ -119,6 +118,7 @@ export default class DroneAcquisitionApplicationPage extends React.Component {
                                     step = { currentStep }
                                     applicationType= { this.applicationType }
                                     downloadDocument= { this.downloadDocument } 
+                                    headerText = { this.headerText }
                                 />
                             );
                         case 3:
@@ -131,6 +131,7 @@ export default class DroneAcquisitionApplicationPage extends React.Component {
                                     saving={ saving } previousStep={this.previousStep}
                                     applicationType= { this.applicationType }
                                     downloadDocument= { this.downloadDocument }
+                                    headerText = { this.headerText }
                                 />
                             );  
                     }

@@ -3,6 +3,7 @@ import FooterApplicationForm from './FooterApplicationForm';
 import DroneSpecForm from './DroneSpecForm';
 import FormErrors from './FormErrors';
 import {  validateForm } from '../helpers/formValidationHelpers';
+import HeaderApplicationForm from './HeaderApplicationForm';
 
 class UINApplicationStep2 extends React.Component {
 
@@ -100,7 +101,7 @@ class UINApplicationStep2 extends React.Component {
 
     render() {
         
-        const { saving, previousStep, step, applicationForm, droneTypes, selectedDroneTypeId, operatorDroneId, errors, deviceIds} = this.props;
+        const { saving, previousStep, step, applicationForm, droneTypes, selectedDroneTypeId, operatorDroneId, errors, deviceIds, headerText} = this.props;
         const { opManualDoc, maintenanceGuidelinesDoc } = this.state;
         const isReadOnly = true;
         
@@ -118,6 +119,7 @@ class UINApplicationStep2 extends React.Component {
                 <form name="uinApplicationForm" onSubmit={this.handleSaveApplication}>
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
+                            <HeaderApplicationForm headerText= { headerText } step= { step } applicationStatus = { applicationForm.status } /> 
                             <div className="large-12 cell">
                                 <label>UniqueDevice Id
                                 <select name="uniqueDeviceId" value={ applicationForm.uniqueDeviceId }  onChange={ this.handleChange } >
@@ -141,28 +143,35 @@ class UINApplicationStep2 extends React.Component {
                                     <input type="text" name="previousUIN" placeholder="previous UIN" value= { applicationForm.previousUIN } onChange={ this.handleChange }/>
                                 </label>
                             </div>
-                            <div className="help-wrap">
-                                <label>Copy of Remotely Piloted Aircraft Flight Manual/Manufacturer’s Operating Manual (as applicable)
-                                    <p>{ (opManualDoc && opManualDoc.name)   || applicationForm.opManualDocName }</p>
-                                </label>
-                                <label htmlFor="opManualDoc" className="button button-file-upload">Upload File</label>
-                                <input type="file" id="opManualDoc" name="opManualDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pdf"/>
+                            <div className="large-12 cell">
+                                <div className="help-wrap">
+                                    <label>Copy of Remotely Piloted Aircraft Flight Manual/Manufacturer’s Operating Manual (as applicable)
+                                        <p>{ (opManualDoc && opManualDoc.name)   || applicationForm.opManualDocName }</p>
+                                    </label>
+                                    <label htmlFor="opManualDoc" className="button button-file-upload">Upload File</label>
+                                    <input type="file" id="opManualDoc" name="opManualDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pdf"/>
+                                </div>
                             </div>
-                            <div className="help-wrap">
-                                <label>Copy of Manufacturer’s Maintenance guidelines (as applicable)
-                                    <p>{ (maintenanceGuidelinesDoc && maintenanceGuidelinesDoc.name) || applicationForm.maintenanceGuidelinesDocName}</p>
-                                </label>
-                                <label htmlFor="maintenanceGuidelinesDoc" className="button button-file-upload">Upload File</label>
-                                <input type="file" id="maintenanceGuidelinesDoc" name="maintenanceGuidelinesDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pdf"/>
+                            <div className="large-12 cell">
+                                <div className="help-wrap">
+                                    <label>Copy of Manufacturer’s Maintenance guidelines (as applicable)
+                                        <p>{ (maintenanceGuidelinesDoc && maintenanceGuidelinesDoc.name) || applicationForm.maintenanceGuidelinesDocName}</p>
+                                    </label>
+                                    <label htmlFor="maintenanceGuidelinesDoc" className="button button-file-upload">Upload File</label>
+                                    <input type="file" id="maintenanceGuidelinesDoc" name="maintenanceGuidelinesDoc" className="show-for-sr" onChange={ this.handleChange } accept=".pdf"/>
+                                </div>
                             </div>
-                            <div className="help-wrap">
-                                <label>History of incidents/accidents (if any) along with nature and extent of damage sustained by the RPA and details of any repairs carried out </label>
-                                <textarea name="incidentHistory" rows="3" value= { applicationForm.incidentHistory } onChange={ this.handleChange }/>
+                            <div className="large-12 cell">
+                                <div className="help-wrap">
+                                    <label>History of incidents/accidents (if any) along with nature and extent of damage sustained by the RPA and details of any repairs carried out
+                                        <textarea name="incidentHistory" rows="3" value= { applicationForm.incidentHistory } onChange={ this.handleChange }/>
+                                    </label>
+                                </div>
                             </div>
+                           
+                            <FooterApplicationForm step= { step } saving= { saving } previousStep= { previousStep }/>
                         </div>
                     </div>
-                    <br/>
-                    <FooterApplicationForm step= { step } saving= { saving } previousStep= { previousStep }/>
                 </form>
             </div>  
         );

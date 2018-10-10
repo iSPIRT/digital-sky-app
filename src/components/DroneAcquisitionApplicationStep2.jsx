@@ -3,6 +3,7 @@ import FooterApplicationForm from './FooterApplicationForm';
 
 import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 import FieldError from '../components/FieldError';
+import HeaderApplicationForm from "./HeaderApplicationForm";
 
 class DroneAcquisitionApplicationStep2 extends React.Component {
 
@@ -81,7 +82,7 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
         const modeOfAcquisitionOptions = this.props.modeOfAcquisitionOptions.map(mode => {
             return (<option value={mode} key={mode}> {mode} </option>);
         });
-        const { saving, applicationForm, previousStep, step, applicationType} = this.props;
+        const { saving, applicationForm, previousStep, step, applicationType, headerText} = this.props;
         const { securityClearanceDoc } = this.state;
         const aquisitionDisplay = applicationType === "importDrone" ? "Mode of import" : "Mode of acquisition";
         
@@ -92,6 +93,7 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
                 <form name="localDroneAcquisitionApplicationForm" onSubmit={this.handleSubmit}>
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
+                            <HeaderApplicationForm headerText= { headerText } step= { step } applicationStatus = { applicationForm.status } /> 
                             <div className="large-12 cell">
                                 <label className="checkbox">Is New
                                     <input type="checkbox" name="isNew" checked = { applicationForm? applicationForm.isNew : true } onChange = { this.handleChange } />
@@ -152,10 +154,10 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
                                         <input type="file" id="securityClearanceDoc" name="securityClearanceDoc" className="show-for-sr" onChange={this.handleChange} accept=".pdf"/>
                                         <FieldError fieldErrors={this.state.fieldErrors} field='securityClearanceDoc'/>
                                  </div>
-                                </div>
                             </div>
+                            <FooterApplicationForm step= { step } saving= { saving } previousStep= { previousStep }/>
                         </div>
-                    <FooterApplicationForm step= { step } saving= { saving } previousStep= { previousStep }/>
+                    </div>
                 </form>
             </div>  
         );
