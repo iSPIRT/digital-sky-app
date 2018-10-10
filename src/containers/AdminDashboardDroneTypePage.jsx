@@ -19,29 +19,33 @@ class AdminDashboardDroneTypePage extends React.Component {
         const { errors, droneTypes } = this.props;
         return (
                 <div>
-                    <div className="page-header dashboard-header">
+                    <div className="dashboard-header">
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
-                                <div className="large-12 cell">
-                                    <Link to="/droneType" className="button">Add new Drone</Link>
+                                <div class="large-6 cell">
+                                    <div class="buttons-wrap">
+                                        <div>
+                                            <a class="button" href="/droneType">Add new Drone</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="page-dashboard">
-                        <section id="my-drones">
-                            <div className="grid-container">
-                                <div className="grid-x grid-padding-x">
-                                    <div className="large-12 cell">
-                                        <h3>Drones</h3>
-                                        <FormErrors errors = {errors}/>
-                                        <DashboardDroneTypeView droneTypes={droneTypes} />
-                                    </div>
+                <div className="page-dashboard">
+                    <section id="my-drones">
+                        <div className="grid-container">
+                            <div className="grid-x grid-padding-x">
+                                <div class="large-6  large-offset-3 cell">
+                                    <h3>Drones</h3>
+                                    <FormErrors errors = {errors}/>
+                                    <DashboardDroneTypeView droneTypes={droneTypes} />
                                 </div>
                             </div>
-                        </section>
-                    </div>
+                        </div>
+                    </section>
                 </div>
+            </div>
         )
     }
 }   

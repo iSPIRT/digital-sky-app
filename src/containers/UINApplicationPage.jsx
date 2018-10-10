@@ -6,7 +6,6 @@ import queryString from 'query-string';
 import UINApplicationStep1 from '../components/UINApplicationStep1';
 import UINApplicationStep2 from '../components/UINApplicationStep2';
 import UINApplicationStep3 from '../components/UINApplicationStep3';
-import HeaderApplicationForm from '../components/HeaderApplicationForm';
 import { loadMetaDataAction, loadDroneDeviceIds } from '../actions/metaDataActions';
 
 import { createUINApplicationAction, editUINApplicationAction, applicationFormLoadedAction, loadUINApplicationAction } from '../actions/uinApplicationActions';
@@ -73,11 +72,10 @@ class UINApplicationPage extends React.Component {
     render() {
 
         const { saving, saved, errors, applicationForm, droneTypes, deviceIds } = this.props;
-        const { nationalityOptions, modeOfAcquisitionOptions, currentStep, selectedDroneTypeId, operatorDroneId } = this.state;
-
+        const { modeOfAcquisitionOptions, currentStep, selectedDroneTypeId, operatorDroneId } = this.state;
+        const headerText = "UIN Application" ;
         return (
             <div className="page-form">
-                <HeaderApplicationForm headerText="UIN Application" step= { currentStep } applicationStatus = { applicationForm.status } /> 
                 {(() => {
                     switch(currentStep) {
                         case 1: 
@@ -92,12 +90,12 @@ class UINApplicationPage extends React.Component {
                                     droneTypes = { droneTypes }
                                     operatorDroneId = { operatorDroneId }
                                     downloadDocument= { this.downloadDocument }
+                                    headerText = { headerText }
                                 />
                             );
                         case 2:
                             return(
                                 <UINApplicationStep2 name="applicationStep2" 
-                                    nationalityOptions = { nationalityOptions }
                                     modeOfAcquisitionOptions={ modeOfAcquisitionOptions } 
                                     saving={ saving } saved={ saved } errors={ errors } 
                                     applicationForm={ applicationForm }
@@ -110,6 +108,8 @@ class UINApplicationPage extends React.Component {
                                     selectedDroneTypeId =  { selectedDroneTypeId }
                                     operatorDroneId = { operatorDroneId }
                                     deviceIds = { deviceIds }
+                                    currentStep = { currentStep }
+                                    headerText = { headerText }
                                 />
                             );
                         case 3:
@@ -122,6 +122,8 @@ class UINApplicationPage extends React.Component {
                                     previousStep={this.previousStep}
                                     step = { currentStep }
                                     downloadDocument= { this.downloadDocument } 
+                                    currentStep = { currentStep }
+                                    headerText = { headerText }
                                 />
                             );  
                     }

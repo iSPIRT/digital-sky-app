@@ -1,6 +1,7 @@
 import React from 'react';
 import DroneAcquisitionDroneTypeDetailsForm from './DroneAcquisitionDroneTypeDetailsForm';
 import FooterApplicationForm from './FooterApplicationForm';
+import HeaderApplicationForm from './HeaderApplicationForm';
 
 import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 import FieldError from '../components/FieldError';
@@ -128,7 +129,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
         // const nationalityOptions = this.props.nationalityOptions.map(nationality => {
         //     return (<option value={nationality} key={nationality}> {nationality} </option>);
         // });
-        const { saving, step, droneTypes } = this.props;
+        const { saving, step, droneTypes, headerText } = this.props;
         const { applicationForm } = this.state;
         const isReadOnly = true;
         
@@ -140,6 +141,7 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                 <form name="localDroneAcquisitionApplicationForm" onSubmit={this.handleSubmit}>
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
+                            <HeaderApplicationForm headerText= { headerText } step= { step } applicationStatus = { applicationForm.status } /> 
                             <div className="large-12 cell">
                                 <label>Name of Applicant
                                     <input type="text" name="applicant" placeholder="Full Name" value= { applicationForm.applicant } onChange= { this.handleChange } maxLength="100" className={decorateInputClass(this.state.fieldErrors['applicant'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
@@ -171,11 +173,6 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                     <FieldError fieldErrors={this.state.fieldErrors} field='applicantNationality'/>
                                  </label>
                             </div>
-                            {/* <div className="large-12 cell">
-                                <label>Category
-                                    <select name="applicantCategory" ref="applicantCategory" value= { applicationForm.applicantCategory } disabled>{ categoryOptions }</select>
-                                </label>
-                            </div> */}
                             <DroneAcquisitionDroneTypeDetailsForm name="droneDetails"
                                 application = { applicationForm }
                                 nationalityOptions = { this.props.nationalityOptions }
@@ -191,9 +188,9 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                     <FieldError fieldErrors={this.state.fieldErrors} field='noOfDrones'/>
                                 </label>
                             </div>
+                            <FooterApplicationForm step= { step } saving= { saving } />
                         </div>
                     </div>
-                    <FooterApplicationForm step= { step } saving= { saving } />
                 </form>
             </div>  
         );

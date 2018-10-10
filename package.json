@@ -30,8 +30,8 @@
     "redux-thunk": "^2.2.0",
     "sanitize.css": "^5.0.0",
     "what-input": "^4.2.0",
-    "query-string":"^6.2.0",
-    "browserslist":"4.1.2"
+    "query-string": "^6.2.0",
+    "browserslist": "4.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,5 +47,10 @@
       "git add"
     ]
   },
-  "browserslist": ["last 10 version","> 1%","maintained node versions","not dead"]
+  "browserslist": [
+    "last 10 version",
+    "> 1%",
+    "maintained node versions",
+    "not dead"
+  ]
 }
