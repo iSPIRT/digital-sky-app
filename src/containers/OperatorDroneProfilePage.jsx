@@ -82,11 +82,7 @@ class OperatorDroneProfilePage extends React.Component {
                         <div className="grid-x grid-padding-x">
                             <div className="large-12 cell">
                                 <a href= {this.getRedirectLink()} className="button button-accept">{operatorDroneProfile.operatorDroneStatus === "UIN_NOT_APPLIED" || operatorDroneProfile.operatorDroneStatus === "UIN_DRAFT" ? "Apply for UIN" : "View UIN"}</a>
-                            </div>
-                            <div className="large-12 cell">
                                 <a href= {this.getOccurrenceReportLink()} className="button button-accept">Occurrence Report</a>
-                            </div>
-                            <div className="large-12 cell">
                                 <a href= {this.getFlyDronePermissionLink()} className="button button-accept">Fly Drone Application</a>
                             </div>
                         </div>
