@@ -2962,3 +2962,7 @@ footer.site-footer .footer-logo {
 .map {
   height: 570px;
 }
+
+.multi-button {
+    margin-right: 5px;
+}
