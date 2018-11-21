@@ -95,7 +95,7 @@ class UAOPApplicationStep2 extends React.Component {
                                             <p>{securityProgramDoc && securityProgramDoc.name}</p>
                                         </label>
                                         <label htmlFor="securityProgramDoc" className="button button-file-upload">Upload File</label>
-                                        <input type="file" id="securityProgramDoc" name="securityProgramDoc" className="show-for-sr" onChange={this.handleChange}/>
+                                        <input type="file" id="securityProgramDoc" name="securityProgramDoc" className="show-for-sr" accept=".pdf" onChange={this.handleChange}/>
                                     </div>
                                 </div>
 
@@ -105,7 +105,7 @@ class UAOPApplicationStep2 extends React.Component {
                                             <p>{insuranceDoc && insuranceDoc.name}</p>
                                         </label>
                                         <label htmlFor="insuranceDoc" className="button button-file-upload">Upload File</label>
-                                        <input type="file" id="insuranceDoc" name="insuranceDoc" className="show-for-sr" onChange={this.handleChange}/>
+                                        <input type="file" id="insuranceDoc" name="insuranceDoc" className="show-for-sr" accept=".pdf" onChange={this.handleChange}/>
                                     </div>
                                 </div>
 
@@ -115,7 +115,7 @@ class UAOPApplicationStep2 extends React.Component {
                                             <p>{landOwnerPermissionDoc && landOwnerPermissionDoc.name}</p>
                                         </label>
                                         <label htmlFor="landOwnerPermissionDoc" className="button button-file-upload">Upload File</label>
-                                        <input type="file" id="landOwnerPermissionDoc" name="landOwnerPermissionDoc" className="show-for-sr" onChange={this.handleChange}/>
+                                        <input type="file" id="landOwnerPermissionDoc" name="landOwnerPermissionDoc" className="show-for-sr" accept=".pdf" onChange={this.handleChange}/>
                                     </div>
                                 </div>
                                 <div className="large-12 cell">
@@ -124,7 +124,7 @@ class UAOPApplicationStep2 extends React.Component {
                                             <p>{sopDoc && sopDoc.name}</p>
                                         </label>
                                         <label htmlFor="sopDoc" className="button button-file-upload">Upload File</label>
-                                        <input type="file" id="sopDoc" name="sopDoc" className="show-for-sr" onChange={this.handleChange}/>
+                                        <input type="file" id="sopDoc" name="sopDoc" className="show-for-sr" accept=".pdf" onChange={this.handleChange}/>
                                     </div>
                                 </div>
 

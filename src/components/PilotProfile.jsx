@@ -198,7 +198,7 @@ class PilotProfile extends React.Component {
                                             <p>{trainingCertificateDoc && trainingCertificateDoc.name}</p>
                                         </label>
                                          <label htmlFor="trainingCertificateDoc" className="button button-file-upload">Upload File</label>
-                                         <input type="file" id="trainingCertificateDoc" name="trainingCertificateDoc" className="show-for-sr" onChange={this.handleChange}/>
+                                         <input type="file" id="trainingCertificateDoc" name="trainingCertificateDoc" className="show-for-sr" accept=".pdf" onChange={this.handleChange}/>
                                 </div>
                                 <div className="large-12 cell" id="drone-category">
                                     <label className="main">Drone Category</label>
