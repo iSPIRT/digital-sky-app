@@ -1130,6 +1130,7 @@ footer.site-footer .footer-logo {
 #press-releases .article {
   background: url("../img/article.svg");
   background-repeat: no-repeat;
+  display: inline-block;
   background-position: top 6px left;
   padding-left: 62px;
   margin-bottom: 30px;
