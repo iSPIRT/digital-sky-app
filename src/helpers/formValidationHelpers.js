@@ -86,11 +86,13 @@ export const invalidName = value => {
 };
 
 export const invalidMobileNumber = value => {
-  return value && !/^(\+[\d]{1,5}|0)?[7-9]\d{9}$/i.test(value);
+  return value && !/^(91[\-\s]?)?[0]?(91)?[789]\d{9}$/g.test(value);
 };
 
 export const invalidPhoneNumber = value => {
-  return value && !/^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/i.test(value);
+  return (
+    value && !/^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/i.test(value)
+  );
 };
 
 export const emptyValue = value => !value || value.trim().length === 0;
@@ -148,12 +150,18 @@ export const validateField = (fieldErrors, field) => {
           ...fieldErrors,
           [field.name]: { message: "Invalid Email", valid: false }
         };
-      } else if (validation.trim() === "mobileNumber" && invalidMobileNumber(field.value)) {
+      } else if (
+        validation.trim() === "mobileNumber" &&
+        invalidMobileNumber(field.value)
+      ) {
         return {
           ...fieldErrors,
           [field.name]: { message: "Invalid Mobile Number", valid: false }
         };
-      } else if (validation.trim() === "phoneNumber" && invalidPhoneNumber(field.value)) {
+      } else if (
+        validation.trim() === "phoneNumber" &&
+        invalidPhoneNumber(field.value)
+      ) {
         return {
           ...fieldErrors,
           [field.name]: { message: "Invalid Phone Number", valid: false }

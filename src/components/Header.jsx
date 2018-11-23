@@ -57,7 +57,7 @@ class Header extends React.Component {
 
                                 <div className="the-site-navigation">
                                     <ul>
-                                        <li><Link to="/index">Home</Link></li>
+                                        <li><Link to="/">Home</Link></li>
                                         <li><Link to="#">Application Process</Link></li>
                                         <li><Link to="/know-requirements.php">Know the requirements</Link></li>
                                         <li><Link to="#">Operating restrictions</Link></li>

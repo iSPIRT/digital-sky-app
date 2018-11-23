@@ -43,7 +43,6 @@ class Login extends React.Component {
     render() {
         const { loggingIn, errors} = this.props;
         const { submitted, formErrors } = this.state;
-        console.log(submitted);
         return (
             <div>
                 <div className="page-header">
