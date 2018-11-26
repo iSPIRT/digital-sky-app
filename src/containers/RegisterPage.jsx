@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 
 import Register from '../components/Register';
 import { registerUserAction, registerFormLoaded } from '../actions/registrationActions';
-
+import { Link } from 'react-router-dom'
 import { history } from '../store/configureStore';
-
 
 class RegisterPage extends React.Component {
 
@@ -22,16 +21,18 @@ class RegisterPage extends React.Component {
         const { registering, registered, loggedIn, errors } = this.props;
         if(registered){
             return (
-                <div className="page-header">
-                  <div className="grid-container">
+                <div className="thanks-page">
+                <div className="illustrations"></div>
+                <div className="grid-container">
                     <div className="grid-x grid-padding-x">
-                      <div className="large-12 cell">
-                        <h2>Registration Successful</h2>
-                        <p>Please verify your account by clicking on a link sent to your email</p>
-                      </div>
+                        <div className="large-12 cell">
+                            <h2>Thanks for signing up!</h2>
+                            <p>Check your email for a verification link to proceed.</p>
+                            <Link to="/" className="button">Go back to the homepage</Link>
+                        </div>
                     </div>
-                  </div>
                 </div>
+            </div>
             );
         }
         if(loggedIn){

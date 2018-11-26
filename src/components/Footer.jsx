@@ -40,10 +40,10 @@ class Footer extends React.Component {
                     </div>
                 </div>
             </div>
-            <div class="footer-logo" data-equalizer-watch>
+            <div className="footer-logo" data-equalizer-watch>
                 <a href="https://www.aai.aero/" target="_blank">
-                <div class="wrap">
-                    <div class="logo-wrap">
+                <div className="wrap">
+                    <div className="logo-wrap">
                         <img src={logo} alt="" />
                     </div>
                 <h4>Airports Authority of India</h4>
