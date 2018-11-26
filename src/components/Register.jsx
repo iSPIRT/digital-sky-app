@@ -92,8 +92,8 @@ class Register extends React.Component {
                             <div className="grid-x grid-padding-x">
 
                                 <div className="large-12 cell">
-                                    <label>Full name
-                                        <input type="text" placeholder="Full name" name="fullName" ref="fullName" className={decorateInputClass(this.state.fieldErrors['fullName'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                    <label>Full name/Company name
+                                        <input type="text" placeholder="Full name/Company name" name="fullName" ref="fullName" className={decorateInputClass(this.state.fieldErrors['fullName'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
                                         <FieldError fieldErrors={this.state.fieldErrors} field='fullName'/>
                                     </label>
                                 </div>
