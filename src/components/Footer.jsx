@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import logo from '../img/logo.svg';
+import logo from '../img/airports_authority_of_india_logo.svg';
 import locationImg from '../img/location.svg';
 
 class Footer extends React.Component {
@@ -40,11 +40,15 @@ class Footer extends React.Component {
                     </div>
                 </div>
             </div>
-            <div className="footer-logo" data-equalizer-watch>
-                <div className="wrap">
-                    <img src={logo} alt="logo"/>
-                    <p>&copy; 2018 Indian Government. All rights reserved.</p>
+            <div class="footer-logo" data-equalizer-watch>
+                <a href="https://www.aai.aero/" target="_blank">
+                <div class="wrap">
+                    <div class="logo-wrap">
+                        <img src={logo} alt="" />
+                    </div>
+                <h4>Airports Authority of India</h4>
                 </div>
+                </a>
             </div>
         </footer>
     );
