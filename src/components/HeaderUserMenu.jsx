@@ -30,8 +30,8 @@ class HeaderUserMenu extends React.Component {
 
                 <div className="the-user-navigation">
                     <ul>
-                        <li><Link to="/profile">Profile</Link></li>
-                        <li><Link to="#">Apply now</Link></li>
+                        {/* <li><Link to="/profile">Profile</Link></li> */}
+                        <li><Link to="/profile">Apply now</Link></li>
                         <li><Link to="/dashboard">Dashboard</Link></li>
                         <li><Link to="#">My drones</Link></li>
                         <li><Link to="#">Occurance report</Link></li>

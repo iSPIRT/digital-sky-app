@@ -14,6 +14,10 @@ class HomeSectionPressRelease extends React.Component {
                             <a href="http://pib.nic.in/newsite/PrintRelease.aspx?relid=183093" target="_blank"><h4>Government announces Regulations for Drones</h4></a>
                             <div className="date">27 August 2018</div>
                         </div>
+                        <div className="article large-6">
+                            <a href="http://pib.nic.in/newsite/PrintRelease.aspx?relid=183093" target="_blank"><h4>Government announces Regulations for Drones</h4></a>
+                            <div className="date">27 August 2018</div>
+                        </div>
                     </div>
                 </div>
             </div>

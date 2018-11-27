@@ -15,6 +15,7 @@ class Dashboard extends React.Component {
     const individualOperatorProfileId = localStorage.getItem('individualOperatorProfileId');
     const organizationOperatorProfileId = localStorage.getItem('organizationOperatorProfileId');
     const manufacturerProfileId = localStorage.getItem('manufacturerProfileId');
+    const username = localStorage.getItem('userName');
 
     const hasOperatorProfile = (individualOperatorProfileId > 0) || (organizationOperatorProfileId > 0)
     const hasPilotProfile = ( pilotProfileId > 0)
@@ -29,50 +30,29 @@ class Dashboard extends React.Component {
                             <div className="grid-x grid-padding-x">
                                 <div className="large-6 cell">
                                     <div className="buttons-wrap">
-                                        {   !hasPilotProfile && !hasManufacturerProfile &&
-                                            <div>
-                                                <p> If you are pilot, setup your pilot profile to begin</p>
-                                                <Link to="/profile" className="button">Setup my Pilot Profile</Link>
+                                    {
+                                        !hasPilotProfile && !hasManufacturerProfile && !hasOperatorProfile &&
+                                        <Link to="/profile" className="button">Apply for a license</Link>
+                                    }
+                                    {
+                                        (hasPilotProfile || hasManufacturerProfile || hasOperatorProfile) &&
+                                        <Link to="/profile" className="button">Update profile</Link>
+                                    }
+                                        <div className="apply-step">
+                                            <div className="wrap">
+                                                <p>Apply for a license before buying a drone or applying UIN.</p>
                                             </div>
-                                        }
-
-                                        {   hasPilotProfile &&
-                                            <Link to="/profile" className="button">Update my Pilot Profile</Link>
-                                        }
-                                        <br/>
-                                        {   !hasOperatorProfile && !hasManufacturerProfile &&
-                                            <div>
-                                                <p> If you are an operator, setup your operator profile to begin</p>
-                                                <Link to="/profile" className="button">Setup my Operator Profile</Link>
-                                            </div>
-                                        }
-
-                                        {   hasOperatorProfile &&
-                                            <div>
-                                                <Link to="/profile" className="button">Update my Operator Profile</Link>
-                                                <Link to="/localDroneAcquisitionApplication" className="button">Apply here for Local Drone Acquisition</Link>
-                                                <Link to="/importDroneApplication" className="button">Apply here to Import Drones</Link>
-                                                <Link to="/uaopApplication" className="button">Apply here for UAOP Licence</Link>
-                                            </div>
-                                        }
-                                        { !hasPilotProfile && !hasOperatorProfile && !hasManufacturerProfile &&
-                                            <div>
-                                                <br/>
-                                                <p> If you are a manufacturer, setup your manufacturer profile to begin</p>
-                                                <Link to="/profile" className="button">Setup my manufacturer Profile</Link>
-                                            </div>
-                                        }
-                                        { hasManufacturerProfile &&
-                                            <div>
-                                                <br/>
-                                                <Link to="/profile" className="button">Update my Manufacturer Profile</Link>
-                                            </div>
-                                        }
+                                        </div>
+                                        <a href="#" className="button show-apply-step disabled">Acquisition of drone</a>
+                                        <a href="#" className="button show-apply-step disabled">Apply for UIN</a>
                                     </div>
                                 </div>
-                                <div className="large-6 cell show-for-large">
+                                < div className = "large-6 cell show-for-large" > 
                                     <div className="dashboard-tite-wrap">
-                                        <h2>Dashboard</h2>
+                                        <div className="show-for-medium">
+                                            <h2 className="user-name">{username && username}</h2>
+                                            <h5 className="user-id">ID: {username && username.split(' ').join('_')}@digitalsky</h5>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -82,36 +62,41 @@ class Dashboard extends React.Component {
                     <br/>
                 </div>
                 <br/>
-                {  hasOperatorProfile &&
-                    <div className="page-dashboard">
+                <div class="grid-container">
+                    <div class="page-dashboard">
                         <section id="application-status">
-                            <div className="grid-container">
-                                <div className="grid-x grid-padding-x">
-                                    <div className="large-6  large-offset-3 cell">
+                            <div class="grid-container">
+                                <div class="grid-x grid-padding-x">
+                                {  hasOperatorProfile &&
+                                    <div className="large-6 cell">
                                         <h3> Application Status</h3>
-                                         <FormErrors errors = {errors}/>
-                                         <DashboardApplicationView applications={applications}/>
+                                        <FormErrors errors = {errors}/>
+                                        <DashboardApplicationView applications={applications}/>
                                     </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                }
-                {  hasOperatorProfile &&
-                    <div className="page-dashboard">
-                        <section id="my-drones">
-                            <div className="grid-container">
-                                <div className="grid-x grid-padding-x">
-                                    <div className="large-6 large-offset-3 cell">
+                                }
+                                {  hasOperatorProfile &&
+                                    <div className="large-6 cell my-drones">
                                         <h3>My Drones</h3>
                                         <FormErrors errors = {errors}/>
                                         <DashBoardOperatorDroneView operatorDrones={operatorDrones} droneSelected={this.droneSelected}/>
                                     </div>
+                                }
                                 </div>
                             </div>
                         </section>
                     </div>
-                }
+                </div>
+                < section id = "occurence-report" > 
+                    <div class="grid-container">
+                        <div class="grid-x grid-padding-x">
+                            <div class="large-6 cell">
+                                <h3>Occurence Report</h3>
+                                <p>When an issue occurs during a drone flight, please report below.</p>
+                                <a href="#" class="button button-light-red">Report now</a>
+                            </div>
+                        </div>
+                    </div> 
+                </section>
             </div>
     );
   } 

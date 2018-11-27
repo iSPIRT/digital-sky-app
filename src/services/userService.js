@@ -296,6 +296,7 @@ function loginUser(token) {
     localStorage.setItem("isAdmin", token.isAdmin);
     localStorage.setItem("pilotProfileId", token.pilotProfileId);
     localStorage.setItem("manufacturerProfileId", token.manufacturerProfileId);
+    localStorage.setItem("userName", token.username);
     localStorage.setItem(
       "individualOperatorProfileId",
       token.individualOperatorProfileId

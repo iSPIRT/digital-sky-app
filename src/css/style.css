@@ -1190,6 +1190,8 @@ footer.site-footer .footer-logo h4 {
   background-position: top 6px left;
   padding-left: 62px;
   margin-bottom: 30px;
+  margin-right: 62px;
+  display: inline-block;
 }
 #press-releases .article h4 {
   color: #2b2b5b;
