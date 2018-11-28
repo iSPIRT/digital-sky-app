@@ -53,6 +53,7 @@ function logout() {
   localStorage.removeItem("organizationOperatorProfileId");
   localStorage.removeItem("manufacturerProfileId");
   localStorage.removeItem("userId");
+  localStorage.removeItem("userName");
 }
 
 function sendResetPasswordLink(email) {
