@@ -23,10 +23,11 @@ class LoginPage extends React.Component {
         const individualOperatorProfileId = localStorage.getItem('individualOperatorProfileId');
         const organizationOperatorProfileId = localStorage.getItem('organizationOperatorProfileId');
         const manufacturerProfileId = localStorage.getItem('manufacturerProfileId');
+        const isAdmin = localStorage.getItem('isAdmin');
         const hasOperatorProfile = (individualOperatorProfileId > 0) || (organizationOperatorProfileId > 0)
         const hasPilotProfile = ( pilotProfileId > 0)
         const hasManufacturerProfile = ( manufacturerProfileId > 0 );
-        if(loggedIn && !hasPilotProfile && !hasManufacturerProfile && !hasOperatorProfile ){
+        if(loggedIn && !isAdmin && !hasPilotProfile && !hasManufacturerProfile && !hasOperatorProfile ){
             history.push('/profile');
         }
         else if(loggedIn){

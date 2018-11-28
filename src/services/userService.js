@@ -54,6 +54,7 @@ function logout() {
   localStorage.removeItem("manufacturerProfileId");
   localStorage.removeItem("userId");
   localStorage.removeItem("userName");
+  localStorage.removeItem("isAdmin");
 }
 
 function sendResetPasswordLink(email) {
