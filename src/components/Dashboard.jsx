@@ -34,10 +34,10 @@ class Dashboard extends React.Component {
                                         !hasPilotProfile && !hasManufacturerProfile && !hasOperatorProfile &&
                                         <Link to="/profile" className="button">Apply for a license</Link>
                                     }
-                                    {
+                                    {/* {
                                         (hasPilotProfile || hasManufacturerProfile || hasOperatorProfile) &&
                                         <Link to="/profile" className="button">Update profile</Link>
-                                    }
+                                    } */}
                                         <div className="apply-step">
                                             <div className="wrap">
                                                 <p>Apply for a license before buying a drone or applying UIN.</p>

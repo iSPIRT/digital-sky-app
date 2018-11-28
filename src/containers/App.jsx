@@ -34,6 +34,7 @@ import FlyDronePermissionApplicationsPage from './FlyDronePermissionApplications
 import FlyDronePermissionApplicationPage from './FlyDronePermissionApplicationPage';
 import AdminPilotViewPage from './AdminPilotViewPage';
 import AdminOperatorViewPage from './AdminOperatorViewPage';
+import MapViewPage from './MapViewPage';
 
 import Logout from './Logout';
 import Header from '../components/Header';
@@ -117,6 +118,7 @@ class App extends React.Component {
                     <Route path="/resetPassword" component={ResetPasswordPage} />
                     <Route path="/verifyAccount" component={VerifyAccountPage} />
                     <Route path="/testLocations" component={TestLocations} />
+                    <Route path="/mapView" component={MapViewPage} />
 
                     <Footer/>
                 </ScrollToTop>
