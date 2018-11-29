@@ -17,7 +17,7 @@ class HomeSectionRegisterDrone extends React.Component {
                         </div>
                         <div className="large-3 large-offset-1 cell">
                             <div className="btn-wrap">
-                                <Link to="/register" className="button"><img src={getStartedImg} alt="get-started"/>Get Started</Link>
+                                <Link to="/register" className="button">Get Started</Link>
                             </div>
                         </div>
                     </div>

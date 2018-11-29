@@ -61,6 +61,8 @@ class Register extends React.Component {
             formErrors.push('Passwords did not match');
         }
         this.setState({formErrors});
+        debugger;
+        this.captchaVerified(false);
         if( formErrors.length === 0 ) {
              this.setState({submitted: true});
              this.props.registerUser(user);
