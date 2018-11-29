@@ -125,18 +125,6 @@ class TestLocations extends React.Component {
                                             <div className="location">
                                                 <div className="details">
                                                     <div className="wrap">
-                                                        <h3>Coorg</h3>
-                                                        <p>Choudigudi Estate</p>
-                                                    </div>
-                                                </div>
-                                                <div className="go-to-location">
-                                                    <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=12.123611,76.061667" className="button"><img src={locationButton} alt="locationButton" /></a>
-                                                </div>
-                                            </div>
-            
-                                            <div className="location">
-                                                <div className="details">
-                                                    <div className="wrap">
                                                         <h3>Salem</h3>
                                                         <p>Pullagoundanpatti</p>
                                                     </div>
@@ -185,7 +173,17 @@ class TestLocations extends React.Component {
                                                     <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=14.388056,76.571944" className="button"><img src={locationButton} alt="locationButton" /></a>
                                                 </div>
                                             </div>
-            
+                                            <div className="location">
+                                                <div className="details">
+                                                    <div className="wrap">
+                                                        <h3>Coorg</h3>
+                                                        <p>Choudigudi Estate</p>
+                                                    </div>
+                                                </div>
+                                                <div className="go-to-location">
+                                                    <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=12.123611,76.061667" className="button"><img src={locationButton} alt="locationButton" /></a>
+                                                </div>
+                                            </div>
                                             <div className="location">
                                                 <div className="details">
                                                     <div className="wrap">
