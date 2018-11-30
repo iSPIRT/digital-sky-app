@@ -7,10 +7,10 @@ class Footer extends React.Component {
   render() {
     return (
         <footer className="site-footer" data-equalizer data-equalize-on="medium">
-            <div class="footer-nav" data-equalizer-watch>
-                <div class="grid-container">
-                    <div class="grid-x grid-padding-x">
-                        <div class="large-12 cell">
+            <div className="footer-nav" data-equalizer-watch>
+                <div className="grid-container">
+                    <div className="grid-x grid-padding-x">
+                        <div className="large-12 cell">
                             <ul>
                                 <li><a href="https://www.mygov.in/" target="_blank">MyGov</a></li>
                                 <li><a href="http://www.digitalindia.gov.in/" target="_blank">Digital India</a></li>
