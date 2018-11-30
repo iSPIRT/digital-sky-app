@@ -66,6 +66,7 @@ class App extends React.Component {
     componentDidMount() {
         $(document).foundation();
         window.addEventListener('scroll', this.handleScroll);
+        // window.addEventListener('click', dispatch);
     }
 
     handleScroll(event){

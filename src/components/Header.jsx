@@ -27,8 +27,7 @@ class Header extends React.Component {
     }
 
     onUserNavigationClick(value){
-       this.setState({userNavigationOpen: value});
-
+        this.setState({userNavigationOpen: value});
     }
 
     render() {
@@ -44,27 +43,6 @@ class Header extends React.Component {
                                 <img src={logo} alt="logo"/>
                             </div>
                         </Link>
-                        <div className={ siteNavigationOpen ? 'site-nav open': 'site-nav' } onClick={this.onSiteNavigationClick}>
-                            <div className="wrap">
-                                <div className="open-wrap">
-                                    <img src={hambargar} alt="hambargar"/>
-                                    <p>Menu</p>
-                                </div>
-                                <div className="close-wrap">
-                                    <img src={hambargarClose} alt="hambargarClose"/>
-                                    <p>Close</p>
-                                </div>
-
-                                <div className="the-site-navigation">
-                                    <ul>
-                                        <li><Link to="/">Home</Link></li>
-                                        <li><Link to="#">Application Process</Link></li>
-                                        <li><Link to="/know-requirements.php">Know the requirements</Link></li>
-                                        <li><Link to="#">Operating restrictions</Link></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         { loggedIn && user.isAdmin && <HeaderAdminUserMenu userNavigationOpen={userNavigationOpen} siteNavigationOpen={siteNavigationOpen} onUserNavigationClick={this.onUserNavigationClick} /> }
                         { (loggedIn &&  !user.isAdmin) &&  <HeaderUserMenu userNavigationOpen={userNavigationOpen} siteNavigationOpen={siteNavigationOpen} onUserNavigationClick={this.onUserNavigationClick} /> }
                         { !loggedIn  &&  <HeaderLoginMenu/> }
