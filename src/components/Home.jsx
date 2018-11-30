@@ -16,7 +16,7 @@ class Home extends React.Component {
             <HomeSectionHelpMeApply/>
             <div className="clearfix"></div>
             <HomeSectionPressRelease/>
-            <HomeSectionFaq/>
+            {/* <HomeSectionFaq/> */}
             <div className="clearfix"></div>
         </div>
     );

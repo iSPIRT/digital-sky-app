@@ -110,19 +110,19 @@ class HomeSectionHelpMeApply extends React.Component {
                                 <p className={showAnswerOver ? '' : 'over'} ><strong>Answer:</strong> First you need to create an account here on DroneStack.</p>
 
                                 <p className={showAnswerPilot ? '' : 'pilot'} >
-                                As the pilot of a drone, you must be well-versed with the CAR and the Do’s and Don’ts to understand what is required of you. You are primarily responsible for safe flight operations and please be aware of people, structures and entities in your flight plan that you could affect. Please register yourself, to get a Pilot ID that will be required for permission to fly in NPNT complaint drones.<br><br>
-                                Do follow guidelines as per section 12 of the CAR, and avoid areas as per Section 13 of the CAR. <br><br>
+                                As the pilot of a drone, you must be well-versed with the CAR and the Do’s and Don’ts to understand what is required of you. You are primarily responsible for safe flight operations and please be aware of people, structures and entities in your flight plan that you could affect. Please register yourself, to get a Pilot ID that will be required for permission to fly in NPNT complaint drones.<br></br>
+                                Do follow guidelines as per section 12 of the CAR, and avoid areas as per Section 13 of the CAR. <br></br>
                                 (I’m flying Small or above drone) You are also required to get remote pilot training as per Section 9 of the CAR from an approved FTO.
                                 </p>
                                 <p className={showAnswerOperator ? '' : 'operator'} >
-                                As an owner of a drone, you must be well-versed with the CAR and the Do’s and Don’ts to understand what is required of you. Unless exempted by section 7.2 of the CAR, you will need a UAOP. Refer to Section 7 of the CAR for documentation required.<br><br>
-                                Please ensure that the drone you are purchasing is an NPNT compliant drone. You will only be able to generate UINs for NPNT Compliant drone.<br><br>
-                                (I’m importing a drone) For imports, a clearance from DGFT is also required along with NPNT compliance. If the drone is not a registered type in Digital Sky, you will also need to register as a manufacturer.<br><br>
+                                As an owner of a drone, you must be well-versed with the CAR and the Do’s and Don’ts to understand what is required of you. Unless exempted by section 7.2 of the CAR, you will need a UAOP. Refer to Section 7 of the CAR for documentation required.<br></br>
+                                Please ensure that the drone you are purchasing is an NPNT compliant drone. You will only be able to generate UINs for NPNT Compliant drone.<br></br>
+                                (I’m importing a drone) For imports, a clearance from DGFT is also required along with NPNT compliance. If the drone is not a registered type in Digital Sky, you will also need to register as a manufacturer.<br></br>
                                 After creation of your profile, please pay the fees on Bharat Kosh. Upload the payment receipt and necessary documentation. Your approval will take up to 7 days to process.
                                 </p>
                                 <p className={showAnswerManufacturer ? '' : 'manufacturer'} >
-                                As a manufacturer, you must be well-versed with the CAR & RPAS Guidance Manual to understand compliance requirements before selling your drone. You will need an IT Act-compliant digital certificate to register yourself.</br></br>
-                                (only for I’m importing a drone) DGFT clearance is needed for importing drones</br></br>
+                                As a manufacturer, you must be well-versed with the CAR & RPAS Guidance Manual to understand compliance requirements before selling your drone. You will need an IT Act-compliant digital certificate to register yourself.<br></br>
+                                (only for I’m importing a drone) DGFT clearance is needed for importing drones<br />
                                 Any make of drone you manufacture, assemble or import will need to be NPNT compliant. Digital copies of appropriate compliance certificates are needed to add your make of drone. Once approved, your customers who are registered operators of your make of drone, will be able to generate UINs.
                                 </p>
 
