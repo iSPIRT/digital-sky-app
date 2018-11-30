@@ -12,8 +12,8 @@ class HomeSectionRegisterDrone extends React.Component {
                 <div className="grid-container">
                     <div className="grid-x grid-padding-x">
                         <div className="large-8 cell">
-                            <h2>Register a <br/>drone today</h2>
-                            <p>Get a license to become a pilot, operator or manufacturer with us. Before you can apply, you need to be registered. Get started with the link below.</p>
+                            <h2>Register yourself, <br/>then your drones.</h2>
+                            <p>As an operator, manufacturer or pilot, you need to first register yourself. Registered users can add their NPNT compliant drones, and apply to fly!</p>
                         </div>
                         <div className="large-3 large-offset-1 cell">
                             <div className="btn-wrap">

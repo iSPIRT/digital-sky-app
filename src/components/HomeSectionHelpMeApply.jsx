@@ -88,14 +88,14 @@ class HomeSectionHelpMeApply extends React.Component {
                                     <option value="under">under</option>
                                 </select>
                                 250 grams.
-                                <span className={selected ? '' : 'other-parts'} >I want to apply to become a
+                                <span className={selected ? '' : 'other-parts'} >I am a
                                     <select className="license_type" name="selectLicenseType" onChange={this.handleChange}>
                                       <option disabled selected value="">Select</option>
                                       <option value="pilot">pilot</option>
                                       <option value="operator">operator</option>
                                       <option value="manufacturer">manufacturer</option>
                                     </select>
-                                    and I’m
+                                    and
                                     <select className="acquisition_type" name="selectAcquisitionType" onChange={this.handleChange}>
                                       <option disabled selected value="">Select</option>
                                       <option value="in-india">purchasing a drone in India</option>
@@ -104,20 +104,27 @@ class HomeSectionHelpMeApply extends React.Component {
                                 </span>
                             </p>
                             <div className="answer">
-                                <p className={showAnswerUnder ? '' : 'under'} ><strong>Answer:</strong> Congratulations! You don’t need to apply because your
-                                    drone is under 250 grams.</p>
+                                <p className={showAnswerUnder ? '' : 'under'} >
+                                <strong>Answer:</strong>
+                                Nano drones are currently exempt from registration, import licenses as well as NPNT compliance. You can fly your drone up to 50 ft and in enclosed premises, today! Please do not forget to read our <a href="http://dgca.gov.in/cars/RPAS-Do's%20and%20Don'ts.pdf" target="_blank">Do’s and Don’ts</a></p>
                                 <p className={showAnswerOver ? '' : 'over'} ><strong>Answer:</strong> First you need to create an account here on DroneStack.</p>
 
-                                <p className={showAnswerPilot ? '' : 'pilot'} >Once you have registered, you have to apply to become a <strong>pilot</strong>
-                                    through your dashboard. When you apply to become a pilot, you have to upload your training
-                                    certificate and fill in details for security clearance. These details will go to verifying
-                                    authority.</p>
-                                <p className={showAnswerOperator ? '' : 'operator'} >Once you have registered, you have to apply to become a
-                                    <strong>operator</strong> through your dashboard. When you apply to become a operator, some text
-                                    and fill in details for security clearance. These details will go to verifying authority.</p>
-                                <p className={showAnswerManufacturer ? '' : 'manufacturer'} >Once you have registered, you have to apply to become a
-                                    <strong>manufacturer</strong> through your dashboard. When you apply to become a manufacturer,
-                                    you have to .... These details will go to verifying authority.</p>
+                                <p className={showAnswerPilot ? '' : 'pilot'} >
+                                As the pilot of a drone, you must be well-versed with the CAR and the Do’s and Don’ts to understand what is required of you. You are primarily responsible for safe flight operations and please be aware of people, structures and entities in your flight plan that you could affect. Please register yourself, to get a Pilot ID that will be required for permission to fly in NPNT complaint drones.<br><br>
+                                Do follow guidelines as per section 12 of the CAR, and avoid areas as per Section 13 of the CAR. <br><br>
+                                (I’m flying Small or above drone) You are also required to get remote pilot training as per Section 9 of the CAR from an approved FTO.
+                                </p>
+                                <p className={showAnswerOperator ? '' : 'operator'} >
+                                As an owner of a drone, you must be well-versed with the CAR and the Do’s and Don’ts to understand what is required of you. Unless exempted by section 7.2 of the CAR, you will need a UAOP. Refer to Section 7 of the CAR for documentation required.<br><br>
+                                Please ensure that the drone you are purchasing is an NPNT compliant drone. You will only be able to generate UINs for NPNT Compliant drone.<br><br>
+                                (I’m importing a drone) For imports, a clearance from DGFT is also required along with NPNT compliance. If the drone is not a registered type in Digital Sky, you will also need to register as a manufacturer.<br><br>
+                                After creation of your profile, please pay the fees on Bharat Kosh. Upload the payment receipt and necessary documentation. Your approval will take up to 7 days to process.
+                                </p>
+                                <p className={showAnswerManufacturer ? '' : 'manufacturer'} >
+                                As a manufacturer, you must be well-versed with the CAR & RPAS Guidance Manual to understand compliance requirements before selling your drone. You will need an IT Act-compliant digital certificate to register yourself.</br></br>
+                                (only for I’m importing a drone) DGFT clearance is needed for importing drones</br></br>
+                                Any make of drone you manufacture, assemble or import will need to be NPNT compliant. Digital copies of appropriate compliance certificates are needed to add your make of drone. Once approved, your customers who are registered operators of your make of drone, will be able to generate UINs.
+                                </p>
 
                                 <p className={showAnswerInIndia ? '' : 'in-india'} ><strong>You are purchasing drone in India.</strong> Once you have your license,
                                     you can apply for “Acquisition of drone” in your dashboard. After aquisition, you can apply for
