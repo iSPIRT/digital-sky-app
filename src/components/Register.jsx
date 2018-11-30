@@ -61,8 +61,7 @@ class Register extends React.Component {
             formErrors.push('Passwords did not match');
         }
         this.setState({formErrors});
-        debugger;
-        this.captchaVerified(false);
+        this.captchaEle.reset();
         if( formErrors.length === 0 ) {
              this.setState({submitted: true});
              this.props.registerUser(user);
@@ -118,7 +117,7 @@ class Register extends React.Component {
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
-                                    <ReCAPTCHA ref="recaptcha" sitekey={reCaptchaSiteKey} onChange={this.captchaVerified}/>
+                                    <ReCAPTCHA ref="recaptcha" sitekey={reCaptchaSiteKey} onChange={this.captchaVerified} ref={e => (this.captchaEle = e)} />
                                     <br/><br/>
                                 </div>
                                 <div className="large-6 cell">

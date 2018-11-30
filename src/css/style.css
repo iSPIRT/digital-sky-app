@@ -2864,25 +2864,26 @@ table thead {
     display: none;
   }
   footer.site-footer .find-test-location {
-    width: 33.333%;
+    width: 25%;
     float: right;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #245dff;
   }
   footer.site-footer .find-test-location .button {
     padding: 12px 30px 8px 30px;
   }
   footer.site-footer .footer-nav {
-    width: 33.333%;
+    width: 25%;
     float: right;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   footer.site-footer .footer-logo {
-    width: 33.333%;
+    width: 25%;
     float: right;
     display: flex;
     align-items: center;
