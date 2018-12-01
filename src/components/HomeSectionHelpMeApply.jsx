@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 class HomeSectionHelpMeApply extends React.Component {
 
@@ -88,7 +88,8 @@ class HomeSectionHelpMeApply extends React.Component {
                                     <option value="under">under</option>
                                 </select>
                                 250 grams.
-                                <span className={selected ? '' : 'other-parts'} >I am a
+                                {
+                                !showAnswerUnder===true && <span className={selected ? '' : 'other-parts'} >I am a
                                     <select className="license_type" name="selectLicenseType" onChange={this.handleChange}>
                                       <option disabled selected value="">Select</option>
                                       <option value="pilot">pilot</option>
@@ -102,11 +103,12 @@ class HomeSectionHelpMeApply extends React.Component {
                                       <option value="import">imorting a drone in India</option>
                                     </select>
                                 </span>
+                                }
                             </p>
                             <div className="answer">
                                 <p className={showAnswerUnder ? '' : 'under'} >
                                 <strong>Answer:</strong>
-                                Nano drones are currently exempt from registration, import licenses as well as NPNT compliance. You can fly your drone up to 50 ft and in enclosed premises, today! Please do not forget to read our <a href="http://dgca.gov.in/cars/RPAS-Do's%20and%20Don'ts.pdf" target="_blank">Do’s and Don’ts</a></p>
+                                Nano drones are currently exempt from registration, import licenses as well as NPNT compliance. You can fly your drone up to 50 ft and in enclosed premises, today! Please do not forget to read our <a href="http://dgca.gov.in/cars/RPAS-Do's%20and%20Don'ts.pdf" target="_blank"><font color="FFFFFF">Do’s and Dont's</font></a></p>
                                 <p className={showAnswerOver ? '' : 'over'} ><strong>Answer:</strong> First you need to create an account here on DroneStack.</p>
 
                                 <p className={showAnswerPilot ? '' : 'pilot'} >
