@@ -103,8 +103,8 @@ class App extends React.Component {
                         <AuthenticatedRoute exact path="/occurrenceReport" component={OccurrenceReportPage} loggedIn={loggedIn}/>
                         <AuthenticatedRoute exact path="/flyDronePermissionApplications" component={FlyDronePermissionApplicationsPage} loggedIn={loggedIn}/>
                         <AuthenticatedRoute exact path="/flyDronePermissionApplication" component={FlyDronePermissionApplicationPage} loggedIn={loggedIn}/>
-
-                        <AdminAuthenticatedRoute exact path="/droneType" loggedIn={loggedIn} user={user} component={DroneTypePage} /> 
+                        <AuthenticatedRoute exact path="/droneType" loggedIn={loggedIn} user={user} component={DroneTypePage} /> 
+                        
                         <AdminAuthenticatedRoute path="/admin/dashboard" loggedIn={loggedIn} user={user} component={AdminDashboardPage} />
                         <AdminAuthenticatedRoute path="/admin/application" loggedIn={loggedIn} user={user} component={AdminApplicationViewPage} />
                         <AdminAuthenticatedRoute path="/admin/droneType" loggedIn={loggedIn} user={user} component={AdminDashboardDroneTypePage} />

@@ -64,7 +64,7 @@ class HeaderUserMenu extends React.Component {
                         }
                         {
                             manufacturerProfileId>0 &&
-                            <li><Link to="//droneType">Create New RPAS Types</Link></li> 
+                            <li><Link to="/droneType">Create New RPAS Types</Link></li> 
                         }
                         {
                             manufacturerProfileId==0 &&
