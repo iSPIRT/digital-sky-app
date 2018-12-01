@@ -171,7 +171,7 @@ class FaqPage extends React.Component {
                                 </tbody>
                             </table>
                         </div>
-                        <div classNameName="large-12 cell">
+                        <div className="large-12 cell">
                             <h2>FAQ</h2>
 
                             <ul className="accordion" data-accordion data-allow-all-closed="true">
