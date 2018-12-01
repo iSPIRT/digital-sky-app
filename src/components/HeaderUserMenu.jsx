@@ -9,14 +9,42 @@ class HeaderUserMenu extends React.Component {
     constructor(props) {
         super(props);
         this.onUserNavigationClick = this.onUserNavigationClick.bind(this);
+        this.findprofile = this.findprofile.bind(this);        
     }
 
     onUserNavigationClick(){
         this.props.onUserNavigationClick(!this.props.userNavigationOpen);
     }
 
+    findprofile(){
+        const pilotProfileId = localStorage.getItem('pilotProfileId');
+        const individualOperatorProfileId = localStorage.getItem('individualOperatorProfileId');
+        const organizationOperatorProfileId = localStorage.getItem('organizationOperatorProfileId');
+        const manufacturerProfileId = localStorage.getItem('manufacturerProfileId');        
+        const arr = [pilotProfileId,individualOperatorProfileId,organizationOperatorProfileId,manufacturerProfileId]
+        if(arr.filter((id)=>id!=0).length > 1){
+            return '/profile';
+        }
+        else if(pilotProfileId>0){
+            return '/pilotProfile';
+        }
+        else if(individualOperatorProfileId>0){
+            return '/individualOperatorProfile';
+        }
+        else if(organizationOperatorProfileId>0){
+            return '/organizationOperatorProfile';
+        }
+        else{
+            return '/manufacturerProfile';
+        }
+    }
+
     render() {
         const {userNavigationOpen, siteNavigationOpen } = this.props;
+        const pilotProfileId = localStorage.getItem('pilotProfileId');
+        const individualOperatorProfileId = localStorage.getItem('individualOperatorProfileId');
+        const organizationOperatorProfileId = localStorage.getItem('organizationOperatorProfileId');
+        const manufacturerProfileId = localStorage.getItem('manufacturerProfileId');
         return (
             <div className={ userNavigationOpen && !siteNavigationOpen ? 'user-nav dashboard open' : 'user-nav dashboard'} onClick={this.onUserNavigationClick}>
                 <div className="open-wrap">
@@ -30,14 +58,23 @@ class HeaderUserMenu extends React.Component {
 
                 <div className="the-user-navigation">
                     <ul>
-                        {/* <li><Link to="/profile">Profile</Link></li> */}
-                        <li><Link to="/profile">Apply now</Link></li>
-                        <li><Link to="/dashboard">Dashboard</Link></li>
-                        <li><Link to="#">My drones</Link></li>
-                        <li><Link to="#">Occurance report</Link></li>
-                        <li><Link to="#">Application Status</Link></li>
-                        <li><Link to="#">Edit user settings</Link></li>
-                        <li><Link to="/admin/droneType">Edit Drones</Link></li> 
+                        {
+                            manufacturerProfileId>0 &&
+                            <li><Link to="/dashboard">My RPAS Types</Link></li>
+                        }
+                        {
+                            manufacturerProfileId>0 &&
+                            <li><Link to="//droneType">Create New RPAS Types</Link></li> 
+                        }
+                        {
+                            manufacturerProfileId==0 &&
+                            <li><Link to="/dashboard">My Dashboard</Link></li> 
+                        }
+                        {/*
+                            manufacturerProfileId==0 && 
+                            <li><Link to="/occurrenceReport">Create Occurence Report</Link></li> 
+                        */}
+                        <li><Link to={this.findprofile()}>Edit My Profile</Link></li>
                         <li><Link to="/logout" className="logout">Logout</Link></li>
                     </ul>
                 </div>

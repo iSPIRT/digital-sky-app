@@ -35,7 +35,8 @@ import FlyDronePermissionApplicationPage from './FlyDronePermissionApplicationPa
 import AdminPilotViewPage from './AdminPilotViewPage';
 import AdminOperatorViewPage from './AdminOperatorViewPage';
 import MapViewPage from './MapViewPage';
-import FaqPage from './FaqPage';
+import FaqPage from '../components/FaqPage';
+import FlightTrainingOrganizationsPage from '../components/FlightTrainingOrganizationsPage';
 
 import Logout from './Logout';
 import Header from '../components/Header';
@@ -65,6 +66,7 @@ class App extends React.Component {
     componentDidMount() {
         $(document).foundation();
         window.addEventListener('scroll', this.handleScroll);
+        // window.addEventListener('click', dispatch);
     }
 
     handleScroll(event){
@@ -122,6 +124,7 @@ class App extends React.Component {
                         <Route path="/testLocations" component={TestLocations} />
                         <Route path="/mapView" component={MapViewPage} />
                         <Route path="/faq" component={FaqPage} />
+                        <Route path="/training-orgs" component={FlightTrainingOrganizationsPage} />
 
                         <Footer/>
                     </ScrollToTop>

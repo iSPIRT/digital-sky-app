@@ -5,9 +5,13 @@ import HomeSectionRegisterDrone from '../components/HomeSectionRegisterDrone';
 import HomeSectionHelpMeApply from '../components/HomeSectionHelpMeApply';
 import HomeSectionPressRelease from '../components/HomeSectionPressRelease';
 import HomeSectionFaq from '../components/HomeSectionFaq';
+import $ from 'jquery';
 
 
 class Home extends React.Component {
+  componentDidMount() {
+    $(document).foundation();
+  }
   render() {
     return (
         <div>
@@ -16,7 +20,7 @@ class Home extends React.Component {
             <HomeSectionHelpMeApply/>
             <div className="clearfix"></div>
             <HomeSectionPressRelease/>
-            <HomeSectionFaq/>
+            {/* <HomeSectionFaq/> */}
             <div className="clearfix"></div>
         </div>
     );

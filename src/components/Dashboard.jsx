@@ -34,17 +34,22 @@ class Dashboard extends React.Component {
                                         !hasPilotProfile && !hasManufacturerProfile && !hasOperatorProfile &&
                                         <Link to="/profile" className="button">Apply for a license</Link>
                                     }
-                                    {/* {
-                                        (hasPilotProfile || hasManufacturerProfile || hasOperatorProfile) &&
-                                        <Link to="/profile" className="button">Update profile</Link>
-                                    } */}
-                                        <div className="apply-step">
-                                            <div className="wrap">
-                                                <p>Apply for a license before buying a drone or applying UIN.</p>
-                                            </div>
-                                        </div>
-                                        <a href="#" className="button show-apply-step disabled">Acquisition of drone</a>
-                                        <a href="#" className="button show-apply-step disabled">Apply for UIN</a>
+                                    {
+                                        (hasPilotProfile || hasOperatorProfile) &&
+                                        <Link to="/localDroneAcquisitionApplication" className="button">Apply here for Local Drone</Link>
+                                    }
+                                    {
+                                        (hasPilotProfile || hasOperatorProfile) &&
+                                        <Link to="/importDroneApplication" className="button">Apply here to Import Drones</Link>
+                                    }
+                                    {
+                                        (hasPilotProfile || hasOperatorProfile) &&
+                                        <Link to="/uaopApplication" className="button">Apply here for UAOP Licence</Link>
+                                    }
+                                    {
+                                        hasManufacturerProfile &&
+                                        <Link to="/droneType" className="button">Create New RPAS Types</Link>
+                                    }
                                     </div>
                                 </div>
                                 < div className = "large-6 cell show-for-large" > 

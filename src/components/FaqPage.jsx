@@ -2,7 +2,6 @@ import React from 'react';
 
 class FaqPage extends React.Component {
     render(){
-        console.log("test")
         debugger;
         return(
         < div > 

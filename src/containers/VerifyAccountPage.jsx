@@ -21,7 +21,8 @@ class VerifyAccountPage extends React.Component {
         const { loggedIn, errors, accountVerified } = this.props;
 
         if(loggedIn){
-            history.push('/dashboard');
+            localStorage.clear();
+            history.push('/login');
         }
 
         if(accountVerified){

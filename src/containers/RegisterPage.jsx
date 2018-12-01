@@ -28,7 +28,7 @@ class RegisterPage extends React.Component {
                         <div className="large-12 cell">
                             <h2>Thanks for signing up!</h2>
                             <p>Check your email for a verification link to proceed.</p>
-                            <Link to="/" className="button">Go back to the homepage</Link>
+                            <Link to="/" className="button button-accept">Go back to the homepage</Link>
                         </div>
                     </div>
                 </div>
