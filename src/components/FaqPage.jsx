@@ -4,7 +4,7 @@ class FaqPage extends React.Component {
     render(){
         debugger;
         return(
-        < div > 
+        < div >
             <section id="faq">
                 <div className="grid-container">
                     <div className="grid-x grid-padding-x">
@@ -948,12 +948,20 @@ class FaqPage extends React.Component {
                                             www.dgca.nic.in, and it will be operational from 1st December, 2018.</p>
                                     </div>
                                 </li>
+                                <li className="accordion-item" data-accordion-item>
+                                    <a href="#" className="accordion-title">52. Whats the point of contact in WPC & DGFT?
+                                    </a>
+                                    <div className="accordion-content" data-tab-content>
+                                        <p>For import : Sh.S.P.Roy, Joint DGFT, DGFT, <strong>Phone:</strong> <a href="tel:+9101123062240">011-2306 2240</a> <strong>Email:</strong> <a href="mailto:shyama.roy@nic.in">shyama.roy@nic.in</a></p>
+                                        <p>For ETA : Sh. Bhagirath, Sr. DWA, WPC, DoT, <strong>Phone:</strong> <a href="tel:+9101123731488">011-2373 1488</a> <strong>Email:</strong> <a href="mailto:bhagirath.32@gov.in">bhagirath.32@gov.in</a></p>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-            </section> 
-            < div className = "clearfix" > </div> 
+            </section>
+            < div className = "clearfix" > </div>
         </div>
         );
     }
