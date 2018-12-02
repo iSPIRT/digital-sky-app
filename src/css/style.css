@@ -698,7 +698,7 @@ header.site-header.homepage {
 }
 header.site-header .site-logo {
   float: left;
-  width: calc(100% - 140px);
+  width: calc(100% - 70px);
   height: 100%;
   background: #245dff;
   border-radius: 0px 0px 8px 8px;
@@ -2747,7 +2747,7 @@ table thead {
     background: #245dff;
   }
   header.site-header .site-logo {
-    width: 200px;
+    /* width: 200px; */
   }
   .desktop-site-navigation {
     float: right;

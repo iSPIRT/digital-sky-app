@@ -37,6 +37,7 @@ import AdminOperatorViewPage from './AdminOperatorViewPage';
 import MapViewPage from './MapViewPage';
 import FaqPage from '../components/FaqPage';
 import FlightTrainingOrganizationsPage from '../components/FlightTrainingOrganizationsPage';
+import DoAndDonts from '../components/DoAndDonts';
 
 import Logout from './Logout';
 import Header from '../components/Header';
@@ -125,6 +126,7 @@ class App extends React.Component {
                         <Route path="/mapView" component={MapViewPage} />
                         <Route path="/faq" component={FaqPage} />
                         <Route path="/training-orgs" component={FlightTrainingOrganizationsPage} />
+                        <Route path="/dos-donts" component={DoAndDonts} />
 
                         <Footer/>
                     </ScrollToTop>
