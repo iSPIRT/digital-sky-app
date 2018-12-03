@@ -21,11 +21,11 @@ class VerifyAccountPage extends React.Component {
         const { loggedIn, errors, accountVerified } = this.props;
 
         if(loggedIn){
-            localStorage.clear();
             history.push('/login');
+            return null;
         }
 
-        if(accountVerified){
+        else if(accountVerified){
             return (
                 <div className="page-header">
                   <div className="grid-container">
@@ -40,7 +40,7 @@ class VerifyAccountPage extends React.Component {
             );
         }
 
-        if(errors.length > 0){
+        else if(errors.length > 0){
             return (
                 <div className="page-header">
                   <div className="grid-container">

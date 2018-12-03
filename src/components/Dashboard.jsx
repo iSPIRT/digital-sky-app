@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
                                         <Link to="/importDroneApplication" className="button">Apply here to Import Drones</Link>
                                     }
                                     {
-                                        (hasPilotProfile || hasOperatorProfile) &&
+                                        hasOperatorProfile &&
                                         <Link to="/uaopApplication" className="button">Apply here for UAOP Licence</Link>
                                     }
                                     {
@@ -67,11 +67,11 @@ class Dashboard extends React.Component {
                     <br/>
                 </div>
                 <br/>
-                <div class="grid-container">
-                    <div class="page-dashboard">
+                <div className="grid-container">
+                    <div className="page-dashboard">
                         <section id="application-status">
-                            <div class="grid-container">
-                                <div class="grid-x grid-padding-x">
+                            <div className="grid-container">
+                                <div clclassNameass="grid-x grid-padding-x">
                                 {  hasOperatorProfile &&
                                     <div className="large-6 cell">
                                         <h3> Application Status</h3>
@@ -91,7 +91,7 @@ class Dashboard extends React.Component {
                         </section>
                     </div>
                 </div>
-                < section id = "occurence-report" > 
+                {/* < section id = "occurence-report" > 
                     <div class="grid-container">
                         <div class="grid-x grid-padding-x">
                             <div class="large-6 cell">
@@ -101,7 +101,7 @@ class Dashboard extends React.Component {
                             </div>
                         </div>
                     </div> 
-                </section>
+                </section> */}
             </div>
     );
   } 
