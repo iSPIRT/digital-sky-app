@@ -361,10 +361,20 @@ textarea.error {
   border-bottom: 2px solid #d40000;
   background-color: #ffffff;
   box-shadow: 0px 6px 5px 0px #f5e1e1;
+  box-shadow: 0px 6px 5px 0px #f5e1e1;
+  margin-bottom: 40px;
 }
 
 textarea {
   height: auto;
+}
+
+p.field-error-message {
+  position: absolute;
+  right: 0px;
+  top: 95px;
+  color: #d40000;
+  font-size: 12px;
 }
 
 label {
@@ -1651,9 +1661,10 @@ footer.site-footer .footer-logo h4 {
 }
 .admin-header .menu {
   margin-top: -5px;
+  display: flex;
 }
 .admin-header .menu li {
-  width: 33.33333%;
+  flex: auto;
 }
 .admin-header .menu li a {
   height: 110px;
@@ -1674,6 +1685,7 @@ footer.site-footer .footer-logo h4 {
   line-height: normal;
   text-transform: uppercase;
   border-radius: 0px 0px 8px 8px;
+  background-image: url("../img/pilot-all-blue.svg");
 }
 .admin-header .menu li a:hover {
   background-color: #ffffff;
@@ -1681,15 +1693,7 @@ footer.site-footer .footer-logo h4 {
 .admin-header .menu li a.active {
   background-color: #ffffff;
 }
-.admin-header .menu li a.pilot {
-  background-image: url("../img/pilot-all-blue.svg");
-}
-.admin-header .menu li a.operator {
-  background-image: url("../img/operator-blue.svg");
-}
-.admin-header .menu li a.manufacturer {
-  background-image: url("../img/manufacturer-blue.svg");
-}
+
 .admin-header .menu li:last-child a {
   border-right: 0px;
 }
@@ -2622,6 +2626,10 @@ table thead {
   line-height: 14px;
 }
 
+.captcha {
+  padding-left: 32% !important;
+}
+
 @media screen and (max-width: 39.9375em) {
   .button {
     width: 100%;
@@ -3100,5 +3108,15 @@ table thead {
   }
   #all-applications-admin .admin-search-wrap {
     margin: 0px;
+  }
+  footer.site-footer .footer-nav ul li {
+    text-align: left;
+  }
+  footer.site-footer .footer-nav {
+    padding: 50px;
+    display: block;
+  }
+  p.field-error-message {
+    top: 55px;
   }
 }

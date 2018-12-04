@@ -116,7 +116,7 @@ class Register extends React.Component {
                                         <FieldError fieldErrors={this.state.fieldErrors} field='confirmPassword'/>
                                     </label>
                                 </div>
-                                <div className="large-12 cell">
+                                <div className="large-12 cell captcha">
                                     <ReCAPTCHA ref="recaptcha" sitekey={reCaptchaSiteKey} onChange={this.captchaVerified} ref={e => (this.captchaEle = e)} />
                                     <br/><br/>
                                 </div>
