@@ -57,9 +57,9 @@ class DashboardApplicationView extends React.Component {
         const {applications} = this.props;
         if(!applications) return null;
         if(applications.length < 1){
-            return  <div class="application no-data">
+            return  <div className="application no-data">
                         <p>Once you’ve applied for a drone, you will see your application statuses here.</p>
-                        <a href="#" class="button">Apply now</a>
+                        <a href="#" className="button">Apply now</a>
                     </div>;
         }
         return  (

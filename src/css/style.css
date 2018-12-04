@@ -387,6 +387,7 @@ label {
   margin-bottom: 20px;
   margin-bottom: 40px;
   line-height: 29px;
+  position: relative;
 }
 label span {
   color: #64729a;

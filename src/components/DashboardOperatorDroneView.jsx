@@ -31,9 +31,9 @@ class DashBoardOperatorDroneView extends React.Component {
         const {operatorDrones} = this.props;
         if(!operatorDrones) return null;
         if(operatorDrones.length < 1){
-            return  <div class="drone no-data">
+            return  <div className="drone no-data">
                         <p>Once you’re drones ar registered, you will see your drones here.</p>
-                        <a href="#" class="button">Apply now</a>
+                        <a href="#" className="button">Apply now</a>
                     </div>;
         } 
         return  (
