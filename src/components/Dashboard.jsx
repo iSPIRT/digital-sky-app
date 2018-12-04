@@ -71,7 +71,7 @@ class Dashboard extends React.Component {
                     <div className="page-dashboard">
                         <section id="application-status">
                             <div className="grid-container">
-                                <div clclassNameass="grid-x grid-padding-x">
+                                <div className="grid-x grid-padding-x">
                                 {  hasOperatorProfile &&
                                     <div className="large-6 cell">
                                         <h3> Application Status</h3>

@@ -123,7 +123,7 @@ class App extends React.Component {
                         <Route path="/resetPassword" component={ResetPasswordPage} />
                         <Route path="/verifyAccount" component={VerifyAccountPage} />
                         <Route path="/testLocations" component={TestLocations} />
-                        <Route path="/mapView" component={MapViewPage} />
+                        {/* <Route path="/mapView" component={MapViewPage} /> */}
                         <Route path="/faq" component={FaqPage} />
                         <Route path="/training-orgs" component={FlightTrainingOrganizationsPage} />
                         <Route path="/dos-donts" component={DoAndDonts} />
