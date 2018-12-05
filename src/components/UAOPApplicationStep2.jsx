@@ -57,14 +57,14 @@ class UAOPApplicationStep2 extends React.Component {
         formData.append("insuranceDoc", this.state.insuranceDoc)
         formData.append("landOwnerPermissionDoc", this.state.landOwnerPermissionDoc)
         formData.append("sopDoc", this.state.sopDoc)
+        formData.append("paymentReceiptDoc", this.state.paymentReceiptDoc)
         formData.append("uaopApplicationForm", JSON.stringify(this.state.application))
-        console.log(formData);
         this.props.updateApplication(this.props.application.id, formData);
     }
 
     render() {
         const { savingApplication, errors} = this.props;
-        const { formErrors, securityProgramDoc, insuranceDoc, landOwnerPermissionDoc, sopDoc } = this.state;
+        const { formErrors, securityProgramDoc, insuranceDoc, landOwnerPermissionDoc, sopDoc, paymentReceiptDoc } = this.state;
         return (
             <div>
                 <div className="page-form">
@@ -125,6 +125,15 @@ class UAOPApplicationStep2 extends React.Component {
                                         </label>
                                         <label htmlFor="sopDoc" className="button button-file-upload">Upload File</label>
                                         <input type="file" id="sopDoc" name="sopDoc" className="show-for-sr" accept=".pdf" onChange={this.handleChange}/>
+                                    </div>
+                                </div>
+                                <div className="large-12 cell">
+                                    <div className="help-wrap">
+                                        <label>Bharat Kosh receipt Document
+                                            <p>{paymentReceiptDoc && paymentReceiptDoc.name}</p>
+                                        </label>
+                                        <label htmlFor="paymentReceiptDoc" className="button button-file-upload">Upload File</label>
+                                        <input type="file" id="paymentReceiptDoc" name="paymentReceiptDoc" className="show-for-sr" accept=".pdf" onChange={this.handleChange}/>
                                     </div>
                                 </div>
 

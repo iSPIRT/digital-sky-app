@@ -2627,10 +2627,6 @@ table thead {
   line-height: 14px;
 }
 
-.captcha {
-  padding-left: 32% !important;
-}
-
 @media screen and (max-width: 39.9375em) {
   .button {
     width: 100%;
@@ -3119,5 +3115,10 @@ table thead {
   }
   p.field-error-message {
     top: 55px;
+  }
+}
+@media screen and (min-width: 1020px) {
+  .captcha {
+    padding-left: 32% !important;
   }
 }
