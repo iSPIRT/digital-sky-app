@@ -10,8 +10,7 @@ class FaqPage extends React.Component {
         $(document).foundation();
     }
 
-    render(){
-        debugger;
+    render(){        
         return(
         < div >
             <section id="faq">

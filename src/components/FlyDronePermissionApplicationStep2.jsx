@@ -88,7 +88,7 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
         var map = new Map({
             target: this.refs.mapContainer,
             layers: [ new Tile({ source: new OSM({
-                    url: 'https://{a-c}.tiles.mapbox.com/v4/openstreetmap.1b68f018/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicHJhdmVlbmRzIiwiYSI6ImNqbGV2dTlvdTBxYzczcW51MzVsM2lydDMifQ.MybYXbF9SJUISSFna60LHQ'
+                    url: 'https://{a-c}.tiles.mapbox.com/v4/openstreetmap.1b68f018/{z}/{x}/{y}.png?access_token=sk.eyJ1IjoiaXNwaXJ0IiwiYSI6ImNqcGFwb2l1czJmcmIzdmxrdzh6MGlncnkifQ.xZwKoTjwoXFROqKRPYmDwA'
                 })}), greenLayer, amberLayer, redLayer],
             controls: defaultControls({
                 attributionOptions: {

@@ -38,6 +38,7 @@ import MapViewPage from './MapViewPage';
 import FaqPage from '../components/FaqPage';
 import FlightTrainingOrganizationsPage from '../components/FlightTrainingOrganizationsPage';
 import DoAndDonts from '../components/DoAndDonts';
+import ReactGA from 'react-ga';
 
 import Logout from './Logout';
 import Header from '../components/Header';
@@ -54,9 +55,19 @@ import $ from 'jquery';
 
 import 'foundation-sites';
 
+function initializeReactGA() {
+    ReactGA.initialize('UA-74792042-3');
+    ReactGA.pageview('/');
+    ReactGA.pageview('/testLocations');
+    ReactGA.pageview('/faq');
+    ReactGA.pageview('/dos-donts');
+    ReactGA.pageview('/training-orgs');
+}
+
 class App extends React.Component {
 
     constructor(props) {
+        initializeReactGA();
         super(props);
         this.state = {
             stickyHeader: false
