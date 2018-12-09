@@ -21,7 +21,7 @@ class Dashboard extends React.Component {
     const hasPilotProfile = ( pilotProfileId > 0)
     const hasManufacturerProfile = ( manufacturerProfileId > 0 );
     const { errors, applications, operatorDrones } = this.props;
-    
+
     return (
             <div>
                 <div>
@@ -72,7 +72,7 @@ class Dashboard extends React.Component {
                         <section id="application-status">
                             <div className="grid-container">
                                 <div className="grid-x grid-padding-x">
-                                {  hasOperatorProfile &&
+                                {  (hasPilotProfile || hasOperatorProfile) &&
                                     <div className="large-6 cell">
                                         <h3> Application Status</h3>
                                         <FormErrors errors = {errors}/>

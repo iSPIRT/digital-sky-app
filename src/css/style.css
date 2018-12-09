@@ -2636,6 +2636,24 @@ table thead {
   line-height: 14px;
 }
 
+.reveal {
+  border-radius: 6px;
+  padding: 80px 30px;
+}
+.reveal .close-button {
+  font-size: 50px;
+  right: 20px;
+  top: 20px;
+}
+#application-status-modal {
+  padding-bottom: 50px;
+}
+#application-status-modal .button {
+  display: block;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
 @media screen and (max-width: 39.9375em) {
   .button {
     width: 100%;
@@ -2648,7 +2666,7 @@ table thead {
     height: auto;
     min-height: 50vh;
     border-radius: 6px;
-    padding: 40px 30px;
+    padding: 65px 30px;
   }
   .reveal .close-button {
     font-size: 50px;
