@@ -18,10 +18,8 @@ class UAOPApplicationStep3 extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState({application: nextProps.application});
-        debugger
-        if(nextProps.errors.length>0){
-            debugger;
+        this.setState({application: nextProps.application});        
+        if(nextProps.errors.length>0){            
             this.state.application.status='DRAFT';
             this.setState({errors: nextProps.errors});
         }

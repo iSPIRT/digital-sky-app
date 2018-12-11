@@ -25,8 +25,9 @@ class DashboardPage extends React.Component {
 
     render() {
         const { user, applications, errors, drones} = this.props;
-        if(user.isAdmin){
+        if(user.isAdmin){            
             history.push('/admin/dashboard');
+            return null
         }
         return <Dashboard applications={applications} operatorDrones={drones} errors={errors}/>
     }

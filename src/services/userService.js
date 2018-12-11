@@ -19,7 +19,8 @@ export const userService = {
   loadManufacturerProfile,
   loadApplications,
   verifyAccount,
-  loadUserDetails
+  loadUserDetails,
+  checkAdmin
 };
 
 function register(user) {
@@ -306,6 +307,20 @@ function loginUser(token) {
     localStorage.setItem(
       "organizationOperatorProfileId",
       token.organizationOperatorProfileId
+    );
+  }
+}
+
+function checkAdmin(token) {
+  if (token) {
+    const apiRoot = applicationProperties().apiRoot;
+    const authToken = "Bearer " + localStorage.getItem("accessToken");
+    const requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json", Authorization: authToken }
+    };
+    return fetch(apiRoot + "/auth/verifyAdmin", requestOptions).then(
+      handleResponse
     );
   }
 }
