@@ -10,7 +10,7 @@ class FaqPage extends React.Component {
         $(document).foundation();
     }
 
-    render(){        
+    render(){
         return(
         < div >
             <section id="faq">
@@ -960,10 +960,34 @@ class FaqPage extends React.Component {
                                     <a href="#" className="accordion-title">52. Whats the point of contact in WPC & DGFT?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
-                                        <p>For import : Sh.S.P.Roy, Joint DGFT, DGFT, <strong>Phone:</strong> <a href="tel:+9101123062240">011-2306 2240</a> <strong>Email:</strong> <a href="mailto:shyama.roy@nic.in">shyama.roy@nic.in</a></p>
-                                        <p>For ETA : Sh. Bhagirath, Sr. DWA, WPC, DoT, <strong>Phone:</strong> <a href="tel:+9101123731488">011-2373 1488</a> <strong>Email:</strong> <a href="mailto:bhagirath.32@gov.in">bhagirath.32@gov.in</a></p>
+                                      <p><strong>For import:</strong><br>Sh. S. P. Roy, Joint DGFT, DGFT, <br>Phone: <a href="tel:+9101123062240">011-2306 2240</a><br>Email: <a href="mailto:shyama.roy@nic.in">shyama.roy@nic.in</a></p>
+                                      <p><strong>For ETA:</strong><br>Sh. Bhagirath, Sr. DWA, WPC, DoT, <br>Phone: <a href="tel:+9101123731488">011-2373 1488</a> <br>Email: <a href="mailto:bhagirath.32@gov.in">bhagirath.32@gov.in</a></p>
                                     </div>
                                 </li>
+                            </ul>
+
+
+
+                            <br>
+                            <br>
+                            <h2>Officers incharge for more questions:</h2>
+                            <ul>
+                              <li>
+                                <strong>For Operations:</strong><br>
+                                Capt. Amit Garg, Senior Flight Operations Inspector, FSD <br>(M) 9717900923, <br>e-mail ID: amitg.dgca@nic.in<br><br>
+                              </li>
+                              <li>
+                                <strong>For Import and Local acquisition of RPAS:</strong><br>
+                                Sh. Pramod Nagare- Assistant Director (Ops)<br>(M) 9892066343, <br>email-Id: pramod.dgca@nic.in<br><br>
+                              </li>
+                              <li>
+                                <strong>For issuance of  UIN:</strong><br>
+                                Sh. Vishav Raj Meena- Asst. Director (Airworthiness) <br>(M) 9968414272, <br>e-mail ID: vishavraj.dgca@nic.in<br><br>
+                              </li>
+                              <li>
+                                <strong>For issuance of UAOP, design certification:</strong><br>
+                                Sh. K. Thulasiraman- Deputy Director (AE)<br>(M) 9999910195, <br>e-mail ID: thulasiraman.dgca@nic.in<br><br>
+                              </li>
                             </ul>
                         </div>
                     </div>
