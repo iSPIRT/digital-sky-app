@@ -35,6 +35,10 @@ class UAOPApplicationView extends React.Component {
                     <h6>Land Owner Permission Document:</h6>
                     <a onClick={(e) =>  this.props.downloadDocument(application.landOwnerPermissionDocName)}>{application.landOwnerPermissionDocName}</a>
                 </div>
+                <div className="question">
+                    <h6>Bharat Kosh receipt Document:</h6>
+                    <a onClick={(e) =>  this.downloadDocument(application.paymentReceiptDoc)}>{application.paymentReceiptDoc}</a>
+                </div>
             </div>
         );
     }

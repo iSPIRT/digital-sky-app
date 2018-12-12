@@ -10,7 +10,7 @@ class HomeSectionIntro extends React.Component {
                 <div className="grid-x grid-padding-x">
                     <div className="large-6 cell large-order-1 intro-text">
                         <div className="wrap">
-                            <h2 className="type-title-small">We enable flight for India’s unmanned aircrafts.</h2>
+                            <h2 className="type-title-small">We enable flight for India’s unmanned aircraft</h2>
                         </div>
                     </div>
                     <div className="large-6 cell large-order-2  illustrations">

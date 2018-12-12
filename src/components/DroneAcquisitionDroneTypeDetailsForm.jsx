@@ -78,7 +78,7 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
                         { fieldErrors && <FieldError fieldErrors={fieldErrors} field='droneType'/> }
                         </label>
                     </div>
-                 }
+                 }                 
                  <div className="large-12 cell">
                     <label>Model Name
                         <input type="text" name="modelName"  value= { selectedDroneType && selectedDroneType.modelName } onChange = { this.handleChange } readOnly = { isReadOnly } className={fieldErrors && decorateInputClass(fieldErrors['modelName'],[])} validate="required" onBlur={(e) => validateField(e.target)}/>   

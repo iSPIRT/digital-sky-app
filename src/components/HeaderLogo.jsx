@@ -7,7 +7,7 @@ class HeaderLogo extends React.Component {
   render() {
     return (
         <Link to="/">
-            <div className="site-logo" style="width: calc(100% - 70px);">
+            <div className="site-logo">
                 <img src={logo} alt="logo"/>
             </div>
         </Link>

@@ -31,9 +31,9 @@ class DashBoardOperatorDroneView extends React.Component {
         const {operatorDrones} = this.props;
         if(!operatorDrones) return null;
         if(operatorDrones.length < 1){
-            return  <div class="drone no-data">
-                        <p>Once you’re drones ar registered, you will see your drones here.</p>
-                        <a href="#" class="button">Apply now</a>
+            return  <div className="drone no-data">
+                        <p>Once you're registered your RPAS through your manufacturer, you will see it appear here automatically. Post that, you may apply on Digital Sky for receiving your UIN and permission to fly. Please contact your manufacturer for further details.</p>
+                        <a className="button disabled">Apply now</a>
                     </div>;
         } 
         return  (

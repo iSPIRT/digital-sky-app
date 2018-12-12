@@ -37,6 +37,8 @@ import AdminOperatorViewPage from './AdminOperatorViewPage';
 import MapViewPage from './MapViewPage';
 import FaqPage from '../components/FaqPage';
 import FlightTrainingOrganizationsPage from '../components/FlightTrainingOrganizationsPage';
+import DoAndDonts from '../components/DoAndDonts';
+import ReactGA from 'react-ga';
 
 import Logout from './Logout';
 import Header from '../components/Header';
@@ -53,9 +55,19 @@ import $ from 'jquery';
 
 import 'foundation-sites';
 
+function initializeReactGA() {
+    ReactGA.initialize('UA-74792042-3');
+    ReactGA.pageview('/');
+    ReactGA.pageview('/testLocations');
+    ReactGA.pageview('/faq');
+    ReactGA.pageview('/dos-donts');
+    ReactGA.pageview('/training-orgs');
+}
+
 class App extends React.Component {
 
     constructor(props) {
+        initializeReactGA();
         super(props);
         this.state = {
             stickyHeader: false
@@ -103,8 +115,8 @@ class App extends React.Component {
                         <AuthenticatedRoute exact path="/occurrenceReport" component={OccurrenceReportPage} loggedIn={loggedIn}/>
                         <AuthenticatedRoute exact path="/flyDronePermissionApplications" component={FlyDronePermissionApplicationsPage} loggedIn={loggedIn}/>
                         <AuthenticatedRoute exact path="/flyDronePermissionApplication" component={FlyDronePermissionApplicationPage} loggedIn={loggedIn}/>
-
-                        <AdminAuthenticatedRoute exact path="/droneType" loggedIn={loggedIn} user={user} component={DroneTypePage} /> 
+                        <AuthenticatedRoute exact path="/droneType" loggedIn={loggedIn} user={user} component={DroneTypePage} /> 
+                        
                         <AdminAuthenticatedRoute path="/admin/dashboard" loggedIn={loggedIn} user={user} component={AdminDashboardPage} />
                         <AdminAuthenticatedRoute path="/admin/application" loggedIn={loggedIn} user={user} component={AdminApplicationViewPage} />
                         <AdminAuthenticatedRoute path="/admin/droneType" loggedIn={loggedIn} user={user} component={AdminDashboardDroneTypePage} />
@@ -122,9 +134,10 @@ class App extends React.Component {
                         <Route path="/resetPassword" component={ResetPasswordPage} />
                         <Route path="/verifyAccount" component={VerifyAccountPage} />
                         <Route path="/testLocations" component={TestLocations} />
-                        <Route path="/mapView" component={MapViewPage} />
+                        {/* <Route path="/mapView" component={MapViewPage} /> */}
                         <Route path="/faq" component={FaqPage} />
                         <Route path="/training-orgs" component={FlightTrainingOrganizationsPage} />
+                        <Route path="/dos-donts" component={DoAndDonts} />
 
                         <Footer/>
                     </ScrollToTop>

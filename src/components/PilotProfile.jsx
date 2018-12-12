@@ -20,13 +20,14 @@ class PilotProfile extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.updateObjProp = this.updateObjProp.bind(this);
         this.handleChangeDateOfBirth = this.handleChangeDateOfBirth.bind(this);
+        this.handleDroneSelect = this.handleDroneSelect.bind(this);
 
         this.state = {
             submitted: false,
             formErrors:[],
             fieldErrors: {},
             profile: {
-                droneCategory: 'nano',
+                droneCategoryTypes: [],
                 addressList:[
                     {
                         lineOne: '',
@@ -66,6 +67,18 @@ class PilotProfile extends React.Component {
         }
     }
 
+    handleDroneSelect(event) {
+        const { name, value, type } = event.target;
+        var index = this.state.profile.droneCategoryTypes.indexOf(value);
+        if(index>-1){
+            this.state.profile.droneCategoryTypes.splice(index,1);
+        }
+        else{
+            this.state.profile.droneCategoryTypes.push(value)
+        }
+        this.setState(this.state);
+    }
+
     updateObjProp(obj, value, propPath) {
         const [head, ...rest] = propPath.split('.');
 
@@ -89,6 +102,10 @@ class PilotProfile extends React.Component {
 
         if(!this.state.dateOfBirth){
             formErrors.push("Please select date of birth");
+        }
+
+        if(this.state.profile.droneCategoryTypes.size<1){
+            formErrors.push("Please select a drone category");
         }
 
         if(formErrors.length > 0){
@@ -202,11 +219,10 @@ class PilotProfile extends React.Component {
                                 </div>
                                 <div className="large-12 cell" id="drone-category">
                                     <label className="main">Drone Category</label>
-                                
                                     <div className="category-wrap">
                                         <label className="radio">Nano
                                             <span className="info">Less than or equal to <br/>250 grams</span>
-                                            <input type="radio" value="nano" checked={this.state.profile.droneCategory === 'nano'} name="droneCategory" onChange={this.handleChange}/>
+                                            <input type="checkbox" value="NANO" checked={this.state.profile.droneCategoryTypes && this.state.profile.droneCategoryTypes.indexOf('NANO') > -1 } name="droneCategory" onChange={this.handleDroneSelect}/>
                                             <span className="checkmark"></span>
                                         </label>
                                     </div>
@@ -214,7 +230,7 @@ class PilotProfile extends React.Component {
                                     <div className="category-wrap">
                                         <label className="radio">Micro
                                             <span className="info">Greater than 250 grams and <br/>less than or equal to 2 kg</span>
-                                            <input type="radio" value="micro" checked={this.state.profile.droneCategory === 'micro'} name="droneCategory" onChange={this.handleChange}/>
+                                            <input type="checkbox" value="MICRO" checked={this.state.profile.droneCategoryTypes && this.state.profile.droneCategoryTypes.indexOf('MICRO') > -1 } name="droneCategory" onChange={this.handleDroneSelect}/>
                                             <span className="checkmark"></span>
                                         </label>
                                     </div>
@@ -222,7 +238,7 @@ class PilotProfile extends React.Component {
                                     <div className="category-wrap">
                                         <label className="radio">Small
                                             <span className="info">Greater than 2 kg and less <br/>than or equal to 25 kg</span>
-                                            <input type="radio" value="small" checked={this.state.profile.droneCategory === 'small'} name="droneCategory" onChange={this.handleChange}/>
+                                            <input type="checkbox" value="SMALL" checked={this.state.profile.droneCategoryTypes && this.state.profile.droneCategoryTypes.indexOf('SMALL') > -1} name="droneCategory" onChange={this.handleDroneSelect}/>
                                             <span className="checkmark"></span>
                                         </label>
                                     </div>
@@ -230,7 +246,7 @@ class PilotProfile extends React.Component {
                                     <div className="category-wrap">
                                         <label className="radio">Medium
                                             <span className="info">Greater than 25 kg and less <br/>than or equal to 150 kg</span>
-                                            <input type="radio" value="medium" checked={this.state.profile.droneCategory === 'medium'} name="droneCategory" onChange={this.handleChange}/>
+                                            <input type="checkbox" value="MEDIUM" checked={this.state.profile.droneCategoryTypes && this.state.profile.droneCategoryTypes.indexOf('MEDIUM') > -1} name="droneCategory" onChange={this.handleDroneSelect}/>
                                             <span className="checkmark"></span>
                                         </label>
                                     </div>
@@ -238,7 +254,7 @@ class PilotProfile extends React.Component {
                                     <div className="category-wrap">
                                         <label className="radio">Large
                                             <span className="info">Greater than <br/>150 kg</span>
-                                            <input type="radio" value="large" checked={this.state.profile.droneCategory === 'large'} name="droneCategory" onChange={this.handleChange}/>
+                                            <input type="checkbox" value="LARGE" checked={this.state.profile.droneCategoryTypes && this.state.profile.droneCategoryTypes.indexOf('LARGE') > -1 } name="droneCategory" onChange={this.handleDroneSelect}/>
                                             <span className="checkmark"></span>
                                         </label>
                                     </div>

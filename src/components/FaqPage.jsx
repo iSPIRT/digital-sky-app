@@ -1,8 +1,16 @@
 import React from 'react';
 
+import $ from 'jquery';
+
+import 'foundation-sites';
+
 class FaqPage extends React.Component {
-    render(){
-        debugger;
+
+    componentDidMount() {
+        $(document).foundation();
+    }
+
+    render(){        
         return(
         < div >
             <section id="faq">

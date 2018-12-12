@@ -34,9 +34,10 @@ class HeaderUserMenu extends React.Component {
         else if(organizationOperatorProfileId>0){
             return '/organizationOperatorProfile';
         }
-        else{
+        else if(manufacturerProfileId>0){
             return '/manufacturerProfile';
         }
+        return null
     }
 
     render() {
@@ -64,7 +65,7 @@ class HeaderUserMenu extends React.Component {
                         }
                         {
                             manufacturerProfileId>0 &&
-                            <li><Link to="//droneType">Create New RPAS Types</Link></li> 
+                            <li><Link to="/droneType">Create New RPAS Types</Link></li> 
                         }
                         {
                             manufacturerProfileId==0 &&
@@ -74,7 +75,7 @@ class HeaderUserMenu extends React.Component {
                             manufacturerProfileId==0 && 
                             <li><Link to="/occurrenceReport">Create Occurence Report</Link></li> 
                         */}
-                        <li><Link to={this.findprofile()}>Edit My Profile</Link></li>
+                        {this.findprofile()!=null && <li><Link to={this.findprofile()}>Edit My Profile</Link></li>}
                         <li><Link to="/logout" className="logout">Logout</Link></li>
                     </ul>
                 </div>

@@ -139,7 +139,7 @@ class HomeSectionHelpMeApply extends React.Component {
                                       <option value="operator">operator</option>
                                       <option value="manufacturer">manufacturer</option>
                                     </select>
-                                    and
+                                    {(showAnswerPilot||showAnswerManufacturer||showAnswerOperator)&&<span>and</span>}
                                     {
                                         showAnswerOperator && <select className="acquisition_type" name="selectAcquisitionTypeOperator" onChange={this.handleChange}>
                                             <option disabled selected value="">Select</option>
@@ -167,7 +167,7 @@ class HomeSectionHelpMeApply extends React.Component {
                             <div className="answer">
                                 <p className={showAnswerUnder ? '' : 'under'} >
                                 <strong>Answer:</strong>
-                                Nano drones are currently exempt from registration, import licenses as well as NPNT compliance. You can fly your drone up to 50 ft and in enclosed premises, today! Please do not forget to read our <a href="http://dgca.gov.in/cars/RPAS-Do's%20and%20Don'ts.pdf" target="_blank"><font color="FFFFFF">Do’s and Don'ts</font></a></p>
+                                Nano drones are currently exempt from registration, import licenses as well as NPNT compliance. You can fly your drone up to 50 ft and in enclosed premises, today! Please do not forget to read our <Link to="/dos-donts"><font color="FFFFFF">Do’s and Don'ts</font></Link></p>
 
                                 <p className={showAnswerPilot ? '' : 'pilot'} >
                                 As the pilot of a drone, you must be well-versed with the CAR and the Do’s and Don’ts to understand what is required of you. You are primarily responsible for safe flight operations and please be aware of people, structures and entities in your flight plan that you could affect. Please register yourself, to get a Pilot ID that will be required for permission to fly in NPNT complaint drones.<br></br>

@@ -27,7 +27,8 @@ class Footer extends React.Component {
                                 <li><a href="http://dgca.nic.in/cars/D3X-X1.pdf" target="_blank">Civil Aviation Requirements</a></li>
                                 <li><a href="http://www.dgca.nic.in/rpas/DGCA%20RPAS%20Guidance%20Manual.pdf" target="_blank">Guidance Manual</a></li>
                                 <li><Link to={'/training-orgs'}>Flight Training Organisations</Link></li>
-                                <li><Link to="testLocations">Find test location</Link></li>                                
+                                <li><Link to="testLocations">Find test location</Link></li>
+                                <li><Link to="/faq">Frequently Asked Questions</Link></li>
                             </ul>
                         </div>
                     </div>

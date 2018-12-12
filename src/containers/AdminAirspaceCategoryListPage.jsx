@@ -5,30 +5,49 @@ import { connect } from 'react-redux';
 import AdminAirspaceCategoryList from '../components/AdminAirspaceCategoryList';
 
 import { loadAirspaceCategoriesAction } from '../actions/adminActions';
+import { checkAdminAction } from '../actions/loginActions';
 
 class AdminAirspaceCategoryListPage extends React.Component {
 
     constructor(props) {
         super(props);
         const { airspaceCategoryList } = this.props;
+        this.state={
+            isAdmin:false
+        }
         if( airspaceCategoryList.length === 0 ){
             this.props.dispatch(loadAirspaceCategoriesAction());
         }
+        this.props.dispatch(checkAdminAction(localStorage.getItem('accessToken')));
     }
+
+    componentWillReceiveProps(){
+        if(this.props.adminCheck)
+            this.setState({isAdmin:true})
+        else
+            this.setState({isAdmin:false})
+    }
+
     render() {
         const { errors, airspaceCategoryList} = this.props;
-        return <AdminAirspaceCategoryList
-                    errors={errors}
-                    airspaceCategoryList={airspaceCategoryList}
-               />
+        const { isAdmin } = this.state;
+        if(isAdmin)
+            return <AdminAirspaceCategoryList
+                        errors={errors}
+                        airspaceCategoryList={airspaceCategoryList}
+                />
+        else
+            return null
     }
 }
 
 function mapStateToProps(state) {
      const { errors, airspaceCategoryList } = state.adminAirspaceCategory;
+     const { adminCheck } = state.adminTest;
      return {
         airspaceCategoryList,
-        errors
+        errors,
+        adminCheck
      };
 }
 

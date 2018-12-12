@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom'
 
-import logo from '../img/logo.svg';
+import logo from '../img/digitalsky-logo.svg';
 import hambargarClose from '../img/hambargar-close.svg';
 import hambargar from '../img/hambargar.svg';
 

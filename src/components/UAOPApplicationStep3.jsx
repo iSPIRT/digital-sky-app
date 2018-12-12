@@ -13,11 +13,16 @@ class UAOPApplicationStep3 extends React.Component {
         this.state = {
             submitted: false,
             application: this.props.application,
+            errors: []
         };
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState({application: nextProps.application});
+        this.setState({application: nextProps.application});        
+        if(nextProps.errors.length>0){            
+            this.state.application.status='DRAFT';
+            this.setState({errors: nextProps.errors});
+        }
     }
 
     downloadDocument(documentName){
@@ -40,8 +45,8 @@ class UAOPApplicationStep3 extends React.Component {
 
 
     render() {
-        const { savingApplication, errors} = this.props;
-        const { formErrors, submitted, application } = this.state;
+        const { savingApplication} = this.props;
+        const { formErrors, submitted, application, errors } = this.state;
         return (
             <div id="application-preview">
                 <div className="page-form">
@@ -91,6 +96,10 @@ class UAOPApplicationStep3 extends React.Component {
                                         <h6>Land Owner Permission Document:</h6>
                                         <a onClick={(e) =>  this.downloadDocument(application.landOwnerPermissionDocName)}>{application.landOwnerPermissionDocName}</a>
                                     </div>
+                                    <div className="question">
+                                        <h6>Bharat Kosh receipt Document:</h6>
+                                        <a onClick={(e) =>  this.downloadDocument(application.paymentReceiptDocName)}>{application.paymentReceiptDocName}</a>
+                                    </div>
                                 </div>
                                 { application.status === 'DRAFT' &&
                                     <React.Fragment>
@@ -107,12 +116,13 @@ class UAOPApplicationStep3 extends React.Component {
                                             </a>
                                         </div>
                                     </React.Fragment>
-                                }
-                                { submitted &&  application.status && application.status !== 'DRAFT' &&
+                                }                                
+                                { submitted &&  application.status && application.status !== 'DRAFT' && 
+                                    errors.size==0  &&
                                     <div className="large-12 cell">
                                         <p> Successfully Saved Application <br/></p>
                                     </div>
-                                }
+                                }                                                                
                             </div>
                         </div>
                     </form>
