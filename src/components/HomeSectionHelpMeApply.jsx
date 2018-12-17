@@ -132,7 +132,7 @@ class HomeSectionHelpMeApply extends React.Component {
                                 </select>
                                 250 grams.
                                 {
-                                !showAnswerUnder===true && <span className={selected ? '' : 'other-parts'} >I am a
+                                !showAnswerUnder===true && <span className={selected ? '' : 'other-parts'} > I am a
                                     <select className="license_type" name="selectLicenseType" onChange={this.handleChange}>
                                       <option disabled selected value="">Select</option>
                                       <option value="pilot">pilot</option>

@@ -4,7 +4,7 @@ import HomeSectionIntro from '../components/HomeSectionIntro';
 import HomeSectionRegisterDrone from '../components/HomeSectionRegisterDrone';
 import HomeSectionHelpMeApply from '../components/HomeSectionHelpMeApply';
 import HomeSectionPressRelease from '../components/HomeSectionPressRelease';
-import HomeSectionFaq from '../components/HomeSectionFaq';
+// import HomeSectionFaq from '../components/HomeSectionFaq';
 import $ from 'jquery';
 
 

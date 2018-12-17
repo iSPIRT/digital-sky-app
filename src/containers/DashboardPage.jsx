@@ -25,9 +25,19 @@ class DashboardPage extends React.Component {
 
     render() {
         const { user, applications, errors, drones} = this.props;
+        const pilotProfileId = localStorage.getItem('pilotProfileId');
+        const individualOperatorProfileId = localStorage.getItem('individualOperatorProfileId');
+        const organizationOperatorProfileId = localStorage.getItem('organizationOperatorProfileId');
+        const manufacturerProfileId = localStorage.getItem('manufacturerProfileId');
+        const hasOperatorProfile = (individualOperatorProfileId > 0) || (organizationOperatorProfileId > 0)
+        const hasPilotProfile = ( pilotProfileId > 0)
+        const hasManufacturerProfile = ( manufacturerProfileId > 0 );
         if(user.isAdmin){            
             history.push('/admin/dashboard');
             return null
+        }
+        if(!hasManufacturerProfile && !hasOperatorProfile && !hasPilotProfile){
+            history.push('/profile');
         }
         return <Dashboard applications={applications} operatorDrones={drones} errors={errors}/>
     }

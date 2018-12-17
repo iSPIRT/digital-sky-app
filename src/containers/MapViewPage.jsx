@@ -73,7 +73,7 @@ class MapViewPage extends React.Component {
     }
 
     render() {
-        const { application } = this.props;
+        // const { application } = this.props;
         return(
             <div className="map-wrapper">
                 <div id="map" ref="mapContainer" className="map"> </div>

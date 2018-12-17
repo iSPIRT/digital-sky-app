@@ -3,8 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 import logo from '../img/digitalsky-logo.svg';
-import hambargarClose from '../img/hambargar-close.svg';
-import hambargar from '../img/hambargar.svg';
+// import hambargarClose from '../img/hambargar-close.svg';
+// import hambargar from '../img/hambargar.svg';
 
 import HeaderLoginMenu from '../components/HeaderLoginMenu';
 import HeaderUserMenu from '../components/HeaderUserMenu';

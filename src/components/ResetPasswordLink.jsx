@@ -3,6 +3,7 @@ import React from 'react';
 import FormErrors from '../components/FormErrors';
 
 import FieldError from '../components/FieldError';
+import { Link } from 'react-router-dom';
 
 import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 
@@ -47,7 +48,8 @@ class ResetPasswordLink extends React.Component {
                   <div className="grid-container">
                     <div className="grid-x grid-padding-x">
                       <div className="large-12 cell">
-                        <h2>Reset Your Password</h2>
+                        <h2>Reset your password</h2>
+                        <p><Link to="/register">I’m not registered, sign up here</Link><br/><Link to="/login">I’m already registered, sign in here</Link></p>
                       </div>
                     </div>
                   </div>

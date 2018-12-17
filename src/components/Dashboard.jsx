@@ -21,7 +21,6 @@ class Dashboard extends React.Component {
     const hasPilotProfile = ( pilotProfileId > 0)
     const hasManufacturerProfile = ( manufacturerProfileId > 0 );
     const { errors, applications, operatorDrones } = this.props;
-
     return (
             <div>
                 <div>
@@ -75,14 +74,14 @@ class Dashboard extends React.Component {
                                 {  (hasPilotProfile || hasOperatorProfile) &&
                                     <div className="large-6 cell">
                                         <h3> Application Status</h3>
-                                        <FormErrors errors = {errors}/>
+                                        {errors.length>0 && <FormErrors errors = {errors}/>}
                                         <DashboardApplicationView applications={applications}/>
                                     </div>
                                 }
                                 {  hasOperatorProfile &&
                                     <div className="large-6 cell my-drones">
                                         <h3>My Drones</h3>
-                                        <FormErrors errors = {errors}/>
+                                        {errors.length>0 && <FormErrors errors = {errors}/>}
                                         <DashBoardOperatorDroneView operatorDrones={operatorDrones} droneSelected={this.droneSelected}/>
                                     </div>
                                 }

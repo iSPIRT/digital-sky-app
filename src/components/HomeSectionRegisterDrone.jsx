@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-import getStartedImg from '../img/get_started.svg';
+//import getStartedImg from '../img/get_started.svg';
 
 
 class HomeSectionRegisterDrone extends React.Component {

@@ -2653,6 +2653,9 @@ table thead {
   width: 100%;
   margin-bottom: 30px;
 }
+.dob {
+  padding-left: 6.5%;
+}
 
 @media screen and (max-width: 39.9375em) {
   .button {

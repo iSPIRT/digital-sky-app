@@ -7160,6 +7160,11 @@ react-async-script@>=0.9.1:
   dependencies:
     prop-types ">=15.5.0"
 
+react-country-region-selector@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/react-country-region-selector/-/react-country-region-selector-1.4.3.tgz#fda4a50a1a632078c06b9f99c7a4a81ff2f0b40e"
+  integrity sha512-pWNWkPa6vnX4f8tWkaUQLh60JQKtP/TEkMIK4ZsXQYhvlmM6VNQe9qEbSLE80puakZ42KHhxoONjqg1LwEKW2A==
+
 react-datepicker@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-1.6.0.tgz#6b7a87e949f3bbd94872554be6a0119bd908a987"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import FormErrors from '../components/FormErrors';
 import DashboardDroneTypeView from '../components/DashboardDroneTypeView';

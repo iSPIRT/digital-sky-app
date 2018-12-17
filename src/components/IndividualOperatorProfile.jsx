@@ -146,7 +146,7 @@ class IndividualOperatorProfile extends React.Component {
                                 <div className="large-3 cell">
                                     <label>Date of Birth</label>
                                 </div>
-                                <div className="large-8 cell-fix">
+                                <div className="large-8 cell-fix dob">
                                     <DatePicker
                                         selected={this.state.dateOfBirth}
                                         onChange={this.handleChangeDateOfBirth}

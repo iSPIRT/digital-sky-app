@@ -19,7 +19,14 @@ class UserProfile extends React.Component {
                 <div className="grid-x grid-padding-x">
                     <div className="large-6 large-offset-3 cell">
                         <h2>Profile</h2>
-
+                        {
+                            (pilotProfileExist || operatorProfileExist || manufacturerProfileExist) &&
+                            <p>Edit your profiles</p>
+                        }
+                        {
+                            (!pilotProfileExist && !operatorProfileExist && !manufacturerProfileExist) &&
+                            <p>What are you applying for?</p>
+                        }
                         <div className="apply-for-wrap" data-equalizer>
                             { !manufacturerProfileExist  &&
                                 <div className="apply-for-wrap" data-equalizer>
