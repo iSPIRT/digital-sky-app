@@ -232,7 +232,10 @@ export const validateSelectField = (fieldErrors, field) => {
     if (!field.getAttribute("validate")) return fieldErrors;
     const validations = field.getAttribute("validate").split(",");
     for (const validation of validations) {
-      if (validation.trim() === "required" && field.value === "-1") {
+      if (
+        validation.trim() === "required" &&
+        (field.value === "-1" || field.value === "")
+      ) {
         return {
           ...fieldErrors,
           [field.name]: { message: "Required", valid: false }
