@@ -7,6 +7,7 @@ import FieldError from '../components/FieldError';
 import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 
 import { Link } from 'react-router-dom'
+import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 
 class OrganizationOperatorProfile extends React.Component {
 
@@ -15,6 +16,8 @@ class OrganizationOperatorProfile extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.updateObjProp = this.updateObjProp.bind(this);
+        this.selectCountry = this.selectCountry.bind(this);
+        this.selectRegion = this.selectRegion.bind(this);
 
         this.state = {
             submitted: false,
@@ -55,6 +58,18 @@ class OrganizationOperatorProfile extends React.Component {
         !rest.length
             ? obj[head] = value
             : this.updateObjProp(obj[head], value, rest.join("."));
+    }
+
+    selectCountry(event,name){
+        const { profile } = this.state;
+        this.updateObjProp(profile, event, name.target.name);
+        this.setState({profile:profile})
+    }
+
+    selectRegion(event){
+        const { profile } = this.state;
+        this.updateObjProp(profile, event, "addressList.0.state");
+        this.setState({profile:profile})
     }
 
     handleSubmit(event) {
@@ -138,7 +153,7 @@ class OrganizationOperatorProfile extends React.Component {
 
                                 <div className="large-12 cell">
                                     <label>Country (Registered)
-                                        <input type="text" placeholder="country" name="country" onChange={this.handleChange} value={profile.country} maxLength="100" className={decorateInputClass(this.state.fieldErrors['country'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <CountryDropdown type="text" placeholder="Country" name="country" onChange={this.selectCountry} value={profile.country} className={decorateInputClass(this.state.fieldErrors['country'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>                                        
                                         <FieldError fieldErrors={this.state.fieldErrors} field='country'/>
                                     </label>
                                 </div>
@@ -152,10 +167,10 @@ class OrganizationOperatorProfile extends React.Component {
                                         <input type="text" placeholder="City Or Town" name="addressList.0.city" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].city} className={decorateInputClass(this.state.fieldErrors['addressList.0.city'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
                                         <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.city'/>
 
-                                        <input type="text" placeholder="State" name="addressList.0.state" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].state} className={decorateInputClass(this.state.fieldErrors['addressList.0.state'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <RegionDropdown type="text" placeholder="State" name="addressList.0.state" onChange={this.selectRegion} value={profile.addressList && profile.addressList[0].state} className={decorateInputClass(this.state.fieldErrors['addressList.0.state'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} country={profile.addressList && profile.addressList[0].country}/>                                        
                                         <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.state'/>
 
-                                        <input type="text" placeholder="Country" name="addressList.0.country" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].country} className={decorateInputClass(this.state.fieldErrors['addressList.0.country'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <CountryDropdown type="text" placeholder="Country" name="addressList.0.country" onChange={this.selectCountry} value={profile.addressList && profile.addressList[0].country} className={decorateInputClass(this.state.fieldErrors['addressList.0.country'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
                                         <FieldError fieldErrors={this.state.fieldErrors} field='addressList.0.country'/>
 
                                         <input type="text" placeholder="Pin Code" name="addressList.0.pinCode" onChange={this.handleChange} value={profile.addressList && profile.addressList[0].pinCode} className={decorateInputClass(this.state.fieldErrors['addressList.0.pinCode'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>

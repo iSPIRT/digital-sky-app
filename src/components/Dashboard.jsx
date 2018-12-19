@@ -34,16 +34,16 @@ class Dashboard extends React.Component {
                                         <Link to="/profile" className="button">Apply for a license</Link>
                                     }
                                     {
-                                        (hasPilotProfile || hasOperatorProfile) &&
-                                        <Link to="/localDroneAcquisitionApplication" className="button">Apply here for Local Drone</Link>
-                                    }
-                                    {
-                                        (hasPilotProfile || hasOperatorProfile) &&
-                                        <Link to="/importDroneApplication" className="button">Apply here to Import Drones</Link>
+                                        hasOperatorProfile &&
+                                        <Link to="/localDroneAcquisitionApplication" className="button">Apply for Local Drone</Link>
                                     }
                                     {
                                         hasOperatorProfile &&
-                                        <Link to="/uaopApplication" className="button">Apply here for UAOP Licence</Link>
+                                        <Link to="/importDroneApplication" className="button">Apply to Import Drones</Link>
+                                    }
+                                    {
+                                        hasOperatorProfile &&
+                                        <Link to="/uaopApplication" className="button">Apply for UAOP Licence</Link>
                                     }
                                     {
                                         hasManufacturerProfile &&

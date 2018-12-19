@@ -4,6 +4,7 @@ import FooterApplicationForm from './FooterApplicationForm';
 import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 import FieldError from '../components/FieldError';
 import HeaderApplicationForm from "./HeaderApplicationForm";
+import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 
 class DroneAcquisitionApplicationStep2 extends React.Component {
 
@@ -18,6 +19,8 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.updateObjProp = this.updateObjProp.bind(this);
         this.downloadDocument = this.downloadDocument.bind(this);
+        this.selectCountry = this.selectCountry.bind(this);
+        this.selectRegion = this.selectRegion.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
@@ -54,6 +57,18 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
     
     downloadDocument(documentName) {
         this.props.downloadDocument(documentName)
+    }
+
+    selectCountry(event){
+        const { applicationForm } = this.props;
+        this.updateObjProp(applicationForm, event, "ownerAddress.country");
+        this.setState({applicationForm: applicationForm});
+    }
+
+    selectRegion(event){
+        const { applicationForm } = this.props;
+        this.updateObjProp(applicationForm, event, "ownerAddress.state");
+        this.setState({applicationForm: applicationForm});
     }
 
     handleSubmit(event) {
@@ -123,9 +138,9 @@ class DroneAcquisitionApplicationStep2 extends React.Component {
                                                 <input type="text" name="ownerAddress.lineTwo" placeholder=" Address Line2" value={ applicationForm.ownerAddress? applicationForm.ownerAddress.lineTwo : undefined} onChange={this.handleChange} />
                                                 <input type="text" name="ownerAddress.city"  placeholder="City" value={ applicationForm.ownerAddress? applicationForm.ownerAddress.city : undefined} onChange={this.handleChange} className={decorateInputClass(this.state.fieldErrors['ownerAddress.city'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
                                                 <FieldError fieldErrors={this.state.fieldErrors} field='ownerAddress.city'/>
-                                                <input type="text" name="ownerAddress.state"  placeholder="State" value={ applicationForm.ownerAddress? applicationForm.ownerAddress.state : undefined} onChange={this.handleChange} className={decorateInputClass(this.state.fieldErrors['ownerAddress.state'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                                <RegionDropdown type="text" placeholder="State" name="ownerAddress.state" onChange={this.selectRegion} value={applicationForm.ownerAddress?applicationForm.ownerAddress.state:undefined} className={decorateInputClass(this.state.fieldErrors['ownerAddress.state'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} country={applicationForm.ownerAddress && applicationForm.ownerAddress.country}/>    
                                                 <FieldError fieldErrors={this.state.fieldErrors} field='ownerAddress.state'/>
-                                                <input type="text" name="ownerAddress.country"  placeholder="Country" value={ applicationForm.ownerAddress? applicationForm.ownerAddress.country : undefined} onChange={this.handleChange} className={decorateInputClass(this.state.fieldErrors['ownerAddress.country'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                                <CountryDropdown type="text" placeholder="Country" name="ownerAddress.country" onChange={this.selectCountry} value={applicationForm.ownerAddress?applicationForm.ownerAddress.country:undefined} className={decorateInputClass(this.state.fieldErrors['ownerAddress.country'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>                                                
                                                 <FieldError fieldErrors={this.state.fieldErrors} field='ownerAddress.country'/>
                                                 <input type="text" name="ownerAddress.pinCode"  placeholder="Pincode" value={ applicationForm.ownerAddress? applicationForm.ownerAddress.pinCode : undefined} maxLength="8" onChange={this.handleChange} className={decorateInputClass(this.state.fieldErrors['ownerAddress.pinCode'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
                                                 <FieldError fieldErrors={this.state.fieldErrors} field='ownerAddress.pinCode'/>
