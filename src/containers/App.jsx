@@ -36,6 +36,7 @@ import AdminPilotViewPage from './AdminPilotViewPage';
 import AdminOperatorViewPage from './AdminOperatorViewPage';
 import MapViewPage from './MapViewPage';
 import FaqPage from '../components/FaqPage';
+import ContactHelpPage from '../components/ContactHelpPage';
 import FlightTrainingOrganizationsPage from '../components/FlightTrainingOrganizationsPage';
 import DoAndDonts from '../components/DoAndDonts';
 import ReactGA from 'react-ga';
@@ -138,6 +139,7 @@ class App extends React.Component {
                         <Route path="/faq" component={FaqPage} />
                         <Route path="/training-orgs" component={FlightTrainingOrganizationsPage} />
                         <Route path="/dos-donts" component={DoAndDonts} />
+                        <Route path="/ContactHelpPage" component={ContactHelpPage} />
 
                         <Footer/>
                     </ScrollToTop>

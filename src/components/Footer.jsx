@@ -14,6 +14,7 @@ class Footer extends React.Component {
                                 <li><a href="https://www.mygov.in/" target="_blank">MyGov</a></li>
                                 <li><a href="http://www.digitalindia.gov.in/" target="_blank">Digital India</a></li>
                                 <li><a href="https://www.pgportal.gov.in/" target="_blank">File a Grievance</a></li>
+                                <li><Link to="/ContactHelpPage">Contact us</Link></li>
                             </ul>
                         </div>
                     </div>
