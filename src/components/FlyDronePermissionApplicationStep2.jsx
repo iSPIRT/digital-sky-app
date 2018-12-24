@@ -283,6 +283,9 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
                         </div>
                     </div>
                 </div>
+                <style media="screen">
+                        {".site-footer {display: none;}"}
+                </style>
             </form>
         );
     }

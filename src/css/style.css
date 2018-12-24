@@ -3107,8 +3107,11 @@ table thead {
     max-width: 400px;
   }
   .permission-navigation .wrap {
-    max-width: 400px;
+    max-width: fit-content;
     margin: 0 auto;
+  }
+  .permission-navigation .wrap a {
+    margin: 0 10px 0 10px;
   }
   .altitude-range-wrap .wrap {
     max-width: 400px;
@@ -3150,5 +3153,17 @@ table thead {
 @media screen and (min-width: 1020px) {
   .captcha {
     padding-left: 32% !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #permission-map .permission-navigation {
+    position: absolute;
+    left: 0px;
+    bottom: -3px;
+    height: 72px;
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.8);
   }
 }
