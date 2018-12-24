@@ -31,6 +31,8 @@ class PilotProfile extends React.Component {
             fieldErrors: {},
             profile: {
                 droneCategoryTypes: [],
+                mobileNumber: '',
+                country: '',
                 addressList:[
                     {
                         lineOne: '',
