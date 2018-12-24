@@ -7,7 +7,7 @@ const FooterApplicationForm = (props) => {
     return (
             <div className="large-12 cell">
                 { props.step !==1 && (
-                    <a className="back" onClick = { props.previousStep } > 
+                    <a className="back" href='.' onClick = { props.previousStep } > 
                         <img src={ back } alt="back" /> Go back to previous step
                     </a>
                 )}

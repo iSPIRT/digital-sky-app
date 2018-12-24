@@ -28,6 +28,7 @@ class IndividualOperatorProfile extends React.Component {
             formErrors:[],
             fieldErrors: {},
             profile: {
+                mobileNumber: '',
                 addressList:[
                     {
                         lineOne: '',

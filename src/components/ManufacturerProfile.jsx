@@ -7,7 +7,7 @@ import FieldError from '../components/FieldError';
 import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 
 import { Link } from 'react-router-dom'
-import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 class ManufacturerProfile extends React.Component {
 
