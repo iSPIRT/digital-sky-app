@@ -13,6 +13,8 @@ class DroneProfileForm extends React.Component {
         this.updateDroneSpec = this.updateDroneSpec.bind(this);
         this.handleSaveApplication = this.handleSaveApplication.bind(this);
         this.validateField = this.validateField.bind(this);
+        this.selectCountry = this.selectCountry.bind(this);
+        this.selectRegion = this.selectRegion.bind(this);
         this.state = {
             submitted : false,
             selectedDroneType: {
@@ -52,6 +54,18 @@ class DroneProfileForm extends React.Component {
 
     validateField(target) {
         this.setState({fieldErrors: validateField(this.state.fieldErrors, target)})
+    }
+
+    selectCountry(event){
+        var selectedDroneType = this.state.selectedDroneType;
+        this.updateObjProp(selectedDroneType, event, "selectedDroneType.manufacturerAddress.country");
+        this.setState({selectedDroneType: selectedDroneType});
+    }
+
+    selectRegion(event){
+        var selectedDroneType = this.state.selectedDroneType;
+        this.updateObjProp(selectedDroneType, event, "selectedDroneType.manufacturerAddress.state");
+        this.setState({selectedDroneType: selectedDroneType});
     }
 
     handleChange(event) {
