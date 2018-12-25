@@ -75,7 +75,8 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
                                 { (!selectedDroneType || !selectedDroneType.modelName) && <option default key="-1" value="-1">Select</option> }
                                 { droneTypeOptions }
                         </select>
-                        { fieldErrors && <FieldError fieldErrors={fieldErrors} field='droneType'/> }
+                        { fieldErrors && <FieldError fieldErrors={fieldErrors} field='droneType'/> }                        
+                        {droneTypeOptions && droneTypeOptions.length==0 && <div className="large-12 cell"><p className="field-error-message compliant-message">We currently are awaiting manufacturers to be compliant to the system before you can acquire one</p></div>}
                         </label>
                     </div>
                  }                 
