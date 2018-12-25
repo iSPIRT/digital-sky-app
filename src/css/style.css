@@ -2656,6 +2656,12 @@ table thead {
 .dob {
   padding-left: 6.5%;
 }
+.compliant-message {
+  position: relative !important;
+  margin-bottom: 30px;
+  top: 44px !important;
+  white-space: nowrap;
+}
 
 @media screen and (max-width: 39.9375em) {
   .button {
@@ -2696,6 +2702,12 @@ table thead {
   }
   header.site-header .grid-container {
     padding: 0px;
+  }
+  .compliant-message {
+    position: relative !important;
+    margin-bottom: 30px;
+    top: 44px !important;
+    white-space: pre-wrap;
   }
 }
 
