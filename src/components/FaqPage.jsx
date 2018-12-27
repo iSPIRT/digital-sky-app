@@ -986,7 +986,7 @@ class FaqPage extends React.Component {
                               </li>
                               <li>
                                 <strong>For issuance of UAOP, design certification:</strong><br />
-                                Sh. K. Thulasiraman- Deputy Director (AE)<br />(M) 9999910195, <br />e-mail ID: thulasiraman.dgca@nic.in<br /><br />
+                                Sh. K. Thulasiraman- Deputy Director (AE)<br /> 011-24522500 Etxn. 448, <br />e-mail ID: thulasiraman.dgca@nic.in<br /><br />
                               </li>
                             </ul>
                         </div>
