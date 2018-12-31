@@ -79,12 +79,14 @@ class AdminAirspaceCategory extends React.Component {
         this.setState({fieldErrors:{}});
         this.setState({submitted: true});
         const { airspaceCategory } = this.state;
+        
 
         const formData = {
             id: airspaceCategory.id,
             name: airspaceCategory.name,
             type: airspaceCategory.type ? airspaceCategory.type : "RED",
-            geoJson
+            geoJson,
+            minAltitude:airspaceCategory.minAltitude
         }
         if(this.state.airspaceCategory.id){
             this.props.updateAirspaceCategory(this.state.airspaceCategory.id, formData);
@@ -151,6 +153,11 @@ class AdminAirspaceCategory extends React.Component {
                                 <div className="large-12 cell">
                                     <label>Geo json
                                         <textarea name="geoJson" rows="10" defaultValue= { JSON.stringify(airspaceCategory.geoJson, undefined, 2) } ref="geoJson"/>
+                                    </label>
+                                </div>
+                                <div className="large-12 cell">
+                                    <label>Minimum height AGL(Above Ground Level) in m above which this Airspace category is applicable
+                                        <input type="number" placeholder="minAltitude" name="minAltitude" onChange={this.handleChange} value={airspaceCategory.minAltitude} className={decorateInputClass(this.state.fieldErrors['minAltitude'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
                                     </label>
                                 </div>
                                 <div className="large-12 cell">

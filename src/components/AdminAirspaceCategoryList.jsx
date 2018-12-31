@@ -13,7 +13,7 @@ class AdminAirspaceCategoryList extends React.Component {
                 <tr>
                     <td>{airspaceCategory.name}</td>
                     <td>{airspaceCategory.type}</td>
-                    <Link to={'/admin/airspaceCategory?id='+airspaceCategory.id}>View/Edit</Link>
+                    <td><Link to={'/admin/airspaceCategory?id='+airspaceCategory.id}>View/Edit</Link></td>
                 </tr>
             )
         });
