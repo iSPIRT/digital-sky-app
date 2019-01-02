@@ -54,10 +54,10 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
             this.setState({endDateTime: moment(currentApplication.endDateTime, 'DD-MM-YYYY HH:mm:ss')})
         }
         this.setState({application: currentApplication});
-        if(application.recurringTimeExpression!="" && application.recurringTimeDurationInMinutes!="")
-            this.setState({isRecurrent:true})
-        else
+        if(application.recurringTimeExpression=="" || application.recurringTimeExpression==undefined || application.recurringTimeDurationInMinutes=="" || application.recurringTimeDurationInMinutes==undefined)
             this.setState({isRecurrent:false})
+        else
+            this.setState({isRecurrent:true})
     }
 
     handleChange(event) {
