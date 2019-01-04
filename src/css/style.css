@@ -2839,9 +2839,9 @@ table thead {
   header.site-header {
     background: #245dff;
   }
-  header.site-header .site-logo {
-    /* width: 200px; */
-  }
+  /* header.site-header .site-logo {
+    /* width: 200px; 
+  } */
   .desktop-site-navigation {
     float: right;
   }

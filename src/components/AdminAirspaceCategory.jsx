@@ -156,7 +156,7 @@ class AdminAirspaceCategory extends React.Component {
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
-                                    <label>Minimum height AGL(Above Ground Level) in m above which this Airspace category is applicable
+                                    <label>Minimum height AGL(Above Ground Level) in ft above which this Airspace category is applicable
                                         <input type="number" placeholder="minAltitude" name="minAltitude" onChange={this.handleChange} value={airspaceCategory.minAltitude} className={decorateInputClass(this.state.fieldErrors['minAltitude'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
                                     </label>
                                 </div>

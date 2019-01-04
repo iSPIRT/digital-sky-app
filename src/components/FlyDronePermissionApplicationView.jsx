@@ -143,6 +143,16 @@ class FlyDronePermissionApplicationView extends React.Component {
                     <p>{application.flightPurpose}</p>
                 </div>
                 <div className="question">
+                    <h6>Max altitude AGL in ft:</h6>
+                    <p>{application.maxAltitude}</p>
+                </div>
+                { application.approverComments &&
+                <div className="question">
+                    <h6>Comments:</h6>
+                    <p>{application.approverComments}</p>
+                </div>
+                }
+                <div className="question">
                     <h6>Fly Area:</h6>
                     <div ref="mapContainer" className="map"> </div>
                 </div>

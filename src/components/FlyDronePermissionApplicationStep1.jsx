@@ -257,8 +257,8 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
-                                    <label>Maximum altitude height during operation(AGL in m)
-                                        <ReactSlider defaultValue={0} orientation="horizontal" max={1000} name="maxAltitude" onAfterChange={this.handleSliderChange} value={application.maxAltitude} className='horizontal-slider' validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} pearling={true} >
+                                    <label>Maximum altitude height during operation(AGL in ft)
+                                        <ReactSlider defaultValue={0} orientation="horizontal" max={400} name="maxAltitude" onAfterChange={this.handleSliderChange} value={application.maxAltitude} className='horizontal-slider' validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} pearling={true} >
                                             {React.createElement('div', {key: 1}, application.maxAltitude)}
                                         </ReactSlider>
                                     </label>
