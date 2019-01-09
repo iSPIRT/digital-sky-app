@@ -5,9 +5,9 @@ export const LOAD_USER_AIRSPACE_CATEGORIES_SUCCESS =
 export const LOAD_USER_AIRSPACE_CATEGORIES_FAILURE =
   "LOAD_USER_AIRSPACE_CATEGORIES_FAILURE";
 
-export const loadUserAirspaceCategoriesAction = () => {
+export const loadUserAirspaceCategoriesAction = application => {
   return dispatch => {
-    userAirspaceCategoryService.loadAirspaceCategories().then(
+    userAirspaceCategoryService.loadAirspaceCategories(application).then(
       airspaceCategories => {
         dispatch(success(airspaceCategories));
       },

@@ -66,8 +66,8 @@ class FlyDronePermissionApplicationPage extends React.Component {
         this.setState({currentStep: (this.state.currentStep-1)});
     }
 
-    loadAirspaceCategories() {
-        return this.props.dispatch(loadUserAirspaceCategoriesAction());
+    loadAirspaceCategories(application) {
+        return this.props.dispatch(loadUserAirspaceCategoriesAction(application));
     }
 
     createApplication(application) {

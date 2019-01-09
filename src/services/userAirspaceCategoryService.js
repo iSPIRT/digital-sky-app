@@ -6,16 +6,47 @@ export const userAirspaceCategoryService = {
   loadAirspaceCategories
 };
 
-function loadAirspaceCategories() {
+function loadAirspaceCategories(application) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
     method: "GET",
     headers: { Authorization: authToken }
   };
-  return fetch(apiRoot + "/airspaceCategory/list", requestOptions)
-    .then(handleResponse)
-    .then(mergeAirspaceCategoriesByType);
+  if (
+    ((application.startDateTime != null ||
+      application.startDateTime != undefined) &&
+      (application.endDateTime != null ||
+        application.endDateTime != undefined) &&
+      application.maxAltitude != null) ||
+    application.maxAltitude != undefined
+  ) {
+    return fetch(
+      apiRoot +
+        "/airspaceCategory/listHeightTime?maxHeight=" +
+        application.maxAltitude +
+        "&startTime=" +
+        application.startDateTime +
+        "&endTime=" +
+        application.endDateTime,
+      requestOptions
+    )
+      .then(handleResponse)
+      .then(mergeAirspaceCategoriesByType);
+  } else
+    return fetch(apiRoot + "/airspaceCategory/list", requestOptions)
+      .then(handleResponse)
+      .then(mergeAirspaceCategoriesByType);
+  // if(application.maxAltitude!=null || application.maxAltitude!=undefined){
+  //   return fetch(apiRoot + "/airspaceCategory/listHeight?maxHeight="+application.maxAltitude, requestOptions)
+  //   .then(handleResponse)
+  //   .then(mergeAirspaceCategoriesByType);
+  // }
+  // return fetch(apiRoot + "/airspaceCategory/list", requestOptions)
+  //   .then(handleResponse)
+  //   .then(mergeAirspaceCategoriesByType);
+
+  //todo: figure out if this is required and can be put just api
 }
 
 function handleResponse(response) {

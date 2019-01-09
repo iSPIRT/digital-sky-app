@@ -18,7 +18,7 @@ class FlyDronePermissionApplicationView extends React.Component {
 
     constructor(props) {
         super(props);
-        this.props.loadAirspaceCategories();
+        this.props.loadAirspaceCategories(this.props.application);
         this.state = {
         };
     }

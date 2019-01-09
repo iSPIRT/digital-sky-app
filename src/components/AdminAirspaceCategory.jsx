@@ -6,7 +6,11 @@ import FieldError from '../components/FieldError';
 
 import { validateField, validateForm, decorateInputClass } from '../helpers/formValidationHelpers';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
+import moment from 'moment';
+
+import DatePicker from 'react-datepicker';
 
 class AdminAirspaceCategory extends React.Component {
 
@@ -15,11 +19,15 @@ class AdminAirspaceCategory extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.updateObjProp = this.updateObjProp.bind(this);
+        this.toggle = this.toggle.bind(this);
+        this.handleChangeTempEndTime = this.handleChangeTempEndTime.bind(this);
+        this.handleChangeTempStartTime = this.handleChangeTempStartTime.bind(this);
         this.state = {
             submitted: false,
             formErrors:[],
             fieldErrors: {},
-            airspaceCategory: this.props.airspaceCategory
+            airspaceCategory: this.props.airspaceCategory,
+            tempAirspace: false
         };
     }
 
@@ -49,6 +57,28 @@ class AdminAirspaceCategory extends React.Component {
         !rest.length
             ? obj[head] = value
             : this.updateObjProp(obj[head], value, rest.join("."));
+    }
+
+    toggle(){
+        if(!this.state.tempAirspace==false){
+            const { airspaceCategory } = this.state;
+            airspaceCategory.tempStartTime="";
+            airspaceCategory.tempEndTime="";
+            this.setState({airspaceCategory:airspaceCategory});
+        }
+        this.setState({tempAirspace:!this.state.tempAirspace});        
+    }
+
+    handleChangeTempStartTime(startDateTime){
+        const { airspaceCategory } = this.state;
+        airspaceCategory.tempStartTime=startDateTime
+        this.setState({airspaceCategory: airspaceCategory});
+    }
+
+    handleChangeTempEndTime(endDateTime){
+        const { airspaceCategory } = this.state;
+        airspaceCategory.tempEndTime=endDateTime
+        this.setState({airspaceCategory: airspaceCategory});
     }
 
     handleSubmit(event) {
@@ -86,7 +116,9 @@ class AdminAirspaceCategory extends React.Component {
             name: airspaceCategory.name,
             type: airspaceCategory.type ? airspaceCategory.type : "RED",
             geoJson,
-            minAltitude:airspaceCategory.minAltitude
+            minAltitude:airspaceCategory.minAltitude,
+            tempStartTime:airspaceCategory.tempStartTime?airspaceCategory.tempStartTime.format('DD-MM-YYYY HH:mm:ss'):null,
+            tempEndTime:airspaceCategory.tempEndTime?airspaceCategory.tempEndTime.format('DD-MM-YYYY HH:mm:ss'):null
         }
         if(this.state.airspaceCategory.id){
             this.props.updateAirspaceCategory(this.state.airspaceCategory.id, formData);
@@ -97,7 +129,7 @@ class AdminAirspaceCategory extends React.Component {
 
     render() {
         const { savingAirspaceCategory, savedAirspaceCategory, errors} = this.props;
-        const { formErrors, submitted, airspaceCategory} = this.state;
+        const { formErrors, submitted, airspaceCategory, tempAirspace} = this.state;
         const airspaceCategoryTypes = ["RED", "AMBER","GREEN"].map(type => {
             return (<option value={type} key={type}> {type} </option>);
         });
@@ -160,6 +192,49 @@ class AdminAirspaceCategory extends React.Component {
                                         <input type="number" placeholder="minAltitude" name="minAltitude" onChange={this.handleChange} value={airspaceCategory.minAltitude} className={decorateInputClass(this.state.fieldErrors['minAltitude'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
                                     </label>
                                 </div>
+                                {/* todo: the aleready present data is not showing up, fix it */}
+                                <div className="large-12 cell">
+                                    <label> Is it a temporary airspace
+                                        <select value={tempAirspace} onChange={this.toggle}>
+                                            <option value={true}>Yes</option>
+                                            <option value={false}>No</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                { tempAirspace &&
+                                <div className="large-12 cell">
+                                    <label>Temporary zone begin date-time                                    
+                                        <DatePicker
+                                        selected={airspaceCategory.tempStartTime}
+                                        onChange={this.handleChangeTempStartTime}
+                                        showTimeSelect
+                                        timeFormat="HH:mm"
+                                        timeIntervals={5}
+                                        dateFormat="DD-MM-YYYY HH:mm:00"
+                                        timeCaption="time"
+                                        minDate={moment()}
+                                        maxDate={moment().add(1,"years")}
+                                    />
+                                    </label>
+                                </div>
+                                }
+                                { tempAirspace &&
+                                <div className="large-12 cell">
+                                    <label>Temporary zone end date-time                                        
+                                        <DatePicker
+                                        selected={airspaceCategory.tempEndTime}
+                                        onChange={this.handleChangeTempEndTime}
+                                        showTimeSelect
+                                        timeFormat="HH:mm"
+                                        timeIntervals={5}
+                                        dateFormat="DD-MM-YYYY HH:mm:00"
+                                        timeCaption="time"
+                                        minDate={moment()}
+                                        maxDate={moment().add(1,"years")}
+                                    />
+                                    </label>
+                                </div>
+                                }
                                 <div className="large-12 cell">
 
                                     { submitted && ( !errors || errors.length === 0)  &&  savedAirspaceCategory && <p> Successfully Saved AirspaceCategory <br/></p>}
