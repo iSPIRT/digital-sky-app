@@ -42,6 +42,15 @@ class AdminAirspaceCategory extends React.Component {
                 this.setState({airspaceCategory: nextProps.airspaceCategory});
             }
         }
+        if(nextProps.airspaceCategory.tempStartTime && nextProps.airspaceCategory.tempEndTime){
+            const airspaceCategory = nextProps.airspaceCategory;
+            airspaceCategory.tempStartTime = moment(nextProps.airspaceCategory.tempStartTime, 'DD-MM-YYYY HH:mm:ss')
+            airspaceCategory.tempEndTime = moment(nextProps.airspaceCategory.tempEndTime, 'DD-MM-YYYY HH:mm:ss')
+            this.setState({tempAirspace:true,airspaceCategory:airspaceCategory})
+        }
+        else{
+            this.setState({tempAirspace:false})
+        }
     }
 
     handleChange(event) {
