@@ -978,7 +978,7 @@ class FaqPage extends React.Component {
                               </li>
                               <li>
                                 <strong>For Import and Local acquisition of RPAS:</strong><br />
-                                Sh. Pramod Nagare- Assistant Director (Ops)<br />(M) 9892066343, <br />email-Id: pramod.dgca@nic.in<br /><br />
+                                Sh. Pramod Nagare- Assistant Director (Ops)<br /> 011-24622495  Extn: 263, <br />email-Id: pramod.dgca@nic.in<br /><br />
                               </li>
                               <li>
                                 <strong>For issuance of  UIN:</strong><br />
