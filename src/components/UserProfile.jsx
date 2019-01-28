@@ -37,8 +37,8 @@ class UserProfile extends React.Component {
                                             </div>
                                             <div className="details">
                                                 <div className="wrap">
-                                                    <p className="title">Pilot Profile</p>
-                                                    <p className="info">{ ( pilotProfileId && pilotProfileId > 0) ? 'View/Edit Pilot Profile' : 'Setup your pilot profile' }</p>
+                                                    <p className="title">Remote Pilot Profile</p>
+                                                    <p className="info">{ ( pilotProfileId && pilotProfileId > 0) ? 'View/Edit Remote Pilot Profile' : 'Setup your Remote Pilot profile' }</p>
                                                 </div>
                                             </div>
                                         </div>

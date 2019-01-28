@@ -11,12 +11,16 @@ class HomeSectionPressRelease extends React.Component {
                     <div className="large-12 cell">
                         <h2>Press Releases</h2>
                         <div className="article large-6">
-                            <a href="http://pib.nic.in/newsite/PrintRelease.aspx?relid=183093" target="_blank"><h4>Government announces Regulations for Drones</h4></a>
+                            <a href="http://pib.nic.in/newsite/PrintRelease.aspx?relid=183093" target="_blank"><h4>Government announces Regulations for RPAs</h4></a>
                             <div className="date">27 August 2018</div>
                         </div>
                         <div className="article large-6">
                             <a href="http://pib.nic.in/newsite/PrintRelease.aspx?relid=186069" target="_blank"><h4>Digital Sky Platform Launched</h4></a>
                             <div className="date">1 December 2018</div>
+                        </div>
+                        <div className="article large-6">
+                            <a href="https://www.globalaviationsummit.in/documents/DRONE-ECOSYSTEM-POLICY-ROADMAP.pdf" target="_blank"><h4>Drone Ecosystem Policy Roadmap</h4></a>
+                            <div className="date">15 January 2019</div>
                         </div>
                     </div>
                 </div>

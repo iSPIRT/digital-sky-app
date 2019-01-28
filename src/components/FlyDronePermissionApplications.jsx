@@ -28,7 +28,7 @@ class FlyDronePermissionApplications extends React.Component {
                   <div className="grid-container">
                     <div className="grid-x grid-padding-x">
                       <div className="large-12 cell">
-                        <h2>Fly Drone Applications</h2>
+                        <h2>Fly RPA Applications</h2>
                         <p><Link to={"/flyDronePermissionApplication?droneId="+this.props.droneId}>Add New</Link><br/></p>
                       </div>
                     </div>

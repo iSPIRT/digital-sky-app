@@ -156,7 +156,7 @@ class OccurrenceReport extends React.Component {
                                     </label>
                                 </div>
                                 <div className="large-12 cell">
-                                    <label>Pilot Details
+                                    <label>Remote Pilot Details
                                         <textarea name="pilotDetails" rows="3" value= {occurrenceReport.pilotDetails } onChange={ this.handleChange } validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
                                         <FieldError fieldErrors={this.state.fieldErrors} field='pilotDetails'/>
                                     </label>

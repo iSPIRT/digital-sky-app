@@ -204,8 +204,8 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                 validateField =  { this.validateFieldValue }
                             />
                             <div className="large-12 cell">
-                                <label>No of Drones
-                                    <input type="number" name="noOfDrones" value= { (applicationForm && applicationForm.noOfDrones)} onChange = { this.handleChange } placeholder="Drone Count" min="1" className={decorateInputClass(this.state.fieldErrors['noOfDrones'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                <label>No of RPAs
+                                    <input type="number" name="noOfDrones" value= { (applicationForm && applicationForm.noOfDrones)} onChange = { this.handleChange } placeholder="RPA Count" min="1" className={decorateInputClass(this.state.fieldErrors['noOfDrones'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
                                     <FieldError fieldErrors={this.state.fieldErrors} field='noOfDrones'/>
                                 </label>
                             </div>

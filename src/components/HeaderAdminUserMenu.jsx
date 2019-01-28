@@ -45,7 +45,7 @@ class HeaderAdminUserMenu extends React.Component {
 
                 <div className="the-user-navigation">
                     <ul>
-                        {isAdmin?<li><Link to="/admin/droneType">Drone Types</Link></li>:null}
+                        {isAdmin?<li><Link to="/admin/droneType">RPA Types</Link></li>:null}
                         {isAdmin?<li><Link to="/dashboard">Dashboard</Link></li>:null}
                         {isAdmin?<li><Link to="/admin/blogList">Manage Blog List</Link></li>:null}
                         {isAdmin?<li><Link to="/admin/airspaceCategoryList">Manage Airspace Categories</Link></li>:null}

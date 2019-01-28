@@ -17,7 +17,7 @@ class AdminPilotView extends React.Component {
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
                                 <div className="large-12 cell">
-                                    <h2>Pilot Profile</h2>
+                                    <h2>Remote Pilot Profile</h2>
                                 </div>
                                 <FormErrors errors = {errors}/>
                                 <div className="large-12 cell">
@@ -47,7 +47,7 @@ class AdminPilotView extends React.Component {
                                         <p>{profile.addressList[0].pinCode}</p>
                                     </div>
                                     <div className="question">
-                                        <h6>Drone Category:</h6>
+                                        <h6>RPA Category:</h6>
                                         <p>{profile.droneCategory}</p>
                                     </div>
                                     <div className="question">

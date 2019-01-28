@@ -35,11 +35,11 @@ class Dashboard extends React.Component {
                                     }
                                     {
                                         hasOperatorProfile &&
-                                        <Link to="/localDroneAcquisitionApplication" className="button">Apply for Local Drone</Link>
+                                        <Link to="/localDroneAcquisitionApplication" className="button">Apply for Local RPA</Link>
                                     }
                                     {
                                         hasOperatorProfile &&
-                                        <Link to="/importDroneApplication" className="button">Apply to Import Drones</Link>
+                                        <Link to="/importDroneApplication" className="button">Apply to Import RPA</Link>
                                     }
                                     {
                                         hasOperatorProfile &&
@@ -80,7 +80,7 @@ class Dashboard extends React.Component {
                                 }
                                 {  hasOperatorProfile &&
                                     <div className="large-6 cell my-drones">
-                                        <h3>My Drones</h3>
+                                        <h3>My RPAs</h3>
                                         {errors.length>0 && <FormErrors errors = {errors}/>}
                                         <DashBoardOperatorDroneView operatorDrones={operatorDrones} droneSelected={this.droneSelected}/>
                                     </div>

@@ -113,7 +113,7 @@ const UINApplicationView = (props) => {
                     <p>{ application.compatiblePayload }</p>
                 </div>
                 <div className="question">
-                    <h6>Drone Category: </h6>
+                    <h6>RPA Category: </h6>
                     <p>{ application.droneCategoryType }</p>
                 </div>
                 <div className="question">
