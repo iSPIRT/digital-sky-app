@@ -7,7 +7,7 @@ class ImportDroneApplicationPage extends DroneAcquisitionApplicationPage {
    
     constructor(props) {
         super(props,applicationFormLoadedAction,loadImportDroneApplicationAction);
-        this.headerText = "Importing Drones";
+        this.headerText = "Importing RPA";
         this.applicationType = "importDrone";
         this.createApplicationAction = createImportDroneApplicationAction;
         this.editApplicationAction = editImportDroneApplicationAction;
