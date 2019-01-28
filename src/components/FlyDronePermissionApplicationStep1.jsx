@@ -124,7 +124,7 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
                                 <div className="large-12 cell">
-                                    <h2>Fly Drone Permission Application</h2>
+                                    <h2>Fly RPA Permission Application</h2>
                                     <FormErrors errors = {errors}/>
                                     <FormErrors errors = {formErrors}/>
                                     <p><Link to={'/flyDronePermissionApplications?droneId='+application.droneId}>Back To Applications</Link></p>
@@ -143,8 +143,8 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
                                     </div>
                                 </div>
                                 <div className="large-12 cell">
-                                    <label>Pilot Id
-                                        <input type="text" placeholder="Pilot Id" name="pilotBusinessIdentifier" onChange={this.handleChange} value={application.pilotBusinessIdentifier} maxLength="100" className={decorateInputClass(this.state.fieldErrors['pilotBusinessIdentifier'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                    <label>Remote Pilot Id
+                                        <input type="text" placeholder="Remote Pilot Id" name="pilotBusinessIdentifier" onChange={this.handleChange} value={application.pilotBusinessIdentifier} maxLength="100" className={decorateInputClass(this.state.fieldErrors['pilotBusinessIdentifier'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
                                         <FieldError fieldErrors={this.state.fieldErrors} field='pilotBusinessIdentifier'/>
                                     </label>
                                 </div>

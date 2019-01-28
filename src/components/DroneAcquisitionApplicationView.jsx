@@ -26,7 +26,7 @@ const DroneAcquisitionApplicationView = (props) => {
                 <p>{applicationForm.applicantNationality}</p>  
             </div>
             <div className="question">
-                <h6>Drone Model:</h6>
+                <h6>RPA Model:</h6>
                 <p>{applicationForm.modelName}</p>  
             </div>
             <div className="question">
@@ -42,7 +42,7 @@ const DroneAcquisitionApplicationView = (props) => {
                 <p>{ applicationForm.dateOfManufacture }</p>
             </div>
             <div className="question">
-                <h6>Count of Drones:</h6>
+                <h6>Count of RPAs:</h6>
                 <p>{ applicationForm.noOfDrones }</p>
             </div>
             {/* <div className="question">

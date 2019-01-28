@@ -39,7 +39,7 @@ class AdminDashboardDroneTypePage extends React.Component {
                                     <div class="large-6 cell">
                                         <div class="buttons-wrap">
                                             <div>
-                                                <a class="button" href="/droneType">Add new Drone</a>
+                                                <a class="button" href="/droneType">Add new RPA</a>
                                             </div>
                                         </div>
                                     </div>
@@ -51,7 +51,7 @@ class AdminDashboardDroneTypePage extends React.Component {
                             <div className="grid-container">
                                 <div className="grid-x grid-padding-x">
                                     <div class="large-6  large-offset-3 cell">
-                                        <h3>Drones</h3>
+                                        <h3>RPAs</h3>
                                         <FormErrors errors = {errors}/>
                                         <DashboardDroneTypeView droneTypes={droneTypes} />
                                     </div>

@@ -84,7 +84,7 @@ class OccurrenceReportView extends React.Component {
                                 </label>
                             </div>
                             <div className="large-12 cell">
-                                <label>Pilot Details
+                                <label>Remote Pilot Details
                                     <p>{occurrenceReport.pilotDetails}</p>
                                 </label>
                             </div>

@@ -67,7 +67,7 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
         return(
             <React.Fragment>
                  { isReadOnly && <div className="large-12 cell">
-                        <label>Drone Type
+                        <label>RPA Type
                         <select name="droneType" onChange = { this.onChangeOfDroneType } 
                                 value = { selectedDroneType && selectedDroneType.id } 
                                 disabled={ droneTypeDisabled }

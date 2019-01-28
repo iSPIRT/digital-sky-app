@@ -77,10 +77,10 @@ class AdminApplicationViewPage extends React.Component {
                     <div className="grid-x grid-padding-x">
                         <div className="large-5 cell">
                             { applicationType === UAOP_APPLICATION_APPLICATION && <label className="page-heading">UAOP Application</label> }
-                            { applicationType === LOCAL_DRONE_ACQUISITION_APPLICATION && <label className="page-heading">Local Drone Acquisition Application</label> }
-                            { applicationType === IMPORT_DRONE_APPLICATION && <label className="page-heading">Import Drone Application</label> }
+                            { applicationType === LOCAL_DRONE_ACQUISITION_APPLICATION && <label className="page-heading">Local RPA Acquisition Application</label> }
+                            { applicationType === IMPORT_DRONE_APPLICATION && <label className="page-heading">Import RPA Application</label> }
                             { applicationType === UIN_APPLICATION && <label className="page-heading">UIN Application</label> }
-                            { applicationType === FLY_DRONE_PERMISSION_APPLICATION && <label className="page-heading">Fly Drone Permission Application</label> }
+                            { applicationType === FLY_DRONE_PERMISSION_APPLICATION && <label className="page-heading">Fly RPA Permission Application</label> }
                             <Link to={'/admin/dashboard?type='+applicationType}>Back</Link>
                         </div>
                     </div>

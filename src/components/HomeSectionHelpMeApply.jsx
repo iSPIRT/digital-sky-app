@@ -124,7 +124,7 @@ class HomeSectionHelpMeApply extends React.Component {
                             <h2>Help me apply</h2>
                         </div>
                         <div className="large-7 cell">
-                            <p className={selected ? 'question selected' : 'question'}>My drone is
+                            <p className={selected ? 'question selected' : 'question'}>My RPA is
                                 <select className={selected ? 'drone_weight selected' : 'drone_weight'}  name="selectDroneWeight" onChange={this.handleChange}>
                                     <option disabled selected value="">Select</option>
                                     <option value="over">over</option>
@@ -135,7 +135,7 @@ class HomeSectionHelpMeApply extends React.Component {
                                 !showAnswerUnder===true && <span className={selected ? '' : 'other-parts'} > I am a
                                     <select className="license_type" name="selectLicenseType" onChange={this.handleChange}>
                                       <option disabled selected value="">Select</option>
-                                      <option value="pilot">pilot</option>
+                                      <option value="pilot">Remote Pilot</option>
                                       <option value="operator">operator</option>
                                       <option value="manufacturer">manufacturer</option>
                                     </select>
@@ -143,22 +143,22 @@ class HomeSectionHelpMeApply extends React.Component {
                                     {
                                         showAnswerOperator && <select className="acquisition_type" name="selectAcquisitionTypeOperator" onChange={this.handleChange}>
                                             <option disabled selected value="">Select</option>
-                                            <option value="in-india">purchasing a drone in India</option>
-                                            <option value="import">imorting a drone in India</option>
+                                            <option value="in-india">purchasing a RPA in India</option>
+                                            <option value="import">imorting a RPA in India</option>
                                         </select>
                                     }
                                     {
                                         showAnswerPilot && <select className="acquisition_type" name="selectAcquisitionTypePilot" onChange={this.handleChange}>
                                             <option disabled selected value="">Select</option>
-                                            <option value="micro">I'm flying a micro drone</option>
-                                            <option value="small">I'm flying a small or above drone</option>
+                                            <option value="micro">I'm flying a micro RPA</option>
+                                            <option value="small">I'm flying a small or above RPA</option>
                                         </select>
                                     }
                                     {
                                         showAnswerManufacturer && <select className="acquisition_type" name="selectAcquisitionTypeManufacturer" onChange={this.handleChange}>
                                             <option disabled selected value="">Select</option>
-                                            <option value="in-india">I'm building a drone in India</option>
-                                            <option value="import">I'm importing a drone</option>
+                                            <option value="in-india">I'm building a RPA in India</option>
+                                            <option value="import">I'm importing a RPA</option>
                                         </select>
                                     }
                                 </span>
@@ -167,10 +167,10 @@ class HomeSectionHelpMeApply extends React.Component {
                             <div className="answer">
                                 <p className={showAnswerUnder ? '' : 'under'} >
                                 <strong>Answer:</strong>
-                                Nano drones are currently exempt from registration, import licenses as well as NPNT compliance. You can fly your drone up to 50 ft and in enclosed premises, today! Please do not forget to read our <Link to="/dos-donts"><font color="FFFFFF">Do’s and Don'ts</font></Link></p>
+                                Nano RPA are currently exempt from registration, import licenses as well as NPNT compliance. You can fly your RPA up to 50 ft and in enclosed premises, today! Please do not forget to read our <Link to="/dos-donts"><font color="FFFFFF">Do’s and Don'ts</font></Link></p>
 
                                 <p className={showAnswerPilot ? '' : 'pilot'} >
-                                As the pilot of a drone, you must be well-versed with the CAR and the Do’s and Don’ts to understand what is required of you. You are primarily responsible for safe flight operations and please be aware of people, structures and entities in your flight plan that you could affect. Please register yourself, to get a Pilot ID that will be required for permission to fly in NPNT complaint drones.<br></br>
+                                As the Remote Pilot of a RPA, you must be well-versed with the CAR and the Do’s and Don’ts to understand what is required of you. You are primarily responsible for safe flight operations and please be aware of people, structures and entities in your flight plan that you could affect. Please register yourself, to get a Remote Pilot ID that will be required for permission to fly in NPNT complaint RPAs.<br></br>
                                 </p>
                                 <p className={showMicroDrone ? '' : 'pilot'} >
                                 Do follow guidelines as per section 12 of the CAR, and avoid areas as per Section 13 of the CAR.<br></br>
@@ -179,22 +179,22 @@ class HomeSectionHelpMeApply extends React.Component {
                                 You are also required to get remote pilot training as per Section 9 of the CAR from an approved FTO.
                                 </p>
                                 <p className={showAnswerOperator ? '' : 'operator'} >
-                                As an owner of a drone, you must be well-versed with the CAR and the Do’s and Don’ts to understand what is required of you. Unless exempted by section 7.2 of the CAR, you will need a UAOP. Refer to Section 7 of the CAR for documentation required.<br></br>
+                                As an owner of a RPA, you must be well-versed with the CAR and the Do’s and Don’ts to understand what is required of you. Unless exempted by section 7.2 of the CAR, you will need a UAOP. Refer to Section 7 of the CAR for documentation required.<br></br>
                                 </p>
                                 <p className={showOperatorAnswerInIndia ? '' : 'operator'} >
-                                Please ensure that the drone you are purchasing is an NPNT compliant drone. You will only be able to generate UINs for NPNT Compliant drone.<br></br>
+                                Please ensure that the RPA you are purchasing is an NPNT compliant RPA. You will only be able to generate UINs for NPNT Compliant RPA.<br></br>
                                 </p>
                                 <p className={showOperatorAnswerImport ? '' : 'operator'} >
-                                For imports, a clearance from DGFT is also required along with NPNT compliance. If the drone is not a registered type in Digital Sky, you will also need to register as a manufacturer.<br></br>
+                                For imports, a clearance from DGFT is also required along with NPNT compliance. If the RPA is not a registered type in Digital Sky, you will also need to register as a manufacturer.<br></br>
                                 </p>
                                 <p className={showAnswerManufacturer ? '' : 'manufacturer'} >
-                                As a manufacturer, you must be well-versed with the CAR & RPAS Guidance Manual to understand compliance requirements before selling your drone. You will need an IT Act-compliant digital certificate to register yourself.<br></br>
+                                As a manufacturer, you must be well-versed with the CAR & RPAS Guidance Manual to understand compliance requirements before selling your RPA. You will need an IT Act-compliant digital certificate to register yourself.<br></br>
                                 </p>
                                 <p className={showImport ? '' : 'manufacturer'} >
-                                DGFT clearance is needed for importing drones.<br />
+                                DGFT clearance is needed for importing RPAs.<br />
                                 </p>
                                 <p className={showBuildingIndia ? '' : 'manufacturer'} >
-                                Any make of drone you manufacture, assemble or import will need to be NPNT compliant. Digital copies of appropriate compliance certificates are needed to add your make of drone. Once approved, your customers who are registered operators of your make of drone, will be able to generate UINs.
+                                Any make of RPA you manufacture, assemble or import will need to be NPNT compliant. Digital copies of appropriate compliance certificates are needed to add your make of RPA. Once approved, your customers who are registered operators of your make of RPA, will be able to generate UINs.
                                 </p>
                                 <Link to="/register" className={selected ? 'button button-light-clean show' : 'button button-light-clean'} >Register</Link>
                             </div>

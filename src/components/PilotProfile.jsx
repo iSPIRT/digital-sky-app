@@ -123,7 +123,7 @@ class PilotProfile extends React.Component {
         }
 
         if(this.state.profile.droneCategoryTypes.size<1){
-            formErrors.push("Please select a drone category");
+            formErrors.push("Please select a RPA category");
         }
 
         if(formErrors.length > 0){
@@ -155,8 +155,8 @@ class PilotProfile extends React.Component {
                   <div className="grid-container">
                     <div className="grid-x grid-padding-x">
                       <div className="large-12 cell">
-                        <h2>Basic Pilot Profile</h2>
-                        { submitted && ( !errors || errors.length === 0)  &&  pilotProfileSaved && <p> Successfully Saved Pilot Profile <br/></p>}
+                        <h2>Basic Remote Pilot Profile</h2>
+                        { submitted && ( !errors || errors.length === 0)  &&  pilotProfileSaved && <p> Successfully Saved Remote Pilot Profile <br/></p>}
                         <p><Link to="/profile">Back to Main Profile</Link></p>
                       </div>
                     </div>
@@ -236,7 +236,7 @@ class PilotProfile extends React.Component {
                                          <input type="file" id="trainingCertificateDoc" name="trainingCertificateDoc" className="show-for-sr" accept=".pdf" onChange={this.handleChange}/>
                                 </div>
                                 <div className="large-12 cell" id="drone-category">
-                                    <label className="main">Drone Category</label>
+                                    <label className="main">RPA Category</label>
                                     <div className="category-wrap">
                                         <label className="radio">Nano
                                             <span className="info">Less than or equal to <br/>250 grams</span>
@@ -279,7 +279,7 @@ class PilotProfile extends React.Component {
                                 </div>                                
                                 <div className="large-12 cell">
 
-                                    { submitted && ( !errors || errors.length === 0)  &&  pilotProfileSaved && <p> Successfully Saved Pilot Profile <br/></p>}
+                                    { submitted && ( !errors || errors.length === 0)  &&  pilotProfileSaved && <p> Successfully Saved Remote Pilot Profile <br/></p>}
 
                                     <button type="submit" className="button" name="button">{pilotProfileSaved ? 'Update' : 'Submit' }</button>
                                     {
