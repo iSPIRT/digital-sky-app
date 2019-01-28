@@ -263,14 +263,14 @@ class FaqPage extends React.Component {
                                     </a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>It is an online IT platform developed for handling UIN, UAOP applications,
-                                            permission to fly drones in India. The link shall be available in Homepage of
+                                            permission to fly RPAs in India. The link shall be available in Homepage of
                                             DGCA website
                                             <a href="http://www.dgca.nic.in" target="_blank">www.dgca.nic.in</a>, and it will be operational from 1st December, 2018.
                                         </p>
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">5. What permissions are required to operate drones and from where?</a>
+                                    <a href="#" className="accordion-title">5. What permissions are required to operate RPAs and from where?</a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>
                                             Roles & responsibilities of govt. stakeholders on various aspects of operation
@@ -356,7 +356,7 @@ class FaqPage extends React.Component {
                                                     </td>
                                                     <td>Wireless Planning and Coordination Wing, DoT</td>
                                                     <td>
-                                                        <p>Equipment Type Approval (ETA) or License for drone
+                                                        <p>Equipment Type Approval (ETA) or License for RPA
                                                         </p>
                                                     </td>
                                                 </tr>
@@ -399,7 +399,7 @@ class FaqPage extends React.Component {
 
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">6. What are the requirements for import of
-                                        Drones (with or without camera) in India?
+                                        RPAs (with or without camera) in India?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
                                         <ul>
@@ -447,7 +447,7 @@ class FaqPage extends React.Component {
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">9. I am intending to locally purchase one
-                                        drone operating in de-licensed frequency band, should I still require ETA from
+                                        RPA operating in de-licensed frequency band, should I still require ETA from
                                         WPC Wing, DoT?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
@@ -458,11 +458,11 @@ class FaqPage extends React.Component {
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">10. Whether drones fall under the category
+                                    <a href="#" className="accordion-title">10. Whether RPAs fall under the category
                                         of restricted items for carrying in hand baggage in aircrafts?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
-                                        <p>Drones are restricted items and can’t be carried in hand baggage.
+                                        <p>RPAs are restricted items and can’t be carried in hand baggage.
                                         </p>
                                     </div>
                                 </li>
@@ -479,11 +479,11 @@ class FaqPage extends React.Component {
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">12. I am a foreigner and want to fly drones
+                                    <a href="#" className="accordion-title">12. I am a foreigner and want to fly RPAs
                                         in India. What are the permission do I require?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
-                                        <p>Foreigners are currently not allowed to fly drones in India. For commercial
+                                        <p>Foreigners are currently not allowed to fly RPAs in India. For commercial
                                             purpose, they need to lease RPAS to an Indian entity who in-turn will obtain
                                             Unique Identification Number (UIN) and UAOP from DGCA.
                                         </p>
@@ -516,7 +516,7 @@ class FaqPage extends React.Component {
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">15. Where do I pay fees for UIN and UAOP for drone?
+                                    <a href="#" className="accordion-title">15. Where do I pay fees for UIN and UAOP for RPA?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>You will be prompted for payment through payment Gateway in the Digital Sky
@@ -531,8 +531,8 @@ class FaqPage extends React.Component {
                                     <a href="#" className="accordion-title">16. How do I mark my unmanned aircraft with my UIN?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
-                                        <p>After you have been issued with UIN for a particular drone; engrave it on a
-                                            fire resistant plate and firmly affix on your drone. Ensure the number remains
+                                        <p>After you have been issued with UIN for a particular RPA; engrave it on a
+                                            fire resistant plate and firmly affix on your RPA. Ensure the number remains
                                             affixed to the aircraft during routine handling and all operating conditions and
                                             is readily accessible and legible upon close visual inspection.</p>
                                     </div>
@@ -595,7 +595,7 @@ class FaqPage extends React.Component {
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">23. I was travelling and lost my bag along
-                                        with my drone. Whom should I contact now?
+                                        with my RPA. Whom should I contact now?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>Please lodge FIR immediately in local police and report occurrence in Digital
@@ -604,15 +604,15 @@ class FaqPage extends React.Component {
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">24. My drone is completely broken. Can I use
-                                        its UIN for another drone of same make and model?</a>
+                                    <a href="#" className="accordion-title">24. My RPA is completely broken. Can I use
+                                        its UIN for another RPA of same make and model?</a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>No. The operator has to apply for fresh UIN.
                                         </p>
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">25. I want to sell my used drone to someone. What is the procedure?</a>
+                                    <a href="#" className="accordion-title">25. I want to sell my used RPA to someone. What is the procedure?</a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>RPAS if issued with UIN, cannot be transferred or disposed-off without
                                             permission from DGCA. You are required for cancellation of UIN and the buyer has
@@ -630,7 +630,7 @@ class FaqPage extends React.Component {
                                     <div className="accordion-content" data-tab-content>
                                         <p>Foreign Entity has to lease their RPAS to the Indian Entity. The Indian
                                             entity shall apply for UIN and UAOP. Remote Pilot (if a foreign national) should
-                                            be security cleared. Foreigners are currently not allowed to fly drones in
+                                            be security cleared. Foreigners are currently not allowed to fly RPAs in
                                             India.
                                         </p>
                                     </div>
@@ -647,7 +647,7 @@ class FaqPage extends React.Component {
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">28. I have a Nano drone. What permissions to I require?
+                                    <a href="#" className="accordion-title">28. I have a Nano RPA. What permissions to I require?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>Nano RPA (less than 250 gm) is exempted from obtaining UIN and UAOP. Please
@@ -661,7 +661,7 @@ class FaqPage extends React.Component {
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">29. I have a micro drone engaged in wedding
+                                    <a href="#" className="accordion-title">29. I have a micro RPA engaged in wedding
                                         photography, what permission do I need to keep doing it legally.
                                     </a>
                                     <div className="accordion-content" data-tab-content>
@@ -671,13 +671,13 @@ class FaqPage extends React.Component {
                                                 </p>
                                             </li>
                                             <li>
-                                                <p>You will not require an UAOP if you are flying your drone below 200 ft (60m)
+                                                <p>You will not require an UAOP if you are flying your RPA below 200 ft (60m)
                                                     AGL in uncontrolled airspace/ enclosed premises. However, you shall intimate the
                                                     local police office at least 24 hours prior to conduct of actual operations.
                                                 </p>
                                             </li>
                                             <li>
-                                                <p>Your drone needs to NPNT compliant and you have to obtain permission through
+                                                <p>Your RPA needs to NPNT compliant and you have to obtain permission through
                                                     digital sky before flying.
                                                 </p>
                                             </li>
@@ -686,12 +686,12 @@ class FaqPage extends React.Component {
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">30. I am an individual want to film my
-                                        friend’s marriage using drones. What permission do I need?
+                                        friend’s marriage using RPAs. What permission do I need?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
-                                        <p>If you have a micro drone, flying within enclosed premises and below 200ft
+                                        <p>If you have a micro RPA, flying within enclosed premises and below 200ft
                                             then; you need to apply for UIN and to intimate local police before operating
-                                            your drone.You will require UAOP and NPNT if you are flying in controlled
+                                            your RPA.You will require UAOP and NPNT if you are flying in controlled
                                             airspace.</p>
                                         <p>Also ensure, no other manned or unmanned aircraft is flying nearby.</p>
                                     </div>
@@ -704,7 +704,7 @@ class FaqPage extends React.Component {
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">32. I want to deliver foods using drones and
+                                    <a href="#" className="accordion-title">32. I want to deliver foods using RPAs and
                                         it will be fully autonomous and fly below 50 ft. whom should I contact for
                                         necessary permission.
                                     </a>
@@ -713,7 +713,7 @@ class FaqPage extends React.Component {
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">33. Do I require remote pilot license to fly drone?
+                                    <a href="#" className="accordion-title">33. Do I require remote pilot license to fly RPA?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>No, as of now but you need to undergo minimum training requirements specified
@@ -724,7 +724,7 @@ class FaqPage extends React.Component {
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">34. What are the minimum requirements and
-                                        eligibility for becoming a remote pilot for flying drones?
+                                        eligibility for becoming a remote pilot for flying RPAs?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>You should have attained 18 years of age, having passed 10th exam in English,
@@ -756,8 +756,8 @@ class FaqPage extends React.Component {
                                     <a href="#" className="accordion-title">37. What are the mandatory equipment required to fly upto 400 ft. AGL?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
-                                        <p>Flying drone upto 400 ft. AGL and visual line of sight are allowed. However,
-                                            you need to have the following equipment installed on your drones:
+                                        <p>Flying RPA upto 400 ft. AGL and visual line of sight are allowed. However,
+                                            you need to have the following equipment installed on your RPAs:
                                         </p>
                                         <ol type="a">
                                             <li>
@@ -805,14 +805,14 @@ class FaqPage extends React.Component {
                                     </a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>SOP or standard operating procedure is a catalogue of procedures that is
-                                            agreed between prospective UAOP holder and DGCA for safe operation of drones in
+                                            agreed between prospective UAOP holder and DGCA for safe operation of RPAs in
                                             India.
                                         </p>
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">
-                                        39. What is the visual line of sight for flying a drone?
+                                        39. What is the visual line of sight for flying a RPA?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>Generally 450m (unaided) in Visual Meteorological Conditions (VMC) with a
@@ -822,14 +822,14 @@ class FaqPage extends React.Component {
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">
-                                        40. I am a wedding photographer and I have a micro drone. Most of the marriages
-                                        in Northern India happen after sunset. Can I use my drone for covering marriages
+                                        40. I am a wedding photographer and I have a micro RPA. Most of the marriages
+                                        in Northern India happen after sunset. Can I use my RPA for covering marriages
                                         at night?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
-                                        <p>All drone operations are restricted to day light and within visual line of
+                                        <p>All RPA operations are restricted to day light and within visual line of
                                             sight. However, if you are shooting in well-lit enclosed premises using micro
-                                            drone upto 200 ft. AGL is allowable. Ensure your drone is NPNT compliant and
+                                            RPA upto 200 ft. AGL is allowable. Ensure your RPA is NPNT compliant and
                                             issued with UIN. Also, you need to inform local police before flying.
                                         </p>
                                         <p>Ensure that you follow Do’s and Don’ts and respect individuals’ privacy.
@@ -838,19 +838,19 @@ class FaqPage extends React.Component {
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">
-                                        41. I have a Nano drone, should I also intimate local police each time before I
+                                        41. I have a Nano RPA, should I also intimate local police each time before I
                                         fly?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>No. But there is no harm in keeping your local police office informed. In
-                                            addition, please go through Do’s and Don’ts before flying your Nano drone each
+                                            addition, please go through Do’s and Don’ts before flying your Nano RPA each
                                             time.
                                         </p>
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">
-                                        42. Can I use my small drone for agricultural purpose?
+                                        42. Can I use my small RPA for agricultural purpose?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>RPAS can be used for agricultural purpose except for the purpose of spraying
@@ -860,27 +860,27 @@ class FaqPage extends React.Component {
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">
-                                        43. I have developed a drone that can carry passenger, where can I test it?</a>
+                                        43. I have developed a RPA that can carry passenger, where can I test it?</a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>Carriage of explosives, animal or human payload are not allowed at this
-                                            instance. Nevertheless, you can test your drones with dummy on any of the test
+                                            instance. Nevertheless, you can test your RPAs with dummy on any of the test
                                             sites specified in the CAR.
                                         </p>
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">
-                                        44. What are no-drone zones?
+                                        44. What are no-RPA zones?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
-                                        <p>Areas over which flying a drone is prohibited/ restricted. Please go through
-                                            the list of nodrone zones in Civil Aviation Requirements.
+                                        <p>Areas over which flying a RPA is prohibited/ restricted. Please go through
+                                            the list of RPA zones in Civil Aviation Requirements.
                                         </p>
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">
-                                        45. What is the minimum distance to fly drones from the border areas?</a>
+                                        45. What is the minimum distance to fly RPAs from the border areas?</a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>You need to keep at least 25 km distance from international border which
                                             includes Line of Control (LoC), Line of Actual Control (LAC) and Actual Ground
@@ -888,17 +888,17 @@ class FaqPage extends React.Component {
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">46. What if I require to fly over a no-drone
+                                    <a href="#" className="accordion-title">46. What if I require to fly over a no-RPA
                                         zone for a genuine purpose? How do I obtain special authorisation for the same?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
-                                        <p>Flying drone over no-drone zone is prohibited. However, DGCA may authorize
+                                        <p>Flying RPA over no-RPA zone is prohibited. However, DGCA may authorize
                                             such operations on case-to-case basis subject to approval of MoD.
                                         </p>
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">47. What if I want to test my drone that
+                                    <a href="#" className="accordion-title">47. What if I want to test my RPA that
                                         built for night operation and beyond meteorological conditions, will I be
                                         permitted by DGCA?
                                     </a>
@@ -907,28 +907,28 @@ class FaqPage extends React.Component {
                                             justification is provided by you for safe conduct of RPAS operation. Please
                                             note, DGCA may impose additional conditions for permitting such operations.
                                         </p>
-                                        <p>In addition, you may test your drone in the test sites specified in the Civil
+                                        <p>In addition, you may test your RPA in the test sites specified in the Civil
                                             Aviation Requirements.
                                         </p>
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">48. What is the minimum amount of insurance should I require for my drone?
+                                    <a href="#" className="accordion-title">48. What is the minimum amount of insurance should I require for my RPA?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>DGCA has not stipulated any requirement on minimum amount of insurance for
-                                            any category of drone. It should be of an adequate amount to cover the risks,
-                                            damages or other factors that is posed by operation of drone. Further, it is an
+                                            any category of RPA. It should be of an adequate amount to cover the risks,
+                                            damages or other factors that is posed by operation of RPA. Further, it is an
                                             agreement between the insurance company and you (the policy holder).
                                         </p>
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
                                     <a href="#" className="accordion-title">49. What will be the enforcement action on
-                                        violation of the rules and regulations for drones?
+                                        violation of the rules and regulations for RPAs?
                                     </a>
                                     <div className="accordion-content" data-tab-content>
-                                        <p>In case of violation of the rules and regulations for drones, the UIN/UAOP
+                                        <p>In case of violation of the rules and regulations for RPAs, the UIN/UAOP
                                             issued by DGCA shall be suspended/cancelled.
                                         </p>
                                         <p>Violation of compliance to any of the requirements and falsification of
@@ -939,7 +939,7 @@ class FaqPage extends React.Component {
                                     </div>
                                 </li>
                                 <li className="accordion-item" data-accordion-item>
-                                    <a href="#" className="accordion-title">50. Where can I lodge my grievance regarding Drones?</a>
+                                    <a href="#" className="accordion-title">50. Where can I lodge my grievance regarding RPAs?</a>
                                     <div className="accordion-content" data-tab-content>
                                         <p>You can lodge your grievance in
                                             <a href="http://www.pgportal.gov.in" target="_blank">www.pgportal.gov.in</a>

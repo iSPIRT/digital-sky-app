@@ -75,15 +75,15 @@ class DashboardApplicationView extends React.Component {
         if(!applications) return null;
         if(applications.length < 1){
             return  <div className="application no-data">
-                        <p>Once you’ve applied for a drone, you will see your application statuses here.</p>
+                        <p>Once you’ve applied for a RPA, you will see your application statuses here.</p>
                         <a onClick={this.toggle} className="button">Apply now</a>
                         <div className="reveal-overlay" style={{display: toggle?'block':'none',top:'21px'}}>
                             <div className="reveal" id="application-status-modal" style={{display: toggle?'block':'none',top:'21px'}} aria-hidden={toggle?"false":"true"} data-reveal>
                             {
-                                (hasPilotProfile || hasOperatorProfile) && <Link to="/localDroneAcquisitionApplication" className="button">Apply here for Local Drone</Link>
+                                (hasPilotProfile || hasOperatorProfile) && <Link to="/localDroneAcquisitionApplication" className="button">Apply here for Local RPA</Link>
                             }
                             {
-                                (hasPilotProfile || hasOperatorProfile) && <Link to="/importDroneApplication" className="button">Apply here to Import Drones</Link>
+                                (hasPilotProfile || hasOperatorProfile) && <Link to="/importDroneApplication" className="button">Apply here to Import RPA</Link>
                             }
                             {
                                 hasOperatorProfile && <Link to="/uaopApplication" className="button">Apply here for UAOP</Link>

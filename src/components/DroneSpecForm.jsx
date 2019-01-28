@@ -61,7 +61,7 @@ class DroneSpecForm extends React.Component {
                             validateField = { validateField } 
                 />
                 <div className="large-12 cell">
-                    <label>Drone Category
+                    <label>RPA Category
                         <select name="droneCategoryType" value={ selectedDroneType && selectedDroneType.droneCategoryType }  onChange={ this.handleChange } disabled = { isReadOnly } className={fieldErrors && decorateInputClass(fieldErrors['droneCategoryType'],[])} validate="required" onBlur={(e) => validateField(e.target)}>
                         { (!selectedDroneType || !selectedDroneType.droneCategoryType) && <option default key="-1" value="-1">Select</option> }
                             { rpaSelectCategoryOptions }

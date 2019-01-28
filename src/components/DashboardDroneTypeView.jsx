@@ -30,7 +30,7 @@ class DashboardDroneTypeView extends React.Component {
     render() {
         const {droneTypes} = this.props;
         if(!droneTypes) return null;
-        if(droneTypes.length < 1) return <p> No Drones to Show </p>;
+        if(droneTypes.length < 1) return <p> No RPA to Show </p>;
         return  (
             <div  className="drones-wrap">
                 {this.dronesMarkup(droneTypes)}
