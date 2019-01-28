@@ -18,6 +18,10 @@ class HomeSectionPressRelease extends React.Component {
                             <a href="http://pib.nic.in/newsite/PrintRelease.aspx?relid=186069" target="_blank"><h4>Digital Sky Platform Launched</h4></a>
                             <div className="date">1 December 2018</div>
                         </div>
+                        <div className="article large-6">
+                            <a href="https://www.globalaviationsummit.in/documents/DRONE-ECOSYSTEM-POLICY-ROADMAP.pdf" target="_blank"><h4>Drone Ecosystem Policy Roadmap</h4></a>
+                            <div className="date">15 January 2019</div>
+                        </div>
                     </div>
                 </div>
             </div>

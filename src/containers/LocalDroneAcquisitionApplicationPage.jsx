@@ -7,7 +7,7 @@ class LocalDroneAcqusitionApplicationPage extends DroneAcquisitionApplicationPag
    
     constructor(props) {
         super(props,applicationFormLoadedAction,loadLocalDroneAcquisitionApplicationAction);
-        this.headerText = "Acquisition of Local Drones";
+        this.headerText = "Acquisition of Local RPA";
         this.applicationType = "localDroneAcquisition";
         this.createApplicationAction = createLocalDroneAcquisitionApplicationAction;
         this.editApplicationAction = editLocalDroneAcquisitionApplicationAction;
