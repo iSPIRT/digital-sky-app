@@ -114,14 +114,18 @@ class FlyDronePermissionApplicationView extends React.Component {
                     <h6>RPA Id:</h6>
                     <p>{application.droneId}</p>
                 </div>
+                { application.startDateTime &&
                 <div className="question">
                     <h6>Start Date and Time:</h6>
                     <p>{application.startDateTime}</p>
                 </div>
+                }
+                { application.endDateTime &&
                 <div className="question">
                     <h6>End Date and Time:</h6>
                     <p>{application.endDateTime}</p>
                 </div>
+                }
                 <div className="question">
                     <h6>Recurrence Time Pattern (Cron Quartz Expression):</h6>
                     <p>{application.recurringTimeExpression}</p>

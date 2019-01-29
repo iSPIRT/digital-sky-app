@@ -3,7 +3,8 @@ import applicationProperties from "../helpers/applicationPropertiesHelper";
 import { fromLonLat } from "ol/proj";
 
 export const userAirspaceCategoryService = {
-  loadAirspaceCategories
+  loadAirspaceCategories,
+  loadAirspaceCategoriesByHeight
 };
 
 function loadAirspaceCategories(application) {
@@ -37,16 +38,28 @@ function loadAirspaceCategories(application) {
     return fetch(apiRoot + "/airspaceCategory/list", requestOptions)
       .then(handleResponse)
       .then(mergeAirspaceCategoriesByType);
-  // if(application.maxAltitude!=null || application.maxAltitude!=undefined){
-  //   return fetch(apiRoot + "/airspaceCategory/listHeight?maxHeight="+application.maxAltitude, requestOptions)
-  //   .then(handleResponse)
-  //   .then(mergeAirspaceCategoriesByType);
-  // }
-  // return fetch(apiRoot + "/airspaceCategory/list", requestOptions)
-  //   .then(handleResponse)
-  //   .then(mergeAirspaceCategoriesByType);
+}
 
-  //todo: figure out if this is required and can be put just api
+function loadAirspaceCategoriesByHeight(application) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { Authorization: authToken }
+  };
+  if (application.maxAltitude) {
+    return fetch(
+      apiRoot +
+        "/airspaceCategory/listHeight?maxHeight=" +
+        application.maxAltitude,
+      requestOptions
+    )
+      .then(handleResponse)
+      .then(mergeAirspaceCategoriesByType);
+  } else
+    return fetch(apiRoot + "/airspaceCategory/list", requestOptions)
+      .then(handleResponse)
+      .then(mergeAirspaceCategoriesByType);
 }
 
 function handleResponse(response) {

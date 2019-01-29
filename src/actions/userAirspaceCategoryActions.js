@@ -25,3 +25,26 @@ export const loadUserAirspaceCategoriesAction = application => {
     return { type: LOAD_USER_AIRSPACE_CATEGORIES_FAILURE, errors };
   }
 };
+
+export const loadUserAirspaceCategoriesByHeightAction = application => {
+  return dispatch => {
+    userAirspaceCategoryService
+      .loadAirspaceCategoriesByHeight(application)
+      .then(
+        airspaceCategories => {
+          dispatch(success(airspaceCategories));
+        },
+        errors => {
+          dispatch(failure(errors));
+        }
+      );
+  };
+
+  function success(airspaceCategories) {
+    return { type: LOAD_USER_AIRSPACE_CATEGORIES_SUCCESS, airspaceCategories };
+  }
+
+  function failure(errors) {
+    return { type: LOAD_USER_AIRSPACE_CATEGORIES_FAILURE, errors };
+  }
+};
