@@ -19,7 +19,7 @@ import { downloadFile } from '../actions/downloadFileActions';
 
 import { approveApplicationsAction } from '../actions/adminActions';
 
-import { loadUserAirspaceCategoriesAction} from '../actions/userAirspaceCategoryActions';
+import { loadUserAirspaceCategoriesByHeightAction} from '../actions/userAirspaceCategoryActions';
 
 import { loadApplicationsAction } from '../actions/adminActions';
 
@@ -31,7 +31,7 @@ class AdminApplicationViewPage extends React.Component {
         this.downloadDocument = this.downloadDocument.bind(this);
         this.updateApplicationStatus = this.updateApplicationStatus.bind(this);
         const queryParams = queryString.parse(this.props.location.search);
-        this.loadAirspaceCategories = this.loadAirspaceCategories.bind(this);
+        this.loadAirspaceCategoriesByHeight = this.loadAirspaceCategoriesByHeight.bind(this);
         this.state = {
             applicationType: queryParams.type,
             applicationId: queryParams.id
@@ -46,8 +46,8 @@ class AdminApplicationViewPage extends React.Component {
         this.props.dispatch(downloadFile(filePath, documentName));
     }
 
-    loadAirspaceCategories() {
-        return this.props.dispatch(loadUserAirspaceCategoriesAction());
+    loadAirspaceCategoriesByHeight(application) {
+        return this.props.dispatch(loadUserAirspaceCategoriesByHeightAction(application));
     }
 
     updateApplicationStatus(status, event){
@@ -93,7 +93,7 @@ class AdminApplicationViewPage extends React.Component {
                             { applicationType === LOCAL_DRONE_ACQUISITION_APPLICATION && <DroneAcquisitionApplicationView applicationForm={currentApplication} downloadDocument={this.downloadDocument} type="localDroneAcquisition" /> }
                             { applicationType === IMPORT_DRONE_APPLICATION && <DroneAcquisitionApplicationView applicationForm={currentApplication} downloadDocument={this.downloadDocument} type="importDrone" /> }
                             { applicationType === UIN_APPLICATION && <UINApplicationView application={currentApplication} downloadDocument={this.downloadDocument} /> }
-                            { applicationType === FLY_DRONE_PERMISSION_APPLICATION && <FlyDronePermissionApplicationView application={currentApplication} airspaceCategories={airspaceCategories} downloadDocument={this.downloadDocument} loadAirspaceCategories={this.loadAirspaceCategories}/> }
+                            { applicationType === FLY_DRONE_PERMISSION_APPLICATION && <FlyDronePermissionApplicationView application={currentApplication} airspaceCategories={airspaceCategories} downloadDocument={this.downloadDocument} loadAirspaceCategories={this.loadAirspaceCategoriesByHeight}/> }
                         </div>
                      </div>
                 </div>
