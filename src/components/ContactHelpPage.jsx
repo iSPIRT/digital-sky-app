@@ -39,6 +39,16 @@ class ContactHelpPage extends React.Component {
                                         Sh. K. Thulasiraman- Deputy Director (AE)<br /> 011-24522500 Etxn. 448, <br />e-mail ID:
                                         thulasiraman.dgca@nic.in<br /><br />
                                     </li>
+                                    <li>
+                                        <strong>For import:</strong><br />
+                                        Sh. S. P. Roy, Joint DGFT, DGFT,<br /> 011-2306 2240, <br />e-mail ID:
+                                        shyama.roy@nic.in<br /><br />
+                                    </li>
+                                    <li>
+                                        <strong>For ETA:</strong><br />
+                                        Sh. Bhagirath, Sr. DWA, WPC, DoT,<br /> 011-2373 1488 , <br />e-mail ID:
+                                        bhagirath.32@gov.in<br /><br />
+                                    </li>
                                 </ul>
                             </div>
                         </div>
