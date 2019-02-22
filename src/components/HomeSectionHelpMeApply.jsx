@@ -144,7 +144,7 @@ class HomeSectionHelpMeApply extends React.Component {
                                         showAnswerOperator && <select className="acquisition_type" name="selectAcquisitionTypeOperator" onChange={this.handleChange}>
                                             <option disabled selected value="">Select</option>
                                             <option value="in-india">purchasing a RPA in India</option>
-                                            <option value="import">imorting a RPA in India</option>
+                                            <option value="import">importing a RPA in India</option>
                                         </select>
                                     }
                                     {
