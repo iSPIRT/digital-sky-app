@@ -156,6 +156,18 @@ class FlyDronePermissionApplicationView extends React.Component {
                     <p>{application.approverComments}</p>
                 </div>
                 }
+                { application.adcNumber &&
+                <div className="question">
+                    <h6>ADC number:</h6>
+                    <p>{application.adcNumber}</p>
+                </div>
+                }
+                { application.ficNumber &&
+                <div className="question">
+                    <h6>FIC number:</h6>
+                    <p>{application.ficNumber}</p>
+                </div>
+                }
                 <div className="question">
                     <h6>Fly Area:</h6>
                     <div ref="mapContainer" className="map"> </div>
