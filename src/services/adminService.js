@@ -96,6 +96,17 @@ function loadAirspaceCategories() {
 function saveAirspaceCategory(airspaceCategory) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
+  if (airspaceCategory.geoJson.type === "FeatureCollection") {
+    airspaceCategory.geoJson.features.forEach((feature, index) => {
+      airspaceCategory.geoJson.features[index] = checkAndAddDefaultAreaLength(
+        feature
+      );
+    });
+  } else {
+    airspaceCategory.geoJson = checkAndAddDefaultAreaLength(
+      airspaceCategory.geoJson
+    );
+  }
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: authToken },
@@ -108,6 +119,17 @@ function saveAirspaceCategory(airspaceCategory) {
 function updateAirspaceCategory(id, airspaceCategory) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
+  if (airspaceCategory.geoJson.type === "FeatureCollection") {
+    airspaceCategory.geoJson.features.forEach((feature, index) => {
+      airspaceCategory.geoJson.features[index] = checkAndAddDefaultAreaLength(
+        feature
+      );
+    });
+  } else {
+    airspaceCategory.geoJson = checkAndAddDefaultAreaLength(
+      airspaceCategory.geoJson
+    );
+  }
   const requestOptions = {
     method: "PUT",
     headers: { "Content-Type": "application/json", Authorization: authToken },
@@ -126,4 +148,17 @@ function handleResponse(response) {
     }
     return data;
   });
+}
+
+function checkAndAddDefaultAreaLength(airspaceCategory) {
+  if (
+    airspaceCategory.properties != null &&
+    airspaceCategory.properties != {}
+  ) {
+    if (!airspaceCategory.properties.SHAPE_Area)
+      airspaceCategory.properties.SHAPE_Area = null;
+    if (!airspaceCategory.properties.SHAPE_Length)
+      airspaceCategory.properties.SHAPE_Length = null;
+  }
+  return airspaceCategory;
 }
