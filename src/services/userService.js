@@ -56,6 +56,8 @@ function logout() {
   localStorage.removeItem("userId");
   localStorage.removeItem("userName");
   localStorage.removeItem("isAdmin");
+  localStorage.removeItem("isAtcAdmin");
+  localStorage.removeItem("isAfmluAdmin");
 }
 
 function sendResetPasswordLink(email) {
@@ -297,6 +299,8 @@ function loginUser(token) {
     localStorage.setItem("accessToken", token.accessToken);
     localStorage.setItem("userId", token.id);
     localStorage.setItem("isAdmin", token.isAdmin);
+    localStorage.setItem("isAtcAdmin", token.isAtcAdmin);
+    localStorage.setItem("isAfmluAdmin", token.isAfmluAdmin);
     localStorage.setItem("pilotProfileId", token.pilotProfileId);
     localStorage.setItem("manufacturerProfileId", token.manufacturerProfileId);
     localStorage.setItem("userName", token.username);

@@ -11,5 +11,9 @@ export function userDetails() {
     "organizationOperatorProfileId"
   );
   user.manufacturerProfileId = localStorage.getItem("manufacturerProfileId");
+  user.isAtcAdmin =
+    localStorage.getItem("isAtcAdmin") === "true" ? true : false;
+  user.isAfmluAdmin =
+    localStorage.getItem("isAfmluAdmin") === "true" ? true : false;
   return user;
 }
