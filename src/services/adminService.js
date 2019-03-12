@@ -3,6 +3,8 @@ import applicationProperties from "../helpers/applicationPropertiesHelper";
 export const adminService = {
   loadApplications,
   approveApplication,
+  approveByAtcApplication,
+  approveByAfmluApplication,
   saveBlog,
   updateBlog,
   loadBlogList,
@@ -11,7 +13,7 @@ export const adminService = {
   updateAirspaceCategory
 };
 
-function loadApplications(applicationType) {
+function loadApplications(applicationType, adminType) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
@@ -19,10 +21,21 @@ function loadApplications(applicationType) {
     headers: { Authorization: authToken }
   };
 
-  return fetch(
-    apiRoot + "/applicationForm/" + applicationType + "/getAll",
-    requestOptions
-  ).then(handleResponse);
+  if (adminType === "atcAdmin")
+    return fetch(
+      apiRoot + "/applicationForm/" + applicationType + "/getAllAtc",
+      requestOptions
+    ).then(handleResponse);
+  else if (adminType === "afmluAdmin")
+    return fetch(
+      apiRoot + "/applicationForm/" + applicationType + "/getAllAfmlu",
+      requestOptions
+    ).then(handleResponse);
+  else
+    return fetch(
+      apiRoot + "/applicationForm/" + applicationType + "/getAll",
+      requestOptions
+    ).then(handleResponse);
 }
 
 function approveApplication(
@@ -42,6 +55,48 @@ function approveApplication(
     "/applicationForm/" +
     applicationType +
     "/approve/" +
+    applicationId;
+  return fetch(url, requestOptions).then(handleResponse);
+}
+
+function approveByAtcApplication(
+  applicationType,
+  applicationId,
+  applicationApproval
+) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", Authorization: authToken },
+    body: JSON.stringify(applicationApproval)
+  };
+  const url =
+    apiRoot +
+    "/applicationForm/" +
+    applicationType +
+    "/approveByAtc/" +
+    applicationId;
+  return fetch(url, requestOptions).then(handleResponse);
+}
+
+function approveByAfmluApplication(
+  applicationType,
+  applicationId,
+  applicationApproval
+) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", Authorization: authToken },
+    body: JSON.stringify(applicationApproval)
+  };
+  const url =
+    apiRoot +
+    "/applicationForm/" +
+    applicationType +
+    "/approveByAfmlu/" +
     applicationId;
   return fetch(url, requestOptions).then(handleResponse);
 }
@@ -152,8 +207,8 @@ function handleResponse(response) {
 
 function checkAndAddDefaultAreaLength(airspaceCategory) {
   if (
-    airspaceCategory.properties != null &&
-    airspaceCategory.properties != {}
+    airspaceCategory.properties !== null &&
+    airspaceCategory.properties !== {}
   ) {
     if (!airspaceCategory.properties.SHAPE_Area)
       airspaceCategory.properties.SHAPE_Area = null;
@@ -161,4 +216,32 @@ function checkAndAddDefaultAreaLength(airspaceCategory) {
       airspaceCategory.properties.SHAPE_Length = null;
   }
   return airspaceCategory;
+}
+
+function loadApplicationsForAtcAdmin(applicationType) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { Authorization: authToken }
+  };
+
+  return fetch(
+    apiRoot + "/applicationForm/" + applicationType + "/getAllAtc",
+    requestOptions
+  ).then(handleResponse);
+}
+
+function loadApplicationsForAfmluAdmin(applicationType) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { Authorization: authToken }
+  };
+
+  return fetch(
+    apiRoot + "/applicationForm/" + applicationType + "/getAllAfmlu",
+    requestOptions
+  ).then(handleResponse);
 }
