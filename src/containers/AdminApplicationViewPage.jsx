@@ -33,14 +33,23 @@ class AdminApplicationViewPage extends React.Component {
         this.updateApplicationStatusAtc = this.updateApplicationStatusAtc.bind(this);
         this.updateApplicationStatusAfmlu = this.updateApplicationStatusAfmlu.bind(this);
         const queryParams = queryString.parse(this.props.location.search);
-        this.loadAirspaceCategoriesByHeight = this.loadAirspaceCategoriesByHeight.bind(this);
+        this.loadAirspaceCategoriesByHeight = this.loadAirspaceCategoriesByHeight.bind(this);                        
         this.state = {
             applicationType: queryParams.type,
-            applicationId: queryParams.id
+            applicationId: queryParams.id,
+            isAdmin: JSON.parse(localStorage.getItem('isAdmin')),
+            isAtcAdmin: JSON.parse(localStorage.getItem('isAtcAdmin')),
+            isAfmluAdmin: JSON.parse(localStorage.getItem('isAfmluAdmin'))
         }
-        if(!this.props.adminApplications[queryParams.type]){
+        if(this.state.isAdmin && !this.props.adminApplications[queryParams.type]){
             this.props.dispatch(loadApplicationsAction(queryParams.type,"admin"));
-        }//todo this is failing for atc and afmlu as no way to know this beforehand
+        }
+        else if(this.state.isAtcAdmin && !this.props.adminApplications[queryParams.type]){
+            this.props.dispatch(loadApplicationsAction(queryParams.type,"atcAdmin"));
+        }
+        else if(this.state.isAfmluAdmin && !this.props.adminApplications[queryParams.type]){
+            this.props.dispatch(loadApplicationsAction(queryParams.type,"afmluAdmin"));
+        }
     }
 
     downloadDocument(documentName){
@@ -86,14 +95,11 @@ class AdminApplicationViewPage extends React.Component {
     }
 
     render() {
-        const {applicationType, applicationId} = this.state;
+        const {applicationType, applicationId, isAtcAdmin, isAfmluAdmin, isAdmin} = this.state;
         const applications = this.props.adminApplications[applicationType];
         const errors = this.props.adminApplications.errors;
         const {airspaceCategories} = this.props;
-        const isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
-        const isAtcAdmin = JSON.parse(localStorage.getItem('isAtcAdmin'));
-        const isAfmluAdmin = JSON.parse(localStorage.getItem('isAfmluAdmin'));
-
+        
         if(!applications || applications.length === 0) return <div/>;
 
         const currentApplication =  applications.find( application => application.id === applicationId )
