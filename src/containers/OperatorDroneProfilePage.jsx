@@ -55,7 +55,6 @@ class OperatorDroneProfilePage extends React.Component {
 
     render(){
         const {operatorDroneProfile} = this.state;
-
         if(!operatorDroneProfile) return null;
 
         return (
@@ -71,7 +70,7 @@ class OperatorDroneProfilePage extends React.Component {
                                 <p><strong>Model Number:</strong> {operatorDroneProfile.droneType.modelNo}</p>
                                 <p><strong>UIN Application Status:</strong> {operatorDroneProfile.operatorDroneStatus}</p>
                                 <p><strong>Date of registration:</strong> {operatorDroneProfile.registeredDate}</p>
-                                <p><strong>UIN Number:</strong> {operatorDroneProfile.UINNo}</p>
+                                <p><strong>UIN Number:</strong> {operatorDroneProfile.uinNo}</p>
                             </div>
                         </div>
                     </div>

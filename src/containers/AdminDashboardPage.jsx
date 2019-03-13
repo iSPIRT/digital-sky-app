@@ -62,8 +62,6 @@ class AdminDashboardPage extends React.Component {
     }
 
     componentWillUnmount() {
-        console.log(this.state)
-        console.log(this.props)
         this.state.adminApplications=null
     }
 
