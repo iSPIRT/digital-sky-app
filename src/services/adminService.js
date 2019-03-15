@@ -215,8 +215,9 @@ function checkAndAddDefaultAreaLength(airspaceCategory) {
     if (!airspaceCategory.properties.SHAPE_Length)
       airspaceCategory.properties.SHAPE_Length = null;
   }
-  if (airspaceCategory.properties.OBJECTID !== null)
-    airspaceCategory.properties.OBJECTID = null;
+  if ("OBJECTID" in airspaceCategory.properties) {
+    delete airspaceCategory.properties["OBJECTID"];
+  }
   return airspaceCategory;
 }
 
