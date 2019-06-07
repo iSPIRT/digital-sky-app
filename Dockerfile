@@ -4,7 +4,8 @@ WORKDIR /home/node/app
 COPY package*.json ./
 COPY yarn*.lock ./
 USER node
-RUN npm install
+RUN npm install -g yarn
+RUN yarn install --frozen-lockfile
 COPY --chown=node:node . .
 RUN yarn build
 EXPOSE 8000
