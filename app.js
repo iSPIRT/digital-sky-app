@@ -12,7 +12,7 @@ app.use(express.static("build"));
 
 // Handle 404
 app.use(function(req, res) {
-  res.sendFile("build/index.html");
+  res.sendFile(path.join(__dirname, "build/index.html"));
 });
 
 app.listen(PORT, HOST);
