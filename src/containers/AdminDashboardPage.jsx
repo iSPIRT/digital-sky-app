@@ -28,10 +28,11 @@ class AdminDashboardPage extends React.Component {
             isAdmin:JSON.parse(localStorage.getItem('isAdmin')),
             isAtcAdmin:JSON.parse(localStorage.getItem('isAtcAdmin')),
             isAfmluAdmin:JSON.parse(localStorage.getItem('isAfmluAdmin')),
+            isViewerAdmin:JSON.parse(localStorage.getItem('isViewerAdmin')),
             isAdminCheck:false
         };
         this.props.dispatch(checkAdminAction(localStorage.getItem('accessToken')));
-        if(this.state.isAdmin)
+        if(this.state.isAdmin || this.state.isViewerAdmin)
             this.props.dispatch(loadApplicationsAction(LOCAL_DRONE_ACQUISITION_APPLICATION,"admin"));
         else if(this.state.isAtcAdmin)
             this.props.dispatch(loadApplicationsAction(FLY_DRONE_PERMISSION_APPLICATION,"atcAdmin"));
@@ -66,11 +67,11 @@ class AdminDashboardPage extends React.Component {
     }
 
     render() {
-        const {selectedApplicationType,isAdmin,isAtcAdmin,isAfmluAdmin,isAdminCheck} = this.state;
+        const {selectedApplicationType,isAdmin,isAtcAdmin,isAfmluAdmin,isAdminCheck,isViewerAdmin} = this.state;
         const { errors } = this.props.adminApplications;
         const applications = this.props.adminApplications[selectedApplicationType];
         if(isAdminCheck){            
-            if(isAdmin)
+            if(isAdmin || isViewerAdmin)
             return <AdminDashboard
                     selectedApplicationType={selectedApplicationType}
                     applications={applications}
