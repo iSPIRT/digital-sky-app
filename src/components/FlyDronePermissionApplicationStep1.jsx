@@ -140,7 +140,7 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
     }
 
     render() {
-        const { savingApplication, errors} = this.props;
+        const { savingApplication, errors,pilotProfile} = this.props;
         const { formErrors, application, startDateTime, endDateTime,isRecurrent } = this.state;
         return (
             <div>
@@ -169,7 +169,7 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Remote Pilot Id
-                                        <input type="text" placeholder="Remote Pilot Id" name="pilotBusinessIdentifier" onChange={this.handleChange} value={application.pilotBusinessIdentifier} maxLength="100" className={decorateInputClass(this.state.fieldErrors['pilotBusinessIdentifier'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
+                                        <input type="text" placeholder="Remote Pilot Id" name="pilotBusinessIdentifier" onChange={this.handleChange} value={pilotProfile ?pilotProfile.businessIdentifier:"12345"} maxLength="100" className={decorateInputClass(this.state.fieldErrors['pilotBusinessIdentifier'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
                                         <FieldError fieldErrors={this.state.fieldErrors} field='pilotBusinessIdentifier'/>
                                     </label>
                                 </div>

@@ -628,6 +628,9 @@ label.page-heading {
   display: block;
 }
 
+.success-alert {
+  margin: 40px;
+}
 .accordion {
   background: transparent;
 }
@@ -2609,7 +2612,6 @@ footer.site-footer .footer-logo p {
   margin-bottom: 34px;
   color: #245dff;
 }
-
 table tr {
   font-size: 14px;
 }
