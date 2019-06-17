@@ -32,6 +32,7 @@ class Applications extends React.Component {
                     <div className="wrap">
                         <h3>{application.applicant}</h3>
                         <p>{application.submittedDate}</p>
+                        <p>ID: {application.id}</p>
                     </div>
                 </div>
                 <div className="go-to-location">
