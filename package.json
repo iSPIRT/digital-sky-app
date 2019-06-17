@@ -10,7 +10,9 @@
     "script-loader": "^0.6.1"
   },
   "dependencies": {
+    "@bit/reactstrap.reactstrap.uncontrolled-alert": "^7.1.0",
     "browserslist": "4.1.2",
+    "create-react-class": "^15.6",
     "foundation-sites": "^v6.5.0-rc.1",
     "jquery": "^3.2.1",
     "js-file-download": "^0.4.1",
@@ -35,8 +37,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "sanitize.css": "^5.0.0",
-    "what-input": "^4.2.0",
-    "create-react-class": "^15.6"
+    "what-input": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
