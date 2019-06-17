@@ -52,6 +52,7 @@ class DashboardApplicationView extends React.Component {
                                                 <p className="title">{application.status}</p>
                                                 <p className="info">{application.type}</p>
                                                 <p className="meta">{this.applicationDate(application)}</p>
+                                                <p className="meta">ID: {application.id}</p>
                                             </div>
                                             <div className="action" data-equalizer-watch>
                                                 <Link to={this.applicationLink(application)} className="button">{this.applicationAction(application.status)}</Link>
@@ -95,7 +96,7 @@ class DashboardApplicationView extends React.Component {
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        </div>                        
+                        </div>
                     </div>;
         }
         return  (
