@@ -1,0 +1,19 @@
+FROM node:8.11.2
+
+RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
+
+RUN apt-get update && apt-get install -y vim
+
+EXPOSE 3000
+
+RUN mkdir -p /node/.npm-global
+
+ENV PATH=/node/.npm-global/bin:$PATH
+
+ENV NPM_CONFIG_PREFIX=/node/.npm-global
+
+RUN npm install -g yarn
+
+WORKDIR /app
+
+CMD ["sh","-c","yarn && yarn start"]
