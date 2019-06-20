@@ -27,10 +27,12 @@ class LoginPage extends React.Component {
         const isAtcAdmin = JSON.parse(localStorage.getItem('isAtcAdmin'));
         const isAfmluAdmin = JSON.parse(localStorage.getItem('isAfmluAdmin'));
         const isViewerAdmin = JSON.parse(localStorage.getItem('isViewerAdmin'));
+        const isATCViewerAdmin = JSON.parse(localStorage.getItem('isATCViewerAdmin'));
+        const isAFMLUViewerAdmin = JSON.parse(localStorage.getItem('isAFMLUViewerAdmin'));
         const hasOperatorProfile = (individualOperatorProfileId > 0) || (organizationOperatorProfileId > 0)
         const hasPilotProfile = ( pilotProfileId > 0)
         const hasManufacturerProfile = ( manufacturerProfileId > 0 );
-        if(loggedIn && !isAdmin && !isAtcAdmin && !isAfmluAdmin && !isViewerAdmin && !hasPilotProfile && !hasManufacturerProfile && !hasOperatorProfile){
+        if(loggedIn && !isAdmin && !isAtcAdmin && !isAfmluAdmin && !isViewerAdmin && !isATCViewerAdmin && !isAFMLUViewerAdmin && !hasPilotProfile && !hasManufacturerProfile && !hasOperatorProfile){
             history.push('/profile');
             return null;
         }

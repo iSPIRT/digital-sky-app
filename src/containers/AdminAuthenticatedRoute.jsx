@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom'
 class AdminAuthenticatedRoute extends Component {
   render() {
     const {loggedIn, user, component: Component, ...rest} = this.props;
-    if( loggedIn && (user.isAdmin || user.isAtcAdmin || user.isAfmluAdmin || user.isViewerAdmin )) {
+    if( loggedIn && (user.isAdmin || user.isAtcAdmin || user.isAfmluAdmin || user.isViewerAdmin || user.isATCViewerAdmin || user.isAFMLUViewerAdmin)) {
       return <Route {...rest} render={(props) => <Component {...props }/>}/>
     } else {
       return <Route {...rest} render={(props) => <Redirect to={{pathname: '/login', state: {from: props.location}}} />}/>
