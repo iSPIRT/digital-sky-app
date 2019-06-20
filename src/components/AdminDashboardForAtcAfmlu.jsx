@@ -4,19 +4,15 @@ import FormErrors from '../components/FormErrors';
 
 import view from '../img/view.svg';
 
-import { LOCAL_DRONE_ACQUISITION_APPLICATION } from '../constants/applicationType';
-import { IMPORT_DRONE_APPLICATION } from '../constants/applicationType';
-import { UAOP_APPLICATION_APPLICATION } from '../constants/applicationType';
-import { UIN_APPLICATION } from '../constants/applicationType';
 import { FLY_DRONE_PERMISSION_APPLICATION } from '../constants/applicationType';
 
 class Applications extends React.Component {
 
     applicationStatusClass(status) {
         var cssClass = 'application';
-        if(status ===  'APPROVED'){
+        if(status ===  'APPROVEDBYATC' || status ===  'APPROVEDBYAFMLU'){
             cssClass = 'application status-accepted';
-        } else if (status ===  'REJECTED'){
+        } else if (status=== "REJECTEDBYATC" || status ===  'REJECTEDBYAFMLU'){
             cssClass = 'application status-declined';
         }
         return cssClass;
@@ -43,17 +39,12 @@ class Applications extends React.Component {
    }
 }
 
-class AdminDashboard extends React.Component {
+class AdminDashboardForAtcAfmlu extends React.Component {
 
     constructor(props) {
-        super(props);
-        this.applicationTypeSelected = this.applicationTypeSelected.bind(this);
+        super(props);        
         this.applicationSelected = this.applicationSelected.bind(this);
         this.cssClassMenu = this.cssClassMenu.bind(this);
-    }
-
-    applicationTypeSelected(applicationType){
-        this.props.applicationTypeSelected(applicationType);
     }
 
     applicationSelected(applicationId){
@@ -74,12 +65,8 @@ class AdminDashboard extends React.Component {
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
                             <div className="large-12 cell">
-                                <ul className="menu">
-                                    <li><a onClick={(e) =>  this.applicationTypeSelected(LOCAL_DRONE_ACQUISITION_APPLICATION)} className={this.cssClassMenu(LOCAL_DRONE_ACQUISITION_APPLICATION)}><span>Local RPA Acquisition Applications</span></a></li>
-                                    <li><a onClick={(e) =>  this.applicationTypeSelected(IMPORT_DRONE_APPLICATION)} className={this.cssClassMenu(IMPORT_DRONE_APPLICATION)}><span>Import RPA Applications</span></a></li>
-                                    <li><a onClick={(e) =>  this.applicationTypeSelected(UAOP_APPLICATION_APPLICATION)} className={this.cssClassMenu(UAOP_APPLICATION_APPLICATION)}><span>UAOP Applications</span></a></li>
-                                    <li><a onClick={(e) =>  this.applicationTypeSelected(UIN_APPLICATION)} className={this.cssClassMenu(UIN_APPLICATION)}><span>UIN Applications</span></a></li>
-                                    <li><a onClick={(e) =>  this.applicationTypeSelected(FLY_DRONE_PERMISSION_APPLICATION)} className={this.cssClassMenu(FLY_DRONE_PERMISSION_APPLICATION)}><span>Permission Applications</span></a></li>
+                                <ul className="menu">                                    
+                                    <li><a onClick={(e) =>  null} className={this.cssClassMenu(FLY_DRONE_PERMISSION_APPLICATION)}><span>Permission Applications</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -104,4 +91,4 @@ class AdminDashboard extends React.Component {
     }
 }
 
-export default AdminDashboard;
+export default AdminDashboardForAtcAfmlu;

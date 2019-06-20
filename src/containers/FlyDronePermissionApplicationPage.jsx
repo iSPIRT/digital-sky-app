@@ -10,7 +10,7 @@ import FlyDronePermissionApplicationStep1 from '../components/FlyDronePermission
 import FlyDronePermissionApplicationStep2 from '../components/FlyDronePermissionApplicationStep2';
 import FlyDronePermissionApplicationStep3 from '../components/FlyDronePermissionApplicationStep3';
 import { loadApplicationsAction, createApplicationAction, updateApplicationAction } from '../actions/flyDronePermissionApplicationActions';
-import { loadUserAirspaceCategoriesAction} from '../actions/userAirspaceCategoryActions';
+import { loadUserAirspaceCategoriesAction, loadUserAirspaceCategoriesByHeightAction} from '../actions/userAirspaceCategoryActions';
 
 import { downloadFile } from '../actions/downloadFileActions';
 
@@ -31,6 +31,7 @@ class FlyDronePermissionApplicationPage extends React.Component {
         this.findApplicationId = this.findApplicationId.bind(this);
         this.findDroneId = this.findDroneId.bind(this);
         this.loadAirspaceCategories = this.loadAirspaceCategories.bind(this);
+        this.loadAirspaceCategoriesByHeight = this.loadAirspaceCategoriesByHeight.bind(this);
 
         const applicationId = this.findApplicationId();
         const droneId = this.findDroneId();
@@ -66,8 +67,12 @@ class FlyDronePermissionApplicationPage extends React.Component {
         this.setState({currentStep: (this.state.currentStep-1)});
     }
 
-    loadAirspaceCategories() {
-        return this.props.dispatch(loadUserAirspaceCategoriesAction());
+    loadAirspaceCategories(application) {
+        return this.props.dispatch(loadUserAirspaceCategoriesAction(application));
+    }
+
+    loadAirspaceCategoriesByHeight(application) {
+        return this.props.dispatch(loadUserAirspaceCategoriesByHeightAction(application));
     }
 
     createApplication(application) {
@@ -131,7 +136,7 @@ class FlyDronePermissionApplicationPage extends React.Component {
                             previousStep={this.previousStep}
                             updateApplication={this.updateApplication}
                             downloadDocument={this.downloadDocument}
-                            loadAirspaceCategories= {this.loadAirspaceCategories}
+                            loadAirspaceCategories= {this.loadAirspaceCategoriesByHeight}
                             airspaceCategories= {airspaceCategories}
                         />
         }

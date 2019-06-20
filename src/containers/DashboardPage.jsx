@@ -32,7 +32,7 @@ class DashboardPage extends React.Component {
         const hasOperatorProfile = (individualOperatorProfileId > 0) || (organizationOperatorProfileId > 0)
         const hasPilotProfile = ( pilotProfileId > 0)
         const hasManufacturerProfile = ( manufacturerProfileId > 0 );
-        if(user.isAdmin){            
+        if(user.isAdmin || user.isAtcAdmin || user.isAfmluAdmin || user.isViewerAdmin){
             history.push('/admin/dashboard');
             return null
         }

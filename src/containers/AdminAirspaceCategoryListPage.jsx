@@ -15,9 +15,7 @@ class AdminAirspaceCategoryListPage extends React.Component {
         this.state={
             isAdmin:false
         }
-        if( airspaceCategoryList.length === 0 ){
-            this.props.dispatch(loadAirspaceCategoriesAction());
-        }
+        this.props.dispatch(loadAirspaceCategoriesAction());
         this.props.dispatch(checkAdminAction(localStorage.getItem('accessToken')));
     }
 

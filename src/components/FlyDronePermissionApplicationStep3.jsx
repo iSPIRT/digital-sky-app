@@ -69,7 +69,7 @@ class FlyDronePermissionApplicationStep3 extends React.Component {
                                 </div>
                                 <FlyDronePermissionApplicationView application={application} loadAirspaceCategories={this.props.loadAirspaceCategories} airspaceCategories={this.props.airspaceCategories} />
                                 <div className="large-12 cell">
-                                    { application.status === 'APPROVED' &&
+                                    { (application.status === 'APPROVED' || application.status === 'APPROVEDBYAFMLU') &&
                                         <div className="question">
                                             <h6>Permission Artifact:</h6>
                                             <a onClick={(e) =>  this.props.downloadDocument("permissionArtifact")}>Download</a>

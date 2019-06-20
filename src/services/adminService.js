@@ -3,6 +3,8 @@ import applicationProperties from "../helpers/applicationPropertiesHelper";
 export const adminService = {
   loadApplications,
   approveApplication,
+  approveByAtcApplication,
+  approveByAfmluApplication,
   saveBlog,
   updateBlog,
   loadBlogList,
@@ -11,7 +13,7 @@ export const adminService = {
   updateAirspaceCategory
 };
 
-function loadApplications(applicationType) {
+function loadApplications(applicationType, adminType) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
   const requestOptions = {
@@ -19,10 +21,21 @@ function loadApplications(applicationType) {
     headers: { Authorization: authToken }
   };
 
-  return fetch(
-    apiRoot + "/applicationForm/" + applicationType + "/getAll",
-    requestOptions
-  ).then(handleResponse);
+  if (adminType === "atcAdmin")
+    return fetch(
+      apiRoot + "/applicationForm/" + applicationType + "/getAllAtc",
+      requestOptions
+    ).then(handleResponse);
+  else if (adminType === "afmluAdmin")
+    return fetch(
+      apiRoot + "/applicationForm/" + applicationType + "/getAllAfmlu",
+      requestOptions
+    ).then(handleResponse);
+  else
+    return fetch(
+      apiRoot + "/applicationForm/" + applicationType + "/getAll",
+      requestOptions
+    ).then(handleResponse);
 }
 
 function approveApplication(
@@ -42,6 +55,48 @@ function approveApplication(
     "/applicationForm/" +
     applicationType +
     "/approve/" +
+    applicationId;
+  return fetch(url, requestOptions).then(handleResponse);
+}
+
+function approveByAtcApplication(
+  applicationType,
+  applicationId,
+  applicationApproval
+) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", Authorization: authToken },
+    body: JSON.stringify(applicationApproval)
+  };
+  const url =
+    apiRoot +
+    "/applicationForm/" +
+    applicationType +
+    "/approveByAtc/" +
+    applicationId;
+  return fetch(url, requestOptions).then(handleResponse);
+}
+
+function approveByAfmluApplication(
+  applicationType,
+  applicationId,
+  applicationApproval
+) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", Authorization: authToken },
+    body: JSON.stringify(applicationApproval)
+  };
+  const url =
+    apiRoot +
+    "/applicationForm/" +
+    applicationType +
+    "/approveByAfmlu/" +
     applicationId;
   return fetch(url, requestOptions).then(handleResponse);
 }
@@ -96,6 +151,17 @@ function loadAirspaceCategories() {
 function saveAirspaceCategory(airspaceCategory) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
+  if (airspaceCategory.geoJson.type === "FeatureCollection") {
+    airspaceCategory.geoJson.features.forEach((feature, index) => {
+      airspaceCategory.geoJson.features[index] = checkAndAddDefaultAreaLength(
+        feature
+      );
+    });
+  } else {
+    airspaceCategory.geoJson = checkAndAddDefaultAreaLength(
+      airspaceCategory.geoJson
+    );
+  }
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: authToken },
@@ -108,6 +174,17 @@ function saveAirspaceCategory(airspaceCategory) {
 function updateAirspaceCategory(id, airspaceCategory) {
   const apiRoot = applicationProperties().apiRoot;
   const authToken = "Bearer " + localStorage.getItem("accessToken");
+  if (airspaceCategory.geoJson.type === "FeatureCollection") {
+    airspaceCategory.geoJson.features.forEach((feature, index) => {
+      airspaceCategory.geoJson.features[index] = checkAndAddDefaultAreaLength(
+        feature
+      );
+    });
+  } else {
+    airspaceCategory.geoJson = checkAndAddDefaultAreaLength(
+      airspaceCategory.geoJson
+    );
+  }
   const requestOptions = {
     method: "PUT",
     headers: { "Content-Type": "application/json", Authorization: authToken },
@@ -126,4 +203,48 @@ function handleResponse(response) {
     }
     return data;
   });
+}
+
+function checkAndAddDefaultAreaLength(airspaceCategory) {
+  if (
+    airspaceCategory.properties !== null &&
+    airspaceCategory.properties !== {}
+  ) {
+    if (!airspaceCategory.properties.SHAPE_Area)
+      airspaceCategory.properties.SHAPE_Area = null;
+    if (!airspaceCategory.properties.SHAPE_Length)
+      airspaceCategory.properties.SHAPE_Length = null;
+  }
+  if ("OBJECTID" in airspaceCategory.properties) {
+    delete airspaceCategory.properties["OBJECTID"];
+  }
+  return airspaceCategory;
+}
+
+function loadApplicationsForAtcAdmin(applicationType) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { Authorization: authToken }
+  };
+
+  return fetch(
+    apiRoot + "/applicationForm/" + applicationType + "/getAllAtc",
+    requestOptions
+  ).then(handleResponse);
+}
+
+function loadApplicationsForAfmluAdmin(applicationType) {
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "GET",
+    headers: { Authorization: authToken }
+  };
+
+  return fetch(
+    apiRoot + "/applicationForm/" + applicationType + "/getAllAfmlu",
+    requestOptions
+  ).then(handleResponse);
 }

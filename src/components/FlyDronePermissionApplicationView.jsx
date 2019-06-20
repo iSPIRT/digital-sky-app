@@ -18,7 +18,7 @@ class FlyDronePermissionApplicationView extends React.Component {
 
     constructor(props) {
         super(props);
-        this.props.loadAirspaceCategories();
+        this.props.loadAirspaceCategories(this.props.application);
         this.state = {
         };
     }
@@ -114,14 +114,18 @@ class FlyDronePermissionApplicationView extends React.Component {
                     <h6>RPA Id:</h6>
                     <p>{application.droneId}</p>
                 </div>
+                { application.startDateTime &&
                 <div className="question">
                     <h6>Start Date and Time:</h6>
                     <p>{application.startDateTime}</p>
                 </div>
+                }
+                { application.endDateTime &&
                 <div className="question">
                     <h6>End Date and Time:</h6>
                     <p>{application.endDateTime}</p>
                 </div>
+                }
                 <div className="question">
                     <h6>Recurrence Time Pattern (Cron Quartz Expression):</h6>
                     <p>{application.recurringTimeExpression}</p>
@@ -142,6 +146,28 @@ class FlyDronePermissionApplicationView extends React.Component {
                     <h6>Purpose of Flight:</h6>
                     <p>{application.flightPurpose}</p>
                 </div>
+                <div className="question">
+                    <h6>Max altitude AGL in ft:</h6>
+                    <p>{application.maxAltitude}</p>
+                </div>
+                { application.approverComments &&
+                <div className="question">
+                    <h6>Comments:</h6>
+                    <p>{application.approverComments}</p>
+                </div>
+                }
+                { application.adcNumber &&
+                <div className="question">
+                    <h6>ADC number:</h6>
+                    <p>{application.adcNumber}</p>
+                </div>
+                }
+                { application.ficNumber &&
+                <div className="question">
+                    <h6>FIC number:</h6>
+                    <p>{application.ficNumber}</p>
+                </div>
+                }
                 <div className="question">
                     <h6>Fly Area:</h6>
                     <div ref="mapContainer" className="map"> </div>

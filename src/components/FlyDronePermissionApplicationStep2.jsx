@@ -38,7 +38,7 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
             formErrors:[],
             application: this.props.application,
         };
-        this.props.loadAirspaceCategories();
+        this.props.loadAirspaceCategories(this.state.application);
     }
 
     componentDidUpdate() {

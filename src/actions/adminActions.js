@@ -11,14 +11,16 @@ export const APPROVE_APPLICATION_REQUEST = "APPROVE_APPLICATION_REQUEST";
 export const APPROVE_APPLICATION_SUCCESS = "APPROVE_APPLICATION_SUCCESS";
 export const APPROVE_APPLICATION_FAILURE = "APPROVE_APPLICATION_FAILURE";
 
-export const loadApplicationsAction = applicationType => {
+export const loadApplicationsAction = (applicationType, adminType) => {
   return dispatch => {
     dispatch(request());
-    adminService.loadApplications(applicationType).then(
+    adminService.loadApplications(applicationType, adminType).then(
       applications => {
+        // debugger
         dispatch(success(applicationType, applications));
       },
       errors => {
+        // debugger
         dispatch(failure(errors));
       }
     );
@@ -44,6 +46,82 @@ export const approveApplicationsAction = (
     dispatch(request());
     adminService
       .approveApplication(applicationType, applicationId, applicationApproval)
+      .then(
+        updatedApplication => {
+          dispatch(success(applicationType, updatedApplication));
+        },
+        errors => {
+          dispatch(failure(errors));
+        }
+      );
+  };
+
+  function request() {
+    return { type: APPROVE_APPLICATION_REQUEST };
+  }
+  function success(applicationType, updatedApplication) {
+    return {
+      type: APPROVE_APPLICATION_SUCCESS,
+      applicationType,
+      updatedApplication
+    };
+  }
+  function failure(errors) {
+    return { type: APPROVE_APPLICATION_FAILURE, errors };
+  }
+};
+
+export const approveApplicationsByAtcAction = (
+  applicationType,
+  applicationId,
+  applicationApproval
+) => {
+  return dispatch => {
+    dispatch(request());
+    adminService
+      .approveByAtcApplication(
+        applicationType,
+        applicationId,
+        applicationApproval
+      )
+      .then(
+        updatedApplication => {
+          dispatch(success(applicationType, updatedApplication));
+        },
+        errors => {
+          dispatch(failure(errors));
+        }
+      );
+  };
+
+  function request() {
+    return { type: APPROVE_APPLICATION_REQUEST };
+  }
+  function success(applicationType, updatedApplication) {
+    return {
+      type: APPROVE_APPLICATION_SUCCESS,
+      applicationType,
+      updatedApplication
+    };
+  }
+  function failure(errors) {
+    return { type: APPROVE_APPLICATION_FAILURE, errors };
+  }
+};
+
+export const approveApplicationsByAfmluAction = (
+  applicationType,
+  applicationId,
+  applicationApproval
+) => {
+  return dispatch => {
+    dispatch(request());
+    adminService
+      .approveByAfmluApplication(
+        applicationType,
+        applicationId,
+        applicationApproval
+      )
       .then(
         updatedApplication => {
           dispatch(success(applicationType, updatedApplication));
@@ -221,43 +299,54 @@ export const updateAirspaceCategoryAction = (id, airspaceCategory) => {
   }
 };
 
-
-export const ADMIN_VIEW_OPERATOR_PROFILE_SUCCESS = "ADMIN_VIEW_OPERATOR_PROFILE_SUCCESS";
-export const ADMIN_VIEW_OPERATOR_PROFILE_FAILURE = "ADMIN_VIEW_OPERATOR_PROFILE_FAILURE";
+export const ADMIN_VIEW_OPERATOR_PROFILE_SUCCESS =
+  "ADMIN_VIEW_OPERATOR_PROFILE_SUCCESS";
+export const ADMIN_VIEW_OPERATOR_PROFILE_FAILURE =
+  "ADMIN_VIEW_OPERATOR_PROFILE_FAILURE";
 
 export const viewOperatorProfile = (profileType, operatorProfileId) => {
-    return dispatch => {
-        userService.loadOperatorProfile(profileType, operatorProfileId)
-                    .then(
-                        data => {
-                            dispatch(success(profileType, data));
-                        },
-                        errors => {
-                            dispatch(failure(errors));
-                        }
-                    );
-
+  return dispatch => {
+    userService.loadOperatorProfile(profileType, operatorProfileId).then(
+      data => {
+        dispatch(success(profileType, data));
+      },
+      errors => {
+        dispatch(failure(errors));
+      }
+    );
+  };
+  function success(profileType, operatorProfile) {
+    return {
+      type: ADMIN_VIEW_OPERATOR_PROFILE_SUCCESS,
+      profileType,
+      operatorProfile
     };
-    function success(profileType, operatorProfile) { return { type: ADMIN_VIEW_OPERATOR_PROFILE_SUCCESS, profileType, operatorProfile } }
-    function failure(errors) { return { type: ADMIN_VIEW_OPERATOR_PROFILE_FAILURE, errors } }
-}
+  }
+  function failure(errors) {
+    return { type: ADMIN_VIEW_OPERATOR_PROFILE_FAILURE, errors };
+  }
+};
 
-export const ADMIN_VIEW_PILOT_PROFILE_SUCCESS = "ADMIN_VIEW_PILOT_PROFILE_SUCCESS";
-export const ADMIN_VIEW_PILOT_PROFILE_FAILURE = "ADMIN_VIEW_PILOT_PROFILE_FAILURE";
+export const ADMIN_VIEW_PILOT_PROFILE_SUCCESS =
+  "ADMIN_VIEW_PILOT_PROFILE_SUCCESS";
+export const ADMIN_VIEW_PILOT_PROFILE_FAILURE =
+  "ADMIN_VIEW_PILOT_PROFILE_FAILURE";
 
-export const viewPilotProfile = (pilotProfileId) => {
-    return dispatch => {
-        userService.loadPilotProfile(pilotProfileId)
-                    .then(
-                        data => {
-                            dispatch(success(data));
-                        },
-                        errors => {
-                            dispatch(failure(errors));
-                        }
-                    );
-
-    };
-    function success(pilotProfile) { return { type: ADMIN_VIEW_PILOT_PROFILE_SUCCESS, pilotProfile } }
-    function failure(errors) { return { type: ADMIN_VIEW_PILOT_PROFILE_FAILURE, errors } }
-}
+export const viewPilotProfile = pilotProfileId => {
+  return dispatch => {
+    userService.loadPilotProfile(pilotProfileId).then(
+      data => {
+        dispatch(success(data));
+      },
+      errors => {
+        dispatch(failure(errors));
+      }
+    );
+  };
+  function success(pilotProfile) {
+    return { type: ADMIN_VIEW_PILOT_PROFILE_SUCCESS, pilotProfile };
+  }
+  function failure(errors) {
+    return { type: ADMIN_VIEW_PILOT_PROFILE_FAILURE, errors };
+  }
+};

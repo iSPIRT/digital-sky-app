@@ -14,6 +14,8 @@ import { validateField, validateForm, decorateInputClass } from '../helpers/form
 
 import 'react-datepicker/dist/react-datepicker.css';
 
+import ReactSlider from 'react-slider';
+
 class FlyDronePermissionApplicationStep1 extends React.Component {
 
     constructor(props) {
@@ -23,12 +25,15 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
         this.handleChangeStartDateTime = this.handleChangeStartDateTime.bind(this);
         this.handleChangeEndDateTime = this.handleChangeEndDateTime.bind(this);
         this.updateObjProp = this.updateObjProp.bind(this);
+        this.handleSliderChange = this.handleSliderChange.bind(this);
+        this.toggle = this.toggle.bind(this);
 
         this.state = {
             submitted: false,
             formErrors:[],
             fieldErrors: {},
-            application: this.props.application
+            application: this.props.application,
+            isRecurrent: false
         };
     }
 
@@ -49,6 +54,10 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
             this.setState({endDateTime: moment(currentApplication.endDateTime, 'DD-MM-YYYY HH:mm:ss')})
         }
         this.setState({application: currentApplication});
+        if(application.recurringTimeExpression=="" || application.recurringTimeExpression==undefined || application.recurringTimeDurationInMinutes=="" || application.recurringTimeDurationInMinutes==undefined)
+            this.setState({isRecurrent:false})
+        else
+            this.setState({isRecurrent:true})
     }
 
     handleChange(event) {
@@ -56,6 +65,22 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
         const { application } = this.state;
         this.updateObjProp(application, value, name);
         this.setState({application: application});
+    }
+
+    handleSliderChange(value){
+        const { application } = this.state;
+        this.updateObjProp(application, value, "maxAltitude");
+        this.setState({application: application});
+    }
+
+    toggle(){
+        if(!this.state.isRecurrent==false){
+            const { application } = this.state;
+            application.recurringTimeDurationInMinutes="";
+            application.recurringTimeExpression="";
+            this.setState({application:application});
+        }
+        this.setState({isRecurrent:!this.state.isRecurrent});        
     }
 
     handleChangeStartDateTime(startDateTime){
@@ -116,7 +141,7 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
 
     render() {
         const { savingApplication, errors} = this.props;
-        const { formErrors, application, startDateTime, endDateTime } = this.state;
+        const { formErrors, application, startDateTime, endDateTime,isRecurrent } = this.state;
         return (
             <div>
                 <div className="page-form">
@@ -187,18 +212,30 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
                                     />
                                     <br/>
                                 </div>
-
                                 <div className="large-12 cell">
-                                    <label>Recurrence Time Pattern (Cron Quartz Expression)
-                                        <input type="text" placeholder="Cron Quartz Expression" name="recurringTimeExpression" onChange={this.handleChange} value={application.recurringTimeExpression} maxLength="20" />
+                                    <label> Is it a recurring pattern
+                                        <select value={isRecurrent} onChange={this.toggle}>
+                                            <option value={true}>Yes</option>
+                                            <option value={false}>No</option>
+                                        </select>
                                     </label>
                                 </div>
-
-                                <div className="large-12 cell">
-                                    <label> Duration In Minutes  (when Recurrence Time Pattern specified)
-                                        <input type="text" placeholder="Duration In Minutes" name="recurringTimeDurationInMinutes" onChange={this.handleChange} value={application.recurringTimeDurationInMinutes} maxLength="5" />
-                                    </label>
-                                </div>
+                                {
+                                    isRecurrent && 
+                                    <div className="large-12 cell">
+                                        <label>Recurrence Time Pattern (Cron Quartz Expression)
+                                            <input type="text" placeholder="Cron Quartz Expression" name="recurringTimeExpression" onChange={this.handleChange} value={application.recurringTimeExpression?application.recurringTimeExpression:""} maxLength="20" />
+                                        </label>
+                                    </div>
+                                }
+                                {
+                                    isRecurrent &&
+                                    <div className="large-12 cell">
+                                        <label> Duration In Minutes  (when Recurrence Time Pattern specified)
+                                            <input type="text" placeholder="Duration In Minutes" name="recurringTimeDurationInMinutes" onChange={this.handleChange} value={application.recurringTimeDurationInMinutes?application.recurringTimeDurationInMinutes:""} maxLength="5" />
+                                        </label>
+                                    </div>
+                                }                                                                
 
                                 <div className="large-12 cell">
                                     <label>Payload Weight In Kgs
@@ -217,6 +254,13 @@ class FlyDronePermissionApplicationStep1 extends React.Component {
                                     <label>Purpose Of Flight
                                         <input type="text" placeholder="" name="flightPurpose" onChange={this.handleChange} value={application.flightPurpose} maxLength="100" className={decorateInputClass(this.state.fieldErrors['flightPurpose'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} />
                                         <FieldError fieldErrors={this.state.fieldErrors} field='flightPurpose'/>
+                                    </label>
+                                </div>
+                                <div className="large-12 cell">
+                                    <label>Maximum altitude height during operation(AGL in ft)
+                                        <ReactSlider defaultValue={0} orientation="horizontal" max={400} name="maxAltitude" onAfterChange={this.handleSliderChange} value={application.maxAltitude} className='horizontal-slider' validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})} pearling={true} >
+                                            {React.createElement('div', {key: 1}, application.maxAltitude)}
+                                        </ReactSlider>
                                     </label>
                                 </div>
 
