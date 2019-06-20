@@ -45,12 +45,10 @@ class UAOPApplicationPage extends React.Component {
 
     nextStep(){
         this.setState({currentStep: (this.state.currentStep+1)});
-        console.log("");
     }
 
     previousStep(){
         this.setState({currentStep: (this.state.currentStep-1)});
-         console.log("");
     }
 
     createApplication(dispatch) {
