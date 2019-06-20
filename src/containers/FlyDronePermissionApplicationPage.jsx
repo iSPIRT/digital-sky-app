@@ -100,7 +100,8 @@ class FlyDronePermissionApplicationPage extends React.Component {
 
         var application = {
             droneId: parseInt(droneId, 0),
-            id: "0"
+            id: "0",
+            pilotBusinessIdentifier:profile?profile.businessIdentifier:""
         };
 
         if(applicationId) {
@@ -118,7 +119,6 @@ class FlyDronePermissionApplicationPage extends React.Component {
             case 1:
                 return <FlyDronePermissionApplicationStep1
                             application={application}
-                            pilotProfile={profile}
                             savingApplication={savingApplication}
                             errors={errors}
                             nextStep={this.nextStep}
