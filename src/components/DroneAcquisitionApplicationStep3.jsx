@@ -4,6 +4,7 @@ import FooterApplicationForm from './FooterApplicationForm';
 import FooterApplicationReviewDeclaration from './FooterApplicationReviewDeclaration';
 import DroneAcquisitionApplicationView from './DroneAcquisitionApplicationView';
 import HeaderApplicationForm from './HeaderApplicationForm';
+import FormErrors from './FormErrors';
 
 class DroneAcquisitionApplicationStep3 extends React.Component {
 
@@ -13,15 +14,17 @@ class DroneAcquisitionApplicationStep3 extends React.Component {
         this.downloadDocument = this.downloadDocument.bind(this);
         this.state = {
             submitted: false,
-            formErrors:[],
-            success:false
+            success:false,
+            errors: []
         };
     }
 
     componentWillReceiveProps(nextProps){
-        const { errors } = nextProps;
+        if(nextProps.errors){
+            this.setState({errors: [nextProps.errors]});
+        }
         const { submitted } = this.state;
-        if (submitted && ( !errors || errors.length === 0)  &&  (nextProps.applicationForm.id !== 0)){
+        if (submitted && ( !this.state.errors || this.state.errors.length === 0)  &&  (nextProps.applicationForm.id !== 0)){
             this.setState({success: true});
         }
     }
@@ -46,10 +49,10 @@ class DroneAcquisitionApplicationStep3 extends React.Component {
     render() {
         
         const { saving, applicationForm, previousStep, applicationType, step, headerText } = this.props;
+        const {errors} = this.state;
         return (
             <div className="page-form">
-                {/* <FormErrors errors = {errors}/>
-                <FormErrors errors = {formErrors}/> */}
+                <FormErrors errors = {errors}/>
                 <form name="localDroneAcquisitionApplicationForm" onSubmit={ this.handleSubmit }>
                     <div id="application-preview">
                         <div className="grid-container">
@@ -80,7 +83,7 @@ class DroneAcquisitionApplicationStep3 extends React.Component {
                         </div>
                     </div>
                 </form>
-            </div>  
+            </div>
         );
     }
 }
