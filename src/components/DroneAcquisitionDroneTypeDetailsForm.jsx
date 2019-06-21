@@ -147,7 +147,7 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
                     </label>
                 </div>
                 <div className="large-12 cell">
-                    <label>Maximum height attainable (in meters)
+                    <label>Maximum height attainable (in feet)
                         <input type="number" name="maxHeightAttainable" placeholder="Height in ms" value= { selectedDroneType && selectedDroneType.maxHeightAttainable!== 0 && selectedDroneType.maxHeightAttainable } onChange = { this.handleChange } readOnly = { isReadOnly } className={fieldErrors && decorateInputClass(fieldErrors['maxHeightAttainable'],[])} validate="required" onBlur={(e) => validateField(e.target)}/>
                         { fieldErrors && <FieldError fieldErrors={fieldErrors} field='maxHeightAttainable'/> }
                     </label>

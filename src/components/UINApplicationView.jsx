@@ -105,7 +105,7 @@ const UINApplicationView = (props) => {
                     <p>{ application.maxTakeOffWeight }</p>
                 </div>
                 <div className="question">
-                    <h6>Maximum height attainable in metres:</h6>
+                    <h6>Maximum height attainable in feet:</h6>
                     <p>{ application.maxHeightAttainable }</p>
                 </div>
                 <div className="question">
@@ -145,7 +145,7 @@ const UINApplicationView = (props) => {
                     <p>{ application.propellerDetails }</p>
                 </div>
                 <div className="question">
-                    <h6>Overall dimensions (l x b x h):</h6>
+                    <h6>Overall dimensions (l x b x h) in mm:</h6>
                     <p>{ application.dimensions.length } x { application.dimensions.breadth } x { application.dimensions.height }</p>
                 </div>
                 <div className="question">
@@ -157,11 +157,11 @@ const UINApplicationView = (props) => {
                     <p>{ application.maxRange }</p>
                 </div>
                 <div className="question">
-                    <h6>Maximum Speed (in kmph)s:</h6>
+                    <h6>Maximum Speed (in m/s):</h6>
                     <p>{ application.maxSpeed }</p>
                 </div>
                 <div className="question">
-                    <h6>Maximum height of operations required (in metres): </h6>
+                    <h6>Maximum height of operations required (in feet): </h6>
                     <p>{ application.maxHeightOfOperation }</p>
                 </div> 
                 <div className="question">

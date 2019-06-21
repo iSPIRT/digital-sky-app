@@ -109,7 +109,7 @@ class DroneSpecForm extends React.Component {
                     </label>
                 </div>
                 <div className="large-12 cell">
-                    <label>Overall dimensions (l x b x h)
+                    <label>Overall dimensions (l x b x h) in mm
                         <table>
                             <tbody>
                                 <tr>
@@ -139,13 +139,13 @@ class DroneSpecForm extends React.Component {
                     </label>
                 </div>
                 <div className="large-12 cell">
-                    <label>Maximum Speed (in kmph)s
+                    <label>Maximum Speed (in m/s)
                         <input type="number" name="maxSpeed" placeholder="" value= { selectedDroneType && selectedDroneType.maxSpeed!==0 &&  selectedDroneType.maxSpeed } onChange={ this.handleChange } readOnly = { isReadOnly } className={ fieldErrors && decorateInputClass(fieldErrors['maxSpeed'],[])} validate="required" onBlur={(e) => validateField(e.target)}/>
                         {fieldErrors && <FieldError fieldErrors={fieldErrors} field='maxSpeed'/>}
                     </label>
                 </div>
                 <div className="large-12 cell">
-                    <label>Maximum height of operations required (in metres)
+                    <label>Maximum height of operations required (in feet)
                         <input type="number" name="maxHeightOfOperation" placeholder="" value= { selectedDroneType && selectedDroneType.maxHeightOfOperation !==0 &&  selectedDroneType.maxHeightOfOperation} onChange={ this.handleChange } readOnly = { isReadOnly } />
                     </label>
                 </div>
