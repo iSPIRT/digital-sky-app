@@ -1,4 +1,5 @@
 import React from 'react';
+import UncontrolledAlert from '@bit/reactstrap.reactstrap.uncontrolled-alert';
 import FooterApplicationForm from './FooterApplicationForm';
 import FooterApplicationReviewDeclaration from './FooterApplicationReviewDeclaration';
 import DroneAcquisitionApplicationView from './DroneAcquisitionApplicationView';
@@ -13,6 +14,7 @@ class DroneAcquisitionApplicationStep3 extends React.Component {
         this.downloadDocument = this.downloadDocument.bind(this);
         this.state = {
             submitted: false,
+            success:false,
             errors: []
         };
     }
@@ -21,8 +23,12 @@ class DroneAcquisitionApplicationStep3 extends React.Component {
         if(nextProps.errors){
             this.setState({errors: [nextProps.errors]});
         }
+        const { submitted } = this.state;
+        if (submitted && ( !this.state.errors || this.state.errors.length === 0)  &&  (nextProps.applicationForm.id !== 0)){
+            this.setState({success: true});
+        }
     }
-    
+
     handleSubmit(event) {
         event.preventDefault();
         this.setState({submitted: true});
@@ -64,6 +70,15 @@ class DroneAcquisitionApplicationStep3 extends React.Component {
                                     </div>
                                     </React.Fragment>
                                 }
+                                {this.state.success && <div className="success-alert">
+                                    <link
+                                        rel='stylesheet'
+                                        href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'
+                                    />
+                                    <UncontrolledAlert color='info' fade={false}>
+                                        Your application has been successfully submitted
+                                    </UncontrolledAlert>
+                                </div>}
                             </div>
                         </div>
                     </div>

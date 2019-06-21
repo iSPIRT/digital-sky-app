@@ -11,8 +11,8 @@ import FlyDronePermissionApplicationStep2 from '../components/FlyDronePermission
 import FlyDronePermissionApplicationStep3 from '../components/FlyDronePermissionApplicationStep3';
 import { loadApplicationsAction, createApplicationAction, updateApplicationAction } from '../actions/flyDronePermissionApplicationActions';
 import { loadUserAirspaceCategoriesAction, loadUserAirspaceCategoriesByHeightAction} from '../actions/userAirspaceCategoryActions';
-
 import { downloadFile } from '../actions/downloadFileActions';
+import {loadPilotProfile, pilotProfileFormLoaded} from "../actions/pilotProfileActions";
 
 
 class FlyDronePermissionApplicationPage extends React.Component {
@@ -38,6 +38,13 @@ class FlyDronePermissionApplicationPage extends React.Component {
         if(!droneId){
             history.push("/dashboard")
         }
+
+        this.props.dispatch(pilotProfileFormLoaded());
+        const pilotProfileId = localStorage.getItem('pilotProfileId');
+        if( this.props.pilotProfileSaved && this.props.profile.empty ){
+            this.props.dispatch(loadPilotProfile(pilotProfileId));
+        }
+
         if( applicationId && this.props.applications.length === 0 ){
             this.props.dispatch(loadApplicationsAction(droneId));
         }
@@ -85,7 +92,7 @@ class FlyDronePermissionApplicationPage extends React.Component {
 
     render(){
 
-        const { savingApplication, applications, errors, airspaceCategories } = this.props;
+        const { savingApplication, applications, errors, airspaceCategories,profile } = this.props;
 
         const applicationId = this.findApplicationId();
 
@@ -93,7 +100,8 @@ class FlyDronePermissionApplicationPage extends React.Component {
 
         var application = {
             droneId: parseInt(droneId, 0),
-            id: "0"
+            id: "0",
+            pilotBusinessIdentifier:profile?profile.businessIdentifier:""
         };
 
         if(applicationId) {
@@ -145,16 +153,18 @@ class FlyDronePermissionApplicationPage extends React.Component {
 
 function mapStateToProps(state) {
      const { savingApplication, errors, applications } = state.flyDronePermissionApplications;
+     const {pilotProfileSaved,profile}=state.pilotProfile;
      const { airspaceCategories } = state.userAirspaceCategory;
-     var allErrors = [...errors, ...state.userAirspaceCategory.errors]
+     var allErrors = [...errors, ...state.userAirspaceCategory.errors];
      return {
         savingApplication,
         applications,
+         profile,
+         pilotProfileSaved,
         airspaceCategories,
         errors: allErrors,
      };
 }
-
 export default connect(
   mapStateToProps
 )(FlyDronePermissionApplicationPage)

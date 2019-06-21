@@ -29,14 +29,16 @@ class AdminDashboardPage extends React.Component {
             isAtcAdmin:JSON.parse(localStorage.getItem('isAtcAdmin')),
             isAfmluAdmin:JSON.parse(localStorage.getItem('isAfmluAdmin')),
             isViewerAdmin:JSON.parse(localStorage.getItem('isViewerAdmin')),
+            isATCViewerAdmin:JSON.parse(localStorage.getItem('isATCViewerAdmin')),
+            isAFMLUViewerAdmin:JSON.parse(localStorage.getItem('isAFMLUViewerAdmin')),
             isAdminCheck:false
         };
         this.props.dispatch(checkAdminAction(localStorage.getItem('accessToken')));
         if(this.state.isAdmin || this.state.isViewerAdmin)
             this.props.dispatch(loadApplicationsAction(LOCAL_DRONE_ACQUISITION_APPLICATION,"admin"));
-        else if(this.state.isAtcAdmin)
+        else if(this.state.isAtcAdmin || this.state.isATCViewerAdmin )
             this.props.dispatch(loadApplicationsAction(FLY_DRONE_PERMISSION_APPLICATION,"atcAdmin"));
-        else if(this.state.isAfmluAdmin)
+        else if(this.state.isAfmluAdmin || this.state.isAFMLUViewerAdmin)
             this.props.dispatch(loadApplicationsAction(FLY_DRONE_PERMISSION_APPLICATION,"afmluAdmin"));
     }
 
@@ -67,7 +69,7 @@ class AdminDashboardPage extends React.Component {
     }
 
     render() {
-        const {selectedApplicationType,isAdmin,isAtcAdmin,isAfmluAdmin,isAdminCheck,isViewerAdmin} = this.state;
+        const {selectedApplicationType,isAdmin,isAtcAdmin,isAfmluAdmin,isAdminCheck,isViewerAdmin,isATCViewerAdmin,isAFMLUViewerAdmin} = this.state;
         const { errors } = this.props.adminApplications;
         const applications = this.props.adminApplications[selectedApplicationType];
         if(isAdminCheck){            
@@ -79,7 +81,7 @@ class AdminDashboardPage extends React.Component {
                     applicationTypeSelected={this.applicationTypeSelected}
                     applicationSelected={this.applicationSelected}
                />
-            else if(isAtcAdmin || isAfmluAdmin){
+            else if(isAtcAdmin || isAfmluAdmin || isATCViewerAdmin || isAFMLUViewerAdmin){
                 return <AdminDashboardForAtcAfmlu
                 selectedApplicationType={FLY_DRONE_PERMISSION_APPLICATION}
                 applications={this.props.adminApplications[FLY_DRONE_PERMISSION_APPLICATION]}

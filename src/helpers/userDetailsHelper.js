@@ -17,5 +17,9 @@ export function userDetails() {
     localStorage.getItem("isAfmluAdmin") === "true" ? true : false;
   user.isViewerAdmin =
     localStorage.getItem("isViewerAdmin") === "true" ? true : false;
+  user.isATCViewerAdmin =
+    localStorage.getItem("isATCViewerAdmin") === "true" ? true : false;
+  user.isAFMLUViewerAdmin =
+    localStorage.getItem("isAFMLUViewerAdmin") === "true" ? true : false;
   return user;
 }
