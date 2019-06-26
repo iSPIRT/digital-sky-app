@@ -127,6 +127,52 @@ a:hover {
   color: #1940b2;
 }
 
+.application-status-nav {
+  margin-left: 5%;
+  margin-right: 5%;
+  overflow: hidden;
+  background-color: #686868;
+  display: flex;
+  list-style: none;
+  border-radius: 4px;
+}
+.application-status-nav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+/* Change the color of links on hover */
+.application-status-nav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.application-status-nav a.active {
+  background-color: #1940b2;
+  color: white;
+}
+
+.application-status-nav input[type="text"] {
+  width: 21%;
+  height: 12px;
+  border-radius: 8px;
+  float: right;
+  margin: 15px;
+  border: 5px;
+  font-size: 17px;
+}
+.small-button {
+  width: 40px;
+  margin: 5px;
+  position: relative;
+  top: -2px;
+}
 .button {
   background: #245dff;
   border: 1px solid #003be2;
@@ -2647,6 +2693,36 @@ table thead {
   right: 20px;
   top: 20px;
 }
+
+#application-table {
+  text-align: center;
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+  width: 100%;
+}
+
+#application-table td,
+#application-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#application-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#application-table tr:hover {
+  background-color: #ddd;
+}
+
+#application-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #245dff;
+  color: white;
+}
+
 #application-status-modal {
   padding-bottom: 50px;
 }
