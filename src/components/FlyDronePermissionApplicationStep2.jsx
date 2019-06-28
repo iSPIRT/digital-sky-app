@@ -62,14 +62,24 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
             })
         });
 
+        var featuresFull = (new GeoJSON()).readFeatures(redAirspaceCategories)
+        var featuresOne = featuresFull
+        var featuresTwo = featuresOne.splice(0, Math.ceil(featuresOne.length / 2))
         var redLayer = new VectorLayer({
-            source: new VectorSource({ features: (new GeoJSON()).readFeatures(redAirspaceCategories)}),
+            source: new VectorSource({ features: featuresOne}),
             style: new Style({
                 stroke: new Stroke({ color: 'red',width: 1}),
                 fill: new Fill({ color: 'rgba(204, 0, 0, 0.1)'})
             })
         });
-
+        
+        var redLayer2 = new VectorLayer({
+            source: new VectorSource({ features: featuresTwo}),
+            style: new Style({
+                stroke: new Stroke({ color: 'red',width: 1}),
+                fill: new Fill({ color: 'rgba(204, 0, 0, 0.1)'})
+            })
+        });
         var geoCoder = new Geocoder('nominatim', {
             provider: 'osm',
             lang: 'en',
@@ -89,7 +99,7 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
             target: this.refs.mapContainer,
             layers: [ new Tile({ source: new OSM({
                     url: 'https://{a-c}.tiles.mapbox.com/v4/openstreetmap.1b68f018/{z}/{x}/{y}.png?access_token=sk.eyJ1IjoiaXNwaXJ0IiwiYSI6ImNqcGFwb2l1czJmcmIzdmxrdzh6MGlncnkifQ.xZwKoTjwoXFROqKRPYmDwA'
-                })}), greenLayer, amberLayer, redLayer],
+                })}), greenLayer, amberLayer, redLayer, redLayer2],
             controls: defaultControls({
                 attributionOptions: {
                     collapsible: false
