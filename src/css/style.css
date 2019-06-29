@@ -136,7 +136,7 @@ a:hover {
   list-style: none;
   border-radius: 4px;
 }
-.application-status-nav a {
+.application-status-nav li a {
   float: left;
   color: #f2f2f2;
   text-align: center;
@@ -147,15 +147,15 @@ a:hover {
 }
 
 /* Change the color of links on hover */
-.application-status-nav a:hover {
-  background-color: #ddd;
-  color: black;
+.application-status-nav li a:hover {
+  background-color: #515151;
+  color: whitesmoke;
 }
 
 /* Add a color to the active/current link */
-.application-status-nav a.active {
-  background-color: #1940b2;
-  color: white;
+.application-status-nav li a.active {
+  background-color: #ddd;
+  color: black;
 }
 
 .application-status-nav input[type="text"] {
@@ -2202,8 +2202,7 @@ footer.site-footer .footer-logo h4 {
 .single-page {
   padding: 50px 0px;
 }
-
-.thanks-page {
+#m .thanks-page {
   padding: 80px 0px;
   text-align: center;
   margin-top: -10px;
@@ -2424,6 +2423,10 @@ footer.site-footer .footer-logo h4 {
   top: -3px;
   position: relative;
 }
+.map {
+  height: 400px;
+  width: 100%;
+}
 
 #permission-map .map-wrapper {
   height: calc(100vh - 164px);
@@ -2586,7 +2589,18 @@ footer.site-footer .footer-logo h4 {
 .review-map-wrap .map {
   height: 100%;
 }
-
+.button {
+  background-color: #245dff;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
 .alert-notification {
   position: fixed;
   width: 100%;
