@@ -55,6 +55,7 @@ import { history } from '../store/configureStore';
 import $ from 'jquery';
 
 import 'foundation-sites';
+import AdditionalInfoPage from "./AdditionalInfoPage";
 
 function initializeReactGA() {
     ReactGA.initialize('UA-74792042-3');
@@ -117,7 +118,9 @@ class App extends React.Component {
                         <AuthenticatedRoute exact path="/flyDronePermissionApplications" component={FlyDronePermissionApplicationsPage} loggedIn={loggedIn}/>
                         <AuthenticatedRoute exact path="/flyDronePermissionApplication" component={FlyDronePermissionApplicationPage} loggedIn={loggedIn}/>
                         <AuthenticatedRoute exact path="/droneType" loggedIn={loggedIn} user={user} component={DroneTypePage} /> 
-                        
+
+                        <AdminAuthenticatedRoute exact path="/mapView" loggedIn={loggedIn} user={user} component={MapViewPage} />
+                        <AdminAuthenticatedRoute exact path="/additionalInfo" loggedIn={loggedIn} user={user} component={AdditionalInfoPage} />
                         <AdminAuthenticatedRoute path="/admin/dashboard" loggedIn={loggedIn} user={user} component={AdminDashboardPage} />
                         <AdminAuthenticatedRoute path="/admin/application" loggedIn={loggedIn} user={user} component={AdminApplicationViewPage} />
                         <AdminAuthenticatedRoute path="/admin/droneType" loggedIn={loggedIn} user={user} component={AdminDashboardDroneTypePage} />
@@ -135,7 +138,7 @@ class App extends React.Component {
                         <Route path="/resetPassword" component={ResetPasswordPage} />
                         <Route path="/verifyAccount" component={VerifyAccountPage} />
                         <Route path="/testLocations" component={TestLocations} />
-                        {/* <Route path="/mapView" component={MapViewPage} /> */}
+
                         <Route path="/faq" component={FaqPage} />
                         <Route path="/training-orgs" component={FlightTrainingOrganizationsPage} />
                         <Route path="/dos-donts" component={DoAndDonts} />

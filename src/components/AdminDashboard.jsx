@@ -11,8 +11,8 @@ import { IMPORT_DRONE_APPLICATION } from '../constants/applicationType';
 import { UAOP_APPLICATION_APPLICATION } from '../constants/applicationType';
 import { UIN_APPLICATION } from '../constants/applicationType';
 import { FLY_DRONE_PERMISSION_APPLICATION } from '../constants/applicationType';
-import VerticallyCenteredModal from "./VerticallyCenteredModal";
 import AlertModal from "./AlertModal";
+import SearchByModal from "./SearchByModal";
 require('ol/ol.css');
 
 class Applications extends React.Component {
@@ -81,7 +81,7 @@ class Applications extends React.Component {
         }
         if(isValid){
             applications.map((application) => {
-                if (rel.test(application.ficNumber)) {
+                if (rel.test(application[this.props.searchBy])) {
                     approvedApplications.push(application)
                 }
             });
@@ -90,7 +90,7 @@ class Applications extends React.Component {
     }
 
     renderTableHeader() {
-        let header = ['UIN', 'Date of Submission', 'Start Date', 'Start Time', 'End Date', 'End Time', 'ADC', 'FIC', 'RPA Type', 'Endurance (minutes)', 'Max Altitude (ft.)', 'Launch Point', 'Purpose', 'Additional Info']
+        let header = ['Call Sign', 'RPA Type','Purpose', 'Launch Point',  'Start Date', 'Start Time', 'End Date', 'End Time', 'Altitude (ft.)', 'FIC No', 'ADC No', 'Endurance (minutes)', 'Additional Info']
         return header.map((key, index) => {
             return <th key={index}>{key}</th>
         })
@@ -111,32 +111,32 @@ class Applications extends React.Component {
     }
     renderTableData(filteredApplications,currentStatusTab) {
         return filteredApplications.map((application) => {
-            const {id, submittedDate, adcNumber, ficNumber, flightPurpose, maxAltitude, approverComments, startDateTime, endDateTime, droneType, maxEndurance, flyArea} = application;
+            const {id, adcNumber, ficNumber, flightPurpose, maxAltitude, approverComments, startDateTime, endDateTime, droneType, maxEndurance, flyArea} = application;
             const endDateTimeObj = moment(endDateTime, "DD-MM-YYYY HH:mm:ss");
             const startDateTimeObj = moment(startDateTime, "DD-MM-YYYY HH:mm:ss");
-            const endDate = endDateTimeObj.date() + "-" + endDateTimeObj.month() + "-" + endDateTimeObj.year();
-            const endTime = endDateTimeObj.hour() + ":" + endDateTimeObj.minute();
-            const startDate = startDateTimeObj.date() + "-" + startDateTimeObj.month() + "-" + startDateTimeObj.year();
-            const startTime = startDateTimeObj.hour() + ":" + startDateTimeObj.minute()
+            const endDate = endDateTimeObj.format('DD-MM-YYYY');
+            const endTime = endDateTimeObj.format('HH:mm');
+            const startDate = startDateTimeObj.format('DD-MM-YYYY');
+            const startTime = startDateTimeObj.format('HH:mm');
+            const additionalInfo=(approverComments && approverComments.length>0)?approverComments:"Info";
 
             return(
-                <tr key={id} >
-                    <td> </td>
-                    <td>{submittedDate}</td>
+                <tr key={id}>
+                    <td>{id}</td>
+                    <td>{droneType}</td>
+                    <td>{flightPurpose}</td>
+                    <td><a
+                        onClick={() => this.props.handleOpenMapView(id)}>{flyArea ? flyArea[0].latitude.toFixed(3) + ", " + flyArea[0].longitude.toFixed(3) : " "}</a>
+                    </td>
                     <td>{startDate}</td>
                     <td>{startTime}</td>
                     <td>{endDate}</td>
                     <td>{endTime}</td>
-                    <td>{adcNumber}</td>
-                    <td>{ficNumber}</td>
-                    <td>{droneType}</td>
-                    <td>{maxEndurance}</td>
                     <td>{maxAltitude}</td>
-                    <td><a
-                        onClick={() => this.props.handleOpenModal(id)}>{flyArea ? flyArea[0].latitude.toFixed(3) + ", " + flyArea[0].longitude.toFixed(3) : " "}</a>
-                    </td>
-                    <td>{flightPurpose}</td>
-                    <td>{approverComments}</td>
+                    <td>{ficNumber}</td>
+                    <td>{adcNumber}</td>
+                    <td>{maxEndurance}</td>
+                    <td><a onClick={()=> this.props.loadAdditionalInfo(id)}>{additionalInfo}</a></td>
                     {this.renderDecisionButtons(currentStatusTab,application)}
                 </tr>
             )
@@ -164,7 +164,12 @@ class Applications extends React.Component {
         const {applications, currentStatusTab, showApplicationStatusTabs} = this.props;
         if (!applications) return null;
         if (applications.length < 1) return <p> No Applications to Show </p>;
-        let filteredApplications = applications;
+        const sortedapplications=applications.sort(function(a, b){
+            const a_date_time = moment(a.startDateTime, "DD-MM-YYYY HH:mm:ss");
+            const b_date_time = moment(b.startDateTime, "DD-MM-YYYY HH:mm:ss");
+            return a_date_time>b_date_time ? -1 : a_date_time<b_date_time ? 1 : 0;
+        });
+        let filteredApplications = sortedapplications;
         if (showApplicationStatusTabs) {
             if (currentStatusTab == 3) {
                 filteredApplications = this.filterCompletedApplications(applications);
@@ -175,7 +180,7 @@ class Applications extends React.Component {
             } else if (currentStatusTab == 0) {
                 filteredApplications = this.filterPendingApplications(applications)
             } else if (currentStatusTab == 4) {
-                filteredApplications = this.filterApplicationsBasedOnSearch(applications,this.props.searchContent)
+                filteredApplications = this.filterApplicationsBasedOnSearch(applications,this.props.searchContent,this.props.searchBy)
             }
         }
 
@@ -224,6 +229,9 @@ class AdminDashboard extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleTabChange = this.handleTabChange.bind(this);
         this.handleConfirmDecision = this.handleConfirmDecision.bind(this);
+        this.handleOpenSearchModal = this.handleOpenSearchModal.bind(this);
+        this.handleCloseSearchModal = this.handleCloseSearchModal.bind(this);
+        this.handleChangeSearchBy = this.handleChangeSearchBy.bind(this);
 
         this.state={
             showApplicationStatusTabs:false,
@@ -233,7 +241,9 @@ class AdminDashboard extends React.Component {
             modalShow: false,
             currentSelectedApplication:"",
             searchContent:"",
-            event:{}
+            event:{},
+            searchModalShow:false,
+            searchBy:"Call Sign"
         }
     }
 
@@ -263,8 +273,19 @@ class AdminDashboard extends React.Component {
         }
         this.handleCloseModal()
     }
+    handleChangeSearchBy(value){
+        this.setState({searchBy:value})
+        this.handleCloseSearchModal()
+    }
     handleCloseModal(){
         this.setState({ modalShow: false });
+    }
+
+    handleCloseSearchModal(){
+        this.setState({ searchModalShow: false });
+    }
+    handleOpenSearchModal(){
+        this.setState({ searchModalShow: true });
     }
     applicationSelected(applicationId){
         this.props.applicationSelected(applicationId);
@@ -331,10 +352,6 @@ class AdminDashboard extends React.Component {
     render() {
         const {applications} = this.props;
         const {errors} = this.props;
-        // let currentApplication={};
-        // if(applications){
-        //     currentApplication=applications.find( application => application.id === this.state.currentSelectedApplication );
-        // }
         return (
             <div>
                 <div className="admin-header">
@@ -353,23 +370,17 @@ class AdminDashboard extends React.Component {
                     </div>
                 </div>
                 {this.state.showApplicationStatusTabs &&
+                    <div>
                             <div className="application-status-nav">
                                 <li><a className="tablinks" onClick={(e) => this.handleTabChange(e,0) }><span>Pending Applications</span></a></li>
                                 <li><a className="tablinks" onClick={(e) => this.handleTabChange(e,1)}><span>Accepted Applications</span></a></li>
                                 <li><a className="tablinks" onClick={(e) => this.handleTabChange(e,2)}><span>Rejected Applications</span></a></li>
-                                <li><a className="tablinks" onClick={(e) => this.handleTabChange(e,3)}><span>Past Applications</span></a></li>
-                                <input ref="search" type="text" placeholder="Search on FIC" onChange={this.handleChange}/>
+                                <li><a className="tablinks" onClick={(e) => this.handleTabChange(e,3)}><span>Completed Applications</span></a></li>
+                                <input ref="search" type="text" placeholder={"Search..."} onChange={this.handleChange}/>
+                                <a onClick={this.handleOpenSearchModal}><img src={view} alt="Search By"/></a>
                             </div>
+                    </div>
                     }
-                {/*{ this.state.applicationType === FLY_DRONE_PERMISSION_APPLICATION &&*/}
-                {/*    <VerticallyCenteredModal*/}
-                {/*            application={currentApplication}*/}
-                {/*            loadAirspaceCategories={this.props.loadAirspaceCategories}*/}
-                {/*            airspaceCategories={this.props.airspaceCategories}*/}
-                {/*            show={this.state.modalShow}*/}
-                {/*            onHide={this.handleCloseModal}*/}
-                {/*    />*/}
-                {/*}*/}
                 {
                     this.state.applicationType === FLY_DRONE_PERMISSION_APPLICATION &&
                     <AlertModal
@@ -379,21 +390,33 @@ class AdminDashboard extends React.Component {
                         handleConfirm={this.handleConfirmDecision}
                     />
                 }
+                {
+                    this.state.applicationType === FLY_DRONE_PERMISSION_APPLICATION &&
+                    <SearchByModal
+                        onHide={this.handleCloseSearchModal}
+                        show={this.state.searchModalShow}
+                        handleChangeSearchBy={this.handleChangeSearchBy}
+                    />
+                }
                 <div className="page-dashboard">
                     <section>
                         <FormErrors errors = {errors}/>
-                        <div>
+                        <div className="appl-style">
                             <Applications
                                 showModal={this.state.modalShow}
                                 onHide={this.handleCloseModal}
                                 applications={applications}
+                                searchBy={this.state.searchBy}
                                 applicationSelected={this.applicationSelected}
                                 currentStatusTab={this.state.currentStatusTab}
                                 showApplicationStatusTabs={this.state.showApplicationStatusTabs}
                                 handleAccept={this.handleAccept}
                                 handleReject={this.handleReject}
                                 searchContent={this.state.searchContent}
-                                handleOpenModal={this.handleOpenModal}/>
+                                loadAdditionalInfo={this.props.loadAdditionalInfoPage}
+                                handleOpenMapView={this.props.handleOpenMapView}
+                                handleOpenModal={this.handleOpenModal}
+                            />
                         </div>
                     </section>
                 </div>

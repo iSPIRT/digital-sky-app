@@ -157,7 +157,14 @@ a:hover {
   background-color: #ddd;
   color: black;
 }
-
+.application-status-nav a img {
+  margin-top: 17px;
+  z-index: 1;
+}
+.appl-style {
+  margin-left: 15px;
+  margin-right: 15px;
+}
 .application-status-nav input[type="text"] {
   width: 21%;
   height: 12px;
@@ -2423,11 +2430,6 @@ footer.site-footer .footer-logo h4 {
   top: -3px;
   position: relative;
 }
-.map {
-  height: 400px;
-  width: 100%;
-}
-
 #permission-map .map-wrapper {
   height: calc(100vh - 164px);
   margin-top: -8px;
@@ -2534,6 +2536,39 @@ footer.site-footer .footer-logo h4 {
   height: 4px;
   background-color: #245dff;
 }
+
+.drop-down-select {
+  border: 1px solid #ececec;
+  padding: 10px 20px;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  margin: 0;
+  color: black;
+}
+
+.drop-down-select ul {
+  list-style: none;
+  position: absolute;
+  padding: 10px 20px;
+  margin: 0;
+  position: absolute;
+  border: 1px solid #ececec;
+  left: -1px;
+  top: 38px;
+  width: 100%;
+  color: black;
+}
+
+.drop-down-select .show {
+  display: inline-block;
+}
+
+.drop-down-select .hide {
+  display: none;
+}
+
 .altitude-range-wrap .slider-handle {
   background-color: transparent;
   background-image: url("../img/drag.svg");
@@ -2557,6 +2592,9 @@ footer.site-footer .footer-logo h4 {
 }
 .altitude-range-wrap input:disabled {
   cursor: default;
+}
+.map-display {
+  border: 3px solid #000000;
 }
 .altitude-range-wrap .circle-left {
   width: 16px;
