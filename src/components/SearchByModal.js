@@ -36,10 +36,10 @@ class SearchByModal extends React.Component {
             <p>
               <label>
                 <input
-                  value="id"
+                  value="uin"
                   name="group1"
                   type="radio"
-                  checked={this.state.selectedOption === "id"}
+                  checked={this.state.selectedOption === "uin"}
                   onChange={this.radioChange}
                 />
                 Call Sign

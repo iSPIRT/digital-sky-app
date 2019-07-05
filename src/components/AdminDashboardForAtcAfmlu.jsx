@@ -97,7 +97,7 @@ class Applications extends React.Component {
     }
     renderTableData(filteredApplications,currentStatusTab) {
         return filteredApplications.map((application) => {
-            const {id, adcNumber, ficNumber, flightPurpose, maxAltitude, approverComments, startDateTime, endDateTime, droneType, maxEndurance, flyArea} = application;
+            const {id,uin, adcNumber, ficNumber, flightPurpose, maxAltitude, approverComments, startDateTime, endDateTime, droneType, maxEndurance, flyArea} = application;
             const endDateTimeObj = moment(endDateTime, "DD-MM-YYYY HH:mm:ss");
             const startDateTimeObj = moment(startDateTime, "DD-MM-YYYY HH:mm:ss");
             const endDate = endDateTimeObj.format('DD-MM-YYYY');
@@ -108,7 +108,7 @@ class Applications extends React.Component {
 
             return(
                 <tr key={id}>
-                    <td>{id}</td>
+                    <td>{uin}</td>
                     <td>{droneType}</td>
                     <td>{flightPurpose}</td>
                     <td><a
