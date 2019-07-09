@@ -157,7 +157,7 @@ class OccurrenceReport extends React.Component {
                                 </div>
                                 <div className="large-12 cell">
                                     <label>Remote Pilot Details
-                                        <textarea name="pilotDetails" rows="3" value= {occurrenceReport.pilotDetails } onChange={ this.handleChange } validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <textarea name="pilotDetails" rows="3" value= {occurrenceReport.pilotDetails } onChange={ this.handleChange }/>
                                         <FieldError fieldErrors={this.state.fieldErrors} field='pilotDetails'/>
                                     </label>
                                 </div>
@@ -170,7 +170,7 @@ class OccurrenceReport extends React.Component {
 
                                 <div className="large-12 cell">
                                     <label>Occurrence Description
-                                        <textarea name="occurrenceDescription" rows="3" value= {occurrenceReport.occurrenceDescription } onChange={ this.handleChange } validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                        <textarea name="occurrenceDescription" rows="3" value= {occurrenceReport.occurrenceDescription } onChange={ this.handleChange }/>
                                         <FieldError fieldErrors={this.state.fieldErrors} field='occurrenceDescription'/>
                                     </label>
                                 </div>
