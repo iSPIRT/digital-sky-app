@@ -13,6 +13,7 @@ class FlyDronePermissionApplicationStep3 extends React.Component {
         super(props);
         this.handleSubmitApplication = this.handleSubmitApplication.bind(this);
         this.downloadDocument = this.downloadDocument.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.state = {
             submitted: false,
             application: this.props.application,
@@ -36,6 +37,15 @@ class FlyDronePermissionApplicationStep3 extends React.Component {
         this.setState({application});
 
         this.props.updateApplication(this.props.application.id, application);
+    }
+
+    handleChange(event){
+        const { type } = event.target;
+        if( type === 'file'){
+            const formData = new FormData();
+            formData.append("flightLogDocument", event.target.files[0]);
+            this.props.submitFlightLog(this.state.application,formData);
+        }
     }
 
 
@@ -73,6 +83,15 @@ class FlyDronePermissionApplicationStep3 extends React.Component {
                                         <div className="question">
                                             <h6>Permission Artifact:</h6>
                                             <a onClick={(e) =>  this.props.downloadDocument("permissionArtifact")}>Download</a>
+                                        </div>
+                                    }
+                                </div>
+                                <div className="large-12 cell">
+                                    { (application.status === 'APPROVED' || application.status === 'APPROVEDBYAFMLU') &&
+                                        <div className="question">
+                                            <label>Upload your Flight log:</label>
+                                            <label htmlFor="flightLogDocument" className="button button-file-upload">Upload File</label>
+                                            <input type="file" id="flightLogDocument" name="flightLogDocument" className="show-for-sr" accept=".json,application/json" onChange={this.handleChange}/>
                                         </div>
                                     }
                                 </div>

@@ -9,7 +9,7 @@ import queryString from 'query-string'
 import FlyDronePermissionApplicationStep1 from '../components/FlyDronePermissionApplicationStep1';
 import FlyDronePermissionApplicationStep2 from '../components/FlyDronePermissionApplicationStep2';
 import FlyDronePermissionApplicationStep3 from '../components/FlyDronePermissionApplicationStep3';
-import { loadApplicationsAction, createApplicationAction, updateApplicationAction } from '../actions/flyDronePermissionApplicationActions';
+import { loadApplicationsAction, createApplicationAction, updateApplicationAction, submitFlightLogAction } from '../actions/flyDronePermissionApplicationActions';
 import { loadUserAirspaceCategoriesAction, loadUserAirspaceCategoriesByHeightAction} from '../actions/userAirspaceCategoryActions';
 import { downloadFile } from '../actions/downloadFileActions';
 import {loadPilotProfile, pilotProfileFormLoaded} from "../actions/pilotProfileActions";
@@ -32,6 +32,7 @@ class FlyDronePermissionApplicationPage extends React.Component {
         this.findDroneId = this.findDroneId.bind(this);
         this.loadAirspaceCategories = this.loadAirspaceCategories.bind(this);
         this.loadAirspaceCategoriesByHeight = this.loadAirspaceCategoriesByHeight.bind(this);
+        this.submitFlightLog = this.submitFlightLog.bind(this);
 
         const applicationId = this.findApplicationId();
         const droneId = this.findDroneId();
@@ -90,6 +91,10 @@ class FlyDronePermissionApplicationPage extends React.Component {
         return this.props.dispatch(updateApplicationAction(applicationId, application));
     }
 
+    submitFlightLog(application, formData){
+        return this.props.dispatch(submitFlightLogAction(application,formData))
+    }
+
     render(){
 
         const { savingApplication, applications, errors, airspaceCategories,profile } = this.props;
@@ -146,6 +151,7 @@ class FlyDronePermissionApplicationPage extends React.Component {
                             downloadDocument={this.downloadDocument}
                             loadAirspaceCategories= {this.loadAirspaceCategoriesByHeight}
                             airspaceCategories= {airspaceCategories}
+                            submitFlightLog = {this.submitFlightLog}
                         />
         }
     }

@@ -3,7 +3,8 @@ import applicationProperties from "../helpers/applicationPropertiesHelper";
 export const flyDronePermissionApplicationService = {
   createApplication,
   updateApplication,
-  loadApplications
+  loadApplications,
+  submitFlightLog
 };
 
 function createApplication(application) {
@@ -50,6 +51,20 @@ function loadApplications(droneId) {
       droneId,
     requestOptions
   ).then(handleResponse);
+}
+
+function submitFlightLog(application,formdata) {
+  debugger;
+  const apiRoot = applicationProperties().apiRoot;
+  const authToken = "Bearer " + localStorage.getItem("accessToken");
+  const requestOptions = {
+    method: "POST",
+    headers: { Authorization: authToken },
+    body: formdata
+  };
+  return fetch(apiRoot + "/applicationForm/flyDronePermissionApplication/" + application.id+"/document/flightLog", requestOptions).then(
+    handleResponse
+  );
 }
 
 function handleResponse(response) {
