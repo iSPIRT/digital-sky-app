@@ -6,6 +6,7 @@ import FlyDronePermissionApplicationView from './FlyDronePermissionApplicationVi
 import { Link } from 'react-router-dom'
 
 import back from '../img/back.svg';
+import UncontrolledAlert from "@bit/reactstrap.reactstrap.uncontrolled-alert";
 
 class FlyDronePermissionApplicationStep3 extends React.Component {
 
@@ -16,12 +17,19 @@ class FlyDronePermissionApplicationStep3 extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.state = {
             submitted: false,
+            file_uploaded:false,
+            file_uploaded_success:false,
             application: this.props.application,
         };
     }
 
     componentWillReceiveProps(nextProps){
+        const { file_uploaded } = this.state;
+
         this.setState({application: nextProps.application});
+        if (file_uploaded && ( !nextProps.errors || nextProps.errors.length === 0) ){
+            this.setState({file_uploaded_success: true});
+        }
     }
 
     downloadDocument(documentName){
@@ -45,13 +53,14 @@ class FlyDronePermissionApplicationStep3 extends React.Component {
             const formData = new FormData();
             formData.append("flightLogDocument", event.target.files[0]);
             this.props.submitFlightLog(this.state.application,formData);
+            this.setState({file_uploaded:true})
         }
     }
 
 
     render() {
         const { savingApplication, errors} = this.props;
-        const { formErrors, submitted, application } = this.state;
+        const { formErrors, submitted, application,file_uploaded_success } = this.state;
         return (
             <div id="application-preview">
                 <div className="page-form">
@@ -114,6 +123,17 @@ class FlyDronePermissionApplicationStep3 extends React.Component {
                                 { submitted &&  application.status && application.status !== 'DRAFT' &&
                                     <div className="large-12 cell">
                                         <p> Successfully Saved Application <br/></p>
+                                    </div>
+                                }
+                                {(application.status === 'APPROVED' || application.status === 'APPROVEDBYAFMLU') && file_uploaded_success &&
+                                    <div className="success-alert">
+                                        <link
+                                            rel='stylesheet'
+                                            href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'
+                                        />
+                                        <UncontrolledAlert color='info' fade={false}>
+                                            File has been Successfully Uploaded
+                                        </UncontrolledAlert>
                                     </div>
                                 }
                             </div>

@@ -44,8 +44,6 @@ export function flyDronePermissionApplications(state = initialState, action) {
       };
     case SAVE_FDP_APPLICATION_FAILURE:
       return { ...state, savingApplication: false, errors: action.errors };
-    case SUBMIT_FLIGHT_LOG_FOR_APPLICATION_SUCCESS:
-      return {...state}
     case SUBMIT_FLIGHT_LOG_FOR_APPLICATION_FAILURE:
       return {...state, errors: action.errors }
     default:

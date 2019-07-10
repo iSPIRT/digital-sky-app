@@ -85,21 +85,15 @@ export const loadApplicationsAction = droneId => {
 };
 
 export const submitFlightLogAction = (application,formData) =>{
-  debugger
   return dispatch =>{
     flyDronePermissionApplicationService.submitFlightLog(application,formData).then(
-      ()=>{
-        dispatch(success());
-      },
+      ()=>{},
       errors=>{
         dispatch(failure(errors));
       }
     )
-  }
-  function success() {
-    return { type: SUBMIT_FLIGHT_LOG_FOR_APPLICATION_SUCCESS };
-  }
+  };
   function failure(errors) {
     return { type: SUBMIT_FLIGHT_LOG_FOR_APPLICATION_FAILURE, errors };
   }
-}
+};
