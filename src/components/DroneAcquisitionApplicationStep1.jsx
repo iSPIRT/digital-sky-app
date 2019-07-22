@@ -142,23 +142,14 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
         }
     }
    
-    render() {
-        // const categoryOptions = this.props.categoryOptions.map(category => {
-        //     return (<option value={category} key={category}> {category} </option>);
-        // });
-
-        // const nationalityOptions = this.props.nationalityOptions.map(nationality => {
-        //     return (<option value={nationality} key={nationality}> {nationality} </option>);
-        // });
+    render() {        
         const { saving, step, droneTypes, headerText } = this.props;
         const { applicationForm } = this.state;
         const isReadOnly = true;
         
         if(!applicationForm) return null;
         return (
-            <div>
-                {/* <FormErrors errors = {errors}/>
-                <FormErrors errors = {formErrors}/> */}
+            <div>                
                 <form name="localDroneAcquisitionApplicationForm" onSubmit={this.handleSubmit}>
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
@@ -186,10 +177,6 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                             </div>
                             <div className="large-12 cell">
                                 <label>Nationality of Applicant
-                                    {/* <select name="applicantNationality" value={ applicationForm.applicantNationality } onChange={ this.handleChange } >
-                                        { !applicationForm.applicantNationality && <option default key="-1" value="-1">Select</option> }
-                                        { nationalityOptions }
-                                    </select> */}
                                     <CountryDropdown type="text" placeholder="Applicant Nationality" name="applicantNationality" onChange={this.selectCountry} value={applicationForm.applicantNationality} className={decorateInputClass(this.state.fieldErrors['applicantNationality'],[])} validate="required,alphabetsOnly" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>                                    
                                     <FieldError fieldErrors={this.state.fieldErrors} field='applicantNationality'/>
                                  </label>
@@ -209,6 +196,30 @@ class DroneAcquisitionApplicationStep1 extends React.Component {
                                     <FieldError fieldErrors={this.state.fieldErrors} field='noOfDrones'/>
                                 </label>
                             </div>
+                            { applicationForm && applicationForm.noOfDrones && applicationForm.noOfDrones<2 &&
+                            <div className="large-12 cell">
+                                <label>Serial number of RPA
+                                    <input type="text" name="serialNo" value= { (applicationForm && applicationForm.serialNo)} onChange = { this.handleChange } placeholder="Serial Number" min="1" className={decorateInputClass(this.state.fieldErrors['serialNo'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                    <FieldError fieldErrors={this.state.fieldErrors} field='serialNo'/>
+                                </label>
+                            </div>
+                            }
+                            { applicationForm && applicationForm.noOfDrones && applicationForm.noOfDrones>1 &&
+                            <div className="large-12 cell">
+                                <label>Start of Serial numbers of RPA
+                                    <input type="text" name="serialNoStart" value= { (applicationForm && applicationForm.serialNoStart)} onChange = { this.handleChange } placeholder="Start of Serial Number" min="1" className={decorateInputClass(this.state.fieldErrors['serialNoStart'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                    <FieldError fieldErrors={this.state.fieldErrors} field='serialNoStart'/>
+                                </label>
+                            </div>
+                            }
+                            { applicationForm && applicationForm.noOfDrones && applicationForm.noOfDrones>1 &&
+                            <div className="large-12 cell">
+                                <label>End of Serial numbers of RPA
+                                    <input type="text" name="serialNoEnd" value= { (applicationForm && applicationForm.serialNoEnd)} onChange = { this.handleChange } placeholder="End of Serial Number" min="1" className={decorateInputClass(this.state.fieldErrors['serialNoEnd'],[])} validate="required" onBlur={(e) => this.setState({fieldErrors: validateField(this.state.fieldErrors, e.target)})}/>
+                                    <FieldError fieldErrors={this.state.fieldErrors} field='serialNoEnd'/>
+                                </label>
+                            </div>
+                            }
                             <FooterApplicationForm step= { step } saving= { saving } />
                         </div>
                     </div>

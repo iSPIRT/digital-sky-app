@@ -93,7 +93,7 @@ class DroneAcquisitionDroneTypeDetailsForm extends React.Component {
                     </label>
                 </div>
                 <div className="large-12 cell">
-                    <label>Serial No.
+                    <label>Range of serial numbers manufactured
                         <input type="text" name="serialNo" value= { selectedDroneType && selectedDroneType.serialNo} onChange = { this.handleChange } readOnly = { isReadOnly } className={fieldErrors && decorateInputClass(fieldErrors['serialNo'],[])} validate="required" onBlur={(e) => validateField(e.target)}/>
                         { fieldErrors && <FieldError fieldErrors={fieldErrors} field='serialNo'/> }
                     </label>
