@@ -20,6 +20,12 @@ const UINApplicationView = (props) => {
                         </p>
                     </div>
             }
+                { application.applicantEmail &&
+                <div className="question">
+                    <h6>Applicant email:</h6>
+                    <p>{application.applicantEmail}</p>
+                </div>
+                }
                 <div className="question">
                     <h6>Model Name:</h6>
                     <p>{ application.modelName }</p>

@@ -19,6 +19,12 @@ class UAOPApplicationView extends React.Component {
                     <h6>Designation:</h6>
                     <p>{application.designation}</p>
                 </div>
+                { application.applicantEmail &&
+                <div className="question">
+                    <h6>Applicant email:</h6>
+                    <p>{application.applicantEmail}</p>
+                </div>
+                }
                 <div className="question">
                     <h6>Security Program Document:</h6>
                     <a onClick={(e) =>  this.props.downloadDocument(application.securityProgramDocName)}>{application.securityProgramDocName}</a>

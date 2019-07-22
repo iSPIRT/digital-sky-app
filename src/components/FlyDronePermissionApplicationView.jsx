@@ -110,6 +110,12 @@ class FlyDronePermissionApplicationView extends React.Component {
                         </Link>
                     </p>
                 </div>
+                { application.applicantEmail &&
+                <div className="question">
+                    <h6>Applicant email:</h6>
+                    <p>{application.applicantEmail}</p>
+                </div>
+                }
                 <div className="question">
                     <h6>RPA Id:</h6>
                     <p>{application.droneId}</p>

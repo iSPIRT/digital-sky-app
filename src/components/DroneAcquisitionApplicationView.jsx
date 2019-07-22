@@ -9,6 +9,12 @@ const DroneAcquisitionApplicationView = (props) => {
                 <h6>Name of applicant in full:</h6>
                 <p>{ applicationForm.applicant }</p>
             </div>
+            { applicationForm.applicantEmail &&
+                <div className="question">
+                    <h6>Applicant email:</h6>
+                    <p>{applicationForm.applicantEmail}</p>
+                </div>
+            }
             <div className="question">
                 <h6>Address of Applicant:</h6>
                     { applicationForm.applicantAddress ?
