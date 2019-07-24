@@ -78,11 +78,9 @@ class OperatorDroneProfilePage extends React.Component {
                 <div className="view-application-footer">
                     <div className="grid-container">
                         <div className="grid-x grid-padding-x">
-                            <div className="large-12 cell">
-                                <a href= {this.getRedirectLink()} className="button button-accept multi-button">{operatorDroneProfile.operatorDroneStatus === "UIN_NOT_APPLIED" || operatorDroneProfile.operatorDroneStatus === "UIN_DRAFT" ? "Apply for UIN" : "View UIN"}</a>
-                                <a href= {this.getOccurrenceReportLink()} className="button button-accept multi-button">Occurrence Report</a>
-                                <a href= {this.getFlyDronePermissionLink()} className="button button-accept multi-button">Fly RPA Application</a>
-                            </div>
+                                <a href= {this.getRedirectLink()} className="button button-accept multi-button">{operatorDroneProfile.operatorDroneStatus === "UIN_NOT_APPLIED" || operatorDroneProfile.operatorDroneStatus === "UIN_DRAFT" ? "Apply for UIN" : "View UIN Application"}</a>
+                                <a href= {this.getOccurrenceReportLink()} className="button button-accept multi-button">File Occurrence Report</a>
+                                <a href= {this.getFlyDronePermissionLink()} className="button button-accept multi-button">Apply for Flight Permission</a>
                         </div>
                     </div>
                 </div>

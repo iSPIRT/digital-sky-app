@@ -169,7 +169,7 @@ class PilotProfile extends React.Component {
                             <div className="grid-x grid-padding-x">
                                 {  profile &&  profile.id &&
                                     <div className="large-12 cell">
-                                        <label>Id
+                                        <label>Business Identifier
                                             <p>{profile.businessIdentifier}</p>
                                         </label>
                                     </div>

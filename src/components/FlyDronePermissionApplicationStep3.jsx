@@ -70,7 +70,7 @@ class FlyDronePermissionApplicationStep3 extends React.Component {
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
                                 <div className="large-12 cell">
-                                    <h2>Fly RPA Permission Application</h2>
+                                    <h2>Flight Permission Application</h2>
                                     <p><Link to={'/flyDronePermissionApplications?droneId='+application.droneId}>Back To Applications</Link></p>
                                     <div className="form-steps">
                                         <ul>

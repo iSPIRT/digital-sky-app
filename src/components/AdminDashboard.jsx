@@ -23,6 +23,8 @@ class Applications extends React.Component {
             cssClass = 'application status-accepted';
         } else if (status === 'REJECTED') {
             cssClass = 'application status-declined';
+        } else if (status === 'SUBMITTED') {
+            cssClass = 'application status-submitted';
         }
         return cssClass;
     }

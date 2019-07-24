@@ -253,7 +253,7 @@ a:hover {
   background: #00c75b;
   border-color: #00c75b;
   box-shadow: none;
-  margin-bottom: 20px;
+  margin: 10px;
 }
 .button.button-accept:hover {
   background: #00c75b;
@@ -1679,6 +1679,18 @@ footer.site-footer .footer-logo h4 {
   margin-bottom: 10px;
   border-radius: 6px;
 }
+
+#all-applications-admin .applications .application.status-accepted {
+  background: #00b653;
+}
+
+#all-applications-admin .applications .application.status-declined {
+  background: #e25353;
+}
+#all-applications-admin .applications .application.status-submitted {
+  background: #ec8416;
+}
+
 #all-applications-admin .applications .application .details {
   width: calc(100% - 50px);
   float: left;
@@ -1694,10 +1706,11 @@ footer.site-footer .footer-logo h4 {
   line-height: 28px;
   letter-spacing: 0.76px;
   text-transform: uppercase;
+  color:white;
 }
 #all-applications-admin .applications .application .details p {
   margin: 0px;
-  color: #2b2b5b;
+  color: white;
   font-family: "poppinssemibold";
   font-weight: normal;
   font-style: normal;
@@ -1706,7 +1719,6 @@ footer.site-footer .footer-logo h4 {
   margin: 0px;
   font-size: 11px;
   line-height: 17px;
-  color: #64729a;
 }
 #all-applications-admin .applications .application .go-to-location {
   width: 50px;

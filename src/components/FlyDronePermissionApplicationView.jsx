@@ -97,6 +97,10 @@ class FlyDronePermissionApplicationView extends React.Component {
                     <p>{application.status}</p>
                 </div>
                 <div className="question">
+                    <h6>Id:</h6>
+                    <p>{application.id}</p>
+                </div>
+                <div className="question">
                     <h6>Remote Pilot Id:</h6>
                     <p>
                         <Link to={ "/admin/pilot?profileId="+application.pilotId } >{application.pilotBusinessIdentifier}</Link>
