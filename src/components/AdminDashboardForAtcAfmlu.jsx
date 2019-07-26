@@ -28,7 +28,7 @@ class Applications extends React.Component {
     filterRejectedApplications(applications) {
         let rejectedApplications = [];
         applications.map((application) => {
-            if (application.status.trim() === "REJECTED") {
+            if (application.status.trim() === "REJECTED" || application.status.trim() === "REJECTEDBYATC" || application.status.trim() === "REJECTEDBYAFMLU") {
                 rejectedApplications.push(application)
             }
         });
@@ -36,11 +36,17 @@ class Applications extends React.Component {
     }
 
     filterPendingApplications(applications) {
+        const isAdmin= JSON.parse(localStorage.getItem('isAdmin'));
+        const isAtcAdmin= JSON.parse(localStorage.getItem('isAtcAdmin'));
+        const isAfmluAdmin= JSON.parse(localStorage.getItem('isAfmluAdmin'));
         let pendingApplications = [];
         const now = moment();
         applications.map((application) => {
             const endDateTime = moment(application.endDateTime, "DD-MM-YYYY HH:mm:ss");
-            if (now.isBefore(endDateTime) && application.status.trim() === "SUBMITTED") {
+            if ((isAdmin||isAtcAdmin) && now.isBefore(endDateTime) && application.status.trim() === "SUBMITTED") {
+                pendingApplications.push(application)
+            }
+            else if(isAfmluAdmin && now.isBefore(endDateTime) && application.status.trim() === "APPROVEDBYATC"){
                 pendingApplications.push(application)
             }
         });
@@ -48,9 +54,16 @@ class Applications extends React.Component {
     }
 
     filterApprovedApplications(applications) {
+        const isAdmin= JSON.parse(localStorage.getItem('isAdmin'));
+        const isAtcAdmin= JSON.parse(localStorage.getItem('isAtcAdmin'));
+        const isAfmluAdmin= JSON.parse(localStorage.getItem('isAfmluAdmin'));
         let approvedApplications = [];
         applications.map((application) => {
-            if (application.status.trim() === "APPROVED" || application.status.trim() === "APPROVEDBYATC" || application.status.trim() === "APPROVEDBYAFMLU") {
+
+            if ((isAdmin||isAtcAdmin) && (application.status.trim() === "APPROVED" || application.status.trim() === "APPROVEDBYATC" || application.status.trim() === "APPROVEDBYAFMLU")) {
+                approvedApplications.push(application)
+            }
+            else if(isAfmluAdmin && (application.status.trim() === "APPROVED" || application.status.trim() === "APPROVEDBYAFMLU" )){
                 approvedApplications.push(application)
             }
         });
@@ -83,8 +96,11 @@ class Applications extends React.Component {
     }
 
     renderDecisionButtons(currentStatusTab,application){
+        const isAdmin= JSON.parse(localStorage.getItem('isAdmin'));
+        const isAtcAdmin= JSON.parse(localStorage.getItem('isAtcAdmin'));
+        const isAfmluAdmin= JSON.parse(localStorage.getItem('isAfmluAdmin'));
         const endDateTime = moment(application.endDateTime, "DD-MM-YYYY HH:mm:ss");
-        if (moment().isBefore(endDateTime) && application.status.trim() === "SUBMITTED") {
+        if (moment().isBefore(endDateTime) && (((isAdmin||isAtcAdmin) && application.status.trim() === "SUBMITTED") || (isAfmluAdmin && application.status.trim() === "APPROVEDBYATC" )) ){
             return(
                 <div>
                     <td>
@@ -240,7 +256,7 @@ class AdminDashboardForAtcAfmlu extends React.Component {
             }
         }
         else if(application.status === 'APPROVEDBYATC' && isAfmluAdmin) {
-            this.updateApplicationStatusAfmlu('APPROVEDBYAFMLU', event,application.id,FLY_DRONE_PERMISSION_APPLICATION)
+            this.props.updateApplicationStatusAfmlu('APPROVEDBYAFMLU', event,application.id,FLY_DRONE_PERMISSION_APPLICATION)
         }
 
     }

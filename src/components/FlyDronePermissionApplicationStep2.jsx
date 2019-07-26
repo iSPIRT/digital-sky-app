@@ -132,7 +132,7 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
             });
 
             map.addLayer(permissionLayer);
-            map.setView(new View({ center: coordinates[0], zoom: 12}));
+            map.setView(new View({ center: coordinates[0], zoom: 15}));
         }
 
         this.setState({  map: map});
