@@ -139,7 +139,7 @@ class FlyDronePermissionApplicationStep2 extends React.Component {
     }
 
     addressChosen(event){
-        this.state.map.setView(new View({ center: event.coordinate, zoom: 8}));
+        this.state.map.setView(new View({ center: event.coordinate, zoom: 15}));
     }
 
     startDraw(event) {
