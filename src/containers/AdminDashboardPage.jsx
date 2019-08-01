@@ -12,8 +12,14 @@ import AdminDashboardForAtcAfmlu from '../components/AdminDashboardForAtcAfmlu';
 
 import { LOCAL_DRONE_ACQUISITION_APPLICATION, FLY_DRONE_PERMISSION_APPLICATION } from '../constants/applicationType';
 
-import { loadApplicationsAction } from '../actions/adminActions';
+import {
+    approveApplicationsAction, approveApplicationsByAfmluAction,
+    approveApplicationsByAtcAction,
+    loadApplicationsAction, viewPilotProfile
+} from '../actions/adminActions';
 import { checkAdminAction } from '../actions/loginActions';
+import { loadUserAirspaceCategoriesByHeightAction} from '../actions/userAirspaceCategoryActions';
+import {loadOperatorProfile} from "../actions/operatorProfileActions";
 
 class AdminDashboardPage extends React.Component {
 
@@ -22,6 +28,12 @@ class AdminDashboardPage extends React.Component {
         this.applicationTypeSelected = this.applicationTypeSelected.bind(this);
         this.applicationSelected = this.applicationSelected.bind(this);
         this.applicationSelectedByAtcAfmlu = this.applicationSelectedByAtcAfmlu.bind(this);
+        this.loadAirspaceCategoriesByHeight = this.loadAirspaceCategoriesByHeight.bind(this);
+        this.updateApplicationStatus = this.updateApplicationStatus.bind(this);
+        this.updateApplicationStatusAtc = this.updateApplicationStatusAtc.bind(this);
+        this.updateApplicationStatusAfmlu = this.updateApplicationStatusAfmlu.bind(this);
+        this.handleOpenMapView = this.handleOpenMapView.bind(this);
+        this.loadAdditionalInfoPage = this.loadAdditionalInfoPage.bind(this);
         const queryParams = queryString.parse(this.props.location.search);
         this.state = {
             selectedApplicationType: queryParams.type ? queryParams.type: LOCAL_DRONE_ACQUISITION_APPLICATION,
@@ -47,6 +59,10 @@ class AdminDashboardPage extends React.Component {
         this.props.dispatch(loadApplicationsAction(applicationType));
     }
 
+    loadAirspaceCategoriesByHeight(application) {
+        return this.props.dispatch(loadUserAirspaceCategoriesByHeightAction(application));
+    }
+
     applicationSelected(applicationId){
         const {selectedApplicationType} = this.state;
         history.push("/admin/application?type="+selectedApplicationType+"&id="+applicationId);
@@ -55,6 +71,54 @@ class AdminDashboardPage extends React.Component {
     applicationSelectedByAtcAfmlu(applicationId){
         const {selectedApplicationType} = this.state;
         history.push("/admin/application?type="+FLY_DRONE_PERMISSION_APPLICATION+"&id="+applicationId);
+    }
+
+    loadAdditionalInfoPage(applicationId){
+        const applications = this.props.adminApplications[FLY_DRONE_PERMISSION_APPLICATION];
+        const currentApplication =  applications.find( application => application.id === applicationId );
+        this.props.dispatch(loadOperatorProfile("individualOperator", currentApplication.operatorId));
+        this.props.dispatch(viewPilotProfile(currentApplication.pilotId));
+        history.push("/additionalInfo?type="+FLY_DRONE_PERMISSION_APPLICATION+"&id="+applicationId);
+    }
+
+    handleOpenMapView(applicationId){
+        const applications = this.props.adminApplications[FLY_DRONE_PERMISSION_APPLICATION];
+        const currentApplication =  applications.find( application => application.id === applicationId );
+        this.props.dispatch(loadUserAirspaceCategoriesByHeightAction(currentApplication));
+        history.push("/mapView?type="+FLY_DRONE_PERMISSION_APPLICATION+"&id="+applicationId);
+    }
+
+    updateApplicationStatus(status, event,id,applicationType){
+        event.preventDefault();
+
+        const approveRequestBody = {
+            applicationFormId:id,
+            status
+        };
+
+        this.props.dispatch(approveApplicationsAction(applicationType,id, approveRequestBody));
+    }
+
+    updateApplicationStatusAtc(status, event,id,applicationType){
+        event.preventDefault();
+
+        const approveRequestBody = {
+            applicationFormId: id,
+            status
+        };
+
+        this.props.dispatch(approveApplicationsByAtcAction(applicationType,id, approveRequestBody));
+    }
+
+    updateApplicationStatusAfmlu(status, event,id,applicationType){
+        event.preventDefault();
+
+        const approveRequestBody = {
+            applicationFormId: id,
+            status
+        };
+
+        this.props.dispatch(approveApplicationsByAfmluAction(applicationType,id, approveRequestBody));
     }
 
     componentWillReceiveProps(){
@@ -71,23 +135,38 @@ class AdminDashboardPage extends React.Component {
     render() {
         const {selectedApplicationType,isAdmin,isAtcAdmin,isAfmluAdmin,isAdminCheck,isViewerAdmin,isATCViewerAdmin,isAFMLUViewerAdmin} = this.state;
         const { errors } = this.props.adminApplications;
+        const airspaceCategories = this.props.airspaceCategories;
         const applications = this.props.adminApplications[selectedApplicationType];
+
         if(isAdminCheck){            
             if(isAdmin || isViewerAdmin)
             return <AdminDashboard
                     selectedApplicationType={selectedApplicationType}
                     applications={applications}
+                    airspaceCategories={airspaceCategories}
                     errors={errors}
+                    loadAdditionalInfoPage={this.loadAdditionalInfoPage}
                     applicationTypeSelected={this.applicationTypeSelected}
                     applicationSelected={this.applicationSelected}
+                    loadAirspaceCategories={this.loadAirspaceCategoriesByHeight}
+                    updateApplicationStatus={this.updateApplicationStatus}
+                    updateApplicationStatusAtc={this.updateApplicationStatusAtc}
+                    updateApplicationStatusAfmlu={this.updateApplicationStatusAfmlu}
+                    handleOpenMapView={this.handleOpenMapView}
                />
             else if(isAtcAdmin || isAfmluAdmin || isATCViewerAdmin || isAFMLUViewerAdmin){
                 return <AdminDashboardForAtcAfmlu
                 selectedApplicationType={FLY_DRONE_PERMISSION_APPLICATION}
                 applications={this.props.adminApplications[FLY_DRONE_PERMISSION_APPLICATION]}
                 errors={errors}
-                applicationSelected={this.applicationSelected}
-                applicationSelected={this.applicationSelectedByAtcAfmlu}
+                airspaceCategories={airspaceCategories}
+                loadAdditionalInfoPage={this.loadAdditionalInfoPage}
+                applicationTypeSelected={this.applicationTypeSelected}
+                loadAirspaceCategories={this.loadAirspaceCategoriesByHeight}
+                updateApplicationStatus={this.updateApplicationStatus}
+                updateApplicationStatusAtc={this.updateApplicationStatusAtc}
+                updateApplicationStatusAfmlu={this.updateApplicationStatusAfmlu}
+                handleOpenMapView={this.handleOpenMapView}
                 />
             }        
         }
@@ -99,9 +178,11 @@ class AdminDashboardPage extends React.Component {
 function mapStateToProps(state) {
      const { adminApplications } = state;
      const { adminCheck } = state.adminTest;
+    const { airspaceCategories } = state.userAirspaceCategory;
      return {
-        adminApplications,
-        adminCheck
+         adminApplications,
+         adminCheck,
+         airspaceCategories
      };
 }
 

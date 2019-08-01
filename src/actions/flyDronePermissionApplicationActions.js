@@ -6,6 +6,8 @@ export const SAVE_FDP_APPLICATION_SUCCESS = "SAVE_FDP_APPLICATION_SUCCESS";
 export const SAVE_FDP_APPLICATION_FAILURE = "SAVE_FDP_APPLICATION_FAILURE";
 export const LOAD_FDP_APPLICATIONS_SUCCESS = "LOAD_FDP_APPLICATIONS_SUCCESS";
 export const LOAD_FDP_APPLICATIONS_FAILURE = "LOAD_FDP_APPLICATIONS_FAILURE";
+export const SUBMIT_FLIGHT_LOG_FOR_APPLICATION_SUCCESS = "SUBMIT_FLIGHT_LOG_FOR_APPLICATION_SUCCESS";
+export const SUBMIT_FLIGHT_LOG_FOR_APPLICATION_FAILURE = "SUBMIT_FLIGHT_LOG_FOR_APPLICATION_FAILURE";
 
 export const createApplicationAction = application => {
   return dispatch => {
@@ -79,5 +81,19 @@ export const loadApplicationsAction = droneId => {
   }
   function failure(errors) {
     return { type: LOAD_FDP_APPLICATIONS_FAILURE, errors };
+  }
+};
+
+export const submitFlightLogAction = (application,formData) =>{
+  return dispatch =>{
+    flyDronePermissionApplicationService.submitFlightLog(application,formData).then(
+      ()=>{},
+      errors=>{
+        dispatch(failure(errors));
+      }
+    )
+  };
+  function failure(errors) {
+    return { type: SUBMIT_FLIGHT_LOG_FOR_APPLICATION_FAILURE, errors };
   }
 };

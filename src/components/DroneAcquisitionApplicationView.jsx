@@ -6,9 +6,19 @@ const DroneAcquisitionApplicationView = (props) => {
     return(
         <div className="large-12 cell">
             <div className="question">
+                <h6>Id:</h6>
+                <p>{ applicationForm.id }</p>
+            </div>
+            <div className="question">
                 <h6>Name of applicant in full:</h6>
                 <p>{ applicationForm.applicant }</p>
             </div>
+            { applicationForm.applicantEmail &&
+                <div className="question">
+                    <h6>Applicant email:</h6>
+                    <p>{applicationForm.applicantEmail}</p>
+                </div>
+            }
             <div className="question">
                 <h6>Address of Applicant:</h6>
                     { applicationForm.applicantAddress ?
@@ -33,10 +43,21 @@ const DroneAcquisitionApplicationView = (props) => {
                 <h6>Model No:</h6>
                 <p>{ applicationForm.modelNo }</p>
             </div>
+            {applicationForm.noOfDrones===1 && 
             <div className="question">
                 <h6>Sl No:</h6>
                 <p>{ applicationForm.serialNo }</p>
-            </div>
+            </div>}
+            {applicationForm.noOfDrones>1 && 
+            <div className="question">
+                <h6>Serial No start:</h6>
+                <p>{ applicationForm.serialNoStart }</p>
+            </div>}
+            {applicationForm.noOfDrones>1 && 
+            <div className="question">
+                <h6>Serial No end:</h6>
+                <p>{ applicationForm.serialNoEnd }</p>
+            </div>}
             <div className="question">
                 <h6>Date of Manufacture:</h6>
                 <p>{ applicationForm.dateOfManufacture }</p>
@@ -44,11 +65,7 @@ const DroneAcquisitionApplicationView = (props) => {
             <div className="question">
                 <h6>Count of RPAs:</h6>
                 <p>{ applicationForm.noOfDrones }</p>
-            </div>
-            {/* <div className="question">
-                <h6>Category:</h6>
-                <p>{applicationForm.applicantCategory}</p>  
-            </div> */}
+            </div>            
             <div className="question">
                 <h6>Name of Manufacturer:</h6>
                 <p>{applicationForm.manufacturer}</p> 

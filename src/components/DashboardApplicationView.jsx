@@ -45,12 +45,14 @@ class DashboardApplicationView extends React.Component {
     }
 
     applicationsMarkup(applications) {
+
         return applications.map((application) =>
                                 {
+                                    const applicationType=application.type.replace(/([A-Z])/g, " $1");
                                     return <div className={this.applicationStatusClass(application.status)} data-equalizer>
                                             <div className="details" data-equalizer-watch>
                                                 <p className="title">{application.status}</p>
-                                                <p className="info">{application.type}</p>
+                                                <p className="info">{applicationType}</p>
                                                 <p className="meta">{this.applicationDate(application)}</p>
                                                 <p className="meta">ID: {application.id}</p>
                                             </div>

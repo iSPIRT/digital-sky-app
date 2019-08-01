@@ -62,7 +62,6 @@ class PilotProfile extends React.Component {
     }
 
     handleChange(event) {
-        debugger
         const { name, value, type } = event.target;
         if( type === 'file'){
             this.setState({[name]: event.target.files[0]});
@@ -137,7 +136,6 @@ class PilotProfile extends React.Component {
         const {profile} = this.state;
         profile.dateOfBirth = this.state.dateOfBirth.format('DD-MM-YYYY');
         formData.append("pilotPayload", JSON.stringify(profile))
-        debugger
         if(this.props.pilotProfileSaved){
             this.props.updatePilotProfile(formData);
         } else{
@@ -171,7 +169,7 @@ class PilotProfile extends React.Component {
                             <div className="grid-x grid-padding-x">
                                 {  profile &&  profile.id &&
                                     <div className="large-12 cell">
-                                        <label>Id
+                                        <label>Business Identifier
                                             <p>{profile.businessIdentifier}</p>
                                         </label>
                                     </div>

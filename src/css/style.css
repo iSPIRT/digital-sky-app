@@ -127,6 +127,59 @@ a:hover {
   color: #1940b2;
 }
 
+.application-status-nav {
+  margin-left: 5%;
+  margin-right: 5%;
+  overflow: hidden;
+  background-color: #686868;
+  display: flex;
+  list-style: none;
+  border-radius: 4px;
+}
+.application-status-nav li a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+/* Change the color of links on hover */
+.application-status-nav li a:hover {
+  background-color: #515151;
+  color: whitesmoke;
+}
+
+/* Add a color to the active/current link */
+.application-status-nav li a.active {
+  background-color: #ddd;
+  color: black;
+}
+.application-status-nav a img {
+  margin-top: 17px;
+  z-index: 1;
+}
+.appl-style {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.application-status-nav input[type="text"] {
+  width: 21%;
+  height: 12px;
+  border-radius: 8px;
+  float: right;
+  margin: 15px;
+  border: 5px;
+  font-size: 17px;
+}
+.small-button {
+  width: 40px;
+  margin: 5px;
+  position: relative;
+  top: -2px;
+}
 .button {
   background: #245dff;
   border: 1px solid #003be2;
@@ -200,7 +253,7 @@ a:hover {
   background: #00c75b;
   border-color: #00c75b;
   box-shadow: none;
-  margin-bottom: 20px;
+  margin: 10px;
 }
 .button.button-accept:hover {
   background: #00c75b;
@@ -1626,6 +1679,18 @@ footer.site-footer .footer-logo h4 {
   margin-bottom: 10px;
   border-radius: 6px;
 }
+
+#all-applications-admin .applications .application.status-accepted {
+  background: #00b653;
+}
+
+#all-applications-admin .applications .application.status-declined {
+  background: #e25353;
+}
+#all-applications-admin .applications .application.status-submitted {
+  background: #ec8416;
+}
+
 #all-applications-admin .applications .application .details {
   width: calc(100% - 50px);
   float: left;
@@ -1641,10 +1706,11 @@ footer.site-footer .footer-logo h4 {
   line-height: 28px;
   letter-spacing: 0.76px;
   text-transform: uppercase;
+  color:white;
 }
 #all-applications-admin .applications .application .details p {
   margin: 0px;
-  color: #2b2b5b;
+  color: white;
   font-family: "poppinssemibold";
   font-weight: normal;
   font-style: normal;
@@ -1653,7 +1719,6 @@ footer.site-footer .footer-logo h4 {
   margin: 0px;
   font-size: 11px;
   line-height: 17px;
-  color: #64729a;
 }
 #all-applications-admin .applications .application .go-to-location {
   width: 50px;
@@ -2156,8 +2221,7 @@ footer.site-footer .footer-logo h4 {
 .single-page {
   padding: 50px 0px;
 }
-
-.thanks-page {
+#m .thanks-page {
   padding: 80px 0px;
   text-align: center;
   margin-top: -10px;
@@ -2378,7 +2442,6 @@ footer.site-footer .footer-logo h4 {
   top: -3px;
   position: relative;
 }
-
 #permission-map .map-wrapper {
   height: calc(100vh - 164px);
   margin-top: -8px;
@@ -2485,6 +2548,39 @@ footer.site-footer .footer-logo h4 {
   height: 4px;
   background-color: #245dff;
 }
+
+.drop-down-select {
+  border: 1px solid #ececec;
+  padding: 10px 20px;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  margin: 0;
+  color: black;
+}
+
+.drop-down-select ul {
+  list-style: none;
+  position: absolute;
+  padding: 10px 20px;
+  margin: 0;
+  position: absolute;
+  border: 1px solid #ececec;
+  left: -1px;
+  top: 38px;
+  width: 100%;
+  color: black;
+}
+
+.drop-down-select .show {
+  display: inline-block;
+}
+
+.drop-down-select .hide {
+  display: none;
+}
+
 .altitude-range-wrap .slider-handle {
   background-color: transparent;
   background-image: url("../img/drag.svg");
@@ -2508,6 +2604,9 @@ footer.site-footer .footer-logo h4 {
 }
 .altitude-range-wrap input:disabled {
   cursor: default;
+}
+.map-display {
+  border: 3px solid #000000;
 }
 .altitude-range-wrap .circle-left {
   width: 16px;
@@ -2540,7 +2639,18 @@ footer.site-footer .footer-logo h4 {
 .review-map-wrap .map {
   height: 100%;
 }
-
+.button {
+  background-color: #245dff;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
 .alert-notification {
   position: fixed;
   width: 100%;
@@ -2647,6 +2757,36 @@ table thead {
   right: 20px;
   top: 20px;
 }
+
+#application-table {
+  text-align: center;
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+  width: 100%;
+}
+
+#application-table td,
+#application-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#application-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#application-table tr:hover {
+  background-color: #ddd;
+}
+
+#application-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #245dff;
+  color: white;
+}
+
 #application-status-modal {
   padding-bottom: 50px;
 }

@@ -16,11 +16,9 @@ export const loadApplicationsAction = (applicationType, adminType) => {
     dispatch(request());
     adminService.loadApplications(applicationType, adminType).then(
       applications => {
-        // debugger
         dispatch(success(applicationType, applications));
       },
       errors => {
-        // debugger
         dispatch(failure(errors));
       }
     );

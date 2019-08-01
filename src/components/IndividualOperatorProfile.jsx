@@ -139,13 +139,6 @@ class IndividualOperatorProfile extends React.Component {
                     <form name="individualOperatorProfileForm" onSubmit={this.handleSubmit}>
                         <div className="grid-container">
                             <div className="grid-x grid-padding-x">
-                                {  profile &&  profile.id &&
-                                    <div className="large-12 cell">
-                                        <label>Id
-                                            <p>{profile.id}</p>
-                                        </label>
-                                    </div>
-                                }
                                 {  profile &&  profile.businessIdentifier &&
                                     <div className="large-12 cell">
                                         <label>Business Identifier
