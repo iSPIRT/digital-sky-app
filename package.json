@@ -15,7 +15,7 @@
     "browserslist": "4.1.2",
     "create-react-class": "^15.6",
     "foundation-sites": "^v6.5.0-rc.1",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "js-file-download": "^0.4.1",
     "moment": "^2.22.2",
     "ol": "^5.1.3",
