@@ -12,7 +12,7 @@
   "dependencies": {
     "@bit/react-bootstrap.react-bootstrap.modal": "^1.0.0",
     "@bit/reactstrap.reactstrap.uncontrolled-alert": "^7.1.0",
-    "browserslist": "4.1.2",
+    "browserslist": "4.16.5",
     "create-react-class": "^15.6",
     "foundation-sites": "^v6.5.0-rc.1",
     "jquery": "^3.2.1",
